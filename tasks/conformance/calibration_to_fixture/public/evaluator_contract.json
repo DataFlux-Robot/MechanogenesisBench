@@ -1,0 +1,6 @@
+{
+  "objective_direction": "higher_is_better",
+  "promotion_rule": "after_lower >= before_upper + margin AND net_value > 0 AND robustness_pass_rate >= task threshold",
+  "recursive_credit": "isolated generator-fork improvement on held-out future research episodes",
+  "evidence_warning": "This task is protocol conformance only; no physical claim is certified."
+}

@@ -1,0 +1,6 @@
+{
+  "baseline_process_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "baseline_world_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "description": "Abstract workcell with a repeatable pose error and a low-yield fixture process.",
+  "units": "SI unless a field states otherwise"
+}

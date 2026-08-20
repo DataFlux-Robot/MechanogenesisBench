@@ -1,0 +1,21 @@
+schema_version = "0.1"
+task_id = "conformance.calibration_to_fixture"
+title = "Calibration tool to production fixture recursive episode"
+track = "recursive_learner"
+evidence_ceiling = "conformance"
+guidance_levels = ["G1", "G2", "G3", "G4", "G5"]
+generations = 2
+min_promotions = 2
+min_robustness_pass_rate = 0.80
+
+[evaluator]
+command = ["python3", "evaluator/evaluate.py"]
+
+[budget]
+wall_time_s = 60.0
+monetary_cost_usd = 50.0
+tokens = 100000
+energy_j = 1000000.0
+material_kg = 2.0
+human_intervention_s = 0.0
+attempts = 8
