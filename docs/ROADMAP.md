@@ -1,6 +1,6 @@
 # Roadmap
 
-## P0 — protocol kernel (complete for v0.5)
+## P0 — protocol kernel (complete for v0.6)
 
 Complete and harden task/submission ABIs, evidence tiers, exact receipts,
 lineage, vector scoring, conformance corpus and Lean protocol invariants.
@@ -20,6 +20,12 @@ receipts, and Lean preservation/physical-contribution lemmas. Remaining P1 work
 includes interval/distribution types, general frame composition, experiment
 bytecode and custody signatures.
 
+Version 0.6 adds a Lean-native lowered manifest for the current shape,
+assembly and five-operation construction fragment. Trusted evaluators
+independently regenerate it from the surface program. Remaining trust reduction
+is to generate the external ABI/codec from Lean and move geometry evaluation,
+not only geometry well-formedness, behind proof-producing contracts.
+
 ## P2 — native geometry and mechanism execution (in progress)
 
 Add B-rep/mesh/SDF views under stable topology identity, assembly constraints,
@@ -36,6 +42,10 @@ process forces, tolerance synthesis and broader tool invention remain open.
 Add rigid/compliant/thermal/fluid/electrical/manufacturing domains, typed ports,
 adaptive fidelity and conservation residuals. Integrate Newton and specialist
 solvers only through refinement contracts and cross-validation tasks.
+
+The first refinement contract is executable: a conformance-tier metrology
+certificate proves exact error decomposition and receipt binding. It does not
+yet establish empirical calibration or numerical residual bounds.
 
 ## P4 — Gθ/MRS research runtime
 

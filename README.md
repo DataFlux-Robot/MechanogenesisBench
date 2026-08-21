@@ -22,7 +22,7 @@ canonical world state.
 
 ## Current executable slice
 
-Version `0.5.0` provides:
+Version `0.6.0` provides:
 
 - a benchmark task-package standard;
 - Fixed Engine, Open System and Recursive Learner tracks;
@@ -65,6 +65,14 @@ Version `0.5.0` provides:
 - a machine-checked theorem that Lean-accepted promotion implies valid
   accounting, explicit assumptions, world-bound credit and strictly lower
   bounded child error.
+- a Lean-native canonical program manifest for the current geometry,
+  assembly and manufacturing fragment, including rooted shape depth, closed
+  operation kinds, cross-reference validation and operation-to-receipt binding;
+- a first metrology refinement module that recomputes angular, worst-case and
+  absolute-frame error bounds, covers every calibration operation and binds
+  each result to its exact operation and receipt;
+- independent evaluator regeneration of the entire sovereign certificate, so
+  an internally valid manifest cannot be substituted for a different program.
 
 It does **not** yet contain calibrated multi-physics or hardware evidence. A
 passing sample proves protocol conformance, not physical RSI.
@@ -73,7 +81,7 @@ passing sample proves protocol conformance, not physical RSI.
 
 ```bash
 python -m pip install -e '.[dev]'
-lake build sovereignCheck promotionCheck
+lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck
 mbench task validate tasks/conformance/calibration_to_fixture
 mbench run tasks/conformance/calibration_to_fixture \
   --system-command "python examples/reference_system.py" \

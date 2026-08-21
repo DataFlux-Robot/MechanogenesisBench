@@ -17,6 +17,8 @@ from .sovereign import (
     SovereignCertificate,
     certificate_from_execution,
     promotion_envelope,
+    verify_canonical_ir_with_lean,
+    verify_metrology_with_lean,
     verify_promotion_with_lean,
     verify_with_lean,
 )
@@ -45,7 +47,9 @@ __all__ = [
     "write_program",
     "write_state",
     "verify_with_lean",
+    "verify_canonical_ir_with_lean",
+    "verify_metrology_with_lean",
     "verify_promotion_with_lean",
 ]
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"

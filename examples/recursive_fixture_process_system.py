@@ -49,8 +49,7 @@ def mrs_bundle(
     research: GThetaRun,
 ) -> dict[str, str]:
     return {
-        name: store_object(store, value)
-        for name, value in research.mrs_objects.items()
+        name: store_object(store, value) for name, value in research.mrs_objects.items()
     }
 
 
@@ -101,9 +100,13 @@ def main() -> int:
     store = output / "objects"
     store.mkdir(parents=True, exist_ok=True)
     world = load_world(public_root / "mechanism_world.json")
-    goal_raw = json.loads((public_root / "fixture_goal.json").read_text(encoding="utf-8"))
+    goal_raw = json.loads(
+        (public_root / "fixture_goal.json").read_text(encoding="utf-8")
+    )
     goal = FixtureGoal.from_mapping(goal_raw)
-    benchmark_world = json.loads((public_root / "world.json").read_text(encoding="utf-8"))
+    benchmark_world = json.loads(
+        (public_root / "world.json").read_text(encoding="utf-8")
+    )
     evaluator_contract = json.loads(
         (public_root / "evaluator_contract.json").read_text(encoding="utf-8")
     )
@@ -176,7 +179,7 @@ def main() -> int:
     submission = {
         "schema_version": "0.1",
         "system_name": "gtheta-recursive-fixture-process-baseline",
-        "system_version": "0.5.0",
+        "system_version": "0.6.0",
         "declared_evidence_tier": "conformance",
         "resource_use": {
             "wall_time_s": 0.0,

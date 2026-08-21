@@ -36,15 +36,17 @@ candidate from the expanded robust set. Finally, an accepted compiled program
 certifies candidate feasibility only under an explicit compiler-soundness
 premise.
 
-For Sovereign Kernel 0.1, if the Lean promotion checker accepts an envelope
+For Sovereign Kernel 0.2, if the Lean promotion checker accepts an envelope
 containing a backend transition and evaluator decision, then: the receipt chain
 connects the declared parent and child worlds; every receipt satisfies exact
 material closure; sequence and resource totals equal the receipt computation;
 all required assumptions are explicitly present; the decision is bound to the
-same world pair; the promoted child error bound is strictly smaller than the
-parent bound; and net value, robustness and evidence-tier gates hold. This
-remains conditional on the truth and calibration of the recorded
-physical-model assumptions.
+same world pair; the lowered canonical program is accepted; every embedded
+metrology certificate satisfies its exact error decomposition and receipt
+binding; the promoted child error bound is strictly smaller than the parent
+bound; and net value, robustness and evidence-tier gates hold. This remains
+conditional on the truth and calibration of the recorded physical-model
+assumptions.
 
 ## Status
 
@@ -85,6 +87,10 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
 - `reference_model_fidelity` explicitly assumes that the current axis-aligned
   geometry, additive error model and declared machine bounds are adequate for
   the conformance claim. Lean proves no stronger empirical statement.
+- The trusted evaluator deterministically regenerates the Lean canonical
+  manifest and refinement certificates from the submitted surface program and
+  replayed execution. Until the codec is generated from Lean, this equality
+  check is an explicit trusted-lowering assumption.
 
 ## Notation
 
@@ -106,6 +112,9 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   decision and $\operatorname{PromotionCheck}(C,D)$ is the pure Lean acceptance
   function. $A(C)$ is its explicit assumption ledger and $T(C)$ is its
   receipt-defined physical transition.
+- $I(C)$ states that the embedded canonical program manifest passes Lean's
+  closed shape/reference/operation language, and $M(C)$ states that its
+  metrology certificates pass formula and receipt binding.
 
 ## Proof Strategy
 
@@ -144,6 +153,10 @@ of natural-number addition.
     certificate acceptance implies valid transition accounting; certificate
     acceptance implies required-assumption coverage; and the positive-margin
     gate implies strict bounded improvement.
+11. Canonical IR acceptance supplies a nonempty, closed operation language and
+    well-formed cross-references. Metrology acceptance supplies exact angular,
+    worst-case and absolute-frame equations. The composed sovereign checker
+    binds both objects to the program and transition receipts.
 
 ## Proof
 
@@ -271,13 +284,50 @@ $$
 \operatorname{PromotionCheck}(C,D)=\mathrm{true}
 \Rightarrow
 T(C)\land A(C)\land \operatorname{BoundTo}(D,C)\land e_c<e_p
+\land I(C)\land M(C)
 \land N(D)>0\land \operatorname{Robust}(D)\land
 \operatorname{EvidenceBound}(D,C).
 $$
 `Mechanogenesis/Kernel/FixtureCertificate.lean` machine-checks the combined
 theorem `checked_certificate_allows_only_accounted_strict_promotion`. It does
 not discharge any assumption by asserting that a simulator or device is
-physically faithful. ∎
+physically faithful.
+
+Step 11. The canonical program predicate first requires a nonempty operation
+list and proves that every operation kind belongs to the finite language
+$$
+\{\texttt{machine\_part},\texttt{consume\_component},
+\texttt{assemble},\texttt{calibrate},\texttt{qualify\_process}\}.
+$$
+The remaining Boolean conjuncts check unique identities, depth-ranked
+shape-parent topology, canonical composite child indices, primitive/composite
+arity, part-source inventory, material and equipment references, assembly
+references, calibration roles and consecutive operation indices. A non-root
+shape has depth exactly one greater than its parent, so a disconnected cycle
+would require an impossible strict natural-number depth cycle. The sovereign
+composition also requires positional equality of canonical operation hashes
+and transition-receipt operation hashes.
+`accepted_canonical_program_closes_operation_language` extracts the closed
+language property from checker acceptance.
+
+For a metrology certificate let $c_r,c_f,e_a,e_m,e_p,e_d$ denote radial
+clearance, reference clearance, angular error, manufacturing repeatability,
+probe repeatability and disturbance. Acceptance requires
+$$
+e_a=\left\lceil\frac{2c_rs}{d}\right\rceil,
+\qquad
+e_w=c_r+c_f+e_a+e_m+e_p+e_d,
+$$
+and $e_{abs}=e_{process}+e_w$. Since all terms are natural numbers,
+$e_d\le e_w$ and $e_{process}\le e_{abs}$ by monotonicity of addition.
+`accepted_metrology_bound_contains_disturbance` and
+`accepted_metrology_absolute_bound_contains_source_process` machine-check
+these consequences. The sovereign checker additionally matches the metrology
+program/operation/world hashes and workpiece span to a canonical `calibrate`
+instruction and an actual transition receipt. Certificate operation hashes are
+unique and every canonical calibration operation must be covered. Therefore
+accepted promotion yields both $I(C)$ and $M(C)$. It still does not establish
+that the supplied clearances or calibration parameters match hardware. ∎
 
 ## Corrections or Missing Assumptions
 
@@ -318,7 +368,8 @@ physically faithful. ∎
 - The current trusted strategy compiler supports one fixture topology. The
   theorem is representation-independent, but empirical claims about language
   invention require additional compiler fragments and held-out task families.
-- Sovereign Kernel 0.1 checks certificate structure and accounting but does not
-  yet verify SHA-256 collision resistance, numerical solver residuals, sensor
+- Sovereign Kernel 0.2 checks lowered-IR structure, metrology arithmetic,
+  certificate accounting and binding, but does not verify SHA-256 collision
+  resistance, geometry evaluation fidelity, numerical solver residuals, sensor
   signatures or calibration curves. Those remain explicit assumptions or
   future proof-producing backend obligations.

@@ -26,6 +26,14 @@ resource use and a contiguous list of generations. Each generation contains:
 - exact-integer construction receipts;
 - experiment and generator-fork receipts.
 
+For the current fixture tasks, `compiler_certificate` is a composed Lean
+Sovereign Kernel object. It embeds the lowered canonical program, metrology
+refinement certificates, assumption ledger and transition receipts. The
+trusted evaluator regenerates this complete object from the stored construction
+program and independent replay before considering promotion.
+Lean then requires positional equality between canonical operation hashes and
+receipt hashes, and exactly one certificate for every calibration operation.
+
 The trusted report binds task package and private evaluator-bundle digests. For
 each generation it states the artifact hash, confidence bounds, margin, net
 value, robustness, evidence tier and two Recursive Research Credit deltas.

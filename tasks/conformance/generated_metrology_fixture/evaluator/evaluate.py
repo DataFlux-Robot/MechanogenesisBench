@@ -16,6 +16,7 @@ from mechanogenesis_engine.ir import MechanismProgram
 from mechanogenesis_engine.research_strategy import FixtureResearchStrategy
 from mechanogenesis_engine.sovereign import (
     SovereignCertificate,
+    certificate_from_execution,
     find_promotion_checker,
     find_sovereign_checker,
     promotion_envelope,
@@ -138,6 +139,15 @@ def main() -> int:
         valid = valid and sovereign.attempted_candidates == (
             regenerated.attempted_candidates
         )
+        expected_sovereign = certificate_from_execution(
+            world,
+            program,
+            execution,
+            strategy_hash=strategy.strategy_hash,
+            candidate_support_size=regenerated.candidate_support_size,
+            attempted_candidates=regenerated.attempted_candidates,
+        )
+        valid = valid and sovereign.to_dict() == expected_sovereign.to_dict()
         valid = valid and theory_portfolio["observed_hypothesis_errors_um"] == (
             regenerated.hypothesis_errors_um
         )

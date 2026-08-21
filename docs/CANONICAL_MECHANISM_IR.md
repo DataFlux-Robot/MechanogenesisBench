@@ -70,16 +70,28 @@ obligations that preserve topology and volume bounds.
 
 ## Trust boundary
 
-`ReferenceInterpreter` is the normative executable semantics for this
-fragment. `cad_backend` compiles the same program to build123d/STEP for
-geometric inspection. The STEP file is a refinement artifact and does not
-decide inventory, error, capability or promotion semantics.
+`Mechanogenesis.Kernel.CanonicalIR` is the normative lowered-language boundary
+for the current fragment. It owns accepted shape topology, cross-reference and
+operation-kind semantics. Shape depth must decrease exactly toward a unique
+part root, excluding disconnected cycles; composite child indices are
+canonical, and part source inventory is operation-consistent.
+`ReferenceInterpreter` is now a certificate-checked execution backend rather
+than an independent owner of canonical truth. The sovereign checker binds each
+canonical operation hash positionally to a transition receipt. The trusted
+evaluator regenerates the Lean manifest from the surface program and compares
+the complete certificate before promotion.
 
-Lean proves that local mass closure composes globally, conservative
-subtraction cannot create part mass, an empty receipt sequence cannot change a
-world, and larger disturbance terms cannot reduce the stated error bound. The
-proofs are conditional on the IR facts supplied to them; physical fidelity is
-an empirical refinement obligation.
+The interpreter still computes AABBs, CSG volume intervals, assembly placement
+and manufacturing transitions in Python. Consequently the hand-written codec
+and geometry evaluator remain in the bounded trusted computing base. The next
+reduction is to generate the codec from Lean and move geometry computation
+behind proof-producing refinement contracts.
+
+`cad_backend` compiles the same program to build123d/STEP for geometric
+inspection. The STEP file is a refinement artifact and does not decide
+inventory, error, capability or promotion semantics. Lean proves the lowered
+language closure, local/global material results and the current metrology error
+decomposition, all conditional on explicit empirical fidelity assumptions.
 
 ## Extension rule
 

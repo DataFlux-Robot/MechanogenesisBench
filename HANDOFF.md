@@ -89,7 +89,7 @@ not a fixed plug-in catalog.
 - Lean theorems for the exact feasible-support/budget phase boundary, monotone
   contraction under grounded world expansion, strict candidate removal by a
   separating model, and compiler-soundness certificate transfer.
-- Lean Sovereign Kernel 0.1 is now the authority for the executable fixture
+- Lean Sovereign Kernel 0.2 is now the authority for the executable fixture
   slice's quantities/identity, assumptions/evidence, external refinement
   contracts, physical-transition accounting and promotion semantics.
 - Every Gθ-produced compiler-certificate MRS object contains exact
@@ -101,12 +101,25 @@ not a fixed plug-in catalog.
   margin, strict bounded-error improvement, net value, robustness and evidence
   tier. The central Lean theorem returns accounting validity, explicit
   assumptions, world binding and strict improvement.
+- Sovereign Kernel 0.2 embeds a Lean-native canonical program manifest. It
+  validates flattened shape topology, material/inventory/machine/part/
+  assembly references, rigid mates, rooted depth-ranked shape trees, canonical
+  child indices, part-source consistency, continuous operation indices and a
+  closed five-operation manufacturing language. Every operation is
+  positionally bound to its transition receipt.
+- `MetrologyRefinement.lean` is the first domain refinement module. It checks
+  the angular, worst-case and absolute-frame error equations and binds the
+  span/result to the exact `calibrate` operation and transition receipt. Every
+  calibration must have one unique certificate.
+- Both trusted fixture evaluators independently regenerate the entire
+  certificate from the stored program and replayed execution. A forged but
+  internally self-consistent lowering is rejected by full-object comparison.
 
 Run:
 
 ```bash
 python -m pip install -e '.[dev]'
-lake build sovereignCheck promotionCheck
+lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck
 mbench task validate tasks/conformance/calibration_to_fixture
 mbench run tasks/conformance/calibration_to_fixture \
   --system-command "python examples/reference_system.py" \
@@ -179,33 +192,37 @@ isolated generator fork or hardware calibration establishes Recursive Research
 Credit or the 800/10 µm machine bounds and 10 µm transfer bound.
 
 Lean sovereignty here is operational but bounded: no current fixture
-promotion bypasses its two checkers, yet the reference physical equations and
-hidden evaluator bounds remain explicit empirical/model assumptions. Lean does
-not establish that those machine parameters describe hardware.
+promotion bypasses the composed checker, and the current IR plus metrology
+formula now have Lean-owned meanings. The Python lowering codec remains in the
+TCB but is independently replayed. Geometry evaluation, calibration truth and
+hidden evaluator bounds remain empirical/model assumptions; Lean does not
+establish that those machine parameters describe hardware.
 
 ## Next implementation sequence
 
-1. Move canonical IR structures and lowering judgments into Lean, beginning
-   with general frame composition, stable topology identity, intervals and
-   uncertainty; generate/validate the Python ABI from that source.
-2. Define the first proof-producing geometry/contact/metrology refinement
-   contract, including residual and calibrated-regime certificates.
-3. Extend IR 0.3 with stable B-rep/SDF views, experiment bytecode and custody
+1. Generate the Python/JSON canonical manifest codec from Lean definitions,
+   removing the hand-written codec from the trusted computing base.
+2. Extend the metrology contract with signed calibration custody, uncertainty
+   intervals and empirically justified validity regimes.
+3. Add a proof-producing geometry evaluator for primitive AABBs, CSG bounds,
+   fit clearance and mass intervals; then attach residual certificates to an
+   optimized native backend.
+4. Extend IR 0.3 with stable B-rep/SDF views, experiment bytecode and custody
    signatures.
-4. Add native collision/contact, fit, tolerance, metrology and machining-force
+5. Add native collision/contact, fit, tolerance, metrology and machining-force
    semantics, keeping the current interpreter as the oracle-sized fragment.
-5. Expand Gθ beyond the present parameter-language fragment: allow generation
+6. Expand Gθ beyond the present parameter-language fragment: allow generation
    of different topology grammars, compiler sketches and experiment bytecode,
    but require trusted lowering/certificates before canonical execution.
-6. Specify solver refinement contracts and add one optimized native backend;
+7. Specify solver refinement contracts and add one optimized native backend;
    use Newton/other engines only for cross-validation and falsification.
-7. Implement the full multi-world model population,
+8. Implement the full multi-world model population,
    interventional separability policy and executable MRS search.
-8. Add genuine isolated checkpoint forks across hidden future task suites and
+9. Add genuine isolated checkpoint forks across hidden future task suites and
    statistically powered Recursive Research Credit.
-9. Containerize untrusted submissions and independently meter compute, energy,
+10. Containerize untrusted submissions and independently meter compute, energy,
    materials and human intervention.
-10. Connect a bounded manufacturing workcell; advance from conformance to
+11. Connect a bounded manufacturing workcell; advance from conformance to
    simulation and hardware evidence only as calibration justifies.
 
 Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` and

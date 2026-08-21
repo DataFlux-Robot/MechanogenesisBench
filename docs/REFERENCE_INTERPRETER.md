@@ -4,7 +4,7 @@
 
 The reference interpreter loads a `WorldSpec`, verifies that a program names
 its exact initial world hash, validates all geometry and assembly facts, then
-executes four operation kinds:
+executes five operation kinds:
 
 1. `machine_part`: consume stock, construct a geometry-derived part, account
    for waste, machining time and energy;
@@ -24,6 +24,13 @@ The interpreter is intentionally simple and auditable. It models no forces,
 press fits, wear, surface finish or thermal effects. Such effects must enter as
 explicit future semantics or calibrated disturbance terms, not implied by a
 successful conformance run.
+
+As of version 0.6, the interpreter is a certificate-checked backend rather
+than the owner of the lowered language. Every execution certificate embeds a
+Lean canonical manifest and a metrology refinement certificate. The trusted
+evaluator regenerates the whole object from the stored program and replayed
+execution; Lean checks its operation/reference language, metrology arithmetic
+and receipt binding before promotion.
 
 ## First autonomous generation task
 

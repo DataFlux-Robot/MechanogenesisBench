@@ -36,11 +36,13 @@ The target Lean Sovereign Kernel owns these canonical meanings:
 - process and world lineages, which are distinct and content-addressed;
 - promotion, rollback and generator-fork semantics.
 
-Version 0.5 makes the first subset executable: fixed-point quantities, frame
+Version 0.6 makes the first subset executable: fixed-point quantities, frame
 and world identity, assumption/evidence ledgers, refinement contracts,
-receipt-chain/material/resource accounting and world-bound promotion. General
-geometry, fields, contact, manufacturing physics, sensor custody, rollback and
-fork semantics remain target modules rather than implemented claims.
+Lean-owned lowered shape/assembly/manufacturing IR, receipt-chain/material/
+resource accounting, a bounded metrology refinement and world-bound promotion.
+General geometry evaluation, fields, contact, manufacturing physics, sensor
+custody, rollback and fork semantics remain target modules rather than
+implemented claims.
 
 Python, GPU solvers and hardware drivers execute refinements of this spine; they
 do not define parallel physical truth. Every promotable backend output must

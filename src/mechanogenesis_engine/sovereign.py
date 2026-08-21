@@ -13,15 +13,19 @@ from mechanogenesis_bench.canonical import digest
 from .errors import ExecutionError, IRValidationError
 from .interpreter import ExecutionResult
 from .ir import MechanismProgram, WorldSpec, program_to_dict, world_to_dict
+from .lean_ir import canonical_program_manifest, metrology_refinement_certificates
 
 
-SOVEREIGN_SCHEMA_VERSION = "0.1"
-SOVEREIGN_SEMANTICS_ID = "Mechanogenesis.SovereignKernel.v0.1"
-SOVEREIGN_BACKEND_ID = "python_reference_interpreter_v0.4"
+SOVEREIGN_SCHEMA_VERSION = "0.2"
+SOVEREIGN_SEMANTICS_ID = "Mechanogenesis.SovereignKernel.v0.2"
+SOVEREIGN_BACKEND_ID = "python_reference_interpreter_v0.6"
 REQUIRED_ASSUMPTIONS = {
     "fixed_point_arithmetic",
     "hash_identity",
     "reference_model_fidelity",
+    "geometry_role_binding",
+    "additive_error_budget",
+    "calibration_parameter_fidelity",
 }
 KNOWN_ASSUMPTION_KINDS = {
     "physical_model",
@@ -212,6 +216,8 @@ class SovereignCertificate:
     total_energy_mj: int
     assumptions: tuple[SovereignAssumption, ...]
     receipts: tuple[SovereignReceipt, ...]
+    canonical_program: Mapping[str, Any]
+    metrology_certificates: tuple[Mapping[str, Any], ...]
 
     @classmethod
     def from_mapping(cls, raw: Mapping[str, Any]) -> "SovereignCertificate":
@@ -230,6 +236,8 @@ class SovereignCertificate:
                 "output",
                 "assumptions",
                 "receipts",
+                "canonicalProgram",
+                "metrologyCertificates",
             },
             "sovereign_certificate",
         )
@@ -247,12 +255,20 @@ class SovereignCertificate:
         )
         assumptions_raw = raw["assumptions"]
         receipts_raw = raw["receipts"]
+        canonical_program_raw = _mapping(
+            raw["canonicalProgram"], "sovereign_certificate.canonicalProgram"
+        )
+        metrology_raw = raw["metrologyCertificates"]
         if not isinstance(assumptions_raw, list) or not assumptions_raw:
             raise IRValidationError(
                 "sovereign_certificate.assumptions must be non-empty"
             )
         if not isinstance(receipts_raw, list) or not receipts_raw:
             raise IRValidationError("sovereign_certificate.receipts must be non-empty")
+        if not isinstance(metrology_raw, list) or not metrology_raw:
+            raise IRValidationError(
+                "sovereign_certificate.metrologyCertificates must be non-empty"
+            )
         certificate = cls(
             schema_version=_text(raw["schemaVersion"], "schemaVersion"),
             semantics_id=_text(raw["semanticsId"], "semanticsId"),
@@ -292,6 +308,16 @@ class SovereignCertificate:
                     _mapping(item, f"receipts[{index}]"), f"receipts[{index}]"
                 )
                 for index, item in enumerate(receipts_raw)
+            ),
+            canonical_program=dict(canonical_program_raw),
+            metrology_certificates=tuple(
+                dict(
+                    _mapping(
+                        item,
+                        f"sovereign_certificate.metrologyCertificates[{index}]",
+                    )
+                )
+                for index, item in enumerate(metrology_raw)
             ),
         )
         certificate.verify()
@@ -336,6 +362,36 @@ class SovereignCertificate:
             raise IRValidationError("sovereign duration total does not match receipts")
         if self.total_energy_mj != sum(item.energy_mj for item in self.receipts):
             raise IRValidationError("sovereign energy total does not match receipts")
+        if self.canonical_program.get("sourceProgramHash") != self.program_hash:
+            raise IRValidationError("canonical IR does not bind the source program")
+        if self.canonical_program.get("worldSpecHash") != self.world_spec_hash:
+            raise IRValidationError(
+                "canonical IR does not bind the world specification"
+            )
+        if self.canonical_program.get("parentWorldHash") != self.parent_world_hash:
+            raise IRValidationError("canonical IR does not bind the parent world")
+        receipt_bindings = {
+            (
+                item.index,
+                item.operation_hash,
+                item.parent_world_hash,
+                item.child_world_hash,
+            )
+            for item in self.receipts
+        }
+        for item in self.metrology_certificates:
+            if item.get("programHash") != self.program_hash:
+                raise IRValidationError(
+                    "metrology certificate does not bind the program"
+                )
+            binding = (
+                item.get("operationIndex"),
+                item.get("operationHash"),
+                item.get("parentWorldHash"),
+                item.get("childWorldHash"),
+            )
+            if binding not in receipt_bindings:
+                raise IRValidationError("metrology certificate does not bind a receipt")
 
     def to_dict(self) -> dict[str, object]:
         return {
@@ -361,6 +417,10 @@ class SovereignCertificate:
             },
             "assumptions": [item.to_dict() for item in self.assumptions],
             "receipts": [item.to_dict() for item in self.receipts],
+            "canonicalProgram": dict(self.canonical_program),
+            "metrologyCertificates": [
+                dict(item) for item in self.metrology_certificates
+            ],
         }
 
 
@@ -415,6 +475,45 @@ def certificate_from_execution(
             ),
             scope_hash=world_spec_hash,
         ),
+        SovereignAssumption(
+            assumption_id="geometry_role_binding",
+            kind="physical_model",
+            statement_hash=digest(
+                {
+                    "statement": (
+                        "declared locator and reference geometry roles match the "
+                        "physical fixture arrangement"
+                    )
+                }
+            ),
+            scope_hash=program_hash,
+        ),
+        SovereignAssumption(
+            assumption_id="additive_error_budget",
+            kind="physical_model",
+            statement_hash=digest(
+                {
+                    "statement": (
+                        "the conformance metrology terms compose through the "
+                        "declared conservative additive error budget"
+                    )
+                }
+            ),
+            scope_hash=world_spec_hash,
+        ),
+        SovereignAssumption(
+            assumption_id="calibration_parameter_fidelity",
+            kind="calibration",
+            statement_hash=digest(
+                {
+                    "statement": (
+                        "clearance, spacing, process and disturbance inputs match "
+                        "the calibrated regime claimed by the evaluator"
+                    )
+                }
+            ),
+            scope_hash=world_spec_hash,
+        ),
     )
     receipts = tuple(
         SovereignReceipt(
@@ -436,6 +535,10 @@ def certificate_from_execution(
             energy_mj=item.energy_mj,
         )
         for item in execution.receipts
+    )
+    canonical_program = canonical_program_manifest(world, program)
+    metrology_certificates = metrology_refinement_certificates(
+        world, program, execution
     )
     certificate = SovereignCertificate(
         schema_version=SOVEREIGN_SCHEMA_VERSION,
@@ -460,6 +563,8 @@ def certificate_from_execution(
         total_energy_mj=execution.total_energy_mj,
         assumptions=assumptions,
         receipts=receipts,
+        canonical_program=canonical_program,
+        metrology_certificates=metrology_certificates,
     )
     certificate.verify()
     return certificate
@@ -482,6 +587,28 @@ def find_promotion_checker(repository_root: Path | None = None) -> Path | None:
         return Path(configured)
     if repository_root is not None:
         candidate = repository_root / ".lake/build/bin/promotionCheck"
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def find_canonical_ir_checker(repository_root: Path | None = None) -> Path | None:
+    configured = shutil.which("canonicalIRCheck")
+    if configured:
+        return Path(configured)
+    if repository_root is not None:
+        candidate = repository_root / ".lake/build/bin/canonicalIRCheck"
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def find_metrology_checker(repository_root: Path | None = None) -> Path | None:
+    configured = shutil.which("metrologyCheck")
+    if configured:
+        return Path(configured)
+    if repository_root is not None:
+        candidate = repository_root / ".lake/build/bin/metrologyCheck"
         if candidate.is_file():
             return candidate
     return None
@@ -556,3 +683,33 @@ def verify_promotion_with_lean(envelope: Mapping[str, Any], checker: Path) -> No
     if result.returncode != 0:
         message = result.stderr.strip() or result.stdout.strip()
         raise ExecutionError(f"Lean promotion checker rejected decision: {message}")
+
+
+def _verify_mapping_with_lean(
+    value: Mapping[str, Any], checker: Path, label: str
+) -> None:
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", suffix=".json"
+        ) as handle:
+            json.dump(value, handle, indent=2, sort_keys=True)
+            handle.flush()
+            result = subprocess.run(
+                [str(checker), handle.name],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+    except OSError as error:
+        raise ExecutionError(f"cannot execute Lean {label} checker: {error}") from error
+    if result.returncode != 0:
+        message = result.stderr.strip() or result.stdout.strip()
+        raise ExecutionError(f"Lean {label} checker rejected object: {message}")
+
+
+def verify_canonical_ir_with_lean(manifest: Mapping[str, Any], checker: Path) -> None:
+    _verify_mapping_with_lean(manifest, checker, "canonical IR")
+
+
+def verify_metrology_with_lean(certificate: Mapping[str, Any], checker: Path) -> None:
+    _verify_mapping_with_lean(certificate, checker, "metrology")

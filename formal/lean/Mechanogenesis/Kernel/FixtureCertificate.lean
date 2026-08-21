@@ -1,15 +1,20 @@
 import Mechanogenesis.Kernel.Promotion
+import Mechanogenesis.Kernel.Digest
+import Mechanogenesis.Kernel.MetrologyRefinement
 import Lean.Data.Json.FromToJson
 
 namespace Mechanogenesis
 
 def sovereignSemanticsId : String :=
-  "Mechanogenesis.SovereignKernel.v0.1"
+  "Mechanogenesis.SovereignKernel.v0.2"
 
 def requiredFixtureAssumptions : List String := [
   "fixed_point_arithmetic",
   "hash_identity",
-  "reference_model_fidelity"
+  "reference_model_fidelity",
+  "geometry_role_binding",
+  "additive_error_budget",
+  "calibration_parameter_fidelity"
 ]
 
 structure CertificateAssumption where
@@ -32,6 +37,8 @@ structure SovereignCertificate where
   output : TransitionOutput
   assumptions : List CertificateAssumption
   receipts : List TransitionReceipt
+  canonicalProgram : CanonicalProgramManifest
+  metrologyCertificates : List MetrologyRefinementCertificate
   deriving DecidableEq, Repr, Lean.FromJson, Lean.ToJson
 
 /-- Executable evaluator decision bound to the same parent/child world pair as
@@ -55,15 +62,6 @@ structure SovereignPromotionEnvelope where
   certificate : SovereignCertificate
   decision : CertificatePromotionDecision
   deriving DecidableEq, Repr, Lean.FromJson, Lean.ToJson
-
-def isSha256DigestB (value : String) : Bool :=
-  value.startsWith "sha256:" &&
-  value.length == 71 &&
-  (value.toList.drop 7).all (fun character =>
-    "0123456789abcdef".toList.contains character)
-
-def IsSha256Digest (value : String) : Prop :=
-  isSha256DigestB value = true
 
 def KnownAssumptionKind (kind : String) : Prop :=
   kind ∈ [
@@ -116,11 +114,49 @@ def receiptDigestsValidB (receipt : TransitionReceipt) : Bool :=
   receipt.balances.isEmpty == false &&
   receipt.balances.all (fun balance => balance.material != "")
 
-/-- This proposition is the sovereign meaning of a certificate-checked
-fixture transition. The Python backend may produce the JSON, but it cannot
-change this acceptance predicate. -/
-def validSovereignCertificateB (certificate : SovereignCertificate) : Bool :=
-  certificate.schemaVersion == "0.1" &&
+def canonicalProgramBoundB (certificate : SovereignCertificate) : Bool :=
+  validCanonicalProgramB certificate.canonicalProgram &&
+  certificate.canonicalProgram.sourceProgramHash == certificate.input.programHash &&
+  certificate.canonicalProgram.worldSpecHash == certificate.input.worldSpecHash &&
+  certificate.canonicalProgram.parentWorldHash == certificate.input.parentWorldHash &&
+  certificate.canonicalProgram.operations.length == certificate.receipts.length &&
+  (certificate.canonicalProgram.operations.zip certificate.receipts).all
+    (fun pair => pair.1.operationHash == pair.2.operationHash)
+
+def metrologyCertificateBoundB
+    (certificate : SovereignCertificate)
+    (metrology : MetrologyRefinementCertificate) : Bool :=
+  validMetrologyRefinementB metrology &&
+  metrology.programHash == certificate.input.programHash &&
+  metrology.assumptionIds.all (fun assumptionId =>
+    certificate.assumptions.any (fun assumption =>
+      assumption.assumptionId == assumptionId)) &&
+  certificate.receipts.any (fun receipt =>
+    receipt.index == metrology.operationIndex &&
+    receipt.operationHash == metrology.operationHash &&
+    receipt.parentWorldHash == metrology.parentWorldHash &&
+    receipt.childWorldHash == metrology.childWorldHash) &&
+  certificate.canonicalProgram.operations.any (fun operation =>
+    operation.index == metrology.operationIndex &&
+    operation.kind == "calibrate" &&
+    operation.operationHash == metrology.operationHash &&
+    operation.assemblyId == metrology.assemblyId &&
+    operation.capabilityId == metrology.capabilityId &&
+    operation.workpieceSpanUm == metrology.workpieceSpanUm)
+
+def metrologyCertificatesBoundB (certificate : SovereignCertificate) : Bool :=
+  certificate.metrologyCertificates.isEmpty == false &&
+  uniqueStringsB (certificate.metrologyCertificates.map (fun metrology =>
+    toString metrology.operationIndex)) &&
+  certificate.metrologyCertificates.all (metrologyCertificateBoundB certificate) &&
+  certificate.canonicalProgram.operations.all (fun operation =>
+    operation.kind != "calibrate" ||
+    certificate.metrologyCertificates.any (fun metrology =>
+      metrology.operationIndex == operation.index &&
+      metrology.operationHash == operation.operationHash))
+
+def sovereignCertificateHeaderB (certificate : SovereignCertificate) : Bool :=
+  certificate.schemaVersion == "0.2" &&
   certificate.semanticsId == sovereignSemanticsId &&
   certificate.backendId != "" &&
   certificate.trustClass == "certificate_checked" &&
@@ -136,8 +172,16 @@ def validSovereignCertificateB (certificate : SovereignCertificate) : Bool :=
   certificate.assumptions.all validCertificateAssumptionB &&
   (certificate.assumptions.map (fun assumption => assumption.assumptionId)).eraseDups.length ==
     certificate.assumptions.length &&
-  certificateAccountsForB certificate.assumptions requiredFixtureAssumptions &&
-  certificate.receipts.all receiptDigestsValidB &&
+  certificate.receipts.all receiptDigestsValidB
+
+/-- This proposition is the sovereign meaning of a certificate-checked
+fixture transition. The Python backend may produce the JSON, but it cannot
+change this acceptance predicate. -/
+def validSovereignCertificateB (certificate : SovereignCertificate) : Bool :=
+  (((sovereignCertificateHeaderB certificate &&
+    certificateAccountsForB certificate.assumptions requiredFixtureAssumptions) &&
+    canonicalProgramBoundB certificate) &&
+    metrologyCertificatesBoundB certificate) &&
   validTransitionAccountingB certificate.input certificate.output certificate.receipts
 
 def ValidSovereignCertificate (certificate : SovereignCertificate) : Prop :=
@@ -149,7 +193,7 @@ def checkSovereignCertificate (certificate : SovereignCertificate) : Bool :=
 def validCertificatePromotionB
     (certificate : SovereignCertificate)
     (decision : CertificatePromotionDecision) : Bool :=
-  decision.schemaVersion == "0.1" &&
+  decision.schemaVersion == "0.2" &&
   decision.semanticsId == sovereignSemanticsId &&
   isSha256DigestB decision.artifactHash &&
   decision.parentWorldHash == certificate.input.parentWorldHash &&
@@ -200,7 +244,21 @@ theorem sovereign_checker_implies_explicit_assumptions
     CertificateAccountsFor certificate.assumptions requiredFixtureAssumptions := by
   simp [checkSovereignCertificate, validSovereignCertificateB,
     CertificateAccountsFor, certificateAccountsForB] at accepted ⊢
+  exact accepted.1.1.1.2
+
+theorem sovereign_checker_implies_canonical_program
+    (certificate : SovereignCertificate)
+    (accepted : checkSovereignCertificate certificate = true) :
+    canonicalProgramBoundB certificate = true := by
+  simp [checkSovereignCertificate, validSovereignCertificateB] at accepted
   exact accepted.1.1.2
+
+theorem sovereign_checker_implies_metrology_refinement
+    (certificate : SovereignCertificate)
+    (accepted : checkSovereignCertificate certificate = true) :
+    metrologyCertificatesBoundB certificate = true := by
+  simp [checkSovereignCertificate, validSovereignCertificateB] at accepted
+  exact accepted.1.2
 
 theorem sovereign_promotion_checker_sound
     (envelope : SovereignPromotionEnvelope)
@@ -235,6 +293,8 @@ theorem checked_certificate_allows_only_accounted_strict_promotion
       envelope.certificate.receipts ∧
     CertificateAccountsFor
       envelope.certificate.assumptions requiredFixtureAssumptions ∧
+    canonicalProgramBoundB envelope.certificate = true ∧
+    metrologyCertificatesBoundB envelope.certificate = true ∧
     (certificatePromotionAsDecision envelope.decision).BoundTo
       envelope.certificate.input envelope.certificate.output ∧
     envelope.decision.childErrorUpper < envelope.decision.parentErrorUpper ∧
@@ -246,7 +306,12 @@ theorem checked_certificate_allows_only_accounted_strict_promotion
     envelope.certificate checked.1
   have assumptionsAccounted := sovereign_checker_implies_explicit_assumptions
     envelope.certificate checked.1
-  exact ⟨transitionValid, assumptionsAccounted, checked.2.1.1,
+  have canonicalProgramValid := sovereign_checker_implies_canonical_program
+    envelope.certificate checked.1
+  have metrologyValid := sovereign_checker_implies_metrology_refinement
+    envelope.certificate checked.1
+  exact ⟨transitionValid, assumptionsAccounted, canonicalProgramValid,
+    metrologyValid, checked.2.1.1,
     bound_promotion_implies_strict_error_improvement
       (certificatePromotionAsDecision envelope.decision)
       envelope.certificate.input envelope.certificate.output checked.2.1,

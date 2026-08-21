@@ -13,7 +13,7 @@ G_\theta(\tau,W,B,E)
 P^c_\tau,P^e_\tau,V_\tau,\Delta G_\theta).
 $$
 
-Version 0.5 executes the first closed fragment of this interface. A reference
+Version 0.6 executes the first closed fragment of this interface. A reference
 or OpenAI-compatible LLM proposer generates a fixture research strategy. A
 small trusted compiler validates that strategy, compiles its supported
 candidates to canonical Mechanism IR, executes them against the current world,
@@ -136,12 +136,14 @@ compiler-soundness obligation. The design consequence is that Gθ may generate
 languages and searches, but every language fragment needs a trusted lowering
 rule and executable certificate before it can affect a promoted world.
 
-The generated compiler-certificate MRS object is now a Sovereign Kernel
-certificate rather than a descriptive label. It binds strategy support,
-construction program, world lineage, exact material/resource receipts and an
-explicit assumption ledger. The private evaluator additionally binds its
-promotion decision to the certificate's exact parent/child world pair; Lean
-rejects mismatched credit or insufficient improvement.
+The generated compiler-certificate MRS object is a Sovereign Kernel certificate
+rather than a descriptive label. It binds strategy support, a Lean-checked
+canonical program manifest, construction program, world lineage, exact
+material/resource receipts, a metrology refinement certificate and an explicit
+assumption ledger. The private evaluator regenerates the whole object from the
+surface program and execution before binding promotion to the exact world pair.
+Lean rejects unknown lowered operations, broken references, false error
+formulas, mismatched credit or insufficient improvement.
 
 These theorems do not prove that an LLM finds a good support set, that generated
 world models contain reality or that physical error bounds are calibrated.

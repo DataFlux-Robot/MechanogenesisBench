@@ -1,12 +1,15 @@
 import Mechanogenesis.Kernel.Quantity
 import Mechanogenesis.Kernel.Frame
 import Mechanogenesis.Kernel.World
+import Mechanogenesis.Kernel.Digest
 import Mechanogenesis.Kernel.AssumptionLedger
 import Mechanogenesis.Kernel.Evidence
 import Mechanogenesis.Kernel.RefinementContract
 import Mechanogenesis.Kernel.PhysicalTransition
 import Mechanogenesis.Kernel.Promotion
 import Mechanogenesis.Kernel.FixtureCertificate
+import Mechanogenesis.Kernel.CanonicalIR
+import Mechanogenesis.Kernel.MetrologyRefinement
 
 /- This root module is the authoritative import surface for physical state,
 evidence, refinement and promotion semantics. -/
@@ -18,3 +21,5 @@ evidence, refinement and promotion semantics. -/
 #print axioms Mechanogenesis.sovereign_checker_sound
 #print axioms Mechanogenesis.sovereign_promotion_checker_sound
 #print axioms Mechanogenesis.checked_certificate_allows_only_accounted_strict_promotion
+#print axioms Mechanogenesis.canonical_ir_checker_sound
+#print axioms Mechanogenesis.accepted_metrology_bound_contains_disturbance

@@ -1,4 +1,4 @@
-# Lean-Sovereign Mechanogenesis Kernel 0.1 (MechanogenesisBench 0.5)
+# Lean-Sovereign Mechanogenesis Kernel 0.2 (MechanogenesisBench 0.6)
 
 ## Sovereignty rule
 
@@ -34,12 +34,15 @@ Mechanogenesis/Kernel/
 ├── Quantity.lean             fixed-point dimensions and scale compatibility
 ├── Frame.lean                canonical frame identity
 ├── World.lean                world, inventory and capability identity
+├── Digest.lean               canonical SHA-256 syntax
 ├── AssumptionLedger.lean     explicit empirical/model assumptions
 ├── Evidence.lean             evidence tiers and observation receipts
 ├── RefinementContract.lean   proof-producing external backend interface
 ├── PhysicalTransition.lean   lineage, mass, sequence and resource semantics
 ├── Promotion.lean            non-aggregated promotion gate
-└── FixtureCertificate.lean   executable certificate ABI/checker
+├── CanonicalIR.lean          Lean-owned lowered mechanism language
+├── MetrologyRefinement.lean  proof-checked metrology error contract
+└── FixtureCertificate.lean   composed certificate ABI/checker
 ```
 
 The kernel contains no project-declared `axiom` or `sorry`. `#print axioms`
@@ -84,6 +87,60 @@ emits a content-addressed certificate containing:
 - every operation receipt and exact material balance;
 - total time and energy;
 - a required assumption ledger.
+- a Lean-native canonical program manifest;
+- exactly one bound metrology refinement certificate per calibration operation.
+
+## Canonical program boundary
+
+`CanonicalIR.lean` owns the accepted lowered language for the current fixture
+fragment. Its manifest contains flattened but topology-preserving shape trees,
+materials, inventory, machines, parts, assemblies, occurrences, rigid mates
+and typed records for exactly five operations:
+
+```text
+machine_part | consume_component | assemble | calibrate | qualify_process
+```
+
+The checker rejects unknown operations, malformed primitive/composite shapes,
+duplicate identities, missing parent shapes, depth-inconsistent or disconnected
+shape cycles, non-canonical child indices, mismatched part-source inventory,
+unknown part/material/inventory/machine/assembly references, invalid
+calibration roles and non-contiguous operation indices. Unused operation fields
+must have their canonical zero value, preventing multiple encodings of the same
+instruction. The sovereign composition additionally requires every canonical
+operation hash to equal the corresponding transition-receipt operation hash.
+
+Python currently performs the deterministic surface-program-to-manifest codec.
+The trusted evaluator independently regenerates the complete certificate and
+compares it byte-for-byte with the submitted object. Therefore Python remains
+in the codec TCB, but it no longer chooses what the lowered language means.
+Generating this ABI directly from Lean remains the next trust reduction.
+
+## First physical refinement module
+
+`MetrologyRefinement.lean` checks a calibration receipt against:
+
+$$
+e_{angular}=\left\lceil
+\frac{2c_{radial}s_{workpiece}}{d_{locator}}
+\right\rceil,
+$$
+
+$$
+e_{worst}=c_{radial}+c_{reference}+e_{angular}
++e_{manufacturing}+e_{probe}+e_{disturbance},
+$$
+
+and $e_{absolute}=e_{source\ process}+e_{worst}$. The certificate is bound to
+the canonical calibration operation, its workpiece-span parameter and its exact
+parent/child receipt hashes. Duplicate certificates are rejected, and every
+canonical `calibrate` operation must be covered. Lean proves that every accepted
+bound contains the declared disturbance term and that the absolute bound cannot
+be smaller than its source-process term.
+
+This proves formula/accounting fidelity, not calibration truth. Geometry-role
+binding, additive error composition and input calibration fidelity remain
+explicit assumption identifiers at the conformance tier.
 
 The evaluator wraps this immutable certificate with a promotion decision
 containing the artifact hash, the same parent/child world hashes, conservative
@@ -101,16 +158,21 @@ schema/semantics binding
 ∧ required assumptions present
 ∧ consecutive receipt indices
 ∧ parent → ... → child lineage
+∧ canonical_operation_hashes = receipt_operation_hashes
 ∧ exact material closure for every receipt
+∧ every calibration operation has one bound metrology certificate
 ∧ sequence_after = sequence_before + receipt_count
 ∧ duration/energy totals equal receipt sums
 ```
 
-The required assumptions in version 0.1 are:
+The required assumptions in Sovereign Kernel 0.2 are:
 
 - `fixed_point_arithmetic`;
 - `hash_identity`;
-- `reference_model_fidelity`.
+- `reference_model_fidelity`;
+- `geometry_role_binding`;
+- `additive_error_budget`;
+- `calibration_parameter_fidelity`.
 
 The last assumption prevents the present conformance model from being
 misrepresented as hardware truth.
@@ -124,6 +186,8 @@ $$
 \Rightarrow
 \operatorname{ValidAccounting}(C)
 \land \operatorname{AssumptionsExplicit}(C)
+\land \operatorname{CanonicalIRValid}(C)
+\land \operatorname{MetrologyRefinementValid}(C)
 \land \operatorname{BoundTo}(D,C)
 \land e_{child}<e_{parent}
 \land \operatorname{NetValuePositive}(D)
@@ -138,11 +202,15 @@ signatures and experimentally justified bounds.
 ## Executing the checker
 
 ```bash
-lake build sovereignCheck promotionCheck
+lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck
 .lake/build/bin/sovereignCheck certificate.json
 .lake/build/bin/promotionCheck promotion-envelope.json
+.lake/build/bin/canonicalIRCheck canonical-program.json
+.lake/build/bin/metrologyCheck metrology-certificate.json
 python -m mechanogenesis_engine.cli verify-certificate certificate.json
 python -m mechanogenesis_engine.cli verify-promotion promotion-envelope.json
+python -m mechanogenesis_engine.cli verify-canonical-ir canonical-program.json
+python -m mechanogenesis_engine.cli verify-metrology metrology-certificate.json
 ```
 
 Both conformance fixture evaluators require both Lean executables. If either is
@@ -167,9 +235,9 @@ their own outputs by assertion.
 
 ## Current boundary
 
-Version 0.1 makes Lean operationally sovereign over transition accounting and
-promotion in the existing fixture vertical slice. It does not yet provide
-proof-producing geometry, dynamics, FEM, collision/contact, sensor-signature
-verification or calibrated hardware
-semantics. The Python schema checker is stricter about unknown JSON fields, but
-the Lean checker remains the final semantic acceptance gate.
+Version 0.2 makes Lean operationally sovereign over lowered IR well-formedness,
+transition accounting, bounded metrology formulas and promotion in the fixture
+vertical slice. It does not yet compute B-rep/SDF geometry, mass/fit/contact
+physics, numerical solver residuals, sensor signatures or calibrated hardware
+semantics. The Python codec is independently replayed but not yet generated
+from Lean; that remaining TCB boundary is explicit.

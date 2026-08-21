@@ -19,9 +19,13 @@ from .interpreter import ReferenceInterpreter, initial_world_hash
 from .research_strategy import FixtureResearchStrategy
 from .sovereign import (
     SovereignCertificate,
+    find_canonical_ir_checker,
+    find_metrology_checker,
     find_promotion_checker,
     find_sovereign_checker,
     verify_promotion_with_lean,
+    verify_canonical_ir_with_lean,
+    verify_metrology_with_lean,
     verify_with_lean,
 )
 
@@ -110,12 +114,48 @@ def _parser() -> argparse.ArgumentParser:
     )
     promotion.add_argument("envelope", type=Path)
     promotion.add_argument("--checker", type=Path)
+    canonical_ir = commands.add_parser(
+        "verify-canonical-ir", help="verify a Lean canonical program manifest"
+    )
+    canonical_ir.add_argument("manifest", type=Path)
+    canonical_ir.add_argument("--checker", type=Path)
+    metrology = commands.add_parser(
+        "verify-metrology", help="verify a metrology refinement certificate"
+    )
+    metrology.add_argument("certificate", type=Path)
+    metrology.add_argument("--checker", type=Path)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command == "verify-canonical-ir":
+            raw = _load_mapping(args.manifest, "canonical IR manifest")
+            checker = args.checker or find_canonical_ir_checker(
+                Path(__file__).resolve().parents[2]
+            )
+            if checker is None:
+                raise MechanogenesisEngineError(
+                    "Lean canonical IR checker is unavailable; "
+                    "run lake build canonicalIRCheck"
+                )
+            verify_canonical_ir_with_lean(raw, checker)
+            print(json.dumps({"valid": True}, indent=2, sort_keys=True))
+            return 0
+        if args.command == "verify-metrology":
+            raw = _load_mapping(args.certificate, "metrology certificate")
+            checker = args.checker or find_metrology_checker(
+                Path(__file__).resolve().parents[2]
+            )
+            if checker is None:
+                raise MechanogenesisEngineError(
+                    "Lean metrology checker is unavailable; "
+                    "run lake build metrologyCheck"
+                )
+            verify_metrology_with_lean(raw, checker)
+            print(json.dumps({"valid": True}, indent=2, sort_keys=True))
+            return 0
         if args.command == "verify-promotion":
             raw = _load_mapping(args.envelope, "sovereign promotion envelope")
             checker = args.checker or find_promotion_checker(
