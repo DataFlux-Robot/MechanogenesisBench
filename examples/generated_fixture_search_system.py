@@ -6,11 +6,16 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import tomllib
 
 from mechanogenesis_bench.canonical import digest
 from mechanogenesis_engine.compiler import load_world
-from mechanogenesis_engine.fixture_search import FixtureGoal, search_fixture
-from mechanogenesis_engine.ir import program_to_dict
+from mechanogenesis_engine.fixture_search import FixtureGoal
+from mechanogenesis_engine.gtheta import (
+    GThetaRuntime,
+    ReferenceResearchProposer,
+    ResearchRequest,
+)
 
 
 def write_json(path: Path, value: object) -> None:
@@ -37,54 +42,26 @@ def main() -> int:
         (public_root / "world.json").read_text(encoding="utf-8")
     )
     goal = FixtureGoal.from_mapping(raw_goal)
-    result = search_fixture(world, goal)
+    with (public_root.parent / "task.toml").open("rb") as handle:
+        manifest = tomllib.load(handle)
+    evaluator_contract = json.loads(
+        (public_root / "evaluator_contract.json").read_text(encoding="utf-8")
+    )
+    request = ResearchRequest(
+        mission=(public_root.parent / "mission.md").read_text(encoding="utf-8"),
+        world=world,
+        goal=goal,
+        max_executions=int(manifest["budget"]["attempts"]),
+    )
+    research = GThetaRuntime(ReferenceResearchProposer()).run_fixture(
+        request, evaluator_contract=evaluator_contract
+    )
+    result = research.search_result
     assert result.qualified_process_capability_id is not None
-    program_object = program_to_dict(result.program)
-
-    mrs_objects: dict[str, object] = {
-        "language": {
-            "kind": "canonical_mechanism_ir",
-            "version": "0.3",
-            "generated_fragment": ["axis_aligned_csg", "rigid_assembly", "subtractive_manufacturing", "calibration"],
-        },
-        "semantics": {
-            "kind": "deterministic_reference_transition_system",
-            "world_hash": result.execution.parent_world_hash,
-            "invariants": ["typed_integer_units", "material_closure", "world_lineage", "mate_closure"],
-        },
-        "compiler": {
-            "kind": "canonical_ir_to_reference_and_step_backends",
-            "reference_backend": "mechanogenesis_engine.ReferenceInterpreter",
-            "step_backend": "mechanogenesis_engine.cad_backend",
-        },
-        "compiler_certificate": {
-            "kind": "executed_reference_certificate",
-            "process_hash": result.execution.process_hash,
-            "child_world_hash": result.execution.child_world_hash,
-            "receipt_count": len(result.execution.receipts),
-        },
-        "theory_portfolio": {
-            "kind": "generated_fixture_hypotheses",
-            "selected": "long locator baseline with low radial clearance reduces translational and angular error",
-            "alternatives": ["shorter baseline", "larger clearance", "different reference offset"],
-        },
-        "construction_program": program_object,
-        "experiment_program": {
-            "kind": "bounded_geometric_intervention_sweep",
-            "public_goal": raw_goal,
-            "held_out_dimensions": ["workpiece_span", "extra_disturbance"],
-        },
-        "evaluator_contract": json.loads(
-            (public_root / "evaluator_contract.json").read_text(encoding="utf-8")
-        ),
-        "update_proposal": {
-            "kind": "search_policy_update",
-            "proposal": "retain executable low-clearance, long-baseline regions and expand around Pareto neighbors",
-            "attempted_candidates": result.attempted_candidates,
-            "feasible_candidates": result.feasible_candidates,
-        },
+    mrs = {
+        name: store_object(store, value)
+        for name, value in research.mrs_objects.items()
     }
-    mrs = {name: store_object(store, value) for name, value in mrs_objects.items()}
     capability = result.execution.final_state["capabilities"]["generated_fixture_metrology"]
     artifact = {
         "artifact_type": "generated_metrology_fixture",
@@ -97,10 +74,16 @@ def main() -> int:
         "qualified_process_capability": result.execution.final_state["capabilities"][
             result.qualified_process_capability_id
         ],
+        "research_strategy_hash": research.strategy.strategy_hash,
+        "proposer_id": research.proposer_id,
         "search": {
             "attempted_candidates": result.attempted_candidates,
             "executable_candidates": result.executable_candidates,
             "feasible_candidates": result.feasible_candidates,
+            "candidate_support_size": result.candidate_support_size,
+            "robust_worst_case_error_um": result.robust_worst_case_error_um,
+            "weighted_model_error_ppm_um": result.weighted_model_error_ppm_um,
+            "hypothesis_errors_um": result.hypothesis_errors_um,
         },
         "total_duration_us": result.execution.total_duration_us,
         "total_energy_mj": result.execution.total_energy_mj,
@@ -122,8 +105,8 @@ def main() -> int:
     )
     submission = {
         "schema_version": "0.1",
-        "system_name": "canonical-fixture-search-baseline",
-        "system_version": "0.3.0",
+        "system_name": "gtheta-fixture-research-baseline",
+        "system_version": "0.4.0",
         "declared_evidence_tier": "conformance",
         "resource_use": {
             "wall_time_s": 0.0,

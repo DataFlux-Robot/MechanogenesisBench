@@ -1,6 +1,6 @@
 # Roadmap
 
-## P0 — protocol kernel (complete for v0.3)
+## P0 — protocol kernel (complete for v0.4)
 
 Complete and harden task/submission ABIs, evidence tiers, exact receipts,
 lineage, vector scoring, conformance corpus and Lean protocol invariants.
@@ -37,6 +37,14 @@ Integrate an LLM-centered theory/language/compiler generator, executable search,
 multi-world models, causal interventions, RL/SFT/preference learning and
 test-time updates. Implement checkpoint isolation and prospective held-out fork
 evaluation for Recursive Research Credit.
+
+The first executable slice is complete: a reference or OpenAI-compatible LLM
+proposer emits a strict research-strategy object; its generated parameter
+language, candidate support/order, multi-world portfolio and experiment budget
+control canonical fixture compilation. Trusted evaluators reconstruct the
+strategy-to-program mapping. Lean characterizes the feasible-support threshold.
+General topology/language invention, learned checkpoints, test-time updates and
+isolated future-task Recursive Research Credit remain open.
 
 ## P5 — hardware evidence
 

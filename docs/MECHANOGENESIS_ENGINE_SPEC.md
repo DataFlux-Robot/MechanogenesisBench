@@ -76,6 +76,14 @@ The research runtime should combine:
 - test-time learning within a sealed episode, with update receipts;
 - isolated generator forks to estimate Recursive Research Credit.
 
+The executable 0.4 fragment instantiates this boundary with
+`FixtureResearchStrategy`: Gθ generates task-local symbols, ordered parameter
+support, weighted world hypotheses, objective/stopping rules and an experiment
+policy. A trusted compiler rejects unsupported semantics and lowers candidates
+to canonical IR; task evaluators independently replay that lowering. This is a
+bounded first fragment, not yet arbitrary topology, compiler or strategy-form
+invention. See `GTHETA_MRS_RUNTIME.md`.
+
 ## First real task family
 
 The minimum non-toy recursive episode is:

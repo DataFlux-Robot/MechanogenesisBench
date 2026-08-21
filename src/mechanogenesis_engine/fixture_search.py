@@ -14,6 +14,7 @@ from .interpreter import (
     initial_state,
 )
 from .ir import SCHEMA_VERSION, MechanismProgram, WorldSpec
+from .research_strategy import FixtureResearchStrategy
 
 
 def _positive_int(value: Any, field: str) -> int:
@@ -78,6 +79,19 @@ class FixtureGoal:
             reference_y_candidates_um=_positive_list(raw["reference_y_candidates_um"], "reference_y_candidates_um"),
         )
 
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "max_worst_case_error_um": self.max_worst_case_error_um,
+            "base_min_size_um": list(self.base_min_size_um),
+            "minimum_edge_margin_um": self.minimum_edge_margin_um,
+            "workpiece_span_um": self.workpiece_span_um,
+            "insert_depth_um": self.insert_depth_um,
+            "qualification_transfer_error_um": self.qualification_transfer_error_um,
+            "pin_spacing_candidates_um": list(self.pin_spacing_candidates_um),
+            "bore_clearance_candidates_um": list(self.bore_clearance_candidates_um),
+            "reference_y_candidates_um": list(self.reference_y_candidates_um),
+        }
+
 
 @dataclass(frozen=True)
 class SearchResult:
@@ -89,6 +103,11 @@ class SearchResult:
     selected_parameters: dict[str, int]
     fixture_capability_id: str
     qualified_process_capability_id: str | None
+    strategy_hash: str | None
+    candidate_support_size: int
+    robust_worst_case_error_um: int
+    weighted_model_error_ppm_um: int
+    hypothesis_errors_um: dict[str, int]
 
 
 def _scoped(namespace: str, name: str) -> str:
@@ -367,6 +386,36 @@ def _edge_clearance_ok(
     )
 
 
+def _hypothesis_errors(
+    world: WorldSpec,
+    generated: Mapping[str, object],
+    strategy: FixtureResearchStrategy | None,
+) -> dict[str, int]:
+    if strategy is None:
+        return {"public_world": int(generated["worst_case_error_um"])}
+    radial_clearance = int(generated["radial_clearance_um"])
+    reference_clearance = int(generated["reference_clearance_um"])
+    repeatability = int(generated["manufacturing_repeatability_um"])
+    spacing = int(generated["locator_spacing_um"])
+    return {
+        hypothesis.hypothesis_id: (
+            radial_clearance
+            + reference_clearance
+            + (
+                2 * radial_clearance * hypothesis.workpiece_span_um
+                + spacing
+                - 1
+            )
+            // spacing
+            + repeatability
+            + world.probe_repeatability_um
+            + world.disturbance_bound_um
+            + hypothesis.extra_disturbance_um
+        )
+        for hypothesis in strategy.world_hypotheses
+    }
+
+
 def search_fixture(
     world: WorldSpec,
     goal: FixtureGoal,
@@ -375,8 +424,16 @@ def search_fixture(
     namespace: str = "",
     process_capability_id: str | None = None,
     qualify_process: bool = True,
+    strategy: FixtureResearchStrategy | None = None,
 ) -> SearchResult:
-    """Enumerate and execute geometry programs; no prebuilt fixture is selected."""
+    """Compile a bounded research strategy into executable geometry programs.
+
+    Without ``strategy`` this preserves the exhaustive 0.3 reference baseline.
+    With a strategy, candidate support, ordering, model stress tests and the
+    execution stopping rule are all supplied by the generated MRS object.  The
+    trusted compiler still validates every candidate against public access and
+    canonical Mechanism IR before execution.
+    """
 
     if namespace and (
         not namespace.replace("_", "").isalnum() or not namespace[0].isalpha()
@@ -393,6 +450,9 @@ def search_fixture(
     if any(goal.base_min_size_um[index] > stock.envelope_um.to_list()[index] for index in range(3)):
         raise IRValidationError("minimum base does not fit available stock")
 
+    if strategy is not None:
+        strategy.validate_goal_domains(goal)
+
     base_sizes = []
     for trim_x in range(0, stock.envelope_um.x - goal.base_min_size_um[0] + 1, 5_000):
         for trim_y in range(0, stock.envelope_um.y - goal.base_min_size_um[1] + 1, 5_000):
@@ -403,9 +463,43 @@ def search_fixture(
                     goal.base_min_size_um[2],
                 )
             )
+    if strategy is not None:
+        reverse = strategy.search.base_order == "largest_first"
+        base_sizes.sort(
+            key=lambda value: value[0] * value[1] * value[2], reverse=reverse
+        )
+        spacing_values = strategy.language.domain("pin_spacing_um")
+        clearance_values = strategy.language.domain("bore_clearance_um")
+        reference_y_values = strategy.language.domain("reference_y_um")
+        execution_limit = strategy.search.max_executions
+        stop_at_first = strategy.search.mode == "ordered_first_feasible"
+    else:
+        spacing_values = goal.pin_spacing_candidates_um
+        clearance_values = goal.bore_clearance_candidates_um
+        reference_y_values = goal.reference_y_candidates_um
+        execution_limit = len(base_sizes) * len(spacing_values) * len(
+            clearance_values
+        ) * len(reference_y_values)
+        stop_at_first = False
+    support_size = (
+        len(base_sizes)
+        * len(spacing_values)
+        * len(clearance_values)
+        * len(reference_y_values)
+    )
     attempted = 0
     executable = 0
-    feasible: list[tuple[tuple[int, int, int], MechanismProgram, ExecutionResult, dict[str, int]]] = []
+    feasible: list[
+        tuple[
+            tuple[int, ...],
+            MechanismProgram,
+            ExecutionResult,
+            dict[str, int],
+            int,
+            int,
+            dict[str, int],
+        ]
+    ] = []
     interpreter = ReferenceInterpreter()
     execution_parent = initial_state(world) if parent_state is None else parent_state
     parent_world_hash = digest(execution_parent)
@@ -420,10 +514,12 @@ def search_fixture(
     )
     for base_size, spacing, clearance, reference_y in product(
         base_sizes,
-        goal.pin_spacing_candidates_um,
-        goal.bore_clearance_candidates_um,
-        goal.reference_y_candidates_um,
+        spacing_values,
+        clearance_values,
+        reference_y_values,
     ):
+        if attempted >= execution_limit:
+            break
         attempted += 1
         if not _edge_clearance_ok(
             base_size,
@@ -461,7 +557,21 @@ def search_fixture(
         generated = capability[fixture_capability_id]
         assert isinstance(generated, dict)
         worst_error = int(generated["worst_case_error_um"])
-        if worst_error <= goal.max_worst_case_error_um:
+        hypothesis_errors = _hypothesis_errors(world, generated, strategy)
+        robust_worst_error = max(hypothesis_errors.values())
+        weighted_model_error = (
+            sum(
+                hypothesis_errors[hypothesis.hypothesis_id]
+                * hypothesis.prior_weight_ppm
+                for hypothesis in strategy.world_hypotheses
+            )
+            if strategy is not None
+            else robust_worst_error * 1_000_000
+        )
+        if (
+            worst_error <= goal.max_worst_case_error_um
+            and robust_worst_error <= goal.max_worst_case_error_um
+        ):
             parameters = {
                 "base_x_um": base_size[0],
                 "base_y_um": base_size[1],
@@ -471,16 +581,51 @@ def search_fixture(
                 "reference_y_um": reference_y,
                 "worst_case_error_um": worst_error,
             }
-            objective = (
-                worst_error,
-                base_size[0] * base_size[1] * base_size[2],
-                execution.total_duration_us,
+            objective_values = {
+                "robust_worst_case_error_um": robust_worst_error,
+                "weighted_model_error_ppm_um": weighted_model_error,
+                "base_volume_um3": base_size[0] * base_size[1] * base_size[2],
+                "duration_us": execution.total_duration_us,
+            }
+            objective_order = (
+                strategy.search.objective_order
+                if strategy is not None
+                else (
+                    "robust_worst_case_error_um",
+                    "weighted_model_error_ppm_um",
+                    "base_volume_um3",
+                    "duration_us",
+                )
             )
-            feasible.append((objective, program, execution, parameters))
+            objective = tuple(objective_values[name] for name in objective_order)
+            feasible.append(
+                (
+                    objective,
+                    program,
+                    execution,
+                    parameters,
+                    robust_worst_error,
+                    weighted_model_error,
+                    hypothesis_errors,
+                )
+            )
+            if stop_at_first:
+                break
     if not feasible:
-        raise ExecutionError("search found no executable fixture satisfying the public goal")
+        raise ExecutionError(
+            "research strategy found no executable fixture satisfying its "
+            "public and multi-world evidence gates"
+        )
     feasible.sort(key=lambda item: item[0])
-    _, program, execution, parameters = feasible[0]
+    (
+        _,
+        program,
+        execution,
+        parameters,
+        robust_worst_error,
+        weighted_model_error,
+        hypothesis_errors,
+    ) = feasible[0]
     return SearchResult(
         program=program,
         execution=execution,
@@ -490,4 +635,9 @@ def search_fixture(
         selected_parameters=parameters,
         fixture_capability_id=fixture_capability_id,
         qualified_process_capability_id=qualified_process_capability_id,
+        strategy_hash=strategy.strategy_hash if strategy is not None else None,
+        candidate_support_size=support_size,
+        robust_worst_case_error_um=robust_worst_error,
+        weighted_model_error_ppm_um=weighted_model_error,
+        hypothesis_errors_um=hypothesis_errors,
     )

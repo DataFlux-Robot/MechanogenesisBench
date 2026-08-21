@@ -10,8 +10,10 @@ import os
 from pathlib import Path
 
 from mechanogenesis_engine.compiler import load_world
+from mechanogenesis_engine.fixture_search import FixtureGoal, search_fixture
 from mechanogenesis_engine.interpreter import ReferenceInterpreter
 from mechanogenesis_engine.ir import MechanismProgram
+from mechanogenesis_engine.research_strategy import FixtureResearchStrategy
 
 
 def core_receipts(execution) -> list[dict[str, object]]:
@@ -24,6 +26,14 @@ def core_receipts(execution) -> list[dict[str, object]]:
         }
         for receipt in execution.receipts
     ]
+
+
+def load_mrs_object(
+    submission_path: Path, generation: dict[str, object], name: str
+) -> object:
+    object_digest = generation["mrs"][name]
+    object_path = submission_path.parent / "objects" / f"{object_digest[7:]}.json"
+    return json.loads(object_path.read_text(encoding="utf-8"))
 
 
 def main() -> int:
@@ -41,6 +51,31 @@ def main() -> int:
     valid = True
     execution = None
     try:
+        language_object = load_mrs_object(args.submission, generation, "language")
+        valid = valid and language_object["kind"] == (
+            "gtheta_generated_research_language"
+        )
+        strategy = FixtureResearchStrategy.from_mapping(
+            language_object["research_strategy"]
+        )
+        valid = valid and language_object["strategy_hash"] == strategy.strategy_hash
+        goal = FixtureGoal.from_mapping(
+            json.loads(
+                (args.task_dir / "public/fixture_goal.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+        )
+        regenerated = search_fixture(world, goal, strategy=strategy)
+        compiler_certificate = load_mrs_object(
+            args.submission, generation, "compiler_certificate"
+        )
+        theory_portfolio = load_mrs_object(
+            args.submission, generation, "theory_portfolio"
+        )
+        experiment_program = load_mrs_object(
+            args.submission, generation, "experiment_program"
+        )
         program_digest = generation["mrs"]["construction_program"]
         program_path = args.submission.parent / "objects" / f"{program_digest[7:]}.json"
         program = MechanismProgram.from_mapping(
@@ -51,6 +86,39 @@ def main() -> int:
         valid = valid and generation["child_world_hash"] == execution.child_world_hash
         valid = valid and generation["child_process_hash"] == execution.process_hash
         valid = valid and program_digest == execution.process_hash
+        valid = valid and regenerated.execution.process_hash == execution.process_hash
+        valid = valid and regenerated.selected_parameters == artifact["selected_parameters"]
+        valid = valid and artifact["research_strategy_hash"] == strategy.strategy_hash
+        valid = valid and artifact["search"]["attempted_candidates"] == (
+            regenerated.attempted_candidates
+        )
+        valid = valid and artifact["search"]["candidate_support_size"] == (
+            regenerated.candidate_support_size
+        )
+        valid = valid and artifact["search"]["robust_worst_case_error_um"] == (
+            regenerated.robust_worst_case_error_um
+        )
+        valid = valid and artifact["search"]["weighted_model_error_ppm_um"] == (
+            regenerated.weighted_model_error_ppm_um
+        )
+        valid = valid and artifact["search"]["hypothesis_errors_um"] == (
+            regenerated.hypothesis_errors_um
+        )
+        valid = valid and compiler_certificate["strategy_hash"] == (
+            strategy.strategy_hash
+        )
+        valid = valid and compiler_certificate["process_hash"] == (
+            regenerated.execution.process_hash
+        )
+        valid = valid and compiler_certificate["candidate_support_size"] == (
+            regenerated.candidate_support_size
+        )
+        valid = valid and theory_portfolio["observed_hypothesis_errors_um"] == (
+            regenerated.hypothesis_errors_um
+        )
+        valid = valid and experiment_program["selected_parameters"] == (
+            regenerated.selected_parameters
+        )
         valid = valid and generation["construction_receipts"] == core_receipts(execution)
         valid = valid and artifact["program_hash"] == execution.process_hash
         valid = valid and artifact["child_world_hash"] == execution.child_world_hash

@@ -22,7 +22,7 @@ canonical world state.
 
 ## Current executable slice
 
-Version `0.3.0` provides:
+Version `0.4.0` provides:
 
 - a benchmark task-package standard;
 - Fixed Engine, Open System and Recursive Learner tracks;
@@ -48,6 +48,14 @@ Version `0.3.0` provides:
   successor;
 - a Lean theorem connecting strict process improvement and non-worsening local
   error to strict successor absolute-error improvement.
+- an executable Gθ/MRS research layer with a strict generated-strategy schema,
+  deterministic reference proposer and optional OpenAI-compatible LLM proposer;
+- strategy-controlled candidate support, ordering, execution budget and
+  multi-world robustness gates, independently replayed by trusted evaluators;
+- a reachability ablation in which removing feasible candidates from generated
+  support makes downstream selection fail;
+- Lean-checked support/budget phase boundaries, grounded world-model
+  contraction and conditional compiler-certificate transfer.
 
 It does **not** yet contain calibrated multi-physics or hardware evidence. A
 passing sample proves protocol conformance, not physical RSI.
@@ -63,6 +71,7 @@ mbench run tasks/conformance/calibration_to_fixture \
   --output runs/reference
 mbench score runs/reference
 pytest -q
+python experiments/gtheta_phase_boundary.py
 
 mengine search-fixture \
   tasks/conformance/generated_metrology_fixture/public/mechanism_world.json \
@@ -83,6 +92,7 @@ src/mechanogenesis_bench/   task/submission/evidence/runner/scoring kernel
 src/mechanogenesis_engine/  canonical IR, reference interpreter and generation
 tasks/                      canonical benchmark episodes
 examples/                   reference system adapters
+experiments/                executable Gθ/support/model ablations
 models/                     generated STEP artifacts and visual review evidence
 formal/lean/                machine-checked protocol invariants
 docs/                       architecture, standard, scoring and roadmap
@@ -93,6 +103,7 @@ Start with [Architecture](docs/ARCHITECTURE.md), then read the
 [Canonical Mechanism IR](docs/CANONICAL_MECHANISM_IR.md),
 [Reference Interpreter](docs/REFERENCE_INTERPRETER.md),
 [Physical-Contribution Chain](docs/PHYSICAL_CONTRIBUTION_CHAIN.md),
+[Gθ/MRS Research Runtime](docs/GTHETA_MRS_RUNTIME.md),
 [Task Standard](docs/TASK_STANDARD.md) and [Handoff](HANDOFF.md).
 
 ## Status and license

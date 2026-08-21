@@ -10,8 +10,10 @@ import os
 from pathlib import Path
 
 from mechanogenesis_engine.compiler import load_world
+from mechanogenesis_engine.fixture_search import FixtureGoal, search_fixture
 from mechanogenesis_engine.interpreter import ReferenceInterpreter
 from mechanogenesis_engine.ir import MechanismProgram
+from mechanogenesis_engine.research_strategy import FixtureResearchStrategy
 
 
 def core_receipts(execution) -> list[dict[str, object]]:
@@ -35,6 +37,29 @@ def load_program(submission_path: Path, generation: dict[str, object]) -> Mechan
     return MechanismProgram.from_mapping(
         json.loads(object_path.read_text(encoding="utf-8"))
     )
+
+
+def load_mrs_object(
+    submission_path: Path, generation: dict[str, object], name: str
+) -> object:
+    mrs = generation["mrs"]
+    assert isinstance(mrs, dict)
+    object_digest = mrs[name]
+    assert isinstance(object_digest, str)
+    object_path = submission_path.parent / "objects" / f"{object_digest[7:]}.json"
+    return json.loads(object_path.read_text(encoding="utf-8"))
+
+
+def load_strategy(
+    submission_path: Path, generation: dict[str, object]
+) -> FixtureResearchStrategy:
+    language = load_mrs_object(submission_path, generation, "language")
+    if language["kind"] != "gtheta_generated_research_language":
+        raise ValueError("MRS language is not a generated research strategy")
+    strategy = FixtureResearchStrategy.from_mapping(language["research_strategy"])
+    if language["strategy_hash"] != strategy.strategy_hash:
+        raise ValueError("MRS language does not bind its research strategy")
+    return strategy
 
 
 def bind_generation(generation, program_digest: str, execution) -> bool:
@@ -142,14 +167,77 @@ def main() -> int:
         second_execution = interpreter.execute_from_state(
             world, first_execution.final_state, second_program
         )
+        goal = FixtureGoal.from_mapping(
+            json.loads(
+                (args.task_dir / "public/fixture_goal.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+        )
+        first_strategy = load_strategy(args.submission, generations[0])
+        second_strategy = load_strategy(args.submission, generations[1])
+        regenerated_first = search_fixture(world, goal, strategy=first_strategy)
+        assert regenerated_first.qualified_process_capability_id is not None
+        regenerated_second = search_fixture(
+            world,
+            goal,
+            parent_state=regenerated_first.execution.final_state,
+            namespace="successor",
+            process_capability_id=regenerated_first.qualified_process_capability_id,
+            qualify_process=False,
+            strategy=second_strategy,
+        )
         programs = [first_program, second_program]
         executions = [first_execution, second_execution]
-        for generation, program, execution in zip(
-            generations, programs, executions, strict=True
+        regenerated = [regenerated_first, regenerated_second]
+        strategies = [first_strategy, second_strategy]
+        for generation, program, execution, reproduced, strategy in zip(
+            generations, programs, executions, regenerated, strategies, strict=True
         ):
             program_digest = generation["mrs"]["construction_program"]
             valid = valid and bind_generation(
                 generation, program_digest, execution
+            )
+            artifact = generation["artifact"]
+            valid = valid and reproduced.execution.process_hash == execution.process_hash
+            valid = valid and reproduced.selected_parameters == artifact[
+                "selected_parameters"
+            ]
+            valid = valid and artifact["research_strategy_hash"] == (
+                strategy.strategy_hash
+            )
+            valid = valid and artifact["search"]["attempted_candidates"] == (
+                reproduced.attempted_candidates
+            )
+            valid = valid and artifact["search"]["candidate_support_size"] == (
+                reproduced.candidate_support_size
+            )
+            valid = valid and artifact["search"][
+                "robust_worst_case_error_um"
+            ] == reproduced.robust_worst_case_error_um
+            valid = valid and artifact["search"][
+                "weighted_model_error_ppm_um"
+            ] == reproduced.weighted_model_error_ppm_um
+            compiler_certificate = load_mrs_object(
+                args.submission, generation, "compiler_certificate"
+            )
+            theory_portfolio = load_mrs_object(
+                args.submission, generation, "theory_portfolio"
+            )
+            experiment_program = load_mrs_object(
+                args.submission, generation, "experiment_program"
+            )
+            valid = valid and compiler_certificate["strategy_hash"] == (
+                strategy.strategy_hash
+            )
+            valid = valid and compiler_certificate["process_hash"] == (
+                reproduced.execution.process_hash
+            )
+            valid = valid and theory_portfolio[
+                "observed_hypothesis_errors_um"
+            ] == reproduced.hypothesis_errors_um
+            valid = valid and experiment_program["selected_parameters"] == (
+                reproduced.selected_parameters
             )
         valid = valid and (
             generations[1]["parent_process_hash"]

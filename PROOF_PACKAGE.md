@@ -27,6 +27,15 @@ child process bound strictly below its parent process bound and the successor's
 local artifact error is no worse than the parent's, then the successor's
 absolute artifact-error bound is strictly smaller.
 
+For a finite Gθ-generated research strategy, a supported feasible output is
+possible if and only if the strategy support contains a feasible candidate.
+Under an ordered execution budget, the same equivalence applies to the
+budgeted support prefix. Adding a grounded world hypothesis cannot expand the
+robust feasible set, and a hypothesis on which a candidate fails removes that
+candidate from the expanded robust set. Finally, an accepted compiled program
+certifies candidate feasibility only under an explicit compiler-soundness
+premise.
+
 ## Status
 
 PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
@@ -50,6 +59,16 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   machine/setup regime, the qualified process is actually cited by successor
   construction, and successor local error is no greater than parent local
   error.
+- A generated strategy denotes exactly the finite candidate support consumed
+  by the trusted compiler; the ordered budget exposes exactly a prefix of that
+  support.
+- The robust pass predicate is unchanged while the world-model list is
+  expanded. Each added model is grounded by an executable intervention or a
+  separately stated modeling assumption.
+- For compiler-certificate transfer, every accepted compiled program must
+  satisfy the task's candidate-feasibility predicate. This is an explicit
+  soundness obligation of the trusted compiler/evaluator, not a property of
+  arbitrary LLM output.
 
 ## Notation
 
@@ -62,6 +81,11 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   isolated parent and child generator forks.
 - $p_0,p_1$ are parent/qualified process-error bounds and
   $\ell_0,\ell_1$ are parent/successor local artifact-error bounds.
+- $\operatorname{Supp}(\sigma)$ is the finite ordered support emitted by a
+  research strategy $\sigma$; $\operatorname{take}(B,\operatorname{Supp})$
+  is its budget-$B$ executable prefix.
+- $F(c)$ is the task-bounded feasibility predicate for candidate $c$ and
+  $P(c,w)$ states that $c$ passes world/intervention model $w$.
 
 ## Proof Strategy
 
@@ -90,6 +114,12 @@ of natural-number addition.
 7. The physical-contribution result depends separately on strict process-bound
    improvement and non-worsening successor-local error; monotonicity of natural
    number addition composes them into strict absolute-artifact improvement.
+8. The Gθ support threshold follows by extracting the selected candidate in
+   one direction and constructing `some candidate` from a support witness in
+   the other. Its budgeted form substitutes the finite support prefix.
+9. Grounded-model monotonicity follows from list inclusion. Strict removal uses
+   failure on the newly prepended model. Compiler transfer depends on the
+   separately supplied compiler-soundness implication.
 
 ## Proof
 
@@ -161,7 +191,41 @@ $$
 p_1+\ell_1<p_0+\ell_0.
 $$
 The two sides are respectively the successor and parent absolute artifact
-bounds. `MechanismIR.lean` machine-checks this implication. ∎
+bounds. `MechanismIR.lean` machine-checks this implication.
+
+Step 8. Let $\sigma$ be a generated strategy and let $F$ be any candidate
+feasibility predicate. A supported selector is forbidden from returning a
+candidate outside $\operatorname{Supp}(\sigma)$. If it returns a feasible
+candidate $c$, then $c\in\operatorname{Supp}(\sigma)$ and $F(c)$, so the
+support intersects the feasible set. Conversely, if such a $c$ exists, the
+selector that returns `some c` is supported and feasible. Therefore
+$$
+\exists\text{ supported feasible output}
+\iff
+\operatorname{Supp}(\sigma)\cap F\ne\varnothing.
+$$
+Replacing the support by
+$\operatorname{take}(B,\operatorname{Supp}(\sigma))$ proves the operational
+budget threshold. This result is independent of selector intelligence: no
+downstream ranking method can return a feasible candidate when that prefix has
+zero feasible support.
+
+Step 9. Define robust feasibility against a finite model set $W$ by
+$$
+R_W(c) := \forall w\in W,\;P(c,w).
+$$
+If $R_{\{w'\}\cup W}(c)$ holds, restricting the universal quantifier to $W$
+gives $R_W(c)$; hence grounded expansion cannot enlarge candidate feasibility.
+If additionally $\neg P(c,w')$, assuming
+$R_{\{w'\}\cup W}(c)$ yields $P(c,w')$, a contradiction, so the new model
+strictly removes that candidate. Finally assume compiler soundness:
+$$
+\operatorname{Compiles}(c,p)\land\operatorname{Accepted}(p)
+\Rightarrow F(c).
+$$
+For a reachable $c$, a compilation witness and acceptance witness therefore
+yield both reachability and feasibility. `GTheta.lean` machine-checks these
+support-threshold, model-expansion and compiler-transfer implications. ∎
 
 ## Corrections or Missing Assumptions
 
@@ -172,6 +236,10 @@ bounds. `MechanismIR.lean` machine-checks this implication. ∎
   needs instrumented execution and custody-bound receipts.
 - “Strictly improves every generation” is only defensible for promoted
   generations; rejected and failed attempts remain part of the research trace.
+- The support theorem does not prove that Gθ or an LLM discovers a support set
+  intersecting the feasible set. It turns that discovery problem into a
+  measurable algorithmic obligation and gives a decisive ablation: remove the
+  feasible region from generated support and downstream search must fail.
 
 ## Open Risks
 
@@ -189,3 +257,9 @@ bounds. `MechanismIR.lean` machine-checks this implication. ∎
   local or transfer bounds are calibrated. It also fails if the successor
   gains enough local error to offset process improvement; that condition is an
   explicit gate rather than a hidden assumption.
+- A multi-world portfolio can still omit the real failure mode. Monotone
+  contraction is a logical property of the modeled set, not evidence that the
+  chosen expansion is grounded or complete.
+- The current trusted strategy compiler supports one fixture topology. The
+  theorem is representation-independent, but empirical claims about language
+  invention require additional compiler fragments and held-out task families.

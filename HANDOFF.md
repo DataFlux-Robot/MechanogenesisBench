@@ -72,6 +72,23 @@ not a fixed plug-in catalog.
 - A Lean theorem showing that strict process-error improvement plus
   non-worsening local artifact error implies strict successor absolute-error
   improvement.
+- Gθ/MRS runtime 0.1: `ResearchRequest -> StrategyProposer ->
+  FixtureResearchStrategy -> trusted compiler -> canonical program -> MRS`.
+- A deterministic physics-prior proposer and a real OpenAI-compatible LLM
+  proposer behind the same JSON-only, fail-closed strategy boundary.
+- Strategy-generated task symbols, ordered candidate support, hard execution
+  budget, multi-world hypotheses and robust experiment gate. The reference
+  strategy reaches the current task's robust candidate in one execution rather
+  than exhaustive execution of 240 candidates.
+- Independent evaluators now reconstruct the submitted strategy and rerun its
+  strategy-to-program mapping for both the one- and two-generation tasks.
+- An executable support ablation: short-baseline/large-clearance support has no
+  feasible candidate and fails under the same compiler/interpreter.
+- `experiments/gtheta_phase_boundary.py` also shows a nominal 200 μm candidate
+  being rejected only after grounded span/disturbance model expansion.
+- Lean theorems for the exact feasible-support/budget phase boundary, monotone
+  contraction under grounded world expansion, strict candidate removal by a
+  separating model, and compiler-soundness certificate transfer.
 
 Run:
 
@@ -84,6 +101,7 @@ mbench run tasks/conformance/calibration_to_fixture \
 pytest -q
 lean formal/lean/BenchmarkProtocol.lean
 lean formal/lean/MechanismIR.lean
+lean formal/lean/GTheta.lean
 
 mbench run tasks/conformance/generated_metrology_fixture \
   --system-command "python examples/generated_fixture_search_system.py" \
@@ -124,20 +142,24 @@ mbench run tasks/conformance/recursive_fixture_process \
 
 ## Current limitations
 
-This is now a real generative geometry/manufacturing vertical slice, but not yet
-the large multiphysics Mechanogenesis Engine. Its search language is bounded
-and enumerative, not LLM-generated. Rigid/contact force, tolerances, strength,
-surface finish, wear and thermal drift are not simulated. The sample remains
-explicitly conformance-only. Resource fields other than observed wall time are
-declared, not independently metered. Host process execution is not secure
-against a hostile submission. Confidence intervals and physical calibration
-are delegated to each trusted task evaluator.
+This is now a real generative geometry/manufacturing and generated-research
+strategy vertical slice, but not yet the large multiphysics Mechanogenesis
+Engine. An LLM can generate the current strategy schema, but the trusted
+compiler accepts only one fixture topology and three parameter semantics. This
+is bounded task-language generation, not unrestricted language or algorithm
+invention. Rigid/contact force, tolerances, strength, surface finish, wear and
+thermal drift are not simulated. The sample remains explicitly
+conformance-only. Resource fields other than observed wall time are declared,
+not independently metered. Host process execution is not secure against a
+hostile submission. Confidence intervals and physical calibration are
+delegated to each trusted task evaluator.
 
 The two-generation task proves only a bounded reference-model
-physical-contribution witness. Both fixtures share the same task-specific
-topology and local-error model; Gθ has not yet invented the second language or
-search operator, and no hardware calibration establishes the 800/10 µm machine
-bounds or 10 µm transfer bound.
+physical-contribution witness. Gθ now generates and binds both research
+strategies, but both strategies target the same trusted topology/compiler
+fragment and deterministic reference proposer. No learned checkpoint update,
+isolated generator fork or hardware calibration establishes Recursive Research
+Credit or the 800/10 µm machine bounds and 10 µm transfer bound.
 
 ## Next implementation sequence
 
@@ -145,9 +167,9 @@ bounds or 10 µm transfer bound.
    uncertainty, experiment bytecode and custody signatures.
 2. Add native collision/contact, fit, tolerance, metrology and machining-force
    semantics, keeping the current interpreter as the oracle-sized fragment.
-3. Replace bounded fixture enumeration with an LLM-centered Gθ that generates
-   task language, compiler, theories and search operators, while every emitted
-   construction program still targets canonical IR.
+3. Expand Gθ beyond the present parameter-language fragment: allow generation
+   of different topology grammars, compiler sketches and experiment bytecode,
+   but require trusted lowering/certificates before canonical execution.
 4. Specify solver refinement contracts and add one optimized native backend;
    use Newton/other engines only for cross-validation and falsification.
 5. Implement the full multi-world model population,
@@ -163,6 +185,6 @@ Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` and
 `docs/CANONICAL_MECHANISM_IR.md` before changing architecture,
 `docs/REFERENCE_INTERPRETER.md` before extending execution,
 `docs/PHYSICAL_CONTRIBUTION_CHAIN.md` before changing recursive process
-semantics,
+semantics, `docs/GTHETA_MRS_RUNTIME.md` before changing the research generator,
 `docs/TASK_STANDARD.md` before adding tasks, and `PROOF_PACKAGE.md` before
 strengthening any theoretical claim.

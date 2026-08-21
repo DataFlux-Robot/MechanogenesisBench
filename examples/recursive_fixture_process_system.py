@@ -6,11 +6,17 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import tomllib
 
 from mechanogenesis_bench.canonical import digest
 from mechanogenesis_engine.compiler import load_world
-from mechanogenesis_engine.fixture_search import FixtureGoal, SearchResult, search_fixture
-from mechanogenesis_engine.ir import program_to_dict
+from mechanogenesis_engine.fixture_search import FixtureGoal, SearchResult
+from mechanogenesis_engine.gtheta import (
+    GThetaRun,
+    GThetaRuntime,
+    ReferenceResearchProposer,
+    ResearchRequest,
+)
 
 
 def write_json(path: Path, value: object) -> None:
@@ -40,71 +46,12 @@ def core_receipts(result: SearchResult) -> list[dict[str, object]]:
 
 def mrs_bundle(
     store: Path,
-    result: SearchResult,
-    *,
-    stage: str,
-    goal: dict[str, object],
-    evaluator_contract: dict[str, object],
+    research: GThetaRun,
 ) -> dict[str, str]:
-    program = program_to_dict(result.program)
-    objects: dict[str, object] = {
-        "language": {
-            "kind": "canonical_mechanism_ir",
-            "version": "0.3",
-            "stage": stage,
-            "generated_fragment": [
-                "axis_aligned_csg",
-                "rigid_assembly",
-                "subtractive_manufacturing",
-                "stateful_process_qualification",
-            ],
-        },
-        "semantics": {
-            "kind": "deterministic_stateful_transition_system",
-            "parent_world_hash": result.execution.parent_world_hash,
-            "invariants": [
-                "material_closure",
-                "process_world_separation",
-                "receipt_chain",
-                "physical_capability_citation",
-            ],
-        },
-        "compiler": {
-            "kind": "fixture_program_generator",
-            "stage": stage,
-            "target": "canonical_mechanism_ir_v0.3",
-        },
-        "compiler_certificate": {
-            "kind": "reference_execution_certificate",
-            "process_hash": result.execution.process_hash,
-            "parent_world_hash": result.execution.parent_world_hash,
-            "child_world_hash": result.execution.child_world_hash,
-            "receipt_count": len(result.execution.receipts),
-        },
-        "theory_portfolio": {
-            "kind": "physical_contribution_hypothesis",
-            "stage": stage,
-            "claim": (
-                "fixture-local metrology plus transfer error can strictly reduce "
-                "the machine absolute setup bound"
-            ),
-            "selected_parameters": result.selected_parameters,
-        },
-        "construction_program": program,
-        "experiment_program": {
-            "kind": "hidden_span_disturbance_interventions",
-            "stage": stage,
-            "public_goal": goal,
-        },
-        "evaluator_contract": evaluator_contract,
-        "update_proposal": {
-            "kind": "physical_process_update" if stage == "qualifier" else "successor_evidence",
-            "stage": stage,
-            "attempted_candidates": result.attempted_candidates,
-            "feasible_candidates": result.feasible_candidates,
-        },
+    return {
+        name: store_object(store, value)
+        for name, value in research.mrs_objects.items()
     }
-    return {name: store_object(store, value) for name, value in objects.items()}
 
 
 def consumed_mass_mg(result: SearchResult) -> int:
@@ -129,6 +76,14 @@ def artifact_for(result: SearchResult, *, stage: str) -> dict[str, object]:
         "fixture_capability_id": result.fixture_capability_id,
         "fixture_capability": fixture,
         "selected_parameters": result.selected_parameters,
+        "research_strategy_hash": result.strategy_hash,
+        "search": {
+            "attempted_candidates": result.attempted_candidates,
+            "candidate_support_size": result.candidate_support_size,
+            "robust_worst_case_error_um": result.robust_worst_case_error_um,
+            "weighted_model_error_ppm_um": result.weighted_model_error_ppm_um,
+            "hypothesis_errors_um": result.hypothesis_errors_um,
+        },
     }
     if result.qualified_process_capability_id is not None:
         artifact["qualified_process_capability_id"] = (
@@ -152,27 +107,43 @@ def main() -> int:
     evaluator_contract = json.loads(
         (public_root / "evaluator_contract.json").read_text(encoding="utf-8")
     )
+    with (public_root.parent / "task.toml").open("rb") as handle:
+        manifest = tomllib.load(handle)
+    request = ResearchRequest(
+        mission=(public_root.parent / "mission.md").read_text(encoding="utf-8"),
+        world=world,
+        goal=goal,
+        max_executions=int(manifest["budget"]["attempts"]),
+    )
+    runtime = GThetaRuntime(ReferenceResearchProposer())
 
-    qualifier = search_fixture(world, goal, qualify_process=True)
+    qualifier_research = runtime.run_fixture(
+        request,
+        evaluator_contract=evaluator_contract,
+        qualify_process=True,
+    )
+    qualifier = qualifier_research.search_result
     assert qualifier.qualified_process_capability_id is not None
-    successor = search_fixture(
-        world,
-        goal,
+    successor_research = runtime.run_fixture(
+        request,
+        evaluator_contract=evaluator_contract,
         parent_state=qualifier.execution.final_state,
         namespace="successor",
         process_capability_id=qualifier.qualified_process_capability_id,
         qualify_process=False,
     )
+    successor = successor_research.search_result
     artifacts = [
         artifact_for(qualifier, stage="qualifier"),
         artifact_for(successor, stage="successor"),
     ]
     results = [qualifier, successor]
+    research_runs = [qualifier_research, successor_research]
     stages = ["qualifier", "successor"]
     generations = []
     parent_process_hash = benchmark_world["baseline_process_hash"]
-    for index, (result, stage, artifact) in enumerate(
-        zip(results, stages, artifacts, strict=True)
+    for index, (result, research, stage, artifact) in enumerate(
+        zip(results, research_runs, stages, artifacts, strict=True)
     ):
         generations.append(
             {
@@ -183,10 +154,7 @@ def main() -> int:
                 "child_world_hash": result.execution.child_world_hash,
                 "mrs": mrs_bundle(
                     store,
-                    result,
-                    stage=stage,
-                    goal=goal_raw,
-                    evaluator_contract=evaluator_contract,
+                    research,
                 ),
                 "artifact": artifact,
                 "artifact_hash": digest(artifact),
@@ -196,6 +164,8 @@ def main() -> int:
                         "kind": "stateful_fixture_intervention_sweep",
                         "stage": stage,
                         "attempted_candidates": result.attempted_candidates,
+                        "candidate_support_size": result.candidate_support_size,
+                        "strategy_hash": research.strategy.strategy_hash,
                         "selected_parameters": result.selected_parameters,
                     }
                 ],
@@ -205,8 +175,8 @@ def main() -> int:
 
     submission = {
         "schema_version": "0.1",
-        "system_name": "recursive-fixture-process-baseline",
-        "system_version": "0.3.0",
+        "system_name": "gtheta-recursive-fixture-process-baseline",
+        "system_version": "0.4.0",
         "declared_evidence_tier": "conformance",
         "resource_use": {
             "wall_time_s": 0.0,
