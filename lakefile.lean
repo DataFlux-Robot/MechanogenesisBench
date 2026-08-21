@@ -6,7 +6,8 @@ package «MechanogenesisBenchFormal»
 @[default_target]
 lean_lib BenchmarkProtocol where
   srcDir := "formal/lean"
-  roots := #[`BenchmarkProtocol, `MechanismIR, `GTheta, `Mechanogenesis]
+  roots := #[`BenchmarkProtocol, `MechanismIR, `GTheta,
+    `Mechanogenesis.SovereignKernel]
 
 lean_exe sovereignCheck where
   srcDir := "formal/lean"
