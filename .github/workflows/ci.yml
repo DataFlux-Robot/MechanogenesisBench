@@ -12,7 +12,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - uses: leanprover/lean-action@v1
       - run: python -m pip install -e '.[dev]'
+      - run: lake build sovereignCheck promotionCheck
       - run: pytest -q
 
   lean:
@@ -20,7 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
+      - run: lake build sovereignCheck promotionCheck
       - run: |
           lean formal/lean/BenchmarkProtocol.lean
           lean formal/lean/MechanismIR.lean
           lean formal/lean/GTheta.lean
+      - run: |
+          if rg -n '\b(sorry|axiom)\b' formal/lean; then
+            exit 1
+          fi

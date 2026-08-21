@@ -12,6 +12,7 @@ from .errors import ExecutionError, IRValidationError
 from .fixture_search import FixtureGoal, SearchResult, search_fixture
 from .ir import WorldSpec, program_to_dict, world_to_dict
 from .research_strategy import FixtureResearchStrategy
+from .sovereign import certificate_from_execution
 
 
 @dataclass(frozen=True)
@@ -296,6 +297,14 @@ class GThetaRuntime:
         )
         program = program_to_dict(result.program)
         strategy_object = strategy.to_dict()
+        sovereign_certificate = certificate_from_execution(
+            request.world,
+            result.program,
+            result.execution,
+            strategy_hash=strategy.strategy_hash,
+            candidate_support_size=result.candidate_support_size,
+            attempted_candidates=result.attempted_candidates,
+        )
         mrs_objects: dict[str, object] = {
             "language": {
                 "kind": "gtheta_generated_research_language",
@@ -321,15 +330,7 @@ class GThetaRuntime:
                 "target": "canonical_mechanism_ir_v0.3",
                 "proposer_id": self.proposer.proposer_id,
             },
-            "compiler_certificate": {
-                "kind": "executed_strategy_compiler_certificate",
-                "strategy_hash": strategy.strategy_hash,
-                "candidate_support_size": result.candidate_support_size,
-                "attempted_candidates": result.attempted_candidates,
-                "process_hash": result.execution.process_hash,
-                "child_world_hash": result.execution.child_world_hash,
-                "receipt_count": len(result.execution.receipts),
-            },
+            "compiler_certificate": sovereign_certificate.to_dict(),
             "theory_portfolio": {
                 "kind": "generated_multi_world_theory_portfolio",
                 "research_hypothesis": strategy.research_hypothesis,

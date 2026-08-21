@@ -17,6 +17,13 @@ from .gtheta import (
 )
 from .interpreter import ReferenceInterpreter, initial_world_hash
 from .research_strategy import FixtureResearchStrategy
+from .sovereign import (
+    SovereignCertificate,
+    find_promotion_checker,
+    find_sovereign_checker,
+    verify_promotion_with_lean,
+    verify_with_lean,
+)
 
 
 def _load_goal(path: Path) -> FixtureGoal:
@@ -31,7 +38,9 @@ def _load_goal(path: Path) -> FixtureGoal:
 
 def _write(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def _load_mapping(path: Path, field: str) -> dict[str, object]:
@@ -91,12 +100,55 @@ def _parser() -> argparse.ArgumentParser:
     research.add_argument("--llm-endpoint")
     research.add_argument("--llm-model")
     research.add_argument("--api-key-env", default="OPENAI_API_KEY")
+    certificate = commands.add_parser(
+        "verify-certificate", help="verify a backend certificate with Lean semantics"
+    )
+    certificate.add_argument("certificate", type=Path)
+    certificate.add_argument("--checker", type=Path)
+    promotion = commands.add_parser(
+        "verify-promotion", help="verify a bound evaluator promotion with Lean"
+    )
+    promotion.add_argument("envelope", type=Path)
+    promotion.add_argument("--checker", type=Path)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command == "verify-promotion":
+            raw = _load_mapping(args.envelope, "sovereign promotion envelope")
+            checker = args.checker or find_promotion_checker(
+                Path(__file__).resolve().parents[2]
+            )
+            if checker is None:
+                raise MechanogenesisEngineError(
+                    "Lean promotion checker is unavailable; "
+                    "run lake build promotionCheck"
+                )
+            verify_promotion_with_lean(raw, checker)
+            print(json.dumps({"valid": True}, indent=2, sort_keys=True))
+            return 0
+        if args.command == "verify-certificate":
+            raw = _load_mapping(args.certificate, "sovereign certificate")
+            parsed = SovereignCertificate.from_mapping(raw)
+            checker = args.checker or find_sovereign_checker(
+                Path(__file__).resolve().parents[2]
+            )
+            if checker is None:
+                raise MechanogenesisEngineError(
+                    "Lean sovereign checker is unavailable; run lake build sovereignCheck"
+                )
+            verify_with_lean(args.certificate, checker)
+            payload = {
+                "valid": True,
+                "semantics_id": parsed.semantics_id,
+                "backend_id": parsed.backend_id,
+                "program_hash": parsed.program_hash,
+                "child_world_hash": parsed.child_world_hash,
+            }
+            print(json.dumps(payload, indent=2, sort_keys=True))
+            return 0
         world = load_world(args.world)
         if args.command == "world-hash":
             print(initial_world_hash(world))

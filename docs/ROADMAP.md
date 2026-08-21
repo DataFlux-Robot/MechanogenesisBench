@@ -1,9 +1,15 @@
 # Roadmap
 
-## P0 — protocol kernel (complete for v0.4)
+## P0 — protocol kernel (complete for v0.5)
 
 Complete and harden task/submission ABIs, evidence tiers, exact receipts,
 lineage, vector scoring, conformance corpus and Lean protocol invariants.
+
+Lean is now the executable sovereign boundary for the fixture slice: external
+execution emits a checked transition certificate, and private evaluation emits
+a separately checked promotion decision bound to the same world identities.
+The next kernel work is proof-producing solver/calibration contracts rather
+than additional descriptive adapters.
 
 ## P1 — canonical mechanism IR (bounded reference fragment complete)
 

@@ -22,7 +22,7 @@ canonical world state.
 
 ## Current executable slice
 
-Version `0.4.0` provides:
+Version `0.5.0` provides:
 
 - a benchmark task-package standard;
 - Fixed Engine, Open System and Recursive Learner tracks;
@@ -56,6 +56,15 @@ Version `0.4.0` provides:
   support makes downstream selection fail;
 - Lean-checked support/budget phase boundaries, grounded world-model
   contraction and conditional compiler-certificate transfer.
+- a Lean Sovereign Kernel defining the authoritative transition, assumption,
+  evidence, refinement and promotion semantics for the executable fixture
+  slice;
+- proof-carrying interpreter receipts plus `sovereignCheck` for transition
+  certificates and `promotionCheck` for evaluator decisions bound to the exact
+  parent/child worlds;
+- a machine-checked theorem that Lean-accepted promotion implies valid
+  accounting, explicit assumptions, world-bound credit and strictly lower
+  bounded child error.
 
 It does **not** yet contain calibrated multi-physics or hardware evidence. A
 passing sample proves protocol conformance, not physical RSI.
@@ -64,6 +73,7 @@ passing sample proves protocol conformance, not physical RSI.
 
 ```bash
 python -m pip install -e '.[dev]'
+lake build sovereignCheck promotionCheck
 mbench task validate tasks/conformance/calibration_to_fixture
 mbench run tasks/conformance/calibration_to_fixture \
   --system-command "python examples/reference_system.py" \
@@ -104,6 +114,7 @@ Start with [Architecture](docs/ARCHITECTURE.md), then read the
 [Reference Interpreter](docs/REFERENCE_INTERPRETER.md),
 [Physical-Contribution Chain](docs/PHYSICAL_CONTRIBUTION_CHAIN.md),
 [Gθ/MRS Research Runtime](docs/GTHETA_MRS_RUNTIME.md),
+[Lean Sovereign Kernel](docs/LEAN_SOVEREIGN_KERNEL.md),
 [Task Standard](docs/TASK_STANDARD.md) and [Handoff](HANDOFF.md).
 
 ## Status and license

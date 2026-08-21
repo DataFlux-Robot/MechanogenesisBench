@@ -36,6 +36,16 @@ candidate from the expanded robust set. Finally, an accepted compiled program
 certifies candidate feasibility only under an explicit compiler-soundness
 premise.
 
+For Sovereign Kernel 0.1, if the Lean promotion checker accepts an envelope
+containing a backend transition and evaluator decision, then: the receipt chain
+connects the declared parent and child worlds; every receipt satisfies exact
+material closure; sequence and resource totals equal the receipt computation;
+all required assumptions are explicitly present; the decision is bound to the
+same world pair; the promoted child error bound is strictly smaller than the
+parent bound; and net value, robustness and evidence-tier gates hold. This
+remains conditional on the truth and calibration of the recorded
+physical-model assumptions.
+
 ## Status
 
 PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
@@ -69,6 +79,12 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   satisfy the task's candidate-feasibility predicate. This is an explicit
   soundness obligation of the trusted compiler/evaluator, not a property of
   arbitrary LLM output.
+- The sovereign certificate's hashes bind the canonical serialization used by
+  the backend and evaluator. Cryptographic collision resistance is recorded as
+  an assumption rather than proved by Lean.
+- `reference_model_fidelity` explicitly assumes that the current axis-aligned
+  geometry, additive error model and declared machine bounds are adequate for
+  the conformance claim. Lean proves no stronger empirical statement.
 
 ## Notation
 
@@ -86,6 +102,10 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   is its budget-$B$ executable prefix.
 - $F(c)$ is the task-bounded feasibility predicate for candidate $c$ and
   $P(c,w)$ states that $c$ passes world/intervention model $w$.
+- $C$ is a sovereign backend certificate, $D$ is a world-bound evaluator
+  decision and $\operatorname{PromotionCheck}(C,D)$ is the pure Lean acceptance
+  function. $A(C)$ is its explicit assumption ledger and $T(C)$ is its
+  receipt-defined physical transition.
 
 ## Proof Strategy
 
@@ -120,6 +140,10 @@ of natural-number addition.
 9. Grounded-model monotonicity follows from list inclusion. Strict removal uses
    failure on the newly prepended model. Compiler transfer depends on the
    separately supplied compiler-soundness implication.
+10. Sovereign promotion composes three independently checked implications:
+    certificate acceptance implies valid transition accounting; certificate
+    acceptance implies required-assumption coverage; and the positive-margin
+    gate implies strict bounded improvement.
 
 ## Proof
 
@@ -225,7 +249,35 @@ $$
 $$
 For a reachable $c$, a compilation witness and acceptance witness therefore
 yield both reachability and feasibility. `GTheta.lean` machine-checks these
-support-threshold, model-expansion and compiler-transfer implications. ∎
+support-threshold, model-expansion and compiler-transfer implications.
+
+Step 10. The sovereign certificate Boolean is defined by the conjunction of
+schema and semantics identity, strategy/program/world digests, bounded support
+accounting, required assumption identifiers, consecutive receipt indices,
+parent-to-child receipt lineage, exact per-material balances, sequence advance,
+and resource-total equality. The theorem `sovereign_checker_sound` is therefore
+an implication from executable checker acceptance to that exact proposition.
+The promotion envelope additionally binds its evaluator decision to the
+certificate's parent and child world hashes.
+
+Separately, an accepted promotion claim requires $m>0$ and
+$$
+e_c+m\le e_p.
+$$
+Natural-number addition gives $e_c<e_c+m$; transitivity gives $e_c<e_p$.
+Combining world binding, the certificate transition theorem,
+assumption-coverage theorem and this strict inequality yields
+$$
+\operatorname{PromotionCheck}(C,D)=\mathrm{true}
+\Rightarrow
+T(C)\land A(C)\land \operatorname{BoundTo}(D,C)\land e_c<e_p
+\land N(D)>0\land \operatorname{Robust}(D)\land
+\operatorname{EvidenceBound}(D,C).
+$$
+`Mechanogenesis/Kernel/FixtureCertificate.lean` machine-checks the combined
+theorem `checked_certificate_allows_only_accounted_strict_promotion`. It does
+not discharge any assumption by asserting that a simulator or device is
+physically faithful. ∎
 
 ## Corrections or Missing Assumptions
 
@@ -240,6 +292,9 @@ support-threshold, model-expansion and compiler-transfer implications. ∎
   intersecting the feasible set. It turns that discovery problem into a
   measurable algorithmic obligation and gives a decisive ablation: remove the
   feasible region from generated support and downstream search must fail.
+- “Lean is sovereign” means promoted state must cross the Lean checker. It does
+  not mean that empirical physical laws become mathematical theorems or that
+  external numerical work must be reimplemented inside Lean.
 
 ## Open Risks
 
@@ -263,3 +318,7 @@ support-threshold, model-expansion and compiler-transfer implications. ∎
 - The current trusted strategy compiler supports one fixture topology. The
   theorem is representation-independent, but empirical claims about language
   invention require additional compiler fragments and held-out task families.
+- Sovereign Kernel 0.1 checks certificate structure and accounting but does not
+  yet verify SHA-256 collision resistance, numerical solver residuals, sensor
+  signatures or calibration curves. Those remain explicit assumptions or
+  future proof-producing backend obligations.

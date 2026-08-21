@@ -13,6 +13,13 @@ from .gtheta import (
 from .interpreter import ExecutionResult, ReferenceInterpreter
 from .ir import MechanismProgram, WorldSpec
 from .research_strategy import FixtureResearchStrategy
+from .sovereign import (
+    SovereignCertificate,
+    certificate_from_execution,
+    promotion_envelope,
+    verify_promotion_with_lean,
+    verify_with_lean,
+)
 
 __all__ = [
     "ExecutionResult",
@@ -27,13 +34,18 @@ __all__ = [
     "ResearchRequest",
     "SearchResult",
     "StaticStrategyProposer",
+    "SovereignCertificate",
     "WorldSpec",
     "load_program",
     "load_state",
     "load_world",
+    "certificate_from_execution",
+    "promotion_envelope",
     "search_fixture",
     "write_program",
     "write_state",
+    "verify_with_lean",
+    "verify_promotion_with_lean",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

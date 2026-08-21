@@ -89,11 +89,24 @@ not a fixed plug-in catalog.
 - Lean theorems for the exact feasible-support/budget phase boundary, monotone
   contraction under grounded world expansion, strict candidate removal by a
   separating model, and compiler-soundness certificate transfer.
+- Lean Sovereign Kernel 0.1 is now the authority for the executable fixture
+  slice's quantities/identity, assumptions/evidence, external refinement
+  contracts, physical-transition accounting and promotion semantics.
+- Every Gθ-produced compiler-certificate MRS object contains exact
+  strategy/program/world hashes, receipt lineage, material/resource accounting
+  and explicit model assumptions. Both fixture evaluators require the compiled
+  `sovereignCheck` executable and fail closed.
+- Accepted evaluator decisions additionally cross `promotionCheck`, which
+  binds the decision to the same parent/child world hashes and checks positive
+  margin, strict bounded-error improvement, net value, robustness and evidence
+  tier. The central Lean theorem returns accounting validity, explicit
+  assumptions, world binding and strict improvement.
 
 Run:
 
 ```bash
 python -m pip install -e '.[dev]'
+lake build sovereignCheck promotionCheck
 mbench task validate tasks/conformance/calibration_to_fixture
 mbench run tasks/conformance/calibration_to_fixture \
   --system-command "python examples/reference_system.py" \
@@ -139,6 +152,10 @@ mbench run tasks/conformance/recursive_fixture_process \
 - A physical descendant must cite the contributed process capability in its
   actual construction instruction. Merely observing that both artifacts exist
   is not a recursive causal chain.
+- A transition certificate and improvement claim must be identity-bound. An
+  earlier theorem allowed an independently accepted claim beside a valid
+  transition; it was logically true but too weak for causal promotion. Version
+  0.5 replaces it with a parent/child-world-bound promotion envelope.
 
 ## Current limitations
 
@@ -161,24 +178,34 @@ fragment and deterministic reference proposer. No learned checkpoint update,
 isolated generator fork or hardware calibration establishes Recursive Research
 Credit or the 800/10 µm machine bounds and 10 µm transfer bound.
 
+Lean sovereignty here is operational but bounded: no current fixture
+promotion bypasses its two checkers, yet the reference physical equations and
+hidden evaluator bounds remain explicit empirical/model assumptions. Lean does
+not establish that those machine parameters describe hardware.
+
 ## Next implementation sequence
 
-1. Extend IR 0.3 with general frame composition, stable B-rep/SDF topology,
-   uncertainty, experiment bytecode and custody signatures.
-2. Add native collision/contact, fit, tolerance, metrology and machining-force
+1. Move canonical IR structures and lowering judgments into Lean, beginning
+   with general frame composition, stable topology identity, intervals and
+   uncertainty; generate/validate the Python ABI from that source.
+2. Define the first proof-producing geometry/contact/metrology refinement
+   contract, including residual and calibrated-regime certificates.
+3. Extend IR 0.3 with stable B-rep/SDF views, experiment bytecode and custody
+   signatures.
+4. Add native collision/contact, fit, tolerance, metrology and machining-force
    semantics, keeping the current interpreter as the oracle-sized fragment.
-3. Expand Gθ beyond the present parameter-language fragment: allow generation
+5. Expand Gθ beyond the present parameter-language fragment: allow generation
    of different topology grammars, compiler sketches and experiment bytecode,
    but require trusted lowering/certificates before canonical execution.
-4. Specify solver refinement contracts and add one optimized native backend;
+6. Specify solver refinement contracts and add one optimized native backend;
    use Newton/other engines only for cross-validation and falsification.
-5. Implement the full multi-world model population,
+7. Implement the full multi-world model population,
    interventional separability policy and executable MRS search.
-6. Add genuine isolated checkpoint forks across hidden future task suites and
+8. Add genuine isolated checkpoint forks across hidden future task suites and
    statistically powered Recursive Research Credit.
-7. Containerize untrusted submissions and independently meter compute, energy,
+9. Containerize untrusted submissions and independently meter compute, energy,
    materials and human intervention.
-8. Connect a bounded manufacturing workcell; advance from conformance to
+10. Connect a bounded manufacturing workcell; advance from conformance to
    simulation and hardware evidence only as calibration justifies.
 
 Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` and
@@ -186,5 +213,6 @@ Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` and
 `docs/REFERENCE_INTERPRETER.md` before extending execution,
 `docs/PHYSICAL_CONTRIBUTION_CHAIN.md` before changing recursive process
 semantics, `docs/GTHETA_MRS_RUNTIME.md` before changing the research generator,
+`docs/LEAN_SOVEREIGN_KERNEL.md` before adding any solver/device backend,
 `docs/TASK_STANDARD.md` before adding tasks, and `PROOF_PACKAGE.md` before
 strengthening any theoretical claim.

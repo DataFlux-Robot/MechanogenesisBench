@@ -14,6 +14,14 @@ from mechanogenesis_engine.fixture_search import FixtureGoal, search_fixture
 from mechanogenesis_engine.interpreter import ReferenceInterpreter
 from mechanogenesis_engine.ir import MechanismProgram
 from mechanogenesis_engine.research_strategy import FixtureResearchStrategy
+from mechanogenesis_engine.sovereign import (
+    SovereignCertificate,
+    find_promotion_checker,
+    find_sovereign_checker,
+    promotion_envelope,
+    verify_promotion_with_lean,
+    verify_with_lean,
+)
 
 
 def core_receipts(execution) -> list[dict[str, object]]:
@@ -28,7 +36,9 @@ def core_receipts(execution) -> list[dict[str, object]]:
     ]
 
 
-def load_program(submission_path: Path, generation: dict[str, object]) -> MechanismProgram:
+def load_program(
+    submission_path: Path, generation: dict[str, object]
+) -> MechanismProgram:
     mrs = generation["mrs"]
     assert isinstance(mrs, dict)
     program_digest = mrs["construction_program"]
@@ -48,6 +58,16 @@ def load_mrs_object(
     assert isinstance(object_digest, str)
     object_path = submission_path.parent / "objects" / f"{object_digest[7:]}.json"
     return json.loads(object_path.read_text(encoding="utf-8"))
+
+
+def mrs_object_path(
+    submission_path: Path, generation: dict[str, object], name: str
+) -> Path:
+    mrs = generation["mrs"]
+    assert isinstance(mrs, dict)
+    object_digest = mrs[name]
+    assert isinstance(object_digest, str)
+    return submission_path.parent / "objects" / f"{object_digest[7:]}.json"
 
 
 def load_strategy(
@@ -70,9 +90,9 @@ def bind_generation(generation, program_digest: str, execution) -> bool:
     qualified_bound = True
     if "qualified_process_capability_id" in artifact:
         qualified_id = artifact["qualified_process_capability_id"]
-        qualified_bound = artifact["qualified_process_capability"] == capabilities[
-            qualified_id
-        ]
+        qualified_bound = (
+            artifact["qualified_process_capability"] == capabilities[qualified_id]
+        )
     return bool(
         generation["parent_world_hash"] == execution.parent_world_hash
         and generation["child_world_hash"] == execution.child_world_hash
@@ -159,6 +179,7 @@ def main() -> int:
     valid = isinstance(generations, list) and len(generations) == 2
     executions = []
     programs = []
+    sovereign_certificates = []
     try:
         interpreter = ReferenceInterpreter()
         first_program = load_program(args.submission, generations[0])
@@ -169,9 +190,7 @@ def main() -> int:
         )
         goal = FixtureGoal.from_mapping(
             json.loads(
-                (args.task_dir / "public/fixture_goal.json").read_text(
-                    encoding="utf-8"
-                )
+                (args.task_dir / "public/fixture_goal.json").read_text(encoding="utf-8")
             )
         )
         first_strategy = load_strategy(args.submission, generations[0])
@@ -195,14 +214,15 @@ def main() -> int:
             generations, programs, executions, regenerated, strategies, strict=True
         ):
             program_digest = generation["mrs"]["construction_program"]
-            valid = valid and bind_generation(
-                generation, program_digest, execution
-            )
+            valid = valid and bind_generation(generation, program_digest, execution)
             artifact = generation["artifact"]
-            valid = valid and reproduced.execution.process_hash == execution.process_hash
-            valid = valid and reproduced.selected_parameters == artifact[
-                "selected_parameters"
-            ]
+            valid = (
+                valid and reproduced.execution.process_hash == execution.process_hash
+            )
+            valid = (
+                valid
+                and reproduced.selected_parameters == artifact["selected_parameters"]
+            )
             valid = valid and artifact["research_strategy_hash"] == (
                 strategy.strategy_hash
             )
@@ -212,14 +232,27 @@ def main() -> int:
             valid = valid and artifact["search"]["candidate_support_size"] == (
                 reproduced.candidate_support_size
             )
-            valid = valid and artifact["search"][
-                "robust_worst_case_error_um"
-            ] == reproduced.robust_worst_case_error_um
-            valid = valid and artifact["search"][
-                "weighted_model_error_ppm_um"
-            ] == reproduced.weighted_model_error_ppm_um
+            valid = (
+                valid
+                and artifact["search"]["robust_worst_case_error_um"]
+                == reproduced.robust_worst_case_error_um
+            )
+            valid = (
+                valid
+                and artifact["search"]["weighted_model_error_ppm_um"]
+                == reproduced.weighted_model_error_ppm_um
+            )
             compiler_certificate = load_mrs_object(
                 args.submission, generation, "compiler_certificate"
+            )
+            sovereign = SovereignCertificate.from_mapping(compiler_certificate)
+            sovereign_certificates.append(sovereign)
+            checker = find_sovereign_checker(args.task_dir.parents[2])
+            if checker is None:
+                raise RuntimeError("Lean sovereign checker is unavailable")
+            verify_with_lean(
+                mrs_object_path(args.submission, generation, "compiler_certificate"),
+                checker,
             )
             theory_portfolio = load_mrs_object(
                 args.submission, generation, "theory_portfolio"
@@ -227,34 +260,42 @@ def main() -> int:
             experiment_program = load_mrs_object(
                 args.submission, generation, "experiment_program"
             )
-            valid = valid and compiler_certificate["strategy_hash"] == (
-                strategy.strategy_hash
-            )
-            valid = valid and compiler_certificate["process_hash"] == (
+            valid = valid and sovereign.strategy_hash == strategy.strategy_hash
+            valid = valid and sovereign.program_hash == (
                 reproduced.execution.process_hash
             )
-            valid = valid and theory_portfolio[
-                "observed_hypothesis_errors_um"
-            ] == reproduced.hypothesis_errors_um
+            valid = valid and sovereign.child_world_hash == (
+                reproduced.execution.child_world_hash
+            )
+            valid = valid and sovereign.candidate_support_size == (
+                reproduced.candidate_support_size
+            )
+            valid = valid and sovereign.attempted_candidates == (
+                reproduced.attempted_candidates
+            )
+            valid = (
+                valid
+                and theory_portfolio["observed_hypothesis_errors_um"]
+                == reproduced.hypothesis_errors_um
+            )
             valid = valid and experiment_program["selected_parameters"] == (
                 reproduced.selected_parameters
             )
         valid = valid and (
-            generations[1]["parent_process_hash"]
-            == first_execution.process_hash
+            generations[1]["parent_process_hash"] == first_execution.process_hash
         )
-        qualified_id = generations[0]["artifact"][
-            "qualified_process_capability_id"
-        ]
-        valid = valid and second_program.operations[0][
-            "process_capability_id"
-        ] == qualified_id
+        qualified_id = generations[0]["artifact"]["qualified_process_capability_id"]
+        valid = (
+            valid
+            and second_program.operations[0]["process_capability_id"] == qualified_id
+        )
     except Exception:
         valid = False
 
     margin = float(spec["promotion_margin_um"])
     minimum_robustness = 0.80
     decisions = []
+    sovereign_promotions = []
     if valid:
         first_execution, second_execution = executions
         first_artifact = generations[0]["artifact"]
@@ -265,12 +306,10 @@ def main() -> int:
         transfer = int(qualified["transfer_error_um"])
         base_process_error = next(iter(world.machines)).absolute_setup_error_um
         first_local_cases = [
-            local_error(first_fixture, case, world)
-            for case in spec["held_out_cases"]
+            local_error(first_fixture, case, world) for case in spec["held_out_cases"]
         ]
         second_local_cases = [
-            local_error(second_fixture, case, world)
-            for case in spec["held_out_cases"]
+            local_error(second_fixture, case, world) for case in spec["held_out_cases"]
         ]
         qualified_cases = [value + transfer for value in first_local_cases]
         parent_artifact_cases = [
@@ -283,8 +322,7 @@ def main() -> int:
             )
         ]
         process_robustness = sum(
-            value <= spec["max_qualified_process_error_um"]
-            for value in qualified_cases
+            value <= spec["max_qualified_process_error_um"] for value in qualified_cases
         ) / len(qualified_cases)
         successor_robustness = sum(
             value <= spec["max_successor_absolute_error_um"]
@@ -305,19 +343,37 @@ def main() -> int:
             material_cost = consumed_mass(execution) * int(
                 spec["material_cost_milliusd_per_mg"]
             )
-            decisions.append(
-                decision(
-                    index=index,
-                    artifact_hash=generations[index]["artifact_hash"],
-                    valid=valid,
-                    before_error=before_errors[index],
-                    after_error=after_errors[index],
-                    robustness=robust[index],
-                    limit=minimum_robustness,
-                    margin=margin,
-                    net_value=float(benefit - material_cost),
-                )
+            evaluated = decision(
+                index=index,
+                artifact_hash=generations[index]["artifact_hash"],
+                valid=valid,
+                before_error=before_errors[index],
+                after_error=after_errors[index],
+                robustness=robust[index],
+                limit=minimum_robustness,
+                margin=margin,
+                net_value=float(benefit - material_cost),
             )
+            if evaluated["accepted"]:
+                promotion_checker = find_promotion_checker(args.task_dir.parents[2])
+                if promotion_checker is None:
+                    evaluated["accepted"] = False
+                else:
+                    try:
+                        envelope = promotion_envelope(
+                            sovereign_certificates[index],
+                            artifact_hash=generations[index]["artifact_hash"],
+                            parent_error_upper=before_errors[index],
+                            child_error_upper=after_errors[index],
+                            required_improvement=int(margin),
+                            net_value=int(benefit - material_cost),
+                            robustness_passed=robust[index] >= minimum_robustness,
+                        )
+                        verify_promotion_with_lean(envelope, promotion_checker)
+                        sovereign_promotions.append(envelope)
+                    except Exception:
+                        evaluated["accepted"] = False
+            decisions.append(evaluated)
     else:
         for index, generation in enumerate(generations[:2]):
             decisions.append(
@@ -339,6 +395,7 @@ def main() -> int:
         "task_id": "conformance.recursive_fixture_process",
         "task_package_digest": os.environ["MBENCH_TASK_PACKAGE_DIGEST"],
         "evaluator_digest": os.environ["MBENCH_EVALUATOR_BUNDLE_DIGEST"],
+        "sovereign_promotions": sovereign_promotions,
         "decisions": decisions,
     }
     args.output.write_text(

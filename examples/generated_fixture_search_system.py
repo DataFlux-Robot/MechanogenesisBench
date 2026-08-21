@@ -106,7 +106,7 @@ def main() -> int:
     submission = {
         "schema_version": "0.1",
         "system_name": "gtheta-fixture-research-baseline",
-        "system_version": "0.4.0",
+        "system_version": "0.5.0",
         "declared_evidence_tier": "conformance",
         "resource_use": {
             "wall_time_s": 0.0,
