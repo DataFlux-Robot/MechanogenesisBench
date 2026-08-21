@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mechanogenesis-bench"
-version = "0.1.0"
+version = "0.2.0"
 description = "Benchmark-native evaluation standard for generative physical research and recursive manufacturing improvement"
 requires-python = ">=3.11"
 authors = [{name = "FluxPRSI"}]
@@ -15,6 +15,7 @@ dev = ["pytest>=8"]
 
 [project.scripts]
 mbench = "mechanogenesis_bench.cli:main"
+mengine = "mechanogenesis_engine.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

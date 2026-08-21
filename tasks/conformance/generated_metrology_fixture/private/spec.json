@@ -1,0 +1,14 @@
+{
+  "held_out_cases": [
+    {"workpiece_span_um": 60000, "extra_disturbance_um": 0},
+    {"workpiece_span_um": 70000, "extra_disturbance_um": 10},
+    {"workpiece_span_um": 80000, "extra_disturbance_um": 20},
+    {"workpiece_span_um": 75000, "extra_disturbance_um": 15},
+    {"workpiece_span_um": 65000, "extra_disturbance_um": 20}
+  ],
+  "max_error_um": 200,
+  "promotion_margin_um": 100,
+  "reuse_count": 500,
+  "value_per_um_improvement_milliusd": 2,
+  "material_cost_milliusd_per_mg": 1
+}

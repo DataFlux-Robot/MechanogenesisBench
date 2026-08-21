@@ -17,6 +17,11 @@ an isolated generator-fork comparison.
 Current-task reward alone is not a sufficient statistic for that recursive
 credit.
 
+For canonical Mechanism IR 0.2, local exact mass closure composes to global
+closure; a conservative subtractive transition cannot create part mass; an
+empty receipt sequence cannot change a world identity; and increasing an
+explicit disturbance term cannot reduce the modeled worst-case error.
+
 ## Status
 
 PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
@@ -33,6 +38,9 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
   budget; otherwise measured future gain is not causally attributable.
 - A benchmark certificate is not a proof that the underlying physical model is
   complete or that an unmodelled disturbance cannot invalidate it.
+- Mechanism IR geometry facts, material-density ratios and disturbance bounds
+  are assumed to match the executable inputs. The Lean layer proves
+  preservation implications, not those empirical premises.
 
 ## Notation
 
@@ -62,6 +70,10 @@ attribution claims.
    reward and different future research value.
 5. Causal attribution uses identical-parent/task/budget isolation; observed
    improvement without these conditions is insufficient.
+6. Mechanism material closure follows by induction over operation-local
+   balances. No-creation and receipt-chain statements follow directly from the
+   subtractive and transition constructors. Error monotonicity follows from
+   nonnegative integer addition.
 
 ## Proof
 
@@ -106,7 +118,19 @@ isolation predicate is false. Consequently the improvement cannot be assigned
 to the generator update under the stated causal contract. This establishes the
 need for isolated forks rather than merely future-looking reward.
 
-The Lean file machine-checks Steps 1–5 and the protocol conjunctions. ∎
+Step 6. For a list of local material balances $b_i$, assume each satisfies
+$$
+m_i^{in}+m_i^{reserve}=m_i^{out}+m_i^{waste}.
+$$
+Induction over the receipt list rewrites each head equality and applies the
+tail hypothesis, giving equality of the corresponding global sums. For a
+subtractive transition, $m_{stock}=m_{part}+m_{waste}$ immediately implies
+$m_{part}\le m_{stock}$. The receipt-chain base constructor permits no world
+change without a receipt. Finally, adding nonnegative disturbance $\delta$ to
+an additive error budget yields $e\le e+\delta$.
+
+`BenchmarkProtocol.lean` machine-checks Steps 1–5 and
+`MechanismIR.lean` machine-checks Step 6. ∎
 
 ## Corrections or Missing Assumptions
 
@@ -127,3 +151,6 @@ The Lean file machine-checks Steps 1–5 and the protocol conjunctions. ∎
 - The current process-only runner does not prevent a hostile submission from
   reading local private assets. It is restricted to conformance development;
   competition runs require container/VM isolation and attestation.
+- Axis-aligned AABB restrictions make volume accounting auditable but do not
+  yet cover overlapping unions, general rotations, surface finish, fit forces,
+  strength, wear or thermomechanical drift.

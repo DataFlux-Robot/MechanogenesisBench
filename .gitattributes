@@ -1,0 +1,4 @@
+*.step text eol=lf whitespace=-trailing-space
+*.stp text eol=lf whitespace=-trailing-space
+*.glb binary
+*.png binary

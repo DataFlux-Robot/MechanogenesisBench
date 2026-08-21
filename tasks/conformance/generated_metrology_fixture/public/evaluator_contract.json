@@ -1,0 +1,12 @@
+{
+  "objective_direction": "higher_is_better_on_negative_worst_case_error",
+  "promotion_margin_um": 100,
+  "required": [
+    "canonical program executes from public world",
+    "submitted process/world hashes equal interpreter outputs",
+    "submitted construction receipts equal interpreter receipts",
+    "hidden workpiece-span and disturbance cases meet the error goal",
+    "material and resource net value is positive"
+  ],
+  "evidence_warning": "Reference-model and STEP conformance only; no physical calibration is claimed."
+}

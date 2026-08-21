@@ -1,0 +1,299 @@
+{
+  "attempted_candidates": 240,
+  "executable_candidates": 240,
+  "execution": {
+    "child_world_hash": "sha256:cc08ca9b313d38cd26015d4a66074156124acf698c32dce536b5a53bfa4e9519",
+    "final_state": {
+      "assemblies": {
+        "metrology_fixture": {
+          "mass_mg": 272807,
+          "occurrences": [
+            "base",
+            "locator_a",
+            "locator_b",
+            "reference_post"
+          ],
+          "status": "assembled"
+        }
+      },
+      "capabilities": {
+        "baseline_metrology": {
+          "kind": "bounded_pose_error",
+          "worst_case_error_um": 800
+        },
+        "generated_fixture_metrology": {
+          "angular_tip_error_um": 30,
+          "assembly_id": "metrology_fixture",
+          "kind": "two_locator_metrology_fixture",
+          "locator_spacing_um": 80000,
+          "radial_clearance_um": 20,
+          "reference_clearance_um": 20,
+          "reference_occurrence": "reference_post",
+          "worst_case_error_um": 120
+        }
+      },
+      "inventory": {
+        "aluminum_blank_125x85x12": 0,
+        "locator_pin_6x15": 0,
+        "reference_post_8x25": 0
+      },
+      "parts": {
+        "fixture_base": {
+          "mass_mg": 256282,
+          "material_id": "aluminum_6061_model",
+          "source": "aluminum_blank_125x85x12",
+          "status": "installed:metrology_fixture"
+        },
+        "locator_pin_a": {
+          "mass_mg": 3330,
+          "material_id": "tool_steel_model",
+          "source": "locator_pin_6x15",
+          "status": "installed:metrology_fixture"
+        },
+        "locator_pin_b": {
+          "mass_mg": 3330,
+          "material_id": "tool_steel_model",
+          "source": "locator_pin_6x15",
+          "status": "installed:metrology_fixture"
+        },
+        "reference_post": {
+          "mass_mg": 9865,
+          "material_id": "tool_steel_model",
+          "source": "reference_post_8x25",
+          "status": "installed:metrology_fixture"
+        }
+      },
+      "schema_version": "0.2",
+      "sequence": 6,
+      "world_spec_hash": "sha256:7137c3cba82163b682bd6e5afd8ec5e226a681b81c545b76c072f2764c45ea08"
+    },
+    "geometry_facts": {
+      "fixture_base": {
+        "aabb_max_um": [
+          60000,
+          40000,
+          10000
+        ],
+        "aabb_min_um": [
+          -60000,
+          -40000,
+          0
+        ],
+        "primitive_count": 4,
+        "volume_lower_um3": 94919254308884,
+        "volume_upper_um3": 94919254652896
+      },
+      "locator_pin_a": {
+        "aabb_max_um": [
+          3000,
+          3000,
+          7500
+        ],
+        "aabb_min_um": [
+          -3000,
+          -3000,
+          -7500
+        ],
+        "primitive_count": 1,
+        "volume_lower_um3": 424114920000,
+        "volume_upper_um3": 424115055000
+      },
+      "locator_pin_b": {
+        "aabb_max_um": [
+          3000,
+          3000,
+          7500
+        ],
+        "aabb_min_um": [
+          -3000,
+          -3000,
+          -7500
+        ],
+        "primitive_count": 1,
+        "volume_lower_um3": 424114920000,
+        "volume_upper_um3": 424115055000
+      },
+      "reference_post": {
+        "aabb_max_um": [
+          4000,
+          4000,
+          12500
+        ],
+        "aabb_min_um": [
+          -4000,
+          -4000,
+          -12500
+        ],
+        "primitive_count": 1,
+        "volume_lower_um3": 1256636800000,
+        "volume_upper_um3": 1256637200000
+      }
+    },
+    "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8",
+    "process_hash": "sha256:3f30c473b132ec3e42423ddf4c558ae7d4dfa7b641fa1459506239f52630a9aa",
+    "receipts": [
+      {
+        "balances": [
+          {
+            "input_q": 344250,
+            "material": "aluminum_6061_model",
+            "output_q": 256282,
+            "reserve_draw_q": 0,
+            "waste_q": 87968
+          }
+        ],
+        "child_world_hash": "sha256:3caa345616cf7aa6fad0e585c4172354ec19f6e3eecbe01a684f3653b115a64b",
+        "duration_us": 1206024857,
+        "energy_mj": 1809037286,
+        "facts": {
+          "machine_id": "three_axis_mill_v0",
+          "part_id": "fixture_base",
+          "removed_volume_upper_um3": 32580745691116
+        },
+        "index": 0,
+        "operation": "machine_part",
+        "operation_hash": "sha256:4df2f26be743b78b0017cb3b0e0d420872173350c7314e743ef4e36c812e2383",
+        "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 3330,
+            "material": "tool_steel_model",
+            "output_q": 3330,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:e1686b66e96add83cd042aeddf60963d796bc746637f2920fecb1d8707b39a59",
+        "duration_us": 30000000,
+        "energy_mj": 12000000,
+        "facts": {
+          "inventory_item": "locator_pin_6x15",
+          "part_id": "locator_pin_a"
+        },
+        "index": 1,
+        "operation": "consume_component",
+        "operation_hash": "sha256:01efcc11a769b3c549f9f6de5431eef209c1cc3e1b8a7a191c94670a4a363ada",
+        "parent_world_hash": "sha256:3caa345616cf7aa6fad0e585c4172354ec19f6e3eecbe01a684f3653b115a64b"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 3330,
+            "material": "tool_steel_model",
+            "output_q": 3330,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:b143e164ddb82eea8264a6cee56484063a00a5f017878dbc6483533282f7d4d2",
+        "duration_us": 30000000,
+        "energy_mj": 12000000,
+        "facts": {
+          "inventory_item": "locator_pin_6x15",
+          "part_id": "locator_pin_b"
+        },
+        "index": 2,
+        "operation": "consume_component",
+        "operation_hash": "sha256:d4cc8cb7f54b2b40b19c4c6ae392a6ef070aebe77177ace5c908bcd8218fc1f4",
+        "parent_world_hash": "sha256:e1686b66e96add83cd042aeddf60963d796bc746637f2920fecb1d8707b39a59"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 9865,
+            "material": "tool_steel_model",
+            "output_q": 9865,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:1a30bdf610b399e19f7f67f6c7954221b96193c0f9876011642ea437ec96b4b5",
+        "duration_us": 30000000,
+        "energy_mj": 12000000,
+        "facts": {
+          "inventory_item": "reference_post_8x25",
+          "part_id": "reference_post"
+        },
+        "index": 3,
+        "operation": "consume_component",
+        "operation_hash": "sha256:77444f93d1a30bbfb4152b64055b34f394113850d3a5f1f265fdd5cd44aa5da3",
+        "parent_world_hash": "sha256:b143e164ddb82eea8264a6cee56484063a00a5f017878dbc6483533282f7d4d2"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 256282,
+            "material": "aluminum_6061_model",
+            "output_q": 256282,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          },
+          {
+            "input_q": 16525,
+            "material": "tool_steel_model",
+            "output_q": 16525,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:45c83b3c96cdcffbf1aed555576d2e39ab01ac74364358fb5a5963e9b1f7c944",
+        "duration_us": 120000000,
+        "energy_mj": 48000000,
+        "facts": {
+          "assembly_id": "metrology_fixture",
+          "occurrence_count": 4
+        },
+        "index": 4,
+        "operation": "assemble",
+        "operation_hash": "sha256:6f7f2991a5126329c68d68162c5e12aa6d59597dd689e94259dffddd55498c92",
+        "parent_world_hash": "sha256:1a30bdf610b399e19f7f67f6c7954221b96193c0f9876011642ea437ec96b4b5"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 256282,
+            "material": "aluminum_6061_model",
+            "output_q": 256282,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          },
+          {
+            "input_q": 16525,
+            "material": "tool_steel_model",
+            "output_q": 16525,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:cc08ca9b313d38cd26015d4a66074156124acf698c32dce536b5a53bfa4e9519",
+        "duration_us": 180000000,
+        "energy_mj": 72000000,
+        "facts": {
+          "capability_id": "generated_fixture_metrology",
+          "locator_spacing_um": 80000,
+          "radial_clearance_um": 20,
+          "reference_clearance_um": 20,
+          "worst_case_error_um": 120
+        },
+        "index": 5,
+        "operation": "calibrate",
+        "operation_hash": "sha256:83ba0917a9a75785e43c9947e661c643a7be40e42b3e88e500cc48b10e45ca3c",
+        "parent_world_hash": "sha256:45c83b3c96cdcffbf1aed555576d2e39ab01ac74364358fb5a5963e9b1f7c944"
+      }
+    ],
+    "total_duration_us": 1596024857,
+    "total_energy_mj": 1965037286
+  },
+  "feasible_candidates": 84,
+  "selected_parameters": {
+    "base_x_um": 120000,
+    "base_y_um": 80000,
+    "base_z_um": 10000,
+    "bore_clearance_um": 20,
+    "pin_spacing_um": 80000,
+    "reference_y_um": 15000,
+    "worst_case_error_um": 120
+  }
+}

@@ -20,4 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
-      - run: lean formal/lean/BenchmarkProtocol.lean
+      - run: |
+          lean formal/lean/BenchmarkProtocol.lean
+          lean formal/lean/MechanismIR.lean

@@ -1,0 +1,15 @@
+{
+  "input": "models/generated_metrology_fixture/fixture.step",
+  "mode": "view",
+  "outputs": [
+    {"path": "models/generated_metrology_fixture/review/iso.png", "camera": "iso"},
+    {"path": "models/generated_metrology_fixture/review/iso_opposite.png", "camera": {"direction": [-1, 1, -0.8]}},
+    {"path": "models/generated_metrology_fixture/review/top.png", "camera": "top"},
+    {"path": "models/generated_metrology_fixture/review/front.png", "camera": "front"}
+  ],
+  "render": {
+    "viewLabels": true,
+    "padding": 0.12,
+    "sizeProfile": "assembly"
+  }
+}

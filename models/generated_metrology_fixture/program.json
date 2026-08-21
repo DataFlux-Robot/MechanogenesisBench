@@ -1,0 +1,377 @@
+{
+  "assemblies": [
+    {
+      "assembly_id": "metrology_fixture",
+      "label": "generated_metrology_fixture",
+      "mates": [
+        {
+          "fixed_datum": "locator_a_seat",
+          "fixed_occurrence": "base",
+          "mate_id": "seat_locator_a",
+          "moving_datum": "mount",
+          "moving_occurrence": "locator_a",
+          "relation": "rigid",
+          "tolerance_um": 0
+        },
+        {
+          "fixed_datum": "locator_b_seat",
+          "fixed_occurrence": "base",
+          "mate_id": "seat_locator_b",
+          "moving_datum": "mount",
+          "moving_occurrence": "locator_b",
+          "relation": "rigid",
+          "tolerance_um": 0
+        },
+        {
+          "fixed_datum": "reference_seat",
+          "fixed_occurrence": "base",
+          "mate_id": "seat_reference_post",
+          "moving_datum": "mount",
+          "moving_occurrence": "reference_post",
+          "relation": "rigid",
+          "tolerance_um": 0
+        }
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "base",
+          "part_id": "fixture_base",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "occurrence_id": "locator_a",
+          "part_id": "locator_pin_a",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              -40000,
+              -10000,
+              14500
+            ]
+          }
+        },
+        {
+          "occurrence_id": "locator_b",
+          "part_id": "locator_pin_b",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              40000,
+              -10000,
+              14500
+            ]
+          }
+        },
+        {
+          "occurrence_id": "reference_post",
+          "part_id": "reference_post",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              15000,
+              19500
+            ]
+          }
+        }
+      ],
+      "root_occurrence": "base"
+    }
+  ],
+  "operations": [
+    {
+      "machine_id": "three_axis_mill_v0",
+      "op": "machine_part",
+      "part_id": "fixture_base",
+      "process": "milling",
+      "stock_item_id": "aluminum_blank_125x85x12"
+    },
+    {
+      "item_id": "locator_pin_6x15",
+      "op": "consume_component",
+      "part_id": "locator_pin_a"
+    },
+    {
+      "item_id": "locator_pin_6x15",
+      "op": "consume_component",
+      "part_id": "locator_pin_b"
+    },
+    {
+      "item_id": "reference_post_8x25",
+      "op": "consume_component",
+      "part_id": "reference_post"
+    },
+    {
+      "assembly_id": "metrology_fixture",
+      "op": "assemble"
+    },
+    {
+      "assembly_id": "metrology_fixture",
+      "capability_id": "generated_fixture_metrology",
+      "locator_occurrences": [
+        "locator_a",
+        "locator_b"
+      ],
+      "op": "calibrate",
+      "reference_occurrence": "reference_post",
+      "workpiece_span_um": 60000
+    }
+  ],
+  "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8",
+  "parts": [
+    {
+      "datums": [
+        {
+          "datum_id": "root",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "datum_id": "locator_a_seat",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              -40000,
+              -10000,
+              7000
+            ]
+          }
+        },
+        {
+          "datum_id": "locator_b_seat",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              40000,
+              -10000,
+              7000
+            ]
+          }
+        },
+        {
+          "datum_id": "reference_seat",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              15000,
+              7000
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "children": [
+          {
+            "center_um": [
+              0,
+              0,
+              5000
+            ],
+            "kind": "box",
+            "label": "fixture_base_blank",
+            "size_um": [
+              120000,
+              80000,
+              10000
+            ]
+          },
+          {
+            "axis": "z",
+            "center_um": [
+              -40000,
+              -10000,
+              5000
+            ],
+            "height_um": 10000,
+            "kind": "cylinder",
+            "label": "locator_bore_a",
+            "radius_um": 3020
+          },
+          {
+            "axis": "z",
+            "center_um": [
+              40000,
+              -10000,
+              5000
+            ],
+            "height_um": 10000,
+            "kind": "cylinder",
+            "label": "locator_bore_b",
+            "radius_um": 3020
+          },
+          {
+            "axis": "z",
+            "center_um": [
+              0,
+              15000,
+              5000
+            ],
+            "height_um": 10000,
+            "kind": "cylinder",
+            "label": "reference_bore",
+            "radius_um": 4020
+          }
+        ],
+        "kind": "difference",
+        "label": "fixture_base_with_bores"
+      },
+      "label": "generated_fixture_base",
+      "material_id": "aluminum_6061_model",
+      "part_id": "fixture_base",
+      "source_item_id": null
+    },
+    {
+      "datums": [
+        {
+          "datum_id": "mount",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              0,
+              -7500
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "axis": "z",
+        "center_um": [
+          0,
+          0,
+          0
+        ],
+        "height_um": 15000,
+        "kind": "cylinder",
+        "label": "locator_pin_body_a",
+        "radius_um": 3000
+      },
+      "label": "locator_pin_left",
+      "material_id": "tool_steel_model",
+      "part_id": "locator_pin_a",
+      "source_item_id": "locator_pin_6x15"
+    },
+    {
+      "datums": [
+        {
+          "datum_id": "mount",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              0,
+              -7500
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "axis": "z",
+        "center_um": [
+          0,
+          0,
+          0
+        ],
+        "height_um": 15000,
+        "kind": "cylinder",
+        "label": "locator_pin_body_b",
+        "radius_um": 3000
+      },
+      "label": "locator_pin_right",
+      "material_id": "tool_steel_model",
+      "part_id": "locator_pin_b",
+      "source_item_id": "locator_pin_6x15"
+    },
+    {
+      "datums": [
+        {
+          "datum_id": "mount",
+          "pose": {
+            "rotation_mdeg": [
+              0,
+              0,
+              0
+            ],
+            "translation_um": [
+              0,
+              0,
+              -12500
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "axis": "z",
+        "center_um": [
+          0,
+          0,
+          0
+        ],
+        "height_um": 25000,
+        "kind": "cylinder",
+        "label": "reference_post_body",
+        "radius_um": 4000
+      },
+      "label": "probe_reference_post",
+      "material_id": "tool_steel_model",
+      "part_id": "reference_post",
+      "source_item_id": "reference_post_8x25"
+    }
+  ],
+  "program_id": "generated_metrology_fixture_s80000_c20_r15000",
+  "schema_version": "0.2"
+}

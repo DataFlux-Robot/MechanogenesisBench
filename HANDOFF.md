@@ -56,6 +56,16 @@ not a fixed plug-in catalog.
 - A two-generation `CONFORMANCE` reference task and canned system.
 - Lean-checked bounded-promotion, reward-insufficiency and isolation lemmas.
 - Adversarial unit tests and CI.
+- Canonical Mechanism IR 0.2 with fixed-point quantities, labeled axis-aligned
+  CSG, parts/datums, rigid assembly, materials, inventory and machines.
+- A deterministic reference interpreter for machining, component consumption,
+  assembly and calibration with per-operation world/material/resource receipts.
+- A generated-metrology-fixture task whose baseline synthesizes and executes
+  240 mechanism programs instead of selecting a canned part.
+- Independent hidden-case re-execution of the stored construction-program MRS
+  object, plus a generated labeled STEP assembly and four visual review views.
+- Lean-checked local-to-global mass closure, subtractive no-creation,
+  receipt-chain and error-bound monotonicity lemmas.
 
 Run:
 
@@ -67,6 +77,11 @@ mbench run tasks/conformance/calibration_to_fixture \
   --guidance G3 --output runs/reference
 pytest -q
 lean formal/lean/BenchmarkProtocol.lean
+lean formal/lean/MechanismIR.lean
+
+mbench run tasks/conformance/generated_metrology_fixture \
+  --system-command "python examples/generated_fixture_search_system.py" \
+  --guidance G5 --output runs/generated-fixture
 ```
 
 ## Lessons already incorporated
@@ -82,27 +97,37 @@ lean formal/lean/BenchmarkProtocol.lean
   model fidelity or universal physical RSI.
 - External solvers must refine/falsify canonical semantics, not own it through
   adapters.
+- Component source geometry must be centered in its own local frame; occurrence
+  poses then remain identical across the reference interpreter and STEP
+  assembly. An earlier mixed local/world origin representation caused visible
+  occurrence-frame drift and was rejected during CAD inspection.
+- The generated reference post contributes its own bore-clearance term; a
+  measurement reference that does not affect the error budget is semantically
+  decorative and should not pass review.
 
 ## Current limitations
 
-This is the benchmark protocol vertical slice, not yet the Mechanogenesis
-multi-physics engine. The reference system is canned and the sample is explicitly
-conformance-only. Resource fields other than observed wall time are declared,
-not independently metered. Host process execution is not secure against a
-hostile submission. Confidence intervals and physical calibration are delegated
-to each trusted task evaluator.
+This is now a real generative geometry/manufacturing vertical slice, but not yet
+the large multiphysics Mechanogenesis Engine. Its search language is bounded
+and enumerative, not LLM-generated. Rigid/contact force, tolerances, strength,
+surface finish, wear and thermal drift are not simulated. The sample remains
+explicitly conformance-only. Resource fields other than observed wall time are
+declared, not independently metered. Host process execution is not secure
+against a hostile submission. Confidence intervals and physical calibration
+are delegated to each trusted task evaluator.
 
 ## Next implementation sequence
 
-1. Define the canonical mechanism IR: quantities, frames, topology, material,
-   capability, interventions, construction/experiment bytecode and receipts.
-2. Implement its deterministic reference interpreter plus schema/Lean
-   preservation tests; migrate benchmark world files onto this IR.
-3. Add generative geometry, assemblies, collision/contact, metrology and
-   manufacturing-process semantics for real fixture generation.
+1. Extend IR 0.2 with general frame composition, stable B-rep/SDF topology,
+   uncertainty, experiment bytecode and custody signatures.
+2. Add native collision/contact, fit, tolerance, metrology and machining-force
+   semantics, keeping the current interpreter as the oracle-sized fragment.
+3. Replace bounded fixture enumeration with an LLM-centered Gθ that generates
+   task language, compiler, theories and search operators, while every emitted
+   construction program still targets canonical IR.
 4. Specify solver refinement contracts and add one optimized native backend;
    use Newton/other engines only for cross-validation and falsification.
-5. Implement the LLM-centered Gθ runtime, multi-world model population,
+5. Implement the full multi-world model population,
    interventional separability policy and executable MRS search.
 6. Add genuine isolated checkpoint forks across hidden future task suites and
    statistically powered Recursive Research Credit.
@@ -111,6 +136,8 @@ to each trusted task evaluator.
 8. Connect a bounded manufacturing workcell; advance from conformance to
    simulation and hardware evidence only as calibration justifies.
 
-Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` before changing architecture,
+Read `docs/MECHANOGENESIS_ENGINE_SPEC.md` and
+`docs/CANONICAL_MECHANISM_IR.md` before changing architecture,
+`docs/REFERENCE_INTERPRETER.md` before extending execution,
 `docs/TASK_STANDARD.md` before adding tasks, and `PROOF_PACKAGE.md` before
 strengthening any theoretical claim.
