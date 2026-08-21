@@ -115,3 +115,29 @@ theorem increasing_unmodelled_disturbance_cannot_reduce_bound
         disturbanceBound := budget.disturbanceBound + extra } := by
   simp only [WorstCaseError]
   simp [Nat.add_assoc]
+
+structure PhysicalContributionWitness where
+  parentProcessError : Nat
+  fixtureLocalError : Nat
+  transferError : Nat
+  childProcessError : Nat
+  parentArtifactLocalError : Nat
+  childArtifactLocalError : Nat
+
+def ValidPhysicalContribution (witness : PhysicalContributionWitness) : Prop :=
+  witness.childProcessError =
+      witness.fixtureLocalError + witness.transferError ∧
+  witness.childProcessError < witness.parentProcessError ∧
+  witness.childArtifactLocalError ≤ witness.parentArtifactLocalError
+
+def ParentArtifactAbsoluteError (witness : PhysicalContributionWitness) : Nat :=
+  witness.parentProcessError + witness.parentArtifactLocalError
+
+def ChildArtifactAbsoluteError (witness : PhysicalContributionWitness) : Nat :=
+  witness.childProcessError + witness.childArtifactLocalError
+
+theorem valid_physical_contribution_strictly_improves_successor_bound
+    (witness : PhysicalContributionWitness)
+    (valid : ValidPhysicalContribution witness) :
+    ChildArtifactAbsoluteError witness < ParentArtifactAbsoluteError witness := by
+  exact Nat.add_lt_add_of_lt_of_le valid.2.1 valid.2.2

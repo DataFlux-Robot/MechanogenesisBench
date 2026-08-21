@@ -1,7 +1,7 @@
 {
   "baseline_process_hash": "sha256:102ea3f9fbcb33ee4d1379f9e4f22bb3cc4705eec7ef7386e6b5ab650458e61a",
-  "baseline_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8",
+  "baseline_world_hash": "sha256:6d1db13f5a19318b6e13d081ee77acbcb61339c5f6e915c13d06d3ceea7eadf7",
   "mechanism_world": "mechanism_world.json",
   "fixture_goal": "fixture_goal.json",
-  "semantics": "mechanogenesis_engine.reference_interpreter.v0.2"
+  "semantics": "mechanogenesis_engine.reference_interpreter.v0.3"
 }

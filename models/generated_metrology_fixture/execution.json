@@ -2,7 +2,7 @@
   "attempted_candidates": 240,
   "executable_candidates": 240,
   "execution": {
-    "child_world_hash": "sha256:cc08ca9b313d38cd26015d4a66074156124acf698c32dce536b5a53bfa4e9519",
+    "child_world_hash": "sha256:c3e04041132ac361ed52f9718ef0f3f0c4626ad3d2f22477157b81bbf63549c7",
     "final_state": {
       "assemblies": {
         "metrology_fixture": {
@@ -21,15 +21,33 @@
           "kind": "bounded_pose_error",
           "worst_case_error_um": 800
         },
+        "generated_fixture_machine_process": {
+          "kind": "machine_process",
+          "machine_id": "three_axis_mill_v0",
+          "parent_process_capability_id": "three_axis_mill_v0.base_process",
+          "position_error_um": 140,
+          "source_assembly_id": "metrology_fixture",
+          "source_capability_id": "generated_fixture_metrology",
+          "transfer_error_um": 10
+        },
         "generated_fixture_metrology": {
+          "absolute_frame_error_um": 930,
           "angular_tip_error_um": 30,
           "assembly_id": "metrology_fixture",
           "kind": "two_locator_metrology_fixture",
           "locator_spacing_um": 80000,
+          "manufacturing_repeatability_um": 10,
           "radial_clearance_um": 20,
           "reference_clearance_um": 20,
           "reference_occurrence": "reference_post",
-          "worst_case_error_um": 120
+          "source_process_error_um": 800,
+          "worst_case_error_um": 130
+        },
+        "three_axis_mill_v0.base_process": {
+          "kind": "machine_process",
+          "machine_id": "three_axis_mill_v0",
+          "position_error_um": 800,
+          "source": "world_spec"
         }
       },
       "inventory": {
@@ -41,6 +59,9 @@
         "fixture_base": {
           "mass_mg": 256282,
           "material_id": "aluminum_6061_model",
+          "process_capability_id": "three_axis_mill_v0.base_process",
+          "process_error_um": 800,
+          "relative_repeatability_um": 10,
           "source": "aluminum_blank_125x85x12",
           "status": "installed:metrology_fixture"
         },
@@ -63,9 +84,9 @@
           "status": "installed:metrology_fixture"
         }
       },
-      "schema_version": "0.2",
-      "sequence": 6,
-      "world_spec_hash": "sha256:7137c3cba82163b682bd6e5afd8ec5e226a681b81c545b76c072f2764c45ea08"
+      "schema_version": "0.3",
+      "sequence": 7,
+      "world_spec_hash": "sha256:0b406508ec4d1f7519b33d7ddfca6339408284618e3a050e085e4b40a65f01be"
     },
     "geometry_facts": {
       "fixture_base": {
@@ -129,8 +150,8 @@
         "volume_upper_um3": 1256637200000
       }
     },
-    "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8",
-    "process_hash": "sha256:3f30c473b132ec3e42423ddf4c558ae7d4dfa7b641fa1459506239f52630a9aa",
+    "parent_world_hash": "sha256:6d1db13f5a19318b6e13d081ee77acbcb61339c5f6e915c13d06d3ceea7eadf7",
+    "process_hash": "sha256:a3d9f7609e11610bc55a6baedd5f64ae935abedfbb5827cdbf246af6674a00be",
     "receipts": [
       {
         "balances": [
@@ -142,18 +163,20 @@
             "waste_q": 87968
           }
         ],
-        "child_world_hash": "sha256:3caa345616cf7aa6fad0e585c4172354ec19f6e3eecbe01a684f3653b115a64b",
+        "child_world_hash": "sha256:5fbac63e901cfdb7ed4795d7556d0b50b44cae0fb14763237e4bc64c199d8265",
         "duration_us": 1206024857,
         "energy_mj": 1809037286,
         "facts": {
           "machine_id": "three_axis_mill_v0",
           "part_id": "fixture_base",
+          "process_capability_id": "three_axis_mill_v0.base_process",
+          "process_error_um": 800,
           "removed_volume_upper_um3": 32580745691116
         },
         "index": 0,
         "operation": "machine_part",
-        "operation_hash": "sha256:4df2f26be743b78b0017cb3b0e0d420872173350c7314e743ef4e36c812e2383",
-        "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8"
+        "operation_hash": "sha256:8fecdd1b26b8e7ec8695a781876df7f16c79f821dbe1821062389e820bad8330",
+        "parent_world_hash": "sha256:6d1db13f5a19318b6e13d081ee77acbcb61339c5f6e915c13d06d3ceea7eadf7"
       },
       {
         "balances": [
@@ -165,7 +188,7 @@
             "waste_q": 0
           }
         ],
-        "child_world_hash": "sha256:e1686b66e96add83cd042aeddf60963d796bc746637f2920fecb1d8707b39a59",
+        "child_world_hash": "sha256:d59099f965255004e10b3a46e153716adea029384c1ea902de916ec9c884a6f1",
         "duration_us": 30000000,
         "energy_mj": 12000000,
         "facts": {
@@ -175,7 +198,7 @@
         "index": 1,
         "operation": "consume_component",
         "operation_hash": "sha256:01efcc11a769b3c549f9f6de5431eef209c1cc3e1b8a7a191c94670a4a363ada",
-        "parent_world_hash": "sha256:3caa345616cf7aa6fad0e585c4172354ec19f6e3eecbe01a684f3653b115a64b"
+        "parent_world_hash": "sha256:5fbac63e901cfdb7ed4795d7556d0b50b44cae0fb14763237e4bc64c199d8265"
       },
       {
         "balances": [
@@ -187,7 +210,7 @@
             "waste_q": 0
           }
         ],
-        "child_world_hash": "sha256:b143e164ddb82eea8264a6cee56484063a00a5f017878dbc6483533282f7d4d2",
+        "child_world_hash": "sha256:8feb1912512e1a106ea6118949f88714392475c94f91c15ff1ebdca624cd5d24",
         "duration_us": 30000000,
         "energy_mj": 12000000,
         "facts": {
@@ -197,7 +220,7 @@
         "index": 2,
         "operation": "consume_component",
         "operation_hash": "sha256:d4cc8cb7f54b2b40b19c4c6ae392a6ef070aebe77177ace5c908bcd8218fc1f4",
-        "parent_world_hash": "sha256:e1686b66e96add83cd042aeddf60963d796bc746637f2920fecb1d8707b39a59"
+        "parent_world_hash": "sha256:d59099f965255004e10b3a46e153716adea029384c1ea902de916ec9c884a6f1"
       },
       {
         "balances": [
@@ -209,7 +232,7 @@
             "waste_q": 0
           }
         ],
-        "child_world_hash": "sha256:1a30bdf610b399e19f7f67f6c7954221b96193c0f9876011642ea437ec96b4b5",
+        "child_world_hash": "sha256:2b2deba889649ef5cc72ce74cd7bbab437370167bbd239904c2e557ff0520a9c",
         "duration_us": 30000000,
         "energy_mj": 12000000,
         "facts": {
@@ -219,7 +242,7 @@
         "index": 3,
         "operation": "consume_component",
         "operation_hash": "sha256:77444f93d1a30bbfb4152b64055b34f394113850d3a5f1f265fdd5cd44aa5da3",
-        "parent_world_hash": "sha256:b143e164ddb82eea8264a6cee56484063a00a5f017878dbc6483533282f7d4d2"
+        "parent_world_hash": "sha256:8feb1912512e1a106ea6118949f88714392475c94f91c15ff1ebdca624cd5d24"
       },
       {
         "balances": [
@@ -238,7 +261,7 @@
             "waste_q": 0
           }
         ],
-        "child_world_hash": "sha256:45c83b3c96cdcffbf1aed555576d2e39ab01ac74364358fb5a5963e9b1f7c944",
+        "child_world_hash": "sha256:1c61e5565d4bf3fdf12ba6d702991e4a572afebd57998043afe31d440651b15c",
         "duration_us": 120000000,
         "energy_mj": 48000000,
         "facts": {
@@ -248,7 +271,7 @@
         "index": 4,
         "operation": "assemble",
         "operation_hash": "sha256:6f7f2991a5126329c68d68162c5e12aa6d59597dd689e94259dffddd55498c92",
-        "parent_world_hash": "sha256:1a30bdf610b399e19f7f67f6c7954221b96193c0f9876011642ea437ec96b4b5"
+        "parent_world_hash": "sha256:2b2deba889649ef5cc72ce74cd7bbab437370167bbd239904c2e557ff0520a9c"
       },
       {
         "balances": [
@@ -267,26 +290,61 @@
             "waste_q": 0
           }
         ],
-        "child_world_hash": "sha256:cc08ca9b313d38cd26015d4a66074156124acf698c32dce536b5a53bfa4e9519",
+        "child_world_hash": "sha256:7b4e40cf3f9bc4c57b4c2f8d30720aea76a20d1afed162886c97b046197b7d07",
         "duration_us": 180000000,
         "energy_mj": 72000000,
         "facts": {
+          "absolute_frame_error_um": 930,
           "capability_id": "generated_fixture_metrology",
           "locator_spacing_um": 80000,
+          "manufacturing_repeatability_um": 10,
           "radial_clearance_um": 20,
           "reference_clearance_um": 20,
-          "worst_case_error_um": 120
+          "worst_case_error_um": 130
         },
         "index": 5,
         "operation": "calibrate",
         "operation_hash": "sha256:83ba0917a9a75785e43c9947e661c643a7be40e42b3e88e500cc48b10e45ca3c",
-        "parent_world_hash": "sha256:45c83b3c96cdcffbf1aed555576d2e39ab01ac74364358fb5a5963e9b1f7c944"
+        "parent_world_hash": "sha256:1c61e5565d4bf3fdf12ba6d702991e4a572afebd57998043afe31d440651b15c"
+      },
+      {
+        "balances": [
+          {
+            "input_q": 256282,
+            "material": "aluminum_6061_model",
+            "output_q": 256282,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          },
+          {
+            "input_q": 16525,
+            "material": "tool_steel_model",
+            "output_q": 16525,
+            "reserve_draw_q": 0,
+            "waste_q": 0
+          }
+        ],
+        "child_world_hash": "sha256:c3e04041132ac361ed52f9718ef0f3f0c4626ad3d2f22477157b81bbf63549c7",
+        "duration_us": 180000000,
+        "energy_mj": 72000000,
+        "facts": {
+          "child_process_capability_id": "generated_fixture_machine_process",
+          "child_process_error_um": 140,
+          "machine_id": "three_axis_mill_v0",
+          "parent_process_capability_id": "three_axis_mill_v0.base_process",
+          "parent_process_error_um": 800,
+          "source_capability_id": "generated_fixture_metrology"
+        },
+        "index": 6,
+        "operation": "qualify_process",
+        "operation_hash": "sha256:983daaefe71af9cdf9ecbf753e14a224daa83e53ac189b5548d0f2aa6d68995a",
+        "parent_world_hash": "sha256:7b4e40cf3f9bc4c57b4c2f8d30720aea76a20d1afed162886c97b046197b7d07"
       }
     ],
-    "total_duration_us": 1596024857,
-    "total_energy_mj": 1965037286
+    "total_duration_us": 1776024857,
+    "total_energy_mj": 2037037286
   },
-  "feasible_candidates": 84,
+  "feasible_candidates": 72,
   "selected_parameters": {
     "base_x_um": 120000,
     "base_y_um": 80000,
@@ -294,6 +352,6 @@
     "bore_clearance_um": 20,
     "pin_spacing_um": 80000,
     "reference_y_um": 15000,
-    "worst_case_error_um": 120
+    "worst_case_error_um": 130
   }
 }

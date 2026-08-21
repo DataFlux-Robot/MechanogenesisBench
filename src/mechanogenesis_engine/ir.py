@@ -6,7 +6,7 @@ from typing import Any, Mapping
 from .errors import IRValidationError
 
 
-SCHEMA_VERSION = "0.2"
+SCHEMA_VERSION = "0.3"
 
 
 def _mapping(value: Any, field: str) -> Mapping[str, Any]:
@@ -355,11 +355,27 @@ class MachineSpec:
     removal_rate_um3_per_us: int
     setup_time_us: int
     power_w: int
+    absolute_setup_error_um: int
+    relative_repeatability_um: int
     operations: tuple[str, ...]
 
     @classmethod
     def from_mapping(cls, raw: Mapping[str, Any], field: str) -> "MachineSpec":
-        _keys(raw, {"machine_id", "envelope_um", "min_feature_um", "removal_rate_um3_per_us", "setup_time_us", "power_w", "operations"}, field)
+        _keys(
+            raw,
+            {
+                "machine_id",
+                "envelope_um",
+                "min_feature_um",
+                "removal_rate_um3_per_us",
+                "setup_time_us",
+                "power_w",
+                "absolute_setup_error_um",
+                "relative_repeatability_um",
+                "operations",
+            },
+            field,
+        )
         operations = raw["operations"]
         if not isinstance(operations, list) or not operations:
             raise IRValidationError(f"{field}.operations must be non-empty")
@@ -372,6 +388,15 @@ class MachineSpec:
             removal_rate_um3_per_us=_nat(raw["removal_rate_um3_per_us"], f"{field}.removal_rate_um3_per_us", positive=True),
             setup_time_us=_nat(raw["setup_time_us"], f"{field}.setup_time_us"),
             power_w=_nat(raw["power_w"], f"{field}.power_w", positive=True),
+            absolute_setup_error_um=_nat(
+                raw["absolute_setup_error_um"],
+                f"{field}.absolute_setup_error_um",
+                positive=True,
+            ),
+            relative_repeatability_um=_nat(
+                raw["relative_repeatability_um"],
+                f"{field}.relative_repeatability_um",
+            ),
             operations=tuple(_text(value, f"{field}.operations") for value in operations),
         )
 
@@ -513,6 +538,8 @@ def world_to_dict(world: WorldSpec) -> dict[str, object]:
                 "removal_rate_um3_per_us": machine.removal_rate_um3_per_us,
                 "setup_time_us": machine.setup_time_us,
                 "power_w": machine.power_w,
+                "absolute_setup_error_um": machine.absolute_setup_error_um,
+                "relative_repeatability_um": machine.relative_repeatability_um,
                 "operations": list(machine.operations),
             }
             for machine in world.machines

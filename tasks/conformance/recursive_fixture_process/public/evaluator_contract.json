@@ -1,0 +1,13 @@
+{
+  "objective_direction": "higher_is_better_on_negative_error_bound",
+  "promotion_margin_um": 50,
+  "required": [
+    "generation zero fixture strictly qualifies the machine process",
+    "generation one starts from the promoted child world",
+    "generation one machining cites the qualified process capability",
+    "successor absolute-frame error is strictly below the parent artifact",
+    "both generations survive hidden span and disturbance interventions",
+    "all process/world hashes and receipts reproduce independently"
+  ],
+  "evidence_warning": "Conditional reference-model conformance only; no physical calibration is claimed."
+}

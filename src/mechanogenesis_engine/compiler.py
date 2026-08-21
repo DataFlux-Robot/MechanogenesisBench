@@ -27,8 +27,19 @@ def load_program(path: str | Path) -> MechanismProgram:
     return MechanismProgram.from_mapping(_load_json(path, "program"))
 
 
+def load_state(path: str | Path) -> dict[str, object]:
+    return dict(_load_json(path, "state"))
+
+
 def write_program(path: str | Path, program: MechanismProgram) -> None:
     Path(path).write_text(
         json.dumps(program_to_dict(program), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_state(path: str | Path, state: dict[str, object]) -> None:
+    Path(path).write_text(
+        json.dumps(state, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )

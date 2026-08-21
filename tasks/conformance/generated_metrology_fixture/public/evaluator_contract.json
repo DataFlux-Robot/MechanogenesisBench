@@ -5,6 +5,7 @@
     "canonical program executes from public world",
     "submitted process/world hashes equal interpreter outputs",
     "submitted construction receipts equal interpreter receipts",
+    "generated fixture strictly qualifies the declared machine process",
     "hidden workpiece-span and disturbance cases meet the error goal",
     "material and resource net value is positive"
   ],

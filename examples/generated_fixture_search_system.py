@@ -38,12 +38,13 @@ def main() -> int:
     )
     goal = FixtureGoal.from_mapping(raw_goal)
     result = search_fixture(world, goal)
+    assert result.qualified_process_capability_id is not None
     program_object = program_to_dict(result.program)
 
     mrs_objects: dict[str, object] = {
         "language": {
             "kind": "canonical_mechanism_ir",
-            "version": "0.2",
+            "version": "0.3",
             "generated_fragment": ["axis_aligned_csg", "rigid_assembly", "subtractive_manufacturing", "calibration"],
         },
         "semantics": {
@@ -92,6 +93,10 @@ def main() -> int:
         "assembly_id": "metrology_fixture",
         "selected_parameters": result.selected_parameters,
         "capability": capability,
+        "qualified_process_capability_id": result.qualified_process_capability_id,
+        "qualified_process_capability": result.execution.final_state["capabilities"][
+            result.qualified_process_capability_id
+        ],
         "search": {
             "attempted_candidates": result.attempted_candidates,
             "executable_candidates": result.executable_candidates,
@@ -118,7 +123,7 @@ def main() -> int:
     submission = {
         "schema_version": "0.1",
         "system_name": "canonical-fixture-search-baseline",
-        "system_version": "0.2.0",
+        "system_version": "0.3.0",
         "declared_evidence_tier": "conformance",
         "resource_use": {
             "wall_time_s": 0.0,

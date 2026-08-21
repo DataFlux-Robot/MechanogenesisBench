@@ -1,0 +1,21 @@
+schema_version = "0.1"
+task_id = "conformance.recursive_fixture_process"
+title = "Use a generated fixture to improve the process that makes its successor"
+track = "open_system"
+evidence_ceiling = "conformance"
+guidance_levels = ["G1", "G2", "G3", "G4", "G5"]
+generations = 2
+min_promotions = 2
+min_robustness_pass_rate = 0.80
+
+[evaluator]
+command = ["python3", "evaluator/evaluate.py"]
+
+[budget]
+wall_time_s = 180.0
+monetary_cost_usd = 200.0
+tokens = 300000
+energy_j = 10000000.0
+material_kg = 1.0
+human_intervention_s = 0.0
+attempts = 600

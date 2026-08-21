@@ -1,6 +1,6 @@
 {
   "schema_version": "0.3",
-  "world_id": "bounded_subtractive_workcell_v0",
+  "world_id": "two_generation_subtractive_workcell_v0",
   "materials": [
     {
       "material_id": "aluminum_6061_model",
@@ -19,7 +19,7 @@
       "kind": "stock",
       "role": "fixture_base_stock",
       "material_id": "aluminum_6061_model",
-      "quantity": 1,
+      "quantity": 2,
       "mass_mg": 344250,
       "envelope_um": [125000, 85000, 12000]
     },
@@ -28,7 +28,7 @@
       "kind": "component",
       "role": "locator_pin",
       "material_id": "tool_steel_model",
-      "quantity": 2,
+      "quantity": 4,
       "mass_mg": 3330,
       "envelope_um": [6000, 6000, 15000]
     },
@@ -37,7 +37,7 @@
       "kind": "component",
       "role": "reference_post",
       "material_id": "tool_steel_model",
-      "quantity": 1,
+      "quantity": 2,
       "mass_mg": 9865,
       "envelope_um": [8000, 8000, 25000]
     }

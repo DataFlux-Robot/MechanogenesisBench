@@ -11,9 +11,11 @@
 - Selected locator spacing: 80 mm.
 - Selected modeled radial bore clearance: 0.02 mm.
 - Selected modeled reference-post clearance: 0.02 mm.
-- Selected public worst-case metrology bound: 0.12 mm, including locator and
-  reference clearances, angular amplification, probe repeatability and the
-  declared disturbance bound.
+- Selected public worst-case metrology bound: 0.13 mm, including locator and
+  reference clearances, angular amplification, manufacturing repeatability,
+  probe repeatability and the declared disturbance bound.
+- The fixture qualifies the modeled machine setup bound from 0.8 mm to 0.14 mm
+  after adding the declared 0.01 mm transfer bound.
 - Positioning: base is fixed root; each pin/post has a source-level rigid mate
   between its mount datum and generated base seat datum.
 - Primary paths: `program.json`, `fixture.py`, `fixture.step`.
@@ -24,4 +26,4 @@
 - Assumptions: the task world supplies calibrated component envelopes and mass;
   modeled materials are not strength-certified; press-fit/contact force,
   fastener retention, surface finish and thermal drift are outside reference
-  semantics 0.2.
+  semantics 0.3.

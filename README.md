@@ -22,7 +22,7 @@ canonical world state.
 
 ## Current executable slice
 
-Version `0.2.0` provides:
+Version `0.3.0` provides:
 
 - a benchmark task-package standard;
 - Fixed Engine, Open System and Recursive Learner tracks;
@@ -42,7 +42,12 @@ Version `0.2.0` provides:
 - an autonomous search task that generates and independently evaluates a real
   fixture program, plus a labeled STEP refinement and four review views;
 - Lean 4 mass-closure, no-creation, receipt-chain and disturbance-monotonicity
-  invariants for the reference fragment.
+  invariants for the reference fragment;
+- state continuation and a two-generation physical-contribution task in which
+  the first generated fixture qualifies the process that constructs its
+  successor;
+- a Lean theorem connecting strict process improvement and non-worsening local
+  error to strict successor absolute-error improvement.
 
 It does **not** yet contain calibrated multi-physics or hardware evidence. A
 passing sample proves protocol conformance, not physical RSI.
@@ -66,6 +71,9 @@ mengine search-fixture \
 mbench run tasks/conformance/generated_metrology_fixture \
   --system-command "python examples/generated_fixture_search_system.py" \
   --guidance G5 --output runs/generated-fixture
+mbench run tasks/conformance/recursive_fixture_process \
+  --system-command "python examples/recursive_fixture_process_system.py" \
+  --guidance G5 --output runs/recursive-fixture
 ```
 
 ## Repository map
@@ -84,6 +92,7 @@ tests/                      fail-closed and end-to-end verification
 Start with [Architecture](docs/ARCHITECTURE.md), then read the
 [Canonical Mechanism IR](docs/CANONICAL_MECHANISM_IR.md),
 [Reference Interpreter](docs/REFERENCE_INTERPRETER.md),
+[Physical-Contribution Chain](docs/PHYSICAL_CONTRIBUTION_CHAIN.md),
 [Task Standard](docs/TASK_STANDARD.md) and [Handoff](HANDOFF.md).
 
 ## Status and license

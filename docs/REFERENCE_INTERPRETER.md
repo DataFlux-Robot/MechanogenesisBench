@@ -10,8 +10,10 @@ executes four operation kinds:
    for waste, machining time and energy;
 2. `consume_component`: instantiate a provenance-bound purchased component;
 3. `assemble`: consume available part status into a rigid assembly;
-4. `calibrate`: derive a bounded metrology capability from generated geometry,
-   declared probe repeatability and bounded disturbance.
+4. `calibrate`: derive local and absolute-frame metrology bounds from generated
+   geometry, cited manufacturing process, repeatability and disturbance;
+5. `qualify_process`: let an assembled fixture create a strictly better
+   same-machine process capability under an explicit transfer bound.
 
 Each operation hashes the pre-state and post-state. The result contains both a
 process hash (the program identity) and a child world hash (the physical-state
@@ -42,12 +44,13 @@ Its public error model is:
 
 $$
 e_{worst}=c_l+c_r+
-\left\lceil\frac{2c_l s}{d}\right\rceil+e_p+e_d,
+\left\lceil\frac{2c_l s}{d}\right\rceil+e_m+e_p+e_d,
 $$
 
 where $c_l$ is locator radial clearance, $c_r$ reference clearance, $s$ the
-workpiece span, $d$ locator spacing, $e_p$ probe repeatability and $e_d$ the
-declared disturbance bound. The selected public bound is 120 µm. Hidden cases
+workpiece span, $d$ locator spacing, $e_m$ manufacturing repeatability,
+$e_p$ probe repeatability, and $e_d$ the declared disturbance bound. The
+selected public bound is 130 µm. Hidden cases
 change span and add disturbance; all five currently remain within 200 µm.
 
 The independent evaluator retrieves the actual construction-program MRS
@@ -72,6 +75,9 @@ Four rendered review views are stored under
 `models/generated_metrology_fixture/review/`. This establishes compiler and
 artifact consistency for the selected case, not strength or tolerance
 certification.
+
+The stateful two-generation task is described in
+[`PHYSICAL_CONTRIBUTION_CHAIN.md`](PHYSICAL_CONTRIBUTION_CHAIN.md).
 
 ## Reproduction
 

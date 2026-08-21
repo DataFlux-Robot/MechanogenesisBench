@@ -17,10 +17,15 @@ an isolated generator-fork comparison.
 Current-task reward alone is not a sufficient statistic for that recursive
 credit.
 
-For canonical Mechanism IR 0.2, local exact mass closure composes to global
+For canonical Mechanism IR 0.3, local exact mass closure composes to global
 closure; a conservative subtractive transition cannot create part mass; an
 empty receipt sequence cannot change a world identity; and increasing an
 explicit disturbance term cannot reduce the modeled worst-case error.
+
+For the stateful physical-contribution fragment, if a fixture qualifies a
+child process bound strictly below its parent process bound and the successor's
+local artifact error is no worse than the parent's, then the successor's
+absolute artifact-error bound is strictly smaller.
 
 ## Status
 
@@ -41,6 +46,10 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
 - Mechanism IR geometry facts, material-density ratios and disturbance bounds
   are assumed to match the executable inputs. The Lean layer proves
   preservation implications, not those empirical premises.
+- The fixture-local and qualification-transfer bounds are valid for the same
+  machine/setup regime, the qualified process is actually cited by successor
+  construction, and successor local error is no greater than parent local
+  error.
 
 ## Notation
 
@@ -51,13 +60,17 @@ PROVABLE AFTER WEAKENING / EXTRA ASSUMPTION
 - $N$ is task-defined net value after resource costs.
 - Recursive Research Credit compares held-out future research cost between
   isolated parent and child generator forks.
+- $p_0,p_1$ are parent/qualified process-error bounds and
+  $\ell_0,\ell_1$ are parent/successor local artifact-error bounds.
 
 ## Proof Strategy
 
 Use direct conjunction elimination from the fail-closed promotion predicate,
 then compose $U_b < U_b+m$ with $U_b+m\le L_c$. Give constructive
 counterexamples for the stronger reward-sufficiency and non-isolated causal
-attribution claims.
+attribution claims. For the physical-contribution result, combine one strict
+process inequality with one weak local-artifact inequality using monotonicity
+of natural-number addition.
 
 ## Dependency Map
 
@@ -74,6 +87,9 @@ attribution claims.
    balances. No-creation and receipt-chain statements follow directly from the
    subtractive and transition constructors. Error monotonicity follows from
    nonnegative integer addition.
+7. The physical-contribution result depends separately on strict process-bound
+   improvement and non-worsening successor-local error; monotonicity of natural
+   number addition composes them into strict absolute-artifact improvement.
 
 ## Proof
 
@@ -130,7 +146,22 @@ change without a receipt. Finally, adding nonnegative disturbance $\delta$ to
 an additive error budget yields $e\le e+\delta$.
 
 `BenchmarkProtocol.lean` machine-checks Steps 1–5 and
-`MechanismIR.lean` machine-checks Step 6. ∎
+`MechanismIR.lean` machine-checks Step 6.
+
+Step 7. Let $p_0$ and $p_1$ be the parent and qualified process-error bounds,
+and let $\ell_0$ and $\ell_1$ be the parent and successor local artifact-error
+bounds. Qualification supplies
+$$
+p_1=e_f+e_t<p_0,
+$$
+where $e_f$ is the fixture-local bound and $e_t$ the bounded transfer error.
+Require separately that $\ell_1\le\ell_0$. Monotonicity of addition with one
+strict and one weak inequality gives
+$$
+p_1+\ell_1<p_0+\ell_0.
+$$
+The two sides are respectively the successor and parent absolute artifact
+bounds. `MechanismIR.lean` machine-checks this implication. ∎
 
 ## Corrections or Missing Assumptions
 
@@ -154,3 +185,7 @@ an additive error budget yields $e\le e+\delta$.
 - Axis-aligned AABB restrictions make volume accounting auditable but do not
   yet cover overlapping unions, general rotations, surface finish, fit forces,
   strength, wear or thermomechanical drift.
+- The physical-contribution theorem does not prove that a fixture's stated
+  local or transfer bounds are calibrated. It also fails if the successor
+  gains enough local error to offset process improvement; that condition is an
+  explicit gate rather than a hidden assumption.

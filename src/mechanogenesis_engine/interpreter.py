@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 from dataclasses import dataclass
 from math import isqrt
 from typing import Any, Mapping
@@ -109,24 +110,36 @@ class ExecutionResult:
 
 
 def initial_state(world: WorldSpec) -> dict[str, object]:
+    capabilities: dict[str, object] = {
+        "baseline_metrology": {
+            "kind": "bounded_pose_error",
+            "worst_case_error_um": world.baseline_capability_error_um,
+        }
+    }
+    for machine in world.machines:
+        capabilities[base_process_capability_id(machine.machine_id)] = {
+            "kind": "machine_process",
+            "machine_id": machine.machine_id,
+            "position_error_um": machine.absolute_setup_error_um,
+            "source": "world_spec",
+        }
     return {
         "schema_version": world.schema_version,
         "world_spec_hash": digest(world_to_dict(world)),
         "inventory": {item.item_id: item.quantity for item in world.inventory},
         "parts": {},
         "assemblies": {},
-        "capabilities": {
-            "baseline_metrology": {
-                "kind": "bounded_pose_error",
-                "worst_case_error_um": world.baseline_capability_error_um,
-            }
-        },
+        "capabilities": capabilities,
         "sequence": 0,
     }
 
 
 def initial_world_hash(world: WorldSpec) -> str:
     return digest(initial_state(world))
+
+
+def base_process_capability_id(machine_id: str) -> str:
+    return f"{machine_id}.base_process"
 
 
 def _require_exact(operation: Mapping[str, Any], keys: set[str], index: int) -> None:
@@ -169,7 +182,7 @@ def _mass_interval(facts: GeometryFacts, material: MaterialSpec) -> tuple[int, i
 def _translated(position: Vec3Q, pose: PoseQ) -> Vec3Q:
     if pose.rotation_mdeg != Vec3Q(0, 0, 0):
         raise IRValidationError(
-            "reference interpreter 0.2 supports identity occurrence/datum rotations only"
+            "reference interpreter 0.3 supports identity occurrence/datum rotations only"
         )
     return Vec3Q(
         position.x + pose.translation_um.x,
@@ -189,10 +202,19 @@ def _distance_um(left: Vec3Q, right: Vec3Q) -> int:
 
 
 class ReferenceInterpreter:
-    """Auditable semantics for the axis-aligned CSG/manufacturing 0.2 fragment."""
+    """Auditable semantics for the axis-aligned CSG/manufacturing 0.3 fragment."""
 
     def execute(self, world: WorldSpec, program: MechanismProgram) -> ExecutionResult:
-        state = initial_state(world)
+        return self.execute_from_state(world, initial_state(world), program)
+
+    def execute_from_state(
+        self,
+        world: WorldSpec,
+        parent_state: Mapping[str, object],
+        program: MechanismProgram,
+    ) -> ExecutionResult:
+        self._validate_parent_state(world, parent_state)
+        state = deepcopy(dict(parent_state))
         parent_hash = digest(state)
         if program.parent_world_hash != parent_hash:
             raise ExecutionError("program parent_world_hash is not the current world")
@@ -239,6 +261,7 @@ class ReferenceInterpreter:
 
         self._validate_assemblies(parts, assemblies)
         receipts: list[ExecutionReceipt] = []
+        starting_sequence = int(state["sequence"])
         for index, operation in enumerate(program.operations):
             operation_name = _text(operation.get("op"), f"operations[{index}].op")
             before = digest(state)
@@ -279,9 +302,20 @@ class ReferenceInterpreter:
                     assemblies,
                     part_masses,
                 )
+            elif operation_name == "qualify_process":
+                balances, duration, energy, facts = self._qualify_process(
+                    state,
+                    operation,
+                    index,
+                    world,
+                    parts,
+                    assemblies,
+                    machines,
+                    part_masses,
+                )
             else:
                 raise ExecutionError(f"unsupported operation {operation_name!r}")
-            state["sequence"] = index + 1
+            state["sequence"] = starting_sequence + index + 1
             after = digest(state)
             receipts.append(
                 ExecutionReceipt(
@@ -307,6 +341,44 @@ class ReferenceInterpreter:
             total_duration_us=sum(item.duration_us for item in receipts),
             total_energy_mj=sum(item.energy_mj for item in receipts),
         )
+
+    def _validate_parent_state(
+        self, world: WorldSpec, state: Mapping[str, object]
+    ) -> None:
+        expected = {
+            "schema_version",
+            "world_spec_hash",
+            "inventory",
+            "parts",
+            "assemblies",
+            "capabilities",
+            "sequence",
+        }
+        if set(state) != expected:
+            raise ExecutionError("parent state does not match the canonical state schema")
+        if state["schema_version"] != world.schema_version:
+            raise ExecutionError("parent state schema does not match the world")
+        if state["world_spec_hash"] != digest(world_to_dict(world)):
+            raise ExecutionError("parent state belongs to a different world specification")
+        for field in ("inventory", "parts", "assemblies", "capabilities"):
+            if not isinstance(state[field], dict):
+                raise ExecutionError(f"parent state {field} must be an object")
+        sequence = state["sequence"]
+        if isinstance(sequence, bool) or not isinstance(sequence, int) or sequence < 0:
+            raise ExecutionError("parent state sequence must be a nonnegative integer")
+        inventory = state["inventory"]
+        assert isinstance(inventory, dict)
+        declared = {item.item_id: item.quantity for item in world.inventory}
+        if set(inventory) != set(declared):
+            raise ExecutionError("parent inventory keys do not match the world")
+        for item_id, remaining in inventory.items():
+            if (
+                isinstance(remaining, bool)
+                or not isinstance(remaining, int)
+                or remaining < 0
+                or remaining > declared[item_id]
+            ):
+                raise ExecutionError("parent inventory quantity is outside its bounds")
 
     def _validate_assemblies(
         self, parts: dict[str, PartSpec], assemblies: dict[str, AssemblySpec]
@@ -365,11 +437,21 @@ class ReferenceInterpreter:
     ) -> tuple[list[MaterialBalanceQ], int, int, dict[str, object]]:
         _require_exact(
             operation,
-            {"op", "process", "machine_id", "stock_item_id", "part_id"},
+            {
+                "op",
+                "process",
+                "process_capability_id",
+                "machine_id",
+                "stock_item_id",
+                "part_id",
+            },
             index,
         )
         part_id = _text(operation["part_id"], "part_id")
         process = _text(operation["process"], "process")
+        process_capability_id = _text(
+            operation["process_capability_id"], "process_capability_id"
+        )
         machine_id = _text(operation["machine_id"], "machine_id")
         stock_id = _text(operation["stock_item_id"], "stock_item_id")
         part = parts.get(part_id)
@@ -381,6 +463,24 @@ class ReferenceInterpreter:
             raise ExecutionError("machine_part requires stock and a generated part")
         if process not in machine.operations:
             raise ExecutionError("machine does not support the requested process")
+        capabilities = state["capabilities"]
+        assert isinstance(capabilities, dict)
+        process_capability = capabilities.get(process_capability_id)
+        if (
+            not isinstance(process_capability, dict)
+            or process_capability.get("kind") != "machine_process"
+            or process_capability.get("machine_id") != machine_id
+        ):
+            raise ExecutionError(
+                "machine_part requires a matching machine-process capability"
+            )
+        process_error = process_capability.get("position_error_um")
+        if (
+            isinstance(process_error, bool)
+            or not isinstance(process_error, int)
+            or process_error <= 0
+        ):
+            raise ExecutionError("machine-process capability has invalid error")
         if part.material_id != stock.material_id:
             raise ExecutionError("part material does not match stock")
         facts = geometry_facts[part_id]
@@ -410,6 +510,9 @@ class ReferenceInterpreter:
             "mass_mg": output_mass,
             "status": "available",
             "source": stock_id,
+            "process_capability_id": process_capability_id,
+            "process_error_um": process_error,
+            "relative_repeatability_um": machine.relative_repeatability_um,
         }
         removed_volume = max(0, stock.envelope_um.x * stock.envelope_um.y * stock.envelope_um.z - facts.volume_um3.lower)
         duration = machine.setup_time_us + ceil_div(removed_volume, machine.removal_rate_um3_per_us)
@@ -418,7 +521,13 @@ class ReferenceInterpreter:
             [MaterialBalanceQ(part.material_id, stock.mass_mg, 0, output_mass, stock.mass_mg - output_mass)],
             duration,
             energy,
-            {"part_id": part_id, "machine_id": machine_id, "removed_volume_upper_um3": removed_volume},
+            {
+                "part_id": part_id,
+                "machine_id": machine_id,
+                "process_capability_id": process_capability_id,
+                "process_error_um": process_error,
+                "removed_volume_upper_um3": removed_volume,
+            },
         )
 
     def _consume_component(
@@ -614,14 +723,32 @@ class ReferenceInterpreter:
         if reference_bore.radius_um < reference_shape.radius_um:
             raise ExecutionError("reference post does not fit its bore")
         reference_clearance = reference_bore.radius_um - reference_shape.radius_um
+        state_parts = state["parts"]
+        assert isinstance(state_parts, dict)
+        base_record = state_parts.get(base_part.part_id)
+        if not isinstance(base_record, dict):
+            raise ExecutionError("calibration base has no constructed-part record")
+        process_error = base_record.get("process_error_um")
+        manufacturing_repeatability = base_record.get("relative_repeatability_um")
+        if (
+            isinstance(process_error, bool)
+            or not isinstance(process_error, int)
+            or process_error <= 0
+            or isinstance(manufacturing_repeatability, bool)
+            or not isinstance(manufacturing_repeatability, int)
+            or manufacturing_repeatability < 0
+        ):
+            raise ExecutionError("calibration base lacks bounded process errors")
         angular_tip_error = ceil_div(2 * radial_clearance * workpiece_span, spacing)
         worst_error = (
             radial_clearance
             + reference_clearance
             + angular_tip_error
+            + manufacturing_repeatability
             + world.probe_repeatability_um
             + world.disturbance_bound_um
         )
+        absolute_frame_error = process_error + worst_error
         capabilities[capability_id] = {
             "kind": "two_locator_metrology_fixture",
             "assembly_id": assembly_id,
@@ -629,7 +756,10 @@ class ReferenceInterpreter:
             "radial_clearance_um": radial_clearance,
             "reference_clearance_um": reference_clearance,
             "angular_tip_error_um": angular_tip_error,
+            "manufacturing_repeatability_um": manufacturing_repeatability,
             "worst_case_error_um": worst_error,
+            "absolute_frame_error_um": absolute_frame_error,
+            "source_process_error_um": process_error,
             "reference_occurrence": reference_id,
         }
         grouped: dict[str, int] = {}
@@ -647,6 +777,118 @@ class ReferenceInterpreter:
                 "locator_spacing_um": spacing,
                 "radial_clearance_um": radial_clearance,
                 "reference_clearance_um": reference_clearance,
+                "manufacturing_repeatability_um": manufacturing_repeatability,
                 "worst_case_error_um": worst_error,
+                "absolute_frame_error_um": absolute_frame_error,
+            },
+        )
+
+    def _qualify_process(
+        self,
+        state: dict[str, object],
+        operation: Mapping[str, Any],
+        index: int,
+        world: WorldSpec,
+        parts: dict[str, PartSpec],
+        assemblies: dict[str, AssemblySpec],
+        machines: dict[str, MachineSpec],
+        part_masses: dict[str, int],
+    ) -> tuple[list[MaterialBalanceQ], int, int, dict[str, object]]:
+        _require_exact(
+            operation,
+            {
+                "op",
+                "machine_id",
+                "assembly_id",
+                "source_capability_id",
+                "parent_process_capability_id",
+                "child_process_capability_id",
+                "transfer_error_um",
+            },
+            index,
+        )
+        machine_id = _text(operation["machine_id"], "machine_id")
+        assembly_id = _text(operation["assembly_id"], "assembly_id")
+        source_id = _text(operation["source_capability_id"], "source_capability_id")
+        parent_id = _text(
+            operation["parent_process_capability_id"],
+            "parent_process_capability_id",
+        )
+        child_id = _text(
+            operation["child_process_capability_id"],
+            "child_process_capability_id",
+        )
+        transfer_error = _positive_int(
+            operation["transfer_error_um"], "transfer_error_um"
+        )
+        if machine_id not in machines:
+            raise ExecutionError("qualify_process references an unknown machine")
+        state_assemblies = state["assemblies"]
+        capabilities = state["capabilities"]
+        assert isinstance(state_assemblies, dict) and isinstance(capabilities, dict)
+        if assembly_id not in state_assemblies:
+            raise ExecutionError("qualify_process requires an assembled fixture")
+        source = capabilities.get(source_id)
+        parent = capabilities.get(parent_id)
+        if (
+            not isinstance(source, dict)
+            or source.get("kind") != "two_locator_metrology_fixture"
+            or source.get("assembly_id") != assembly_id
+        ):
+            raise ExecutionError("source capability is not bound to the fixture")
+        if (
+            not isinstance(parent, dict)
+            or parent.get("kind") != "machine_process"
+            or parent.get("machine_id") != machine_id
+        ):
+            raise ExecutionError("parent capability is not bound to the machine")
+        if child_id in capabilities:
+            raise ExecutionError("child process capability already exists")
+        source_error = source.get("worst_case_error_um")
+        parent_error = parent.get("position_error_um")
+        if (
+            isinstance(source_error, bool)
+            or not isinstance(source_error, int)
+            or source_error <= 0
+            or isinstance(parent_error, bool)
+            or not isinstance(parent_error, int)
+            or parent_error <= 0
+        ):
+            raise ExecutionError("process qualification error bounds are invalid")
+        child_error = source_error + transfer_error
+        if child_error >= parent_error:
+            raise ExecutionError(
+                "fixture does not strictly improve the parent process bound"
+            )
+        capabilities[child_id] = {
+            "kind": "machine_process",
+            "machine_id": machine_id,
+            "position_error_um": child_error,
+            "parent_process_capability_id": parent_id,
+            "source_capability_id": source_id,
+            "source_assembly_id": assembly_id,
+            "transfer_error_um": transfer_error,
+        }
+        assembly = assemblies[assembly_id]
+        grouped: dict[str, int] = {}
+        for occurrence in assembly.occurrences:
+            material = parts[occurrence.part_id].material_id
+            grouped[material] = grouped.get(material, 0) + part_masses[occurrence.part_id]
+        duration = world.calibration_time_us
+        energy = ceil_div(world.cell_power_w * duration, 1000)
+        return (
+            [
+                MaterialBalanceQ(material, mass, 0, mass, 0)
+                for material, mass in sorted(grouped.items())
+            ],
+            duration,
+            energy,
+            {
+                "machine_id": machine_id,
+                "source_capability_id": source_id,
+                "parent_process_capability_id": parent_id,
+                "child_process_capability_id": child_id,
+                "parent_process_error_um": parent_error,
+                "child_process_error_um": child_error,
             },
         )

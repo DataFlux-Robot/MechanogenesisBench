@@ -54,6 +54,17 @@ def main() -> int:
         valid = valid and generation["construction_receipts"] == core_receipts(execution)
         valid = valid and artifact["program_hash"] == execution.process_hash
         valid = valid and artifact["child_world_hash"] == execution.child_world_hash
+        capabilities = execution.final_state["capabilities"]
+        fixture_capability = capabilities["generated_fixture_metrology"]
+        qualified_process = capabilities["generated_fixture_machine_process"]
+        valid = valid and artifact["capability"] == fixture_capability
+        valid = valid and artifact["qualified_process_capability_id"] == (
+            "generated_fixture_machine_process"
+        )
+        valid = valid and artifact["qualified_process_capability"] == qualified_process
+        valid = valid and qualified_process["position_error_um"] < (
+            next(iter(world.machines)).absolute_setup_error_um
+        )
     except Exception:
         valid = False
 
@@ -66,6 +77,9 @@ def main() -> int:
         capability = execution.final_state["capabilities"]["generated_fixture_metrology"]
         clearance = int(capability["radial_clearance_um"])
         reference_clearance = int(capability["reference_clearance_um"])
+        manufacturing_repeatability = int(
+            capability["manufacturing_repeatability_um"]
+        )
         spacing = int(capability["locator_spacing_um"])
         case_errors = []
         for case in spec["held_out_cases"]:
@@ -76,6 +90,7 @@ def main() -> int:
                 clearance
                 + reference_clearance
                 + angular
+                + manufacturing_repeatability
                 + world.probe_repeatability_um
                 + world.disturbance_bound_um
                 + int(case["extra_disturbance_um"])

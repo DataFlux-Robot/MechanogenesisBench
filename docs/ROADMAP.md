@@ -1,17 +1,18 @@
 # Roadmap
 
-## P0 — protocol kernel (complete for v0.2)
+## P0 — protocol kernel (complete for v0.3)
 
 Complete and harden task/submission ABIs, evidence tiers, exact receipts,
 lineage, vector scoring, conformance corpus and Lean protocol invariants.
 
 ## P1 — canonical mechanism IR (bounded reference fragment complete)
 
-Version 0.2 implements fixed-point quantities, frames/datums, axis-aligned CSG,
+Version 0.3 implements fixed-point quantities, frames/datums, axis-aligned CSG,
 materials, inventory, machine capability, rigid assembly, construction and
-calibration operations, deterministic receipts, and initial Lean preservation
-lemmas. Remaining P1 work includes interval/distribution types, general frame
-composition, experiment bytecode and custody signatures.
+calibration/qualification operations, state continuation, deterministic
+receipts, and Lean preservation/physical-contribution lemmas. Remaining P1 work
+includes interval/distribution types, general frame composition, experiment
+bytecode and custody signatures.
 
 ## P2 — native geometry and mechanism execution (in progress)
 

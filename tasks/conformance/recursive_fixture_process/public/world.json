@@ -1,0 +1,8 @@
+{
+  "baseline_process_hash": "sha256:ee49118a0d0d74d6e1aced93bc82d05f9f78f770f4dff5bee5dfc9cc7a33e5f4",
+  "baseline_world_hash": "sha256:8b99c228358d03ed8322ba6225e2906961a6cffce5b22d5edf2533996af72da4",
+  "mechanism_world": "mechanism_world.json",
+  "fixture_goal": "fixture_goal.json",
+  "semantics": "mechanogenesis_engine.reference_interpreter.v0.3",
+  "recursive_chain": "fixture S0 qualifies P0 to P1; P1 constructs successor fixture S1"
+}

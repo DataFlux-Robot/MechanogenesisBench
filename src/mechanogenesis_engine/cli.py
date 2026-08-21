@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import sys
 
-from .compiler import load_program, load_world, write_program
+from .compiler import load_program, load_state, load_world, write_program, write_state
 from .errors import MechanogenesisEngineError
 from .fixture_search import FixtureGoal, search_fixture
 from .interpreter import ReferenceInterpreter, initial_world_hash
@@ -35,11 +35,18 @@ def _parser() -> argparse.ArgumentParser:
     execute.add_argument("world", type=Path)
     execute.add_argument("program", type=Path)
     execute.add_argument("--output", type=Path)
+    execute.add_argument("--parent-state", type=Path)
+    execute.add_argument("--state-output", type=Path)
     search = commands.add_parser("search-fixture")
     search.add_argument("world", type=Path)
     search.add_argument("goal", type=Path)
     search.add_argument("--program-output", type=Path, required=True)
     search.add_argument("--execution-output", type=Path)
+    search.add_argument("--parent-state", type=Path)
+    search.add_argument("--state-output", type=Path)
+    search.add_argument("--namespace", default="")
+    search.add_argument("--process-capability-id")
+    search.add_argument("--no-qualify", action="store_true")
     return parser
 
 
@@ -51,14 +58,31 @@ def main(argv: list[str] | None = None) -> int:
             print(initial_world_hash(world))
             return 0
         if args.command == "execute":
-            result = ReferenceInterpreter().execute(world, load_program(args.program))
+            interpreter = ReferenceInterpreter()
+            program = load_program(args.program)
+            result = (
+                interpreter.execute_from_state(
+                    world, load_state(args.parent_state), program
+                )
+                if args.parent_state
+                else interpreter.execute(world, program)
+            )
             payload = result.to_dict()
+            if args.state_output:
+                write_state(args.state_output, result.final_state)
             if args.output:
                 _write(args.output, payload)
             else:
                 print(json.dumps(payload, indent=2, sort_keys=True))
             return 0
-        result = search_fixture(world, _load_goal(args.goal))
+        result = search_fixture(
+            world,
+            _load_goal(args.goal),
+            parent_state=(load_state(args.parent_state) if args.parent_state else None),
+            namespace=args.namespace,
+            process_capability_id=args.process_capability_id,
+            qualify_process=not args.no_qualify,
+        )
         write_program(args.program_output, result.program)
         payload = {
             "attempted_candidates": result.attempted_candidates,
@@ -71,6 +95,8 @@ def main(argv: list[str] | None = None) -> int:
             _write(args.execution_output, payload)
         else:
             print(json.dumps(payload, indent=2, sort_keys=True))
+        if args.state_output:
+            write_state(args.state_output, result.execution.final_state)
         return 0
     except MechanogenesisEngineError as error:
         print(f"mengine: {error}", file=sys.stderr)

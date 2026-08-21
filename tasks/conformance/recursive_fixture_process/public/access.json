@@ -2,10 +2,9 @@
   "interventions": [
     "generate_geometry",
     "machine_stock",
-    "consume_catalog_component",
     "rigid_assemble",
-    "calibrate",
+    "calibrate_fixture",
     "qualify_machine_process",
-    "execute_reference_interpreter"
+    "execute_from_promoted_world"
   ]
 }

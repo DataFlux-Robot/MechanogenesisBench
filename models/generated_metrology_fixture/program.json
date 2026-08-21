@@ -107,6 +107,7 @@
       "op": "machine_part",
       "part_id": "fixture_base",
       "process": "milling",
+      "process_capability_id": "three_axis_mill_v0.base_process",
       "stock_item_id": "aluminum_blank_125x85x12"
     },
     {
@@ -138,9 +139,18 @@
       "op": "calibrate",
       "reference_occurrence": "reference_post",
       "workpiece_span_um": 60000
+    },
+    {
+      "assembly_id": "metrology_fixture",
+      "child_process_capability_id": "generated_fixture_machine_process",
+      "machine_id": "three_axis_mill_v0",
+      "op": "qualify_process",
+      "parent_process_capability_id": "three_axis_mill_v0.base_process",
+      "source_capability_id": "generated_fixture_metrology",
+      "transfer_error_um": 10
     }
   ],
-  "parent_world_hash": "sha256:6cc284661c5f5e96d7fbc7be1365610d8c1904597a9ef46208d4767fa303f3d8",
+  "parent_world_hash": "sha256:6d1db13f5a19318b6e13d081ee77acbcb61339c5f6e915c13d06d3ceea7eadf7",
   "parts": [
     {
       "datums": [
@@ -373,5 +383,5 @@
     }
   ],
   "program_id": "generated_metrology_fixture_s80000_c20_r15000",
-  "schema_version": "0.2"
+  "schema_version": "0.3"
 }
