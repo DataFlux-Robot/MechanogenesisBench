@@ -1,5 +1,7 @@
 # Task Standard 0.1
 
+**English** | [简体中文](TASK_STANDARD.zh-CN.md)
+
 A task is a directory with a public problem, graduated guidance, trusted
 evaluator and private cases.
 

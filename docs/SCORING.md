@@ -1,5 +1,7 @@
 # Scoring
 
+**English** | [简体中文](SCORING.zh-CN.md)
+
 Runs first pass hard validity gates. Invalid runs receive no numeric performance
 score; their disqualifications remain visible.
 

@@ -1,85 +1,106 @@
 # Mechanogenesis Generalization Standard 0.1
 
-MechanogenesisBench 0.7 将“泛化”从一个 aggregate test score 改为三个不能互相抵消的
-平面：
+**English** | [简体中文](GENERALIZATION_STANDARD.zh-CN.md)
 
-1. **任务宇宙**：world、intervention、embodiment、error-state、mechanism 五个有
-   执行语义的因子轴；
-2. **反捷径证据**：训练证据必须为每个注册低阶投影提供 same-projection / opposite-
-   target witness；
-3. **工程与递归证据**：sealed 组合外推、worst-mechanism、canonical/Lean/replay、
-   independent backend、physical trial，以及可选的 actual/placebo RRC。
+MechanogenesisBench 0.7 replaces a single aggregate generalization score with
+three planes that cannot compensate for one another:
 
-## 为什么不能只追求“点足够散”
+1. **Task universe:** five executable factor axes—world, intervention,
+   embodiment, error state and mechanism;
+2. **Anti-shortcut evidence:** training evidence must contain a
+   same-projection/opposite-target witness for every registered low-order
+   projection;
+3. **Engineering and recursive evidence:** sealed compositional
+   extrapolation, worst-mechanism performance, canonical/Lean/replay checks,
+   an independent backend, physical trials and optional actual/placebo RRC.
 
-几何距离、数据 entropy 和单轴 coverage 都可能很高，同时一个 projection-only
-shortcut 仍然完全拟合训练集。标准把“shortcut 被粉碎”定义为：存在两个执行案例，
-它们在 shortcut 可读取的全部轴上相同，但 evaluator-owned target 不同。
+## Why “sufficiently dispersed points” is not enough
 
-默认注册所有一阶和二阶轴投影。任务可以增加更高阶投影，但不得在看到 sealed 结果后
-修改投影集合。
+Geometric distance, data entropy and single-axis coverage can all be high while
+a projection-only shortcut still fits the entire training set. This standard
+defines a shortcut as destroyed only when two executed cases are identical on
+every axis visible to the shortcut but have different evaluator-owned targets.
 
-## 数据 ABI
+All first- and second-order axis projections are registered by default. A task
+may add higher-order projections, but the projection set cannot be changed
+after sealed results are observed.
 
-每个 `FactorizedCase` 含：
+## Data ABI
 
-- `case_id` 和 split；
-- 五个注册因子；
-- `target_signature`：canonical program、行为等价类或 evaluator preference；
-- 完整执行成本。
+Each `FactorizedCase` contains:
 
-因子必须改变 canonical/evaluator 执行语义。仅修改 prompt 或标签不算 coverage。
+- a `case_id` and split;
+- five registered factors;
+- a `target_signature`: canonical program, behavioral equivalence class or
+  evaluator preference;
+- the complete execution cost.
 
-## 训练算法
+A factor must change canonical/evaluator execution semantics. Merely changing
+a prompt or label does not count as coverage.
 
-`build_shortcut_destruction_curriculum` 只处理已经执行、target 已知的 archive，用于
-课程筛选和 oracle ceiling。它不能被部署为下一物理实验选择器。
+## Training algorithm
 
-在线阶段使用 `select_disagreement_experiment`：`AcquisitionCandidate` 明确不含 target，
-冻结 world model 通过 `CandidateTargetBelief` 提供 target distribution 和 model hash，
-算法最大化每单位完整成本的 expected shortcut destruction。执行后 evaluator reveal
-的 `FactorizedCase` 才能缩小 version space。
+`build_shortcut_destruction_curriculum` operates only on an archive whose
+cases have already been executed and whose targets are known. It supports
+curriculum selection and an oracle ceiling; it cannot be deployed as the
+selector for the next physical experiment.
 
-world-model forecast 不能单独承担 acquisition。若其 decision-level lower bound 无法
-覆盖完整实验成本，控制器必须 abstain from learned choice，并调用
-`select_grounded_separating_experiment`。该 fallback 在 residual projection 下固定
-projection value，并在未被 projection 读取的因子上选择 farthest contrasts；候选 ABI
-仍不含 target。结构 contrast 只形成 separability opportunity，不构成 collision
-certificate。只有执行后观察到 target 不同，才能消灭 shortcut。
+The online phase uses `select_disagreement_experiment`.
+`AcquisitionCandidate` explicitly contains no target. A frozen world model
+supplies a target distribution and model hash through `CandidateTargetBelief`,
+and the algorithm maximizes expected shortcut destruction per unit of complete
+cost. Only the evaluator-revealed `FactorizedCase` after execution can shrink
+the version space.
 
-对于某 projection，若存在有证据支持的 finite ambiguity budget $B$，则执行
-$B+1$ 个 structurally distinct contrasts 可强制至少一个 collision。没有该上界时，
-“点足够散”只是一种搜索策略，不是有限成功保证。learned selector 可以降低平均成本；
-只有新 access、传感器、干预或因果证据降低了可认证的 $B$，才能降低 worst-case 阈值。
+A world-model forecast cannot be solely responsible for acquisition. If its
+decision-level lower bound does not cover the complete experiment cost, the
+controller must abstain from the learned choice and call
+`select_grounded_separating_experiment`. Under a residual projection, this
+fallback fixes the projection value and chooses the farthest contrasts on
+factors invisible to that projection; the candidate ABI still contains no
+target. A structural contrast creates a separability opportunity, not a
+collision certificate. Only an observed target difference after execution
+destroys a shortcut.
 
-若没有可执行 witness 而 residual shortcut 非空，训练阶段必须停止并返回
-`non_identifiable/access_insufficient`。下一步应生成新干预、传感器、工装或世界，而
-不是继续复制同分布样本。
+If evidence supports a finite ambiguity budget $B$ for a projection, executing
+$B+1$ structurally distinct contrasts forces at least one collision. Without
+that upper bound, “sufficiently dispersed” is only a search heuristic, not a
+finite success guarantee. A learned selector can reduce average cost; only new
+access, sensors, interventions or causal evidence that lowers a certifiable
+$B$ can lower the worst-case threshold.
 
-`lean_guided_training_objective` 包含 task、counterfactual ranking、intervention
-prediction、nuisance consistency、future RRC 和 shortcut survival 项。只有 residual
-shortcut 清零后才启用 description-length/weight-decay pressure。
+If no executable witness exists while a residual shortcut remains, training
+must stop with `non_identifiable/access_insufficient`. The next action should
+create a new intervention, sensor, fixture or world—not copy more samples from
+the same distribution.
+
+`lean_guided_training_objective` includes task, counterfactual-ranking,
+intervention-prediction, nuisance-consistency, future-RRC and
+shortcut-survival terms. Description-length or weight-decay pressure is
+enabled only after the residual shortcut set is empty.
 
 ## Sealed split
 
-合格的 compositional split 同时满足：
+A valid compositional split simultaneously requires:
 
-- case ID 和完整 factor tuple 不重叠；
-- sealed 每个单轴值均在 train 出现；
-- sealed 至少一个二阶组合未在 train 出现；
-- train 已破坏全部注册 projection shortcut；
-- overall 和 worst-mechanism accuracy/regret 过门。
+- no overlap in case IDs or complete factor tuples;
+- every sealed single-axis value to appear in training;
+- at least one sealed second-order combination absent from training;
+- training evidence to destroy every registered projection shortcut;
+- both overall and worst-mechanism accuracy/regret to pass their gates.
 
-最后一个条件不能被 overall 平均值替代。
+The last condition cannot be replaced by the overall mean.
 
-## HWE-style 工程证据门
+## HWE-style engineering evidence gate
 
-每个 sealed 案例必须通过 canonical parse、Lean kernel、reference replay 和独立
-backend，并至少使用三个独立 numerical seeds。physical claim 还要求至少一个真实
-物理 trial。该设计借鉴 HWE Bench 的逐级工程验证原则，但不声称机械制造与 FPGA
-验证等价。
+Every sealed case must pass canonical parsing, the Lean kernel, reference
+replay and an independent backend, with at least three independent numerical
+seeds. A physical claim additionally requires at least one real physical trial.
+This design adopts HWE Bench's staged engineering-verification principle; it
+does not claim that mechanical manufacturing and FPGA verification are
+equivalent.
 
-默认命令：
+Default command:
 
 ```bash
 mbench generalization audit corpus.json \
@@ -87,20 +108,23 @@ mbench generalization audit corpus.json \
   --engineering-receipt engineering.json
 ```
 
-开发期 simulation-only 报告必须显式使用 `--allow-simulation-only`，输出不具有
-physical evidence tier。
+A simulation-only development report must explicitly pass
+`--allow-simulation-only`; its output has no physical evidence tier.
 
-## 排行榜输出
+## Leaderboard output
 
-不压成一个隐藏权重分数。至少并列报告：
+Results are not collapsed into a hidden weighted score. At minimum, report in
+parallel:
 
-- engineering frontier：成功/性能/时间/成本；
-- sealed compositional accuracy/regret 和 worst-mechanism floor；
-- destroyed/registered shortcut classes；
-- evidence tier；
-- 若为 Recursive Learner：actual-vs-parent、actual-vs-placebo 和完整净价值。
+- engineering frontier: success/performance/time/cost;
+- sealed compositional accuracy/regret and the worst-mechanism floor;
+- destroyed/registered shortcut classes;
+- evidence tier;
+- for a Recursive Learner: actual-vs-parent, actual-vs-placebo and complete net
+  value.
 
-## 声明边界
+## Claim boundary
 
-通过本标准只证明对注册任务宇宙和 shortcut 类的有限外推证据。它不证明对任意新世界
-的通用泛化，也不证明物理模型没有遗漏。
+Passing this standard establishes only finite extrapolation evidence for the
+registered task universe and shortcut classes. It proves neither universal
+generalization to arbitrary new worlds nor completeness of the physical model.

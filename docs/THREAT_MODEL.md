@@ -1,5 +1,7 @@
 # Threat Model
 
+**English** | [简体中文](THREAT_MODEL.zh-CN.md)
+
 ## Fail-closed today
 
 - malformed schemas and missing MRS objects;

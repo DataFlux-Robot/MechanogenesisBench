@@ -1,5 +1,7 @@
 # Scope and claim boundary
 
+**English** | [简体中文](SCOPE.zh-CN.md)
+
 ## Public object
 
 MechanogenesisBench evaluates a third-party system through versioned task

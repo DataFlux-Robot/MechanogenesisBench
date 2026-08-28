@@ -1,5 +1,7 @@
 # MechanogenesisBench
 
+**English** | [简体中文](README.zh-CN.md)
+
 MechanogenesisBench is a developer-preview benchmark for third-party agents
 that propose, construct and test physical devices. It evaluates evidence and
 process—not whether an agent can merely describe a plausible mechanism.
@@ -92,8 +94,10 @@ tests/                     fail-closed and end-to-end protocol tests
 
 Start with the [architecture](docs/ARCHITECTURE.md),
 [scope and claim boundary](docs/SCOPE.md), [Task Standard](docs/TASK_STANDARD.md),
-[Scoring](docs/SCORING.md), and the
-[status and roadmap](docs/STATUS_AND_ROADMAP.md).
+[Scoring](docs/SCORING.md), [Generalization Standard](docs/GENERALIZATION_STANDARD.md),
+[Physical RSI Standard](docs/PHYSICAL_RSI_STANDARD.md), and the
+[status and roadmap](docs/STATUS_AND_ROADMAP.md). Every public-facing document
+has a linked Simplified Chinese edition.
 
 ## DataFlux Dynamics
 

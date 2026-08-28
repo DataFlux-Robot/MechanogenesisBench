@@ -1,5 +1,7 @@
 # Benchmark architecture
 
+**English** | [简体中文](ARCHITECTURE.zh-CN.md)
+
 MechanogenesisBench is an evaluator-facing protocol, not an agent or a product
 runtime. A participant receives a public task view and guidance level, then
 runs as an external process. The participant emits a content-addressed MRS

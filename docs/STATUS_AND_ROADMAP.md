@@ -1,5 +1,7 @@
 # Status and roadmap
 
+**English** | [简体中文](STATUS_AND_ROADMAP.zh-CN.md)
+
 Snapshot: 2026-08-28
 
 ## Current maturity

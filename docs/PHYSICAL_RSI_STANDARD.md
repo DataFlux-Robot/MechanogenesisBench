@@ -1,5 +1,7 @@
 # MechanogenesisBench Physical RSI Standard
 
+**English** | [简体中文](PHYSICAL_RSI_STANDARD.zh-CN.md)
+
 ## Status
 
 This document freezes the first theory-level standard for finite, bounded
