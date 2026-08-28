@@ -2,47 +2,69 @@
 
 [English](README.md) | **简体中文**
 
-MechanogenesisBench 是一个面向第三方智能体的开发预览版基准。它评测智能体提出、
-构造和测试物理设备的能力，关注证据与过程，而不只是智能体能否描述一个看似合理的机构。
+**一个面向物理系统设计、构造、实验与自我改进智能体的 Lean 原生 benchmark。**
 
-我们的核心观点是：只有当智能能够自主制造并验证设备，而且由此获得的物理能力能够因果性地
-改善后续研究或制造循环时，物理递归自我改进（Physical Recursive Self-Improvement，
-PRSI）才真正开始。单纯的文本自我修订、CAD 图片或终点评分都不构成物理递归。
+## 我们的核心关键：测量物理递归自我改进
 
-> **状态：尚不完整的开发预览版。** 当前仓库已提供可用的提交 ABI、fail-closed
-> 验证器、向量评分卡、小型一致性任务，以及机器检查的协议不变量；但任务覆盖度和物理验证
-> 尚不足以形成完整 benchmark 或公开排行榜。首个稳定版发布前，接口仍可能变更。
-
-## 本仓库是什么
-
-- 面向第三方智能体的 benchmark 协议；
-- 任务包、提交和评测器接口；
-- 覆盖能力、鲁棒性、自主性、资源和有界递归贡献的非标量评分卡；
-- 对一致性测试、仿真、独立复核仿真、硬件在环和真实硬件进行严格区分的证据层级；
-- 针对有界协议性质的 Lean 4 定义与证明；
-- 仅用于检查协议一致性的刻意简化参考提交。
-
-## 本仓库不是什么
-
-- 它不是 FLUXPRSI，不包含 FLUXPRSI 训练循环、模型权重、权重更新策略、researcher
-  实现或内部实验历史；
-- 它不声称 PRSI 已经实现；
-- 它尚不是竞赛级沙箱，也不是具有代表性的完整任务集；
-- Lean 接受只证明编码后的有限协议条件成立；它不会把仿真 receipt 变成硬件证据，也不会
-  证明学习策略一定能够到达一次成功更新。
-
-这一边界是刻意设计的：参与者应按照公开协议实现自己的智能体，而评测器应独立于任何特定系统。
-
-## Episode 模型
+物理递归自我改进（Physical Recursive Self-Improvement，PRSI）是指：系统把一次真实
+物理研发循环的结果，用于改进产生下一台设备、下一项实验或下一种制造能力的研发过程。
 
 ```text
-智能体 -> MRS -> 构造程序 -> 执行/实验 -> 证据
-      -> 独立评测器 -> 有界晋级决策
-      -> 可选的下一代提交
+目标 -> MRS -> 构造程序 -> 物理实验 -> 证据
+                                  |
+                                  v
+更快、更强的下一轮物理研发 <- 系统更新
 ```
 
-MRS 是提交的机构研究规格包。递归声明还要求代际链路、精确谱系、评测方持有的证据，以及
-资源归一化后为正的下游贡献。当前仓库只检验有界、有限的声明。
+MechanogenesisBench 测量的正是这条链的复利速度：在可比条件下，一代已经验证的产出能让
+下一轮物理开发加快多少、准确度提高多少、资源消耗降低多少，以及能否制造更强的物理工具。
+
+“Mechanogenesis”表示从研究意图到可运行物理能力的生成过程。benchmark 将这个过程及其
+跨代改进转化为精确、可执行的研究对象。
+
+## 项目简介
+
+第三方智能体接收一项物理开发任务，输出机构研究规格（Mechanism Research Specification，
+MRS）、构造程序、实验计划和证据包。benchmark 通过已注册的物理引擎或实物系统执行提交，
+验证其形式义务，并输出覆盖下列维度的结果：
+
+- 物理任务能力与鲁棒性；
+- 构造和实验有效性；
+- 自主性、时间、算力、能耗、物料和人工干预；
+- 跨机构、形态和扰动的泛化；
+- 对下一代研发循环的有界贡献。
+
+当前版本是开发预览版，已具有可运行的提交 ABI、命令行 runner、fail-closed 验证器、向量
+评分卡、一致性任务和 Lean 4 验证内核。我们正在把它发展为持续维护的物理研发 benchmark，
+并准备与 [xbench](https://xbench.org/) 及其他关注真实工作流和可度量生产力的智能体评测
+生态开展合作。
+
+## 项目构建逻辑
+
+MechanogenesisBench 是**面向形式化证明的 Lean 原生 benchmark**。从任务定义开始，
+Lean 就是连接机械表示、物理引擎轨迹、实物观测和评测决策的共同语言。
+
+| 层级 | 面向 Lean 的表示 | 作用 |
+|---|---|---|
+| 任务 | 类型化的世界、资源、干预和成功谓词 | 精确定义需要实现什么 |
+| 智能体输出 | canonical MRS 与构造/实验程序 | 消除自然语言描述与真实执行之间的歧义 |
+| 物理引擎或实物系统 | refinement adapter 生成统一类型轨迹 | 让不同仿真器、仪器和机器共享同一验证内核 |
+| 证据与晋级 | 校准观测、谱系、资源闭合和有界改进定理 | 检查能够从已执行证据中推出什么 |
+
+完整执行路径为：
+
+1. 将任务及其成功条件编码为类型化、可执行语义；
+2. 通过已注册的物理引擎或真实系统运行智能体提交的构造和实验；
+3. 将执行轨迹、测量和身份降为 canonical、Lean 可检查的对象；
+4. 在 Lean 内核中检查可行性、谱系、资源核算、证据绑定和晋级条件；
+5. 接入新的物理引擎、仪器或真实工作单元时，复用同一套形式接口。
+
+这种架构同时服务于**高效**与**准确**。新的 backend 只需证明或检查一条 refinement 边界，
+而不必重新编写整套评测器；共享定理可以跨 backend 复用；精确身份和类型化证据会尽早暴露
+不一致；机器检查的 certificate 让结果可以复现，而不依赖评测说明文字或隐藏评分逻辑。
+
+目前 Python 负责任务打包、进程执行和公开 CLI；Lean 持有协议内核与有限声明。后续接入的
+仿真器和实物系统会逐步把自身模型、轨迹、计量前提和 refinement relation 接入同一形式接口。
 
 ## 快速开始
 
@@ -60,7 +82,7 @@ mbench score runs/reference
 pytest -q
 ```
 
-检查形式化协议层：
+构建形式验证层：
 
 ```bash
 lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
@@ -71,28 +93,41 @@ lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
 ## 仓库结构
 
 ```text
-src/mechanogenesis_bench/  公开任务、提交、验证和评分 ABI
-tasks/conformance/         协议夹具；不构成现实能力证据
-examples/                  固定的一致性提交，不是智能体 baseline
-formal/lean/               有界 benchmark 协议的定义与证明
-docs/                      范围、标准、威胁模型和开发路线图
-tests/                     fail-closed 与端到端协议测试
+src/mechanogenesis_bench/  任务、提交、验证与评分 ABI
+tasks/conformance/         可执行的协议与评测器 fixtures
+examples/                  最小第三方提交示例
+formal/lean/               Lean 定义、证明与可执行 checkers
+docs/                      架构、标准、评分和路线图
+tests/                     fail-closed、对抗性与端到端测试
 ```
 
-建议从[架构](docs/ARCHITECTURE.zh-CN.md)、
-[范围与声明边界](docs/SCOPE.zh-CN.md)、[任务标准](docs/TASK_STANDARD.zh-CN.md)、
-[评分](docs/SCORING.zh-CN.md)、[泛化标准](docs/GENERALIZATION_STANDARD.zh-CN.md)、
+建议阅读[架构](docs/ARCHITECTURE.zh-CN.md)、
+[任务标准](docs/TASK_STANDARD.zh-CN.md)、[评分](docs/SCORING.zh-CN.md)、
+[泛化标准](docs/GENERALIZATION_STANDARD.zh-CN.md)、
 [物理 RSI 标准](docs/PHYSICAL_RSI_STANDARD.zh-CN.md)和
-[状态与路线图](docs/STATUS_AND_ROADMAP.zh-CN.md)开始。所有公开说明均提供相互链接的英文版。
+[状态与路线图](docs/STATUS_AND_ROADMAP.zh-CN.md)。每份文档都提供互链的英文版本。
+
+## 后续计划
+
+- 从一致性任务扩展到机构设计、传感、执行、制造和实验设计任务族；
+- 发布首个稳定 MRS ABI，以及物理引擎、实验仪器和真实工作单元的形式 adapter 协议；
+- 增加 sealed、持续更新的任务，以及独立重放、计量和硬件证据；
+- 建立 Lean refinement proof 库，使新的物理 backend 能复用 benchmark 的任务语义和
+  评测定理；
+- 支持第三方智能体、外部 benchmark 维护者和可复现公开排行榜，并推动加入 xbench
+  benchmark 生态；
+- 接入 DataFlux 生态：由 **Flux Workbench** 编排研发，由 **DevReady** 保存可执行
+  模型和证据，由 **FluxNode** 实时连接真实物理设备。
+
+详细里程碑和发布门槛见[公开路线图](docs/STATUS_AND_ROADMAP.zh-CN.md)。
 
 ## DataFlux Dynamics
 
-[DataFlux Dynamics（数瀚衍动）](https://www.datafluxdynamics.ltd/)正在开发
-FluxPRSI：一个更广义的物理研发系统，让软件、设备模型、实验和物理工具通过真实项目结果
-持续改进。MechanogenesisBench 是与之分离的公开评测界面，用于评价第三方系统。
-benchmark 与更广义系统都仍在开发中；公司网站和本仓库均不应被解读为已经完成 PRSI 的结果。
+[DataFlux Dynamics（数瀚衍动）](https://www.datafluxdynamics.ltd/)正在构建 FluxPRSI：
+Flux Workbench 执行研发，DevReady 让模型与证据持续复利，FluxNode 将智能连接到真实设备。
+MechanogenesisBench 为这个更大的生态，也为独立第三方系统，提供形式化测量层。
 
-## 许可证
+> “God's in His heaven—All's right with the world.”
+> —— Robert Browning，*Pippa Passes*
 
-项目尚未选定开源许可证。仓库公开可见本身并不授予复用权。许可证选择是路线图中明确列出的
-预发布治理事项。
+我们把它理解为一个工程目标：让模型、机器与物理现实进入可验证的一致状态。

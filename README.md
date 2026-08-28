@@ -2,60 +2,88 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-MechanogenesisBench is a developer-preview benchmark for third-party agents
-that propose, construct and test physical devices. It evaluates evidence and
-process—not whether an agent can merely describe a plausible mechanism.
+**A Lean-native benchmark for agents that design, build, test and improve
+physical systems.**
 
-Our motivating view is that physical recursive self-improvement (PRSI) begins
-only when intelligence can autonomously manufacture and validate devices, and
-when the resulting physical capability can causally improve a later research
-or manufacturing cycle. Textual self-revision, a CAD image or an endpoint
-score alone is not physical recursion.
+## The core idea: measure Physical Recursive Self-Improvement
 
-> **Status: incomplete developer preview.** The repository exposes a usable
-> submission ABI, fail-closed verifier, vector scorecard, a small conformance
-> task and machine-checked protocol invariants. Its present task coverage and
-> physical validation are not sufficient for a complete benchmark or a public
-> leaderboard. Interfaces may change before the first stable release.
-
-## What this repository is
-
-- A benchmark protocol for third-party agents.
-- A task-package, submission and evaluator interface.
-- A non-scalar scorecard covering capability, robustness, autonomy, resources
-  and bounded recursive contribution.
-- A strict evidence-tier boundary between conformance, simulation,
-  independently checked simulation, hardware-in-the-loop and hardware.
-- Lean 4 definitions and proofs for bounded protocol properties.
-- A deliberately canned reference submission used only to test conformance.
-
-## What this repository is not
-
-- It is not FLUXPRSI and contains no FLUXPRSI training loop, model weights,
-  weight-update policy, researcher implementation or internal experiment
-  history.
-- It is not a claim that PRSI has been achieved.
-- It is not yet a competition-grade sandbox or a representative task suite.
-- Lean acceptance proves the encoded finite protocol condition; it does not
-  turn a simulator receipt into hardware evidence or prove that a learned
-  policy can reach a successful update.
-
-The clean boundary is intentional: benchmark participants should implement
-their own agents against the public contract, while the evaluator remains
-independent of any one system.
-
-## Episode model
+Physical Recursive Self-Improvement (PRSI) means that a system uses the result
+of one physical R&D cycle to improve the process that produces the next device,
+experiment or manufacturing capability.
 
 ```text
-agent -> MRS -> construction program -> execution/experiment -> evidence
-      -> independent evaluator -> bounded promotion decision
-      -> optional next-generation submission
+goal -> MRS -> construction program -> physical experiment -> evidence
+                                                            |
+                                                            v
+next, faster and more capable physical R&D cycle <- system update
 ```
 
-An MRS is the submitted mechanism-research specification bundle. A recursive
-claim additionally requires linked generations, exact lineage, evaluator-owned
-evidence and positive resource-normalized downstream contribution. The current
-repository tests only bounded, finite claims.
+MechanogenesisBench measures the compounding rate of this loop: how much the
+validated outputs of one generation make the next physical-development cycle
+faster, more accurate, less resource-intensive or capable of producing a
+stronger physical tool under comparable conditions.
+
+“Mechanogenesis” names the transition from research intent to operational
+physical capability. The benchmark turns that transition—and its improvement
+across generations—into a precise, executable object of study.
+
+## Project overview
+
+A third-party agent receives a physical-development task and produces a
+Mechanism Research Specification (MRS), construction program, experiment plan
+and evidence bundle. The benchmark executes the submission through a registered
+engine or physical system, verifies its formal obligations and reports a
+multidimensional result covering:
+
+- physical-task capability and robustness;
+- construction and experimental validity;
+- autonomy, time, compute, energy, material and human intervention;
+- generalization across mechanisms, embodiments and disturbances;
+- bounded contribution to the next R&D generation.
+
+The current release is a developer preview with a working submission ABI,
+command-line runner, fail-closed verifier, vector scorecard, conformance tasks
+and a Lean 4 verification kernel. We are developing it toward a continuously
+maintained physical-R&D benchmark and preparing it for collaboration with
+[xbench](https://xbench.org/) and other agent-evaluation ecosystems centered on
+real workflows and measurable productivity.
+
+## How the benchmark is built
+
+MechanogenesisBench is **Lean-native and proof-oriented**. From task definition
+onward, Lean is the common language connecting mechanical representations,
+engine traces, physical observations and evaluation decisions.
+
+| Layer | Lean-facing representation | Purpose |
+|---|---|---|
+| Task | typed world, resources, interventions and success predicates | defines exactly what must be achieved |
+| Agent output | canonical MRS and construction/experiment program | removes ambiguity between prose and execution |
+| Engine or physical system | refinement adapter to a common typed trace | lets different simulators, instruments and machines share one verification kernel |
+| Evidence and promotion | calibrated observations, lineage, resource closure and bounded improvement theorem | checks what follows from the executed evidence |
+
+The execution path is:
+
+1. Encode a task and its success conditions as typed, executable semantics.
+2. Run the submitted construction and experiment through a registered engine
+   or real system.
+3. Lower the resulting trace, measurements and identities into canonical
+   Lean-checkable objects.
+4. Check feasibility, lineage, resource accounting, evidence binding and
+   promotion conditions in the Lean kernel.
+5. Reuse the same formal interface when a new physics engine, instrument or
+   physical workcell is connected.
+
+This architecture is designed for both **efficiency** and **accuracy**.
+A new backend proves or checks one refinement boundary instead of rebuilding an
+entire evaluator. Shared theorems then apply across backends; exact identities
+and typed evidence expose mismatches early; machine-checked certificates make
+results reproducible without relying on evaluator prose or hidden scoring
+logic.
+
+Python currently provides task packaging, process execution and the public CLI.
+Lean owns the protocol kernel and finite claims. New simulator and hardware
+adapters will progressively move their models, traces, metrology assumptions
+and refinement relations into the same formal interface.
 
 ## Quick start
 
@@ -73,7 +101,7 @@ mbench score runs/reference
 pytest -q
 ```
 
-To check the formal protocol layer:
+Build the formal verification layer:
 
 ```bash
 lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
@@ -81,36 +109,53 @@ lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
   generalizationCheck
 ```
 
-## Repository map
+## Repository structure
 
 ```text
-src/mechanogenesis_bench/  public task, submission, verification and scoring ABI
-tasks/conformance/         protocol fixtures; not evidence of real-world capability
-examples/                  canned conformance submission, not an agent baseline
-formal/lean/               bounded benchmark-protocol definitions and proofs
-docs/                      scope, standards, threat model and development roadmap
-tests/                     fail-closed and end-to-end protocol tests
+src/mechanogenesis_bench/  task, submission, verification and scoring ABI
+tasks/conformance/         executable protocol and evaluator fixtures
+examples/                  minimal third-party submission example
+formal/lean/               Lean definitions, proofs and executable checkers
+docs/                      architecture, standards, scoring and roadmap
+tests/                     fail-closed, adversarial and end-to-end tests
 ```
 
-Start with the [architecture](docs/ARCHITECTURE.md),
-[scope and claim boundary](docs/SCOPE.md), [Task Standard](docs/TASK_STANDARD.md),
-[Scoring](docs/SCORING.md), [Generalization Standard](docs/GENERALIZATION_STANDARD.md),
-[Physical RSI Standard](docs/PHYSICAL_RSI_STANDARD.md), and the
-[status and roadmap](docs/STATUS_AND_ROADMAP.md). Every public-facing document
-has a linked Simplified Chinese edition.
+Read the [architecture](docs/ARCHITECTURE.md),
+[Task Standard](docs/TASK_STANDARD.md), [Scoring](docs/SCORING.md),
+[Generalization Standard](docs/GENERALIZATION_STANDARD.md),
+[Physical RSI Standard](docs/PHYSICAL_RSI_STANDARD.md), and
+[status and roadmap](docs/STATUS_AND_ROADMAP.md). Each document has a linked
+Simplified Chinese edition.
+
+## Roadmap
+
+- Expand from conformance tasks to mechanism design, sensing, actuation,
+  manufacturing and experimental-design task families.
+- Publish the first stable MRS ABI and formal adapter contract for physics
+  engines, laboratory instruments and physical workcells.
+- Add sealed, continuously refreshed tasks with independent replay,
+  metrology and hardware evidence.
+- Grow a library of Lean refinement proofs so that new physical backends can
+  reuse the benchmark's task semantics and evaluation theorems.
+- Support third-party agents, external benchmark maintainers and reproducible
+  public leaderboards; work toward inclusion in the xbench benchmark ecosystem.
+- Connect benchmark tasks and verified trajectories to the DataFlux ecosystem:
+  **Flux Workbench** for R&D orchestration, **DevReady** for executable models
+  and evidence, and **FluxNode** for real-time access to physical devices.
+
+The detailed milestones and release gates are maintained in the
+[public roadmap](docs/STATUS_AND_ROADMAP.md).
 
 ## DataFlux Dynamics
 
-[DataFlux Dynamics (数瀚衍动)](https://www.datafluxdynamics.ltd/) is developing
-FluxPRSI: a broader physical R&D system in which software, device models,
-experiments and physical tools improve through real project outcomes.
-MechanogenesisBench is the separate public measurement surface for evaluating
-third-party systems. Development of the benchmark and the broader system is
-ongoing; neither the company site nor this repository should be read as a
-completed PRSI result.
+[DataFlux Dynamics (数瀚衍动)](https://www.datafluxdynamics.ltd/) builds
+FluxPRSI: a physical R&D system in which Flux Workbench executes development,
+DevReady compounds models and evidence, and FluxNode connects intelligence to
+real devices. MechanogenesisBench provides the formal measurement layer for
+that larger ecosystem and for independent third-party systems.
 
-## License
+> “God's in His heaven—All's right with the world.”
+> — Robert Browning, *Pippa Passes*
 
-No open-source license has been selected yet. Public visibility does not by
-itself grant reuse rights. Licensing is an explicit pre-release governance
-item in the roadmap.
+We take this as our engineering destination: models, machines and physical
+reality brought into verifiable alignment.
