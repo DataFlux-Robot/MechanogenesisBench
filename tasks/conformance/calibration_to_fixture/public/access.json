@@ -1,0 +1,10 @@
+{
+  "interventions": [
+    "fabricate_tool_geometry",
+    "probe_reference_surfaces",
+    "install_fixture",
+    "run_blinded_repeatability_trial",
+    "fork_generator_checkpoint"
+  ],
+  "forbidden": ["modify_private_evaluator", "human_intervention"]
+}

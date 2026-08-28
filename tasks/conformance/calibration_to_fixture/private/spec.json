@@ -1,0 +1,11 @@
+{
+  "calibration": {
+    "margin": 0.20,
+    "max_pose_error_mm": 0.20
+  },
+  "fixture": {
+    "margin": 0.05,
+    "min_yield": 0.80
+  },
+  "minimum_robustness": 0.80
+}

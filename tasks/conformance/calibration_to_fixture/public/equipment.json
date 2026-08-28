@@ -1,0 +1,7 @@
+{
+  "fabrication_processes": [
+    {"id": "three_axis_mill", "envelope_mm": [300, 200, 150]},
+    {"id": "contact_probe", "repeatability_mm": 0.02},
+    {"id": "manual_assembly_cell", "operator_access": false}
+  ]
+}

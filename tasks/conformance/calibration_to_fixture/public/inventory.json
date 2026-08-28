@@ -1,0 +1,6 @@
+{
+  "materials": [
+    {"id": "tool_steel", "quantity_q": 1000, "quantum_kg": 0.001},
+    {"id": "reserve_tool_steel", "quantity_q": 200, "quantum_kg": 0.001}
+  ]
+}

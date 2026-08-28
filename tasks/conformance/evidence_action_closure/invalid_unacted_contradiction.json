@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "0.1",
+  "semanticsId": "Mechanogenesis.EvidenceActionClosure.v0.1",
+  "trajectoryHash": "sha256:052be163ab056dd28f8cace6ee491b30106159753507820cf5c05704f48d8dab",
+  "finalClaimHash": "sha256:dc591ce45e260c55648d2eba3efc2dde214d3ee21aa340f01c94c242574fe47a",
+  "evaluatorHash": "sha256:a4807d7bd8704beb9cc23afcf967a7ae1391d4f8bf7f81a43911f4b9af67c2b1",
+  "promotionRequested": true,
+  "receipts": [
+    {
+      "evidenceHash": "sha256:c868e71f739d39cb2309654f1f2005f4089eeed62bf655397d868fe7c47f9bb7",
+      "sourceHash": "sha256:5c7f790f9805ee54feec5360a7021c48f7bc17114b6bb7ab6b3576e7f0c20a09",
+      "claimHash": "sha256:cc4569b07d7d76db93a8ce325d40e04077aec2d4b65c53fb00d24ae4e2324d2c",
+      "priorActionHash": "sha256:0e2c994092a9991012e0ce3ae2c722f1718a380cf2a0689532d39b2fcea5f1e3",
+      "resultingActionHash": "sha256:0e2c994092a9991012e0ce3ae2c722f1718a380cf2a0689532d39b2fcea5f1e3",
+      "verifierHash": "sha256:5c40fa0d96317dd377b69cf794283c4519509396186c12ec600fe8c4cec988fa",
+      "critical": true,
+      "contradictsClaim": true,
+      "grounded": true,
+      "independentCheck": true,
+      "revisionDeclared": false,
+      "retested": false,
+      "claimWithdrawn": false
+    }
+  ]
+}

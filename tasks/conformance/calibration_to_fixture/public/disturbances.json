@@ -1,0 +1,7 @@
+{
+  "factors": [
+    {"name": "pose_offset_mm", "range": [-0.20, 0.20]},
+    {"name": "stock_thickness_mm", "range": [-0.10, 0.10]},
+    {"name": "probe_noise_mm", "range": [-0.03, 0.03]}
+  ]
+}
