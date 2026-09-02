@@ -1,0 +1,21 @@
+schema_version = "0.1"
+task_id = "conformance.generated_metrology_fixture"
+title = "Generate a metrology fixture from stock and component inventory"
+track = "open_system"
+evidence_ceiling = "conformance"
+guidance_levels = ["G1", "G2", "G3", "G4", "G5"]
+generations = 1
+min_promotions = 1
+min_robustness_pass_rate = 0.80
+
+[evaluator]
+command = ["python3", "evaluator/evaluate.py"]
+
+[budget]
+wall_time_s = 120.0
+monetary_cost_usd = 100.0
+tokens = 200000
+energy_j = 5000000.0
+material_kg = 0.5
+human_intervention_s = 0.0
+attempts = 500

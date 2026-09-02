@@ -1,0 +1,13 @@
+{
+  "interventions": [
+    "generate_geometry",
+    "machine_stock",
+    "consume_catalog_component",
+    "rigid_assemble",
+    "calibrate",
+    "qualify_machine_process",
+    "inherit_exact_prior_world_state",
+    "use_exact_prior_output_operator",
+    "execute_reference_interpreter"
+  ]
+}

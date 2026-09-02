@@ -1,0 +1,4 @@
+{
+  "fabrication_processes": ["three_axis_mill_v0", "drilling", "robotic_assembly", "contact_probe"],
+  "canonical_fragment": "axis_aligned_csg_and_rigid_assembly_v0.3"
+}

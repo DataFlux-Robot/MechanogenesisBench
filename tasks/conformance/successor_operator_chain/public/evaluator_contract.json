@@ -1,0 +1,12 @@
+{
+  "objective_direction": "lower_is_better_on_successor_absolute_frame_error",
+  "required": [
+    "both canonical programs execute in one continuous world lineage",
+    "generation 1 machines its product with generation 0's exact output operator",
+    "both generated operators strictly improve their input operator",
+    "generation 1 meets the frozen relative and absolute demand bounds",
+    "private held-out geometry cases pass",
+    "a procured-baseline counterfactual cannot satisfy the generation 1 absolute bound"
+  ],
+  "evidence_warning": "Synthetic demand and deterministic reference-model conformance only; no real human or hardware outcome is claimed."
+}

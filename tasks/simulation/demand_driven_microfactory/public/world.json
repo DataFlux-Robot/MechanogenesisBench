@@ -1,0 +1,19 @@
+{
+  "baseline_process_hash": "sha256:d6955b1eea2ac289b5772fd675b5cd0dd2e5106b75782896df0468b3c3c799d7",
+  "baseline_world_hash": "sha256:309d24b147ed88fa6b983f7262fe1d2425c06e770e30413e7bbf8f85f9047390",
+  "initial_operator_bundle": {
+    "schema_version": "microfactory-operator-bundle/v1",
+    "generation": 0,
+    "mechanical_position_error_um": 800,
+    "pcb_escape_rate_ppm": 25000,
+    "battery_calibration_error_mv": 120,
+    "parent_bundle_hash": null,
+    "bundle_hash": "sha256:7ac871fe946a22a85b951cd7f1ec7d2e2d7ca3e96a7c07d97e6afaba7e82bf45"
+  },
+  "production_scope": [
+    "low_speed_mobility_product",
+    "mechanical_assembly_fixture",
+    "pcb_test_fixture",
+    "battery_calibration_station"
+  ]
+}

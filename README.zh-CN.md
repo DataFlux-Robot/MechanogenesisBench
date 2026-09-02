@@ -35,7 +35,8 @@ MRS）、构造程序、实验计划和证据包。benchmark 通过已注册的�
 - 对下一代研发循环的有界贡献。
 
 当前版本是开发预览版，已具有可运行的提交 ABI、命令行 runner、fail-closed 验证器、向量
-评分卡、一致性任务和 Lean 4 验证内核。我们正在把它发展为持续维护的物理研发 benchmark，
+评分卡、一致性任务和 Lean 4 验证内核。持续集成会从干净 checkout 构建 Lean 内核、运行
+Python 与第三方 adapter 回归测试，并执行非 canned 的确定性基线。我们正在把它发展为持续维护的物理研发 benchmark，
 并准备与 [xbench](https://xbench.org/) 及其他关注真实工作流和可度量生产力的智能体评测
 生态开展合作。
 
@@ -82,19 +83,61 @@ mbench score runs/reference
 pytest -q
 ```
 
+使用确定性开放基线运行首个非 canned、带 trusted evaluator 的夹具任务：
+
+```bash
+mbench run tasks/conformance/generated_metrology_fixture \
+  --system-command "python examples/generated_fixture_search_system.py" \
+  --guidance G5 \
+  --output runs/generated-fixture-reference
+```
+
+运行首个可执行的两代物理 successor 任务：
+
+```bash
+mbench run tasks/conformance/successor_operator_chain \
+  --system-command "python examples/reference_successor_operator_system.py" \
+  --guidance G5 \
+  --output runs/successor-operator-reference
+```
+
+运行两代需求驱动的低速移动产品微型工厂任务：
+
+```bash
+mbench run tasks/simulation/demand_driven_microfactory \
+  --system-command "python examples/reference_demand_microfactory_system.py" \
+  --guidance G5 \
+  --output runs/demand-microfactory-reference
+```
+
+在该任务中，系统必须直接给出完整低速移动产品、校准后的需求信念，并在机械装配夹具、PCB
+测试夹具和电池标定工作站之间分配资本。第 1 代收到变化后的需求证据，并必须使用第 0 代制造
+出的精确 operator bundle。evaluator 直接执行模型的字面 action，不在 benchmark 侧替模型
+搜索参数；随后检查隐藏扰动、需求校准、产品效用、需求更新增益和 operator 继承优势。通过的
+两代运行会生成并执行覆盖完整跨代关系的 Lean certificate。
+
+包括 GLM-5.3-Flash 在内的 OpenAI-compatible 模型使用同一评分路径；完整产品与工厂适配器为
+`examples/openai_compatible_demand_microfactory_system.py`。凭据安全命令、完整 action receipt 和比较规则
+见[第三方模型基线](docs/THIRD_PARTY_BASELINES.zh-CN.md)。
+
+仓库 CI 运行同样的命令。第三方只需要干净 checkout、Python 3.11、Lean 和仅存在于进程
+环境中的 provider 凭据；该一致性任务不依赖私有 evaluator 或训练仓库。
+
 构建形式验证层：
 
 ```bash
 lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
   comparatorCheck pipeCheck evidenceActionCheck diagnosticCheck \
-  generalizationCheck
+  generalizationCheck demandMicrofactoryCheck
 ```
 
 ## 仓库结构
 
 ```text
 src/mechanogenesis_bench/  任务、提交、验证与评分 ABI
+src/mechanogenesis_engine/ 规范 IR、编译器与参考执行语义
 tasks/conformance/         可执行的协议与评测器 fixtures
+tasks/simulation/          多阶段产品、需求与生产任务
 examples/                  最小第三方提交示例
 formal/lean/               Lean 定义、证明与可执行 checkers
 docs/                      架构、标准、评分和路线图
@@ -104,7 +147,8 @@ tests/                     fail-closed、对抗性与端到端测试
 建议阅读[架构](docs/ARCHITECTURE.zh-CN.md)、
 [任务标准](docs/TASK_STANDARD.zh-CN.md)、[评分](docs/SCORING.zh-CN.md)、
 [泛化标准](docs/GENERALIZATION_STANDARD.zh-CN.md)、
-[物理 RSI 标准](docs/PHYSICAL_RSI_STANDARD.zh-CN.md)和
+[物理 RSI 标准](docs/PHYSICAL_RSI_STANDARD.zh-CN.md)、
+[第三方模型基线](docs/THIRD_PARTY_BASELINES.zh-CN.md)和
 [状态与路线图](docs/STATUS_AND_ROADMAP.zh-CN.md)。每份文档都提供互链的英文版本。
 
 ## 后续计划

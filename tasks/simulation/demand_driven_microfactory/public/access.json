@@ -1,0 +1,13 @@
+{
+  "interventions": [
+    "demand_belief.attribute_weights_ppm",
+    "demand_belief.outcome_forecast_ppm",
+    "product.geometry",
+    "product.energy_and_drive",
+    "product.accessibility_and_cargo",
+    "product.diagnostics_and_modularity",
+    "factory.mechanical_fixture",
+    "factory.pcb_test_fixture",
+    "factory.battery_calibration_station"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "interventions": [
+    "generate_geometry",
+    "machine_stock",
+    "consume_catalog_component",
+    "rigid_assemble",
+    "calibrate",
+    "qualify_machine_process",
+    "execute_reference_interpreter"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "baseline_process_hash": "sha256:102ea3f9fbcb33ee4d1379f9e4f22bb3cc4705eec7ef7386e6b5ab650458e61a",
+  "baseline_world_hash": "sha256:8b99c228358d03ed8322ba6225e2906961a6cffce5b22d5edf2533996af72da4",
+  "mechanism_world": "mechanism_world.json",
+  "fixture_goals": ["fixture_goal_g0.json", "fixture_goal_g1.json"],
+  "demand_briefs": "demand_briefs.json",
+  "semantics": "mechanogenesis_engine.successor_operator.v1"
+}

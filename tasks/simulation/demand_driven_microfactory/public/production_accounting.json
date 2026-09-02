@@ -1,0 +1,25 @@
+{
+  "schema_version": "microfactory-production-accounting/v1",
+  "currency_unit": "milliUSD",
+  "factory_capital_cost": {
+    "locator_span_mm": 30000,
+    "fixture_calibration_sample": 200000,
+    "pcb_pogo_pin": 50000,
+    "pcb_test_vector": 5000,
+    "battery_calibration_point": 200000
+  },
+  "product_unit_cost": {
+    "base_platform": 400000,
+    "battery_wh": 180,
+    "motor_power_w": 80,
+    "cargo_l": 500,
+    "modular_port": 20000,
+    "non_none_novel_affordance": 120000
+  },
+  "material_accounting": {
+    "mobility_platform_output_yield_ppm": 950000,
+    "all_receipts_require_exact_input_equals_output_plus_waste": true,
+    "inventory_is_shared_across_generations": true
+  },
+  "registered_lifecycle_value_milliusd_per_utility_micro": 300
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.3",
+  "world_id": "bounded_subtractive_workcell_v0",
+  "materials": [
+    {
+      "material_id": "aluminum_6061_model",
+      "density_numerator_mg": 27,
+      "density_denominator_um3": 10000000000
+    },
+    {
+      "material_id": "tool_steel_model",
+      "density_numerator_mg": 785,
+      "density_denominator_um3": 100000000000
+    }
+  ],
+  "inventory": [
+    {
+      "item_id": "aluminum_blank_125x85x12",
+      "kind": "stock",
+      "role": "fixture_base_stock",
+      "material_id": "aluminum_6061_model",
+      "quantity": 1,
+      "mass_mg": 344250,
+      "envelope_um": [125000, 85000, 12000]
+    },
+    {
+      "item_id": "locator_pin_6x15",
+      "kind": "component",
+      "role": "locator_pin",
+      "material_id": "tool_steel_model",
+      "quantity": 2,
+      "mass_mg": 3330,
+      "envelope_um": [6000, 6000, 15000]
+    },
+    {
+      "item_id": "reference_post_8x25",
+      "kind": "component",
+      "role": "reference_post",
+      "material_id": "tool_steel_model",
+      "quantity": 1,
+      "mass_mg": 9865,
+      "envelope_um": [8000, 8000, 25000]
+    }
+  ],
+  "machines": [
+    {
+      "machine_id": "three_axis_mill_v0",
+      "envelope_um": [300000, 200000, 150000],
+      "min_feature_um": 1000,
+      "removal_rate_um3_per_us": 30000,
+      "setup_time_us": 120000000,
+      "power_w": 1500,
+      "absolute_setup_error_um": 800,
+      "relative_repeatability_um": 10,
+      "operations": ["milling", "drilling"]
+    }
+  ],
+  "probe_repeatability_um": 20,
+  "disturbance_bound_um": 30,
+  "baseline_capability_error_um": 800,
+  "assembly_time_per_part_us": 30000000,
+  "calibration_time_us": 180000000,
+  "cell_power_w": 400
+}

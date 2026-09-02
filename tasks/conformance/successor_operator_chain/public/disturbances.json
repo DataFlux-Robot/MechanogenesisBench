@@ -1,0 +1,9 @@
+{
+  "factors": [
+    {"name": "workcell_position_disturbance_um", "public_bound": 30},
+    {"name": "manufacturing_repeatability_um", "public_bound": 10},
+    {"name": "probe_repeatability_um", "public_bound": 20},
+    {"name": "generation_1_absolute_frame_requirement", "public_bound": 250},
+    {"name": "held_out_workpiece_span", "public": false}
+  ]
+}

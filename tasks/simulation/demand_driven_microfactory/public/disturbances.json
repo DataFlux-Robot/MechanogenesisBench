@@ -1,0 +1,8 @@
+{
+  "factors": [
+    {"id": "floor_and_datum_error", "unit": "um", "public_range": [0, 180]},
+    {"id": "pcb_escape_shift", "unit": "ppm", "public_range": [0, 9000]},
+    {"id": "battery_calibration_shift", "unit": "mV", "public_range": [0, 55]},
+    {"id": "demand_population_shift", "unit": "registered_generation", "public_range": [0, 1]}
+  ]
+}

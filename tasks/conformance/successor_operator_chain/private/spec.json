@@ -1,0 +1,12 @@
+{
+  "generation_0_held_out_spans_um": [60000, 70000, 80000, 75000, 65000],
+  "generation_1_held_out_spans_um": [60000, 72000, 84000, 78000, 66000],
+  "generation_0_max_relative_error_um": 200,
+  "generation_1_max_relative_error_um": 120,
+  "generation_1_max_absolute_frame_error_um": 250,
+  "minimum_operator_improvement_um": 1,
+  "minimum_inheritance_advantage_um": 500,
+  "reuse_count": 500,
+  "value_per_um_improvement_milliusd": 2,
+  "material_cost_milliusd_per_mg": 1
+}

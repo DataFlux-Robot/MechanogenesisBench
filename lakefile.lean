@@ -30,6 +30,7 @@ lean_lib BenchmarkProtocol where
     `Mechanogenesis.Kernel.TrajectoryAssets,
     `Mechanogenesis.Kernel.S1CausalContract,
     `Mechanogenesis.Kernel.TraceRefinement,
+    `Mechanogenesis.Kernel.DemandMicrofactory,
     `Mechanogenesis.SovereignKernel]
 
 lean_exe sovereignCheck where
@@ -67,3 +68,7 @@ lean_exe diagnosticCheck where
 lean_exe generalizationCheck where
   srcDir := "formal/lean"
   root := `GeneralizationCheck
+
+lean_exe demandMicrofactoryCheck where
+  srcDir := "formal/lean"
+  root := `DemandMicrofactoryCheck

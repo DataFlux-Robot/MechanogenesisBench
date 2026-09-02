@@ -43,7 +43,9 @@ multidimensional result covering:
 
 The current release is a developer preview with a working submission ABI,
 command-line runner, fail-closed verifier, vector scorecard, conformance tasks
-and a Lean 4 verification kernel. We are developing it toward a continuously
+and a Lean 4 verification kernel. Continuous integration builds the Lean
+kernel, runs the Python and third-party-adapter regressions, and executes the
+non-canned deterministic baseline from a clean checkout. We are developing it toward a continuously
 maintained physical-R&D benchmark and preparing it for collaboration with
 [xbench](https://xbench.org/) and other agent-evaluation ecosystems centered on
 real workflows and measurable productivity.
@@ -101,19 +103,70 @@ mbench score runs/reference
 pytest -q
 ```
 
+Run the first non-canned, trusted-evaluator fixture task with the deterministic
+open baseline:
+
+```bash
+mbench run tasks/conformance/generated_metrology_fixture \
+  --system-command "python examples/generated_fixture_search_system.py" \
+  --guidance G5 \
+  --output runs/generated-fixture-reference
+```
+
+Run the first executable two-generation physical-successor task:
+
+```bash
+mbench run tasks/conformance/successor_operator_chain \
+  --system-command "python examples/reference_successor_operator_system.py" \
+  --guidance G5 \
+  --output runs/successor-operator-reference
+```
+
+Run the two-generation demand-driven mobility microfactory task:
+
+```bash
+mbench run tasks/simulation/demand_driven_microfactory \
+  --system-command "python examples/reference_demand_microfactory_system.py" \
+  --guidance G5 \
+  --output runs/demand-microfactory-reference
+```
+
+This task makes the system directly choose a complete low-speed mobility
+product, a calibrated demand belief and capital allocation across a mechanical
+assembly fixture, PCB test fixture and battery calibration station. Generation
+1 receives changed demand evidence and must consume the exact operator bundle
+made in generation 0. The evaluator executes the literal model action—there is
+no benchmark-side parameter search—and checks hidden disturbances, demand
+calibration, product utility, demand-update gain and operator-inheritance
+advantage. An accepted run emits and executes a Lean certificate for the full
+two-generation relation.
+
+OpenAI-compatible models, including GLM-5.3-Flash, use the same task and score
+path. The complete product-and-factory adapter is
+`examples/openai_compatible_demand_microfactory_system.py`. See
+[Third-party model baselines](docs/THIRD_PARTY_BASELINES.md) for the
+credential-safe command, action-byte receipts and comparison rules.
+
+The same commands run in repository CI. A third party therefore needs only a
+clean checkout, Python 3.11, Lean and a process-local provider credential; no
+private evaluator or training repository is required for this conformance
+task.
+
 Build the formal verification layer:
 
 ```bash
 lake build sovereignCheck promotionCheck canonicalIRCheck metrologyCheck \
   comparatorCheck pipeCheck evidenceActionCheck diagnosticCheck \
-  generalizationCheck
+  generalizationCheck demandMicrofactoryCheck
 ```
 
 ## Repository structure
 
 ```text
 src/mechanogenesis_bench/  task, submission, verification and scoring ABI
+src/mechanogenesis_engine/ canonical IR, compiler and reference execution
 tasks/conformance/         executable protocol and evaluator fixtures
+tasks/simulation/          multi-stage product, demand and production tasks
 examples/                  minimal third-party submission example
 formal/lean/               Lean definitions, proofs and executable checkers
 docs/                      architecture, standards, scoring and roadmap
@@ -123,7 +176,8 @@ tests/                     fail-closed, adversarial and end-to-end tests
 Read the [architecture](docs/ARCHITECTURE.md),
 [Task Standard](docs/TASK_STANDARD.md), [Scoring](docs/SCORING.md),
 [Generalization Standard](docs/GENERALIZATION_STANDARD.md),
-[Physical RSI Standard](docs/PHYSICAL_RSI_STANDARD.md), and
+[Physical RSI Standard](docs/PHYSICAL_RSI_STANDARD.md),
+[Third-party model baselines](docs/THIRD_PARTY_BASELINES.md), and
 [status and roadmap](docs/STATUS_AND_ROADMAP.md). Each document has a linked
 Simplified Chinese edition.
 

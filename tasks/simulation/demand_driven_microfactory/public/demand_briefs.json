@@ -1,0 +1,19 @@
+{
+  "schema_version": "microfactory-demand-briefs/v1",
+  "briefs": [
+    {
+      "generation": 0,
+      "mission": "Develop a low-speed electric mobility product for mixed local logistics and assisted mobility use, and manufacture reusable production tooling for the next product generation.",
+      "explicit_needs": ["payload", "useful local range", "safe low-speed operation", "field serviceability"],
+      "unresolved_tradeoff": "capital spent on today's product competes with capital spent on reusable mechanical, electronics and battery production operators",
+      "future_demand_status": "sealed"
+    },
+    {
+      "generation": 1,
+      "mission": "Respond to the registered post-trial demand shift while using the exact operator bundle manufactured in generation 0; produce a more accessible, repairable and weather-tolerant successor product and improve the production cell again.",
+      "explicit_needs": ["lower access burden", "faster field repair", "rain tolerance", "continued useful range"],
+      "unresolved_tradeoff": "do not merely maximize one visible attribute; preserve physical safety and successor-production value",
+      "future_demand_status": "not_applicable"
+    }
+  ]
+}

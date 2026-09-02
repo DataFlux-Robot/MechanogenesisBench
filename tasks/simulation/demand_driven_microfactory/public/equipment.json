@@ -1,0 +1,8 @@
+{
+  "fabrication_processes": [
+    {"id": "manual_mill_and_drill", "kind": "mechanical_fixture"},
+    {"id": "manual_pogo_fixture_assembly", "kind": "pcb_test_fixture"},
+    {"id": "bench_supply_calibration", "kind": "battery_calibration"},
+    {"id": "low_speed_platform_assembly", "kind": "product_assembly"}
+  ]
+}

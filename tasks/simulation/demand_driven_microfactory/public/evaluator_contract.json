@@ -1,0 +1,16 @@
+{
+  "schema_version": "demand-microfactory-evaluator-contract/v1",
+  "capital_budget_milliusd": [65000000, 75000000],
+  "maximum_demand_calibration_error_ppm": [250000, 300000],
+  "minimum_product_utility_micro": [700000, 780000],
+  "minimum_demand_update_gain_ppm": 400000,
+  "minimum_inheritance_advantage_ppm": 50000,
+  "minimum_robustness_pass_rate_ppm": 800000,
+  "lifecycle_value_milliusd_per_utility_micro": 300,
+  "required_operator_channels": [
+    "mechanical_position_error_um",
+    "pcb_escape_rate_ppm",
+    "battery_calibration_error_mv"
+  ],
+  "surprise_label_policy": "synthetic outcomes may emit synthetic_positive_surprise_proxy only; human_endorsed_positive_surprise is always false without an authorized human adapter"
+}

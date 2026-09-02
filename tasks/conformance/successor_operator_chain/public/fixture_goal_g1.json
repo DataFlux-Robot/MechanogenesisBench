@@ -1,0 +1,11 @@
+{
+  "max_worst_case_error_um": 120,
+  "base_min_size_um": [120000, 80000, 10000],
+  "minimum_edge_margin_um": 10000,
+  "workpiece_span_um": 60000,
+  "insert_depth_um": 3000,
+  "qualification_transfer_error_um": 10,
+  "pin_spacing_candidates_um": [70000, 80000, 90000],
+  "bore_clearance_candidates_um": [5, 10, 15],
+  "reference_y_candidates_um": [15000, 20000, 25000]
+}

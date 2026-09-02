@@ -1,0 +1,8 @@
+{
+  "materials": ["aluminum_6061_model", "tool_steel_model"],
+  "lots": [
+    "aluminum_blank_125x85x12 x2",
+    "locator_pin_6x15 x4",
+    "reference_post_8x25 x2"
+  ]
+}
