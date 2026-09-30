@@ -9,6 +9,8 @@
 | 排名 | 模型 | 综合评分 | 两代链 | 需求工厂 | 鲁棒率 | 需求校准 | 计分运行 |
 |---|---|---|---|---|---|---|---|
 | 1 | **glm-5.3-flash** | **82.4** | 100.0 | 64.8 | 100% | 86% | 5 |
+| 2 | glm-5.2 | 66.2 | 100.0 | 32.4 | 100% | 81% | 5 |
+| 3 | glm-5.1 | 50.0 | 100.0 | 0.0 | 100% | — | 5 |
 | — | *Reference（确定性，非 LLM 基线）* | 100.0* | 100.0 | — | 100% | — | 1 |
 
 **综合评分**方法论对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)

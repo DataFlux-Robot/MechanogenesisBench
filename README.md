@@ -10,6 +10,8 @@ physical systems.**
 | Rank | Model | Composite | Two-gen chain | Demand factory | Robustness | Calibration | Scored runs |
 |---|---|---|---|---|---|---|---|
 | 1 | **glm-5.3-flash** | **82.4** | 100.0 | 64.8 | 100% | 86% | 5 |
+| 2 | glm-5.2 | 66.2 | 100.0 | 32.4 | 100% | 81% | 5 |
+| 3 | glm-5.1 | 50.0 | 100.0 | 0.0 | 100% | — | 5 |
 | — | *Reference (deterministic, non-LLM baseline)* | 100.0* | 100.0 | — | 100% | — | 1 |
 
 **Composite score** (methodology follows the Artificial Analysis Intelligence Index practice:

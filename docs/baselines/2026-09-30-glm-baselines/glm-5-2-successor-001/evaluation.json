@@ -1,0 +1,34 @@
+{
+  "decisions": [
+    {
+      "accepted": true,
+      "after_lower": -140.0,
+      "artifact_hash": "sha256:32c7c3b64dfb5e5640506db29ed69f05ebd81f9f198d31c76ee3c5dd35bbea7a",
+      "before_upper": -800.0,
+      "evidence_tier": "conformance",
+      "index": 0,
+      "margin": 1.0,
+      "net_value": 299225.0,
+      "robustness_pass_rate": 1.0,
+      "rrc_budget_rate_delta": 0.0,
+      "rrc_time_rate_delta": 0.0
+    },
+    {
+      "accepted": true,
+      "after_lower": -220.0,
+      "artifact_hash": "sha256:ad7d577e6fde9a808f9521c01ac5cd792a12fb0b8193d5926b83c26d4c9a580e",
+      "before_upper": -880.0,
+      "evidence_tier": "conformance",
+      "index": 1,
+      "margin": 1.0,
+      "net_value": 299225.0,
+      "robustness_pass_rate": 1.0,
+      "rrc_budget_rate_delta": 0.0,
+      "rrc_time_rate_delta": 0.0
+    }
+  ],
+  "evaluator_digest": "sha256:2f2b8219b380f9bd0279d5a5a00845ef54ea8e8debe07c44ecb307c0fe5bd6e4",
+  "schema_version": "0.1",
+  "task_id": "conformance.successor_operator_chain",
+  "task_package_digest": "sha256:d9ad30774170e302bf0f5dcc53409399b4d59f5a3ed9de6e2b6fa4e74a0d5f09"
+}
