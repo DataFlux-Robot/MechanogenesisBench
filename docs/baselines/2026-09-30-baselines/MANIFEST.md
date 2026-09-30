@@ -25,3 +25,5 @@ verification.json, score.json, evaluation.json as produced by `mbench run/verify
 | mimo-v2-6-flash-demand2-stateless-001 | demand_driven_microfactory | FAIL (budget; scored 0) |
 | mimo-v2-6-flash-demand2-history-001 | demand_driven_microfactory | PASS |
 | mimo-v2-6-flash-demand2-history-002 | demand_driven_microfactory | system_timeout (wall budget; excluded) |
+| glm-5-3-successor-001/002 | successor_operator_chain | PASS ×2 |
+| glm-5-3-demand-* (3 runs) | demand_driven_microfactory | FAIL ×3 (1 budget, 2 range; scored 0) |

@@ -22,9 +22,12 @@ two transport-side failures with no completed model call). Recompute:
 
 Current composites: glm-5.3-flash = **82.4**; mimo-v2.6-flash = **74.2** (chain 100.0;
 demand 48.3 over 2 scored runs — one pass at 96.7, one budget failure at 0, one timeout
-excluded); glm-5.2 = **66.2**; glm-5.1 = **50.0**; mimo-v2.6-pro = **50.0** (chain 100.0;
-demand 0.0 over 3 scored runs, all model-decision failures); reference = 100.0 (single
-task). All model-decision failure runs score 0 and stay in the denominators. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
+excluded); glm-5.2 = **66.2**; glm-5.3 = glm-5.1 = mimo-v2.6-pro = **50.0** (chain 100.0
+each; demand 0.0 over 3 scored runs, all model-decision failures — budget or field-range);
+reference = 100.0 (single task). All model-decision failure runs score 0 and stay in the
+denominators. Cross-vendor pattern at n=3 attempts per model: every flagship/base model
+failed all demand-factory attempts on budget/field discipline while two of three
+flash-tier models passed at least once — flagships solve the chain but overspend. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
 graded 0-100 component scores from independently executed runs.
 
 MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
@@ -48,6 +51,7 @@ re-execution by the trusted evaluator, and an accepted `sovereignCheck` certific
 | OpenAI-compatible adapter | glm-5.1 | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | mimo-v2.6-pro | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | mimo-v2.6-flash | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
+| OpenAI-compatible adapter | glm-5.3 | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 
 ## simulation.demand_driven_microfactory (demand belief + two-generation inheritance)
 
@@ -64,6 +68,7 @@ demand-update gain ≥ 400k ppm, inheritance advantage ≥ 50k ppm, and an accep
 | OpenAI-compatible adapter | glm-5.1 | all modes | 0/3 | — | — | — | — | 2026-09-30 |
 | OpenAI-compatible adapter | mimo-v2.6-flash | mixed | 1/2 | 166k / 217k | 578,354 | ✓ | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | mimo-v2.6-pro | all modes | 0/3 | — | — | — | — | 2026-09-30 |
+| OpenAI-compatible adapter | glm-5.3 | all modes | 0/3 | — | — | — | — | 2026-09-30 |
 
 ## Failure log (transparent, archived in the evidence bundle)
 
@@ -82,6 +87,8 @@ demand-update gain ≥ 400k ppm, inheritance advantage ≥ 50k ppm, and an accep
 | mimo-v2-6-pro-demand2-history-002 | system_failed | model decision failure: plan field outside registered range (scored 0). |
 | mimo-v2-6-flash-demand2-stateless-001 | system_failed | model decision failure: capital budget exceeded (scored 0). |
 | mimo-v2-6-flash-demand2-history-002 | system_timeout | wall-budget timeout (environment-class, excluded; no model-quality claim either way). |
+| glm-5-3-demand-history-001 | system_failed | model decision failure: capital budget exceeded (scored 0). |
+| glm-5-3-demand-stateless-001, glm-5-3-demand-history-002 | system_failed | model decision failure: plan fields outside registered range (scored 0). |
 
 ## Reproduction
 
