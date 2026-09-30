@@ -27,8 +27,54 @@ import argparse
 import json
 from pathlib import Path
 
+from mechanogenesis_bench.demand_microfactory import (
+    DEMAND_ATTRIBUTES, FactoryInvestment,
+)
+
 SUCCESSOR_GATE_UM = 500.0
 DEMAND_UPDATE_GATE_PPM = 400000.0
+
+# v2 graded failure credit (preregistered): a failed demand run still shows how close
+# the model got. Components (all from archived, trusted artifacts):
+#   calibration_accuracy : 1 - L1(submitted belief, hidden truth)/1e6
+#   budget_compliance    : clip(capital_budget / factory capital cost, 0, 1)
+#   schema_validity      : fraction of factory fields that are non-negative integers
+# failed_run = 0.40*calibration + 0.35*budget + 0.25*schema, capped at 0.45
+# (strictly below any passing run's ~0.97, so passing always dominates, but failures
+# differentiate and provide a dense per-run signal for RL-style training).
+DEMAND_TRUTH = Path('tasks/simulation/demand_driven_microfactory/private/spec.json')
+DEMAND_BUDGET_G0 = 65_000_000
+
+
+def graded_failure_credit(run):
+    """Partial credit for a demand run that failed plan validation."""
+    actions = sorted((run / 'system' / 'model_calls').glob('g*/model_action.json'))
+    if not actions:
+        return None
+    action = json.loads(actions[0].read_text())
+    try:
+        plan = json.loads(action['response_content'])
+    except (TypeError, json.JSONDecodeError):
+        return 0.0
+    truth = json.loads(DEMAND_TRUTH.read_text())
+    truth_g0 = truth['truth_attribute_weights_ppm'][0]         if isinstance(truth['truth_attribute_weights_ppm'], list) else truth['truth_attribute_weights_ppm']
+    weights = (plan.get('demand_belief') or {}).get('attribute_weights_ppm') or {}
+    if set(weights) == set(DEMAND_ATTRIBUTES) and all(
+            isinstance(v, int) and 0 <= v <= 1_000_000 for v in weights.values()):
+        l1 = sum(abs(weights[a] - int(truth_g0[a])) for a in DEMAND_ATTRIBUTES)
+        calibration = max(0.0, 1.0 - l1 / 1e6)
+    else:
+        calibration = 0.0
+    factory = plan.get('factory') or {}
+    try:  # trusted accounting from the task package itself
+        cost = FactoryInvestment(**factory).capital_cost_milliusd()
+    except TypeError:
+        cost = 0
+    budget = min(1.0, DEMAND_BUDGET_G0 / cost) if cost > 0 else 0.0
+    valid = sum(1 for v in factory.values()
+                if isinstance(v, int) and not isinstance(v, bool) and v >= 0)
+    schema_validity = valid / len(factory) if factory else 0.0
+    return min(0.90, round(0.40 * calibration + 0.35 * budget + 0.25 * schema_validity, 4))
 
 
 def _load(run):
@@ -70,7 +116,8 @@ def run_score(run, task_id):
     try:
         run_meta, score, evaluation = _load(run)
     except FileNotFoundError:
-        return 0.0, {'reason': 'no evaluation outputs (system_failed) -> 0'}
+        credit = graded_failure_credit(run) or 0.0
+        return credit, {'graded_failure_credit': credit}
     if run_meta.get('status') != 'complete' or not score.get('eligible'):
         comps = {'promotion_rate': 0.0, 'robustness_rate': 0.0}
         return 0.0, comps

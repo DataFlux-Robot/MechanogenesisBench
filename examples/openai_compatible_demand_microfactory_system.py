@@ -143,6 +143,7 @@ def generate_plan(
                     "model": model,
                     "error_type": type(error).__name__,
                     "error": str(error),
+                    "response_content": generated.content,
                     "recorded_at": datetime.now(timezone.utc).isoformat(),
                 },
             )

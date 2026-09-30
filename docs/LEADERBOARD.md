@@ -15,19 +15,25 @@ rate or threshold-attainment in [0,1] (no free weights, no model-dependent ancho
   calibration_accuracy = 1 - L1_error/1e6; update_gain_attainment = min(gain/400000ppm, 1);
   lineage_exactness in {0,1}.
 
-Model-decision failures score 0 and remain in the denominator. Excluded runs must carry a
+Model-decision failures receive **graded partial credit** (v2.1) computed only from
+archived, trusted artifacts of the failed run: `0.40 x calibration_accuracy + 0.35 x
+budget_compliance + 0.25 x schema_validity`, capped at 0.90 (below the ~0.97 passing
+floor, so passing always dominates). Calibration is scored against the hidden truth even
+when the factory plan is rejected; budget compliance uses the task package's own
+`FactoryInvestment.capital_cost_milliusd()` accounting. Parse-level failures (no archived
+plan) floor at 0 — the example now archives raw responses on failed attempts so future
+runs differentiate there too. **Discrimination requirement: no unbroken ties** — the
+per-run graded score doubles as a dense reward signal for RL-style training. Excluded runs must carry a
 failure-log justification (this round: one policy-deviation run under non-declared sampling;
 two transport-side failures with no completed model call). Recompute:
 `python tools/composite_score.py --runs runs/<...> --exclude <...>`.
 
-Current composites: glm-5.3-flash = **82.4**; mimo-v2.6-flash = **74.2** (chain 100.0;
-demand 48.3 over 2 scored runs — one pass at 96.7, one budget failure at 0, one timeout
-excluded); glm-5.2 = **66.2**; glm-5.3 = glm-5.1 = mimo-v2.6-pro = **50.0** (chain 100.0
-each; demand 0.0 over 3 scored runs, all model-decision failures — budget or field-range);
-reference = 100.0 (single task). All model-decision failure runs score 0 and stay in the
-denominators. Cross-vendor pattern at n=3 attempts per model: every flagship/base model
-failed all demand-factory attempts on budget/field discipline while two of three
-flash-tier models passed at least once — flagships solve the chain but overspend. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
+Current composites (v2.1 graded scoring, no ties): glm-5.3-flash = **92.3**;
+mimo-v2.6-flash = **89.0**; glm-5.2 = **76.1**; mimo-v2.6-pro = **69.3**; glm-5.3 =
+**59.8**; glm-5.1 = **59.4**; reference = 100.0 (single task). Cross-vendor pattern at
+n=3 attempts per model: flagship/base models solve the chain but fail demand-factory
+budget/field discipline, while flash-tier models pass it at least once; graded failure
+credit now separates even the all-fail flagships by how close each attempt got. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
 graded 0-100 component scores from independently executed runs.
 
 MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
