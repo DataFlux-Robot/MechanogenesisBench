@@ -183,3 +183,12 @@ persona model may generate stress cases and population hypotheses; only
 authorized human observations can close calibration or positive-surprise
 claims. This makes demand perception, closure and guidance measurable without
 turning simulated approval into ground truth.
+
+## Anthropic-protocol-only keys (transport shim)
+
+Providers whose keys have Anthropic-channel quota only (e.g. some Z.ai `glm-*` keys) can still run
+the unmodified OpenAI-compatible adapter through the local transport shim
+`tools/openai_anthropic_shim.py`: point `MBENCH_API_ENDPOINT` at the shim, which forwards to the
+Anthropic `/v1/messages` endpoint, echoes the requested model id, and unwraps at most one complete
+markdown fence (mirroring native `response_format=json_object`). Scoring, receipts and replay are
+unchanged. See `docs/LEADERBOARD.md` §Reproduction for the full command.

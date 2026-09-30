@@ -1,0 +1,191 @@
+{
+  "decisions": [
+    {
+      "accepted": true,
+      "after_lower": 706.31,
+      "artifact_hash": "sha256:5499801a019451116302bc2cb3f30c9ebfe751f630f5fc1bf485a6601d730c75",
+      "before_upper": 0.0,
+      "evidence_tier": "simulation",
+      "index": 0,
+      "margin": 1.0,
+      "net_value": 146703000.0,
+      "robustness_pass_rate": 1.0,
+      "rrc_budget_rate_delta": 0.0,
+      "rrc_time_rate_delta": 0.0
+    },
+    {
+      "accepted": true,
+      "after_lower": 874.427,
+      "artifact_hash": "sha256:b2fc1029271fb6e9211044181985d3915a3ba11be2f31ca83ba08c2e22ca6b4e",
+      "before_upper": 706.31,
+      "evidence_tier": "simulation",
+      "index": 1,
+      "margin": 1.0,
+      "net_value": 194154100.0,
+      "robustness_pass_rate": 1.0,
+      "rrc_budget_rate_delta": 0.133607,
+      "rrc_time_rate_delta": 0.0
+    }
+  ],
+  "evaluator_digest": "sha256:622e2585a2e9ab7a3a0c9c564a2bb346bb279f8417e5f97536b96f6e41773c1c",
+  "lean_certificate": {
+    "path": "demand_microfactory_certificate.json",
+    "sha256": "sha256:8afacb1b4633dfdc0ecbe62b086814fc4fdd292dee0c5d5bad3653c9a1ac1799",
+    "status": "accepted"
+  },
+  "microfactory_metrics": {
+    "demand_update_gain_ppm": 680000,
+    "exact_operator_inheritance": true,
+    "generations": [
+      {
+        "demand_calibration_error_ppm": 140000,
+        "generation": 0,
+        "holdout_metrics": [
+          {
+            "accessibility_score_ppm": 736000,
+            "assembly_error_um": 845,
+            "battery_error_mv": 125,
+            "cargo_score_ppm": 870000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 884600,
+            "product_hash": "sha256:3a1fb0c1c045420d028849241c0197bd80a68156a1b0ace014dbbe1004c309b8",
+            "range_m": 37100,
+            "range_score_ppm": 742000,
+            "repairability_score_ppm": 982500,
+            "stability_margin_milli": 465500,
+            "stopping_distance_mm": 2892,
+            "vehicle_mass_kg": 57,
+            "weather_score_ppm": 800000
+          },
+          {
+            "accessibility_score_ppm": 736000,
+            "assembly_error_um": 915,
+            "battery_error_mv": 140,
+            "cargo_score_ppm": 870000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 866900,
+            "product_hash": "sha256:4114514e5bcdf827398dee5511caac071fc7a4d227c5504da7ae5dafc1f06eec",
+            "range_m": 36800,
+            "range_score_ppm": 736000,
+            "repairability_score_ppm": 982500,
+            "stability_margin_milli": 458500,
+            "stopping_distance_mm": 2892,
+            "vehicle_mass_kg": 57,
+            "weather_score_ppm": 800000
+          },
+          {
+            "accessibility_score_ppm": 736000,
+            "assembly_error_um": 985,
+            "battery_error_mv": 165,
+            "cargo_score_ppm": 870000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 845800,
+            "product_hash": "sha256:b168b68e909bf973bfbaadb9ef1afca89cf21f2ec246bdb161afab44ad969e73",
+            "range_m": 36300,
+            "range_score_ppm": 726000,
+            "repairability_score_ppm": 982500,
+            "stability_margin_milli": 451500,
+            "stopping_distance_mm": 2892,
+            "vehicle_mass_kg": 57,
+            "weather_score_ppm": 800000
+          }
+        ],
+        "human_endorsed_positive_surprise": false,
+        "input_operator_bundle_hash": "sha256:7ac871fe946a22a85b951cd7f1ec7d2e2d7ca3e96a7c07d97e6afaba7e82bf45",
+        "mean_outcome_brier_ppm2": 61800000000,
+        "minimum_product_utility_micro": 706310,
+        "output_operator_bundle_hash": "sha256:c07aeffbb9ffb5955d40a953044f1277a71e856cae5cf1c01c0b58f8c2b79ee4",
+        "plan_hash": "sha256:57482e6ef774a1fb670a32ea691e6046e3114e3ea8075cb1110d9ff53f87119a",
+        "robustness_pass_rate": 1.0,
+        "robustness_passes": 3,
+        "robustness_trials": 3,
+        "strict_operator_improvement": true,
+        "synthetic_positive_surprise_proxy": false
+      },
+      {
+        "demand_calibration_error_ppm": 140000,
+        "generation": 1,
+        "holdout_metrics": [
+          {
+            "accessibility_score_ppm": 836000,
+            "assembly_error_um": 175,
+            "battery_error_mv": 48,
+            "cargo_score_ppm": 665000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 1000000,
+            "product_hash": "sha256:8b50ae09d25c71bc074a167dd17aede16a85abc895c038a1a658ab85dfc92598",
+            "range_m": 39990,
+            "range_score_ppm": 799800,
+            "repairability_score_ppm": 1000000,
+            "stability_margin_milli": 576500,
+            "stopping_distance_mm": 3571,
+            "vehicle_mass_kg": 56,
+            "weather_score_ppm": 900000
+          },
+          {
+            "accessibility_score_ppm": 836000,
+            "assembly_error_um": 255,
+            "battery_error_mv": 65,
+            "cargo_score_ppm": 665000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 1000000,
+            "product_hash": "sha256:2b6b263be0972ec755a1817ce37fc40e09f9672aa152fca9573d6c5a8709a1cc",
+            "range_m": 39650,
+            "range_score_ppm": 793000,
+            "repairability_score_ppm": 1000000,
+            "stability_margin_milli": 568500,
+            "stopping_distance_mm": 3571,
+            "vehicle_mass_kg": 56,
+            "weather_score_ppm": 900000
+          },
+          {
+            "accessibility_score_ppm": 836000,
+            "assembly_error_um": 325,
+            "battery_error_mv": 95,
+            "cargo_score_ppm": 665000,
+            "electronics_reliability_ppm": 1000000,
+            "physical_pass": true,
+            "physical_quality_ppm": 991100,
+            "product_hash": "sha256:49f74e222747aee3f7a2e17b15425035d189f4dba508afc563cbc2182f7e32cb",
+            "range_m": 39050,
+            "range_score_ppm": 781000,
+            "repairability_score_ppm": 1000000,
+            "stability_margin_milli": 561500,
+            "stopping_distance_mm": 3571,
+            "vehicle_mass_kg": 56,
+            "weather_score_ppm": 900000
+          }
+        ],
+        "human_endorsed_positive_surprise": false,
+        "input_operator_bundle_hash": "sha256:c07aeffbb9ffb5955d40a953044f1277a71e856cae5cf1c01c0b58f8c2b79ee4",
+        "mean_outcome_brier_ppm2": 1215200000000,
+        "minimum_product_utility_micro": 874427,
+        "output_operator_bundle_hash": "sha256:1580d7b3adaa4ef684b7eeab5744708d0dbbc2e0e424e516ac44116508f2d0bb",
+        "plan_hash": "sha256:85cb14a7ec52911e0ec9ec4e79c1e364a9684e80df43726b01aac0c4d6381fce",
+        "robustness_pass_rate": 1.0,
+        "robustness_passes": 3,
+        "robustness_trials": 3,
+        "strict_operator_improvement": true,
+        "synthetic_positive_surprise_proxy": true
+      }
+    ],
+    "human_endorsed_positive_surprise_count": 0,
+    "inheritance_advantage_ppm": 133607,
+    "inventory_remaining_mg": {
+      "aluminum_6061": 2100000,
+      "battery_fixture_copper": 280000,
+      "mobility_platform_components": 37000000,
+      "pcb_and_components": 360000
+    },
+    "structural_failures": [],
+    "synthetic_positive_surprise_proxy_count": 1
+  },
+  "schema_version": "0.1",
+  "task_id": "simulation.demand_driven_microfactory",
+  "task_package_digest": "sha256:e1735b59a7c96e662861a5d940d66304a15732971a3c1f18e5a81f81a79da6b1"
+}
