@@ -6,17 +6,17 @@
 
 ## 排行榜（Leaderboard）
 
-| 排名 | 模型 | 综合评分 | 两代链 | 需求工厂 | 需求校准 |
+| 层 | 模型 | 需求通过 | 需求校准 | 预算合规 | 支配模型数 |
 |---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | **92.3** | 100.0 | 84.6 | 86% |
-| 2 | mimo-v2.6-flash | 89.0 | 100.0 | 78.0 | 81% |
-| 3 | glm-5.2 | 76.1 | 100.0 | 52.1 | 81% |
-| 4 | mimo-v2.6-pro | 69.3 | 100.0 | 38.6 | — |
-| 5 | glm-5.3 | 59.8 | 100.0 | 19.5 | — |
-| 6 | glm-5.1 | 59.4 | 100.0 | 18.8 | — |
-| — | *Reference（确定性，非 LLM 基线）* | 100.0* | 100.0 | — | — |
+| 1 | **glm-5.3-flash** | 2/3 | 0.86 | 0.67 | 5 |
+| 2 | mimo-v2.6-flash | 1/2 | 0.84 | 0.50 | 4 |
+| 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
+| 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
+| 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |
+| 6 | glm-5.1 | 0/3 | 0.26 | 0.00 | 0 |
+| — | *Reference（确定性，非 LLM 基线；仅链任务）* | — | — | — | — |
 
-**综合评分**方法论对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
+**排名方法**对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
 （分级 0-100 分量聚合、独立运行、不接受自报分数）：每个分量都是任务评测器**原生定义的
 率值/门槛达成度**（晋升率、鲁棒率、继承优势达成度；需求任务另含校准准确率、更新增益
 达成度、血统精确性）。运行分=分量算术平均；任务分=运行分均值；综合评分=任务分均值。

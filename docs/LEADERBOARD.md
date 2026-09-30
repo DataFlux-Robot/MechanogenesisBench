@@ -5,42 +5,31 @@ Reproduce: see [§Reproduction](#reproduction) · Submit: see [§Submitting a sy
 
 ## How to read this table
 
-**Composite score** = mean of task scores; task score = mean of run scores x 100; run score =
-arithmetic mean of that task's preregistered component scores, each a NATIVE evaluator-defined
-rate or threshold-attainment in [0,1] (no free weights, no model-dependent anchors):
+**Ranking = Pareto layers over a 10-component vector; no weights anywhere** (v3). The only
+aggregation is the arithmetic mean of the SAME component across a model's runs. Ordering
+between adjacent layers rests on verified componentwise dominance (>= on all ten, > on at
+least one); models in the same layer are reported as incomparable, not equal. Components:
+chain promotion / robustness / inheritance attainment; demand promotion / robustness /
+calibration accuracy / update-gain attainment / lineage exactness; and two failure-gradient
+components (budget compliance via the task package's own `capital_cost_milliusd()`,
+schema validity), where passing runs count 1.0 and model-decision failures contribute
+graded values from archived artifacts. Recompute: `python tools/pareto_score.py --models
+name=run1,run2,...`. This is directly usable as a multi-objective selection signal
+(MAP-Elites / quality-diversity style) and each component is a separate dense reward
+channel for RL. The earlier weighted composite (`tools/composite_score.py`) is retained
+as a legacy convenience only and plays no role in ranking.
 
-- `conformance.successor_operator_chain`: promotion_rate = promotions/2; robustness_rate;
-  inheritance_attainment = min(capability_gain / 500um, 1).
-- `simulation.demand_driven_microfactory`: promotion_rate; robustness_rate;
-  calibration_accuracy = 1 - L1_error/1e6; update_gain_attainment = min(gain/400000ppm, 1);
-  lineage_exactness in {0,1}.
+Current layers (verified dominance chain; no incomparability emerged yet because no model
+shows a cross-component trade-off):
 
-Model-decision failures receive **graded partial credit** (v2.1) computed only from
-archived, trusted artifacts of the failed run: `0.40 x calibration_accuracy + 0.35 x
-budget_compliance + 0.25 x schema_validity`, capped at 0.90 (below the ~0.97 passing
-floor, so passing always dominates). Calibration is scored against the hidden truth even
-when the factory plan is rejected; budget compliance uses the task package's own
-`FactoryInvestment.capital_cost_milliusd()` accounting. Parse-level failures (no archived
-plan) floor at 0 — the example now archives raw responses on failed attempts so future
-runs differentiate there too. **Discrimination requirement: no unbroken ties** — the
-per-run graded score doubles as a dense reward signal for RL-style training. Excluded runs must carry a
-failure-log justification (this round: one policy-deviation run under non-declared sampling;
-two transport-side failures with no completed model call). Recompute:
-`python tools/composite_score.py --runs runs/<...> --exclude <...>`.
-
-Current composites (v2.1 graded scoring, no ties): glm-5.3-flash = **92.3**;
-mimo-v2.6-flash = **89.0**; glm-5.2 = **76.1**; mimo-v2.6-pro = **69.3**; glm-5.3 =
-**59.8**; glm-5.1 = **59.4**; reference = 100.0 (single task). Cross-vendor pattern at
-n=3 attempts per model: flagship/base models solve the chain but fail demand-factory
-budget/field discipline, while flash-tier models pass it at least once; graded failure
-credit now separates even the all-fail flagships by how close each attempt got. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
-graded 0-100 component scores from independently executed runs.
-
-MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
-when every preregistered promotion gate holds *and* the Lean certificate for the executed chain is
-accepted by the pinned checker. Pass rate is `passed runs / attempted runs` under the declared
-budget and sampling policy; failed runs are listed in the [failure log](#failure-log) rather than
-dropped. Cost columns are per-run model-side accounting from archived provider receipts.
+| Layer | Model | demand pass | calibration | budget | schema | dominates |
+|---|---|---|---|---|---|---|
+| 1 | glm-5.3-flash | 0.667 | 0.860 | 0.667 | 1.000 | 5 |
+| 2 | mimo-v2.6-flash | 0.500 | 0.845 | 0.500 | 1.000 | 4 |
+| 3 | glm-5.2 | 0.333 | 0.571 | 0.333 | 0.667 | 3 |
+| 4 | mimo-v2.6-pro | 0.000 | 0.549 | 0.000 | 0.667 | 2 |
+| 5 | glm-5.3 | 0.000 | 0.280 | 0.000 | 0.333 | 1 |
+| 6 | glm-5.1 | 0.000 | 0.262 | 0.000 | 0.333 | 0 |
 
 ## conformance.successor_operator_chain (two-generation operator chain)
 

@@ -7,17 +7,17 @@ physical systems.**
 
 ## Leaderboard
 
-| Rank | Model | Composite | Two-gen chain | Demand factory | Calibration |
+| Layer | Model | Demand pass | Calibration | Budget compliance | Dominates |
 |---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | **92.3** | 100.0 | 84.6 | 86% |
-| 2 | mimo-v2.6-flash | 89.0 | 100.0 | 78.0 | 81% |
-| 3 | glm-5.2 | 76.1 | 100.0 | 52.1 | 81% |
-| 4 | mimo-v2.6-pro | 69.3 | 100.0 | 38.6 | — |
-| 5 | glm-5.3 | 59.8 | 100.0 | 19.5 | — |
-| 6 | glm-5.1 | 59.4 | 100.0 | 18.8 | — |
-| — | *Reference (deterministic, non-LLM baseline)* | 100.0* | 100.0 | — | — |
+| 1 | **glm-5.3-flash** | 2/3 | 0.86 | 0.67 | 5 |
+| 2 | mimo-v2.6-flash | 1/2 | 0.84 | 0.50 | 4 |
+| 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
+| 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
+| 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |
+| 6 | glm-5.1 | 0/3 | 0.26 | 0.00 | 0 |
+| — | *Reference (deterministic, non-LLM baseline; chain task only)* | — | — | — | — |
 
-**Composite score** (methodology follows the Artificial Analysis Intelligence Index practice:
+**Ranking method** (methodology follows the Artificial Analysis Intelligence Index practice:
 aggregate graded 0-100 component scores, independently run, no self-reported numbers) — every
 component is a **native rate or threshold-attainment defined by the task evaluator** (promotion
 rate, robustness rate, inheritance-advantage attainment; the demand task adds calibration
