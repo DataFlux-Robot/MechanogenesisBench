@@ -4,6 +4,16 @@
 
 **一个面向物理系统设计、构造、实验与自我改进智能体的 Lean 原生 benchmark。**
 
+## 排行榜（Leaderboard）
+
+| 系统 | 模型 | successor_operator_chain | demand_driven_microfactory |
+|---|---|---|---|
+| Reference（确定性，非 LLM） | — | **1/1 通过** | — |
+| OpenAI 兼容适配器 | glm-5.3-flash | **2/2 通过** | **2/3 通过** |
+
+完整向量记分卡、失败日志、复现命令与提交流程见
+**[docs/LEADERBOARD.md](docs/LEADERBOARD.md)**（首个第三方模型条目，2026-09-30）。
+
 ## 我们的核心关键：测量物理递归自我改进
 
 物理递归自我改进（Physical Recursive Self-Improvement，PRSI）是指：系统把一次真实

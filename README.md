@@ -5,6 +5,17 @@
 **A Lean-native benchmark for agents that design, build, test and improve
 physical systems.**
 
+## Leaderboard
+
+| System | Model | successor_operator_chain | demand_driven_microfactory |
+|---|---|---|---|
+| Reference (deterministic, non-LLM) | — | **1/1 PASS** | — |
+| OpenAI-compatible adapter | glm-5.3-flash | **2/2 PASS** | **2/3 PASS** |
+
+Full vector scorecards, failure log, reproduction commands and the submission
+policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)** (first third-party model
+entry added 2026-09-30).
+
 ## The core idea: measure Physical Recursive Self-Improvement
 
 Physical Recursive Self-Improvement (PRSI) means that a system uses the result
