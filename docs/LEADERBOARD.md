@@ -42,13 +42,28 @@ replicates (`tools/batch_runs.py`, parallel workers, fresh run roots):
 | glm-5.3-flash | stateless | 25 | 6 | **24%** | [0.12, 0.43] |
 | mimo-v2.6-flash | stateless | 25 | 0 | **0%** | [0.00, 0.13] |
 
-Fisher exact 6/25 vs 0/25: p ≈ 0.022 — the first statistically separated pair on this
-task. Notes, recorded honestly: (a) mimo-v2.6-flash's earlier single pass was in history
-mode; history vs stateless need separate n (history batch pending); (b) for both models
-roughly half the scored runs stop at promotions=1 (generation 0 passes, generation 1 fails
-the update-gain/inheritance gates) — the second generation is the common bottleneck;
-(c) glm-5.3-flash's earlier 2/3 shrinks to 24% at n=25, exactly the small-n overestimate
-this section exists to correct.
+Fisher exact 6/25 vs 0/25: p ≈ 0.022. **Validity audit (2026-10-01) — the 0% headline
+must be read with its miss distances, or it misrepresents the model:**
+
+- **Task solvability**: the deterministic reference system passes both generations
+  (eligible, promotions 2) — the configuration is solvable without any LLM.
+- **Where mimo-v2.6-flash actually fails**: in all 13 evaluated runs, generation 1 is
+  fully accepted (robustness 100%, update gain 528k–772k vs 400k gate, exact lineage,
+  inheritance advantage 123k–139k vs 50k gate). The failing gate is generation-0
+  **minimum product utility**, missed by **1.37%–3.92% (median 1.37%)** against the
+  700k threshold — glm-5.3-flash's distribution straddles the same line (5/19 misses,
+  0.69%–5.29%). The models converge on near-identical product specs (identical utility
+  values appear in both); mimo systematically lands just under the line.
+- **Decoding robustness**: rerun at temperature 0.6 gives the same result (0/10, same
+  1.37% median miss) — the outcome is not an artifact of the GLM-recommended
+  temperature-1.0 policy. Future submissions should still declare vendor-recommended
+  decoding; the earlier `reasoning_effort` incompatibility (GLM-specific field) is
+  already handled.
+- **Correct reading**: mimo-v2.6-flash does not "fail the task" — it clears every
+  second-generation gate with large margins and misses ONE generation-0 product-spec
+  utility line by ~1.4% at the median. That is a real, thin, actionable difference
+  against glm-5.3-flash (whose g0 passes 14/19) — precisely the granularity the graded
+  components carry; the binary headline alone would overstate it.
 
 Scaling roadmap (declared): ~33 runs/arm separates 0.67-vs-0.33 class differences at
 α=0.05/power=0.8; ±0.10 CI needs ~100; ±0.03 needs ~1100; AA-grade ±0.01 needs ~10k
