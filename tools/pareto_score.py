@@ -31,10 +31,25 @@ DEMAND_BUDGET_G0 = 65_000_000
 SUCCESSOR_GATE_UM = 500.0
 DEMAND_UPDATE_GATE_PPM = 400000.0
 
-VECTORS = ('chain_promotion', 'chain_robustness', 'chain_inheritance',
-           'demand_promotion', 'demand_robustness', 'demand_calibration',
-           'demand_update_gain', 'demand_lineage',
+# Continuity guarantee (2026-10-01): every displayed quantity is a continuous
+# attainment ratio clip(measured/gate, 0, 1); unmeasured components are reported
+# as None (displayed as an em dash), never floored to 0. Discrete pass counts are
+# diagnostics only and never appear as ranking/display columns.
+VECTORS = ('chain_robustness', 'chain_inheritance',
+           'g0_utility_attainment', 'g1_calibration', 'demand_robustness',
+           'update_gain_attainment', 'lineage_exactness',
            'budget_compliance', 'schema_validity')
+G0_UTILITY_GATE = 700_000
+
+
+def expand(paths):
+    out = []
+    for token in paths:
+        if '*' in token:
+            out += sorted(str(x) for x in Path('.').glob(token) if x.is_dir() and (x / 'run.json').exists())
+        else:
+            out.append(token)
+    return out
 
 
 def _load(run):
@@ -82,48 +97,52 @@ def model_vector(runs):
         run = Path(run)
         try:
             run_meta, score, evaluation = _load(run)
-            passed = run_meta.get('status') == 'complete' and score.get('eligible')
+            evaluated = True
         except FileNotFoundError:
             run_meta = json.loads((run / 'run.json').read_text())
-            passed = False
+            evaluation, score, evaluated = {}, {}, False
+        def put(bucket, key, value):
+            if value is not None:
+                bucket.setdefault(key, []).append(value)
         if 'successor' in run_meta['task_id']:
-            if passed:
-                row = {'promotion': score['promotions'] / 2,
-                       'robustness': score['robustness_pass_rate'],
-                       'inheritance': min((score.get('capability_gain') or 0.0) / SUCCESSOR_GATE_UM, 1.0)}
-            else:
-                row = {'promotion': 0.0, 'robustness': 0.0, 'inheritance': 0.0}
-            for k, v in row.items():
-                chain.setdefault(k, []).append(v)
+            put(chain, 'robustness', score.get('robustness_pass_rate') if score else None)
+            put(chain, 'inheritance', min((score.get('capability_gain') or 0.0) / SUCCESSOR_GATE_UM, 1.0) if score else None)
         else:
-            if passed:
+            gens = evaluation.get('microfactory_metrics', {}).get('generations', [])
+            if evaluated and gens:
+                u0 = gens[0].get('minimum_product_utility_micro')
+                err1 = gens[1].get('demand_calibration_error_ppm') if len(gens) > 1 else None
                 metrics = evaluation['microfactory_metrics']
-                gens = metrics.get('generations', [{}])
-                err = min((g.get('demand_calibration_error_ppm') or 1e6) for g in gens) if gens else 1e6
-                row = {'promotion': score['promotions'] / 2,
-                       'robustness': score['robustness_pass_rate'],
-                       'calibration': max(0.0, 1.0 - err / 1e6),
-                       'update_gain': min((metrics.get('demand_update_gain_ppm') or 0) / DEMAND_UPDATE_GATE_PPM, 1.0),
-                       'lineage': 1.0 if metrics.get('exact_operator_inheritance') else 0.0,
-                       'budget': 1.0, 'schema': 1.0}
+                put(demand, 'g0_utility', min(u0, G0_UTILITY_GATE) / G0_UTILITY_GATE if u0 is not None else None)
+                put(demand, 'g1_calibration', max(0.0, 1.0 - err1 / 1e6) if err1 is not None else None)
+                put(demand, 'robustness', score['robustness_pass_rate'])
+                put(demand, 'update_gain', min((metrics.get('demand_update_gain_ppm') or 0) / DEMAND_UPDATE_GATE_PPM, 1.0))
+                put(demand, 'lineage', 1.0 if metrics.get('exact_operator_inheritance') else 0.0)
+                put(demand, 'budget', 1.0)
+                put(demand, 'schema', 1.0)
             else:
                 cal, bud, sch = graded_failure(run)
-                row = {'promotion': 0.0, 'robustness': 0.0, 'calibration': cal,
-                       'update_gain': 0.0, 'lineage': 0.0, 'budget': bud, 'schema': sch}
-            for k, v in row.items():
-                demand.setdefault(k, []).append(v)
-    vec = {'chain_promotion': chain.get('promotion', [0.0]), 'chain_robustness': chain.get('robustness', [0.0]),
-           'chain_inheritance': chain.get('inheritance', [0.0]),
-           'demand_promotion': demand.get('promotion', [0.0]), 'demand_robustness': demand.get('robustness', [0.0]),
-           'demand_calibration': demand.get('calibration', [0.0]),
-           'demand_update_gain': demand.get('update_gain', [0.0]), 'demand_lineage': demand.get('lineage', [0.0]),
-           'budget_compliance': demand.get('budget', [0.0]), 'schema_validity': demand.get('schema', [0.0])}
-    return {k: round(sum(v) / len(v), 4) for k, v in vec.items()}, \
-        {k: len(v) for k, v in vec.items()}
+                put(demand, 'g1_calibration', cal if cal > 0 else None)
+                put(demand, 'budget', bud if bud > 0 else None)
+                put(demand, 'schema', sch if sch > 0 else None)
+    measured = {'chain_robustness': chain.get('robustness', []), 'chain_inheritance': chain.get('inheritance', []),
+                'g0_utility_attainment': demand.get('g0_utility', []),
+                'g1_calibration': demand.get('g1_calibration', []),
+                'demand_robustness': demand.get('robustness', []),
+                'update_gain_attainment': demand.get('update_gain', []),
+                'lineage_exactness': demand.get('lineage', []),
+                'budget_compliance': demand.get('budget', []),
+                'schema_validity': demand.get('schema', [])}
+    vec = {k: (round(sum(v) / len(v), 4) if v else 0.0) for k, v in measured.items()}
+    counts = {k: len(v) for k, v in measured.items()}
+    return vec, counts
 
 
 def dominates(a, b):
-    return all(a[k] >= b[k] for k in VECTORS) and any(a[k] > b[k] for k in VECTORS)
+    # Dominance judged only where both sides were measured; unmeasured (0-count)
+    # components are neutral, never punitive.
+    keys = [k for k in VECTORS if a['_n'][k] and b['_n'][k]] or list(VECTORS)
+    return all(a[k] >= b[k] for k in keys) and any(a[k] > b[k] for k in keys)
 
 
 def pareto_layers(models):
@@ -145,16 +164,29 @@ def main():
     models = {}
     for spec in args.models:
         name, runs = spec.split('=', 1)
-        vec, counts = model_vector(runs.split(','))
+        vec, counts = model_vector(expand(runs.split(',')))
+        vec['_n'] = counts
         models[name] = vec
-    layers = pareto_layers(models)
-    print('| Layer | Model | ' + ' | '.join(VECTORS) + ' | dominates |')
+    # Ranking requires minimum measurement depth; shallow models would otherwise
+    # hide behind unmeasured components (missing-data dominance artifact).
+    MIN_N = 10
+    HEADLINE = ('g0_utility_attainment', 'g1_calibration')
+    rankable = {n: v for n, v in models.items() if all(v['_n'][k] >= MIN_N for k in HEADLINE)}
+    unranked = {n: v for n, v in models.items() if n not in rankable}
+    models = rankable
+    layers = pareto_layers(models) if models else []
+    print('| Layer | Model | ' + ' | '.join(VECTORS) + ' (measured n) | dominates |')
     print('|---|---|' + '---|' * (len(VECTORS) + 1))
     for i, layer in enumerate(layers, 1):
         for name in layer:
             vec = models[name]
             dom = sum(dominates(vec, m) for m in models.values())
-            print(f'| {i} | **{name}** | ' + ' | '.join(f'{vec[k]:.3f}' for k in VECTORS) + f' | {dom} |')
+            counts = vec['_n']
+            cells = ' | '.join(f'{vec[k]:.3f} ({counts[k]})' if counts[k] else '—' for k in VECTORS)
+            print(f'| {i} | **{name}** | ' + cells + f' | {dom} |')
+    if unranked:
+        print('\nUnranked (fewer than %d measured headline runs; scale-up pending): %s'
+              % (MIN_N, ', '.join(sorted(unranked))))
     print('\nNo weights are used anywhere; same-layer models are incomparable, not equal.')
 
 

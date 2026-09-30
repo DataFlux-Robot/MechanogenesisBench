@@ -7,17 +7,20 @@ physical systems.**
 
 ## Leaderboard
 
-| Layer | Model | Demand pass | Calibration | Budget compliance | Dominates |
-|---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | 11/25 hist (44%) / 6/25 stateless (24%) | 0.86 | 0.67 | 5 |
-| 2 | mimo-v2.6-flash | 3/25 hist (12%) / 0/25 stateless‡ | 0.62 | 0.35 | 4 |
+| Layer | Model | U0 attainment | G1 calibration | Budget | Schema | Measured n |
+|---|---|---|---|---|---|---|
+| 1 | **glm-5.3-flash** | 0.995 | 0.822 | 1.000 | 1.000 | 43–52 |
+| 2 | mimo-v2.6-flash | 0.987 | 0.805 | 1.000 | 1.000 | 33–61 |
+| *Unranked* | glm-5.1 / glm-5.2 / glm-5.3 / mimo-v2.6-pro | — | — | — | — | <10 (scale-up pending) |
+
+‡ | 0.62 | 0.35 | 4 |
 | 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
 | 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
 | 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |
 | 6 | glm-5.1 | 0/3 | 0.26 | 0.00 | 0 |
 | — | *Reference (deterministic, non-LLM baseline; chain task only)* | — | — | — | — |
 
-‡ demand-factory column: models scaled to n=25 show the measured rate with Wilson 95% CI; unscaled rows remain small-n and carry almost no discrimination (see the Statistical power section).
+**Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 
 **Ranking method** (methodology follows the Artificial Analysis Intelligence Index practice:
 aggregate graded 0-100 component scores, independently run, no self-reported numbers) — every

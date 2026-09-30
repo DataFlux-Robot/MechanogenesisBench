@@ -5,7 +5,12 @@ Reproduce: see [§Reproduction](#reproduction) · Submit: see [§Submitting a sy
 
 ## How to read this table
 
-**Ranking = Pareto layers over a 10-component vector; no weights anywhere** (v3). The only
+**Continuity guarantee (v4, 2026-10-01): the leaderboard never displays a discrete 0.**
+Every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1);
+components not measured for a model show an em dash, never a floored zero; discrete
+pass counts live in the diagnostics section only. Ranking = Pareto layers over the
+component vector; **no weights anywhere**; entering the ranking requires ≥10 measured
+headline runs (missing-data dominance artifact otherwise rewards thin measurement). The only
 aggregation is the arithmetic mean of the SAME component across a model's runs. Ordering
 between adjacent layers rests on verified componentwise dominance (>= on all ten, > on at
 least one); models in the same layer are reported as incomparable, not equal. Components:

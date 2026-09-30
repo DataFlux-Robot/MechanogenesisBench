@@ -6,17 +6,20 @@
 
 ## 排行榜（Leaderboard）
 
-| 层 | 模型 | 需求通过 | 需求校准 | 预算合规 | 支配模型数 |
-|---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | 11/25 hist (44%) / 6/25 stateless (24%) | 0.86 | 0.67 | 5 |
-| 2 | mimo-v2.6-flash | 3/25 hist (12%) / 0/25 stateless‡ | 0.62 | 0.35 | 4 |
+| 层 | 模型 | U0 达成度 | G1 校准 | 预算 | Schema | 测量 n |
+|---|---|---|---|---|---|---|
+| 1 | **glm-5.3-flash** | 0.995 | 0.822 | 1.000 | 1.000 | 43–52 |
+| 2 | mimo-v2.6-flash | 0.987 | 0.805 | 1.000 | 1.000 | 33–61 |
+| *未排名* | glm-5.1 / glm-5.2 / glm-5.3 / mimo-v2.6-pro | — | — | — | — | <10（待扩样） |
+
+‡ | 0.62 | 0.35 | 4 |
 | 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
 | 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
 | 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |
 | 6 | glm-5.1 | 0/3 | 0.26 | 0.00 | 0 |
 | — | *Reference（确定性，非 LLM 基线；仅链任务）* | — | — | — | — |
 
-‡ demand-factory column: models scaled to n=25 show the measured rate with Wilson 95% CI; unscaled rows remain small-n and carry almost no discrimination (see the Statistical power section).
+**Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 
 **排名方法**对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
 （分级 0-100 分量聚合、独立运行、不接受自报分数）：每个分量都是任务评测器**原生定义的
