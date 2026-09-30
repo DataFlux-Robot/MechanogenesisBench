@@ -1,6 +1,6 @@
 # MechanogenesisBench Leaderboard
 
-Updated: 2026-09-30 · Evidence: [`docs/baselines/2026-09-30-glm-baselines/`](baselines/2026-09-30-glm-baselines/) ·
+Updated: 2026-09-30 · Evidence: [`docs/baselines/2026-09-30-baselines/`](baselines/2026-09-30-baselines/) ·
 Reproduce: see [§Reproduction](#reproduction) · Submit: see [§Submitting a system](#submitting-a-system)
 
 ## How to read this table
@@ -20,11 +20,11 @@ failure-log justification (this round: one policy-deviation run under non-declar
 two transport-side failures with no completed model call). Recompute:
 `python tools/composite_score.py --runs runs/<...> --exclude <...>`.
 
-Current composites: glm-5.3-flash = **82.4** (chain 100.0/2 runs; demand 64.8/3 runs,
-passing at 97.2); glm-5.2 = **66.2** (chain 100.0; demand 32.4 — one pass at 97.1, two
-model-decision failures at 0); glm-5.1 = **50.0** (chain 100.0; demand 0.0 — three
-model-decision failures); reference = 100.0 (single task). All failure runs scored 0 and
-kept in the denominators. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
+Current composites: glm-5.3-flash = **82.4**; mimo-v2.6-flash = **74.2** (chain 100.0;
+demand 48.3 over 2 scored runs — one pass at 96.7, one budget failure at 0, one timeout
+excluded); glm-5.2 = **66.2**; glm-5.1 = **50.0**; mimo-v2.6-pro = **50.0** (chain 100.0;
+demand 0.0 over 3 scored runs, all model-decision failures); reference = 100.0 (single
+task). All model-decision failure runs score 0 and stay in the denominators. Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
 graded 0-100 component scores from independently executed runs.
 
 MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
@@ -46,6 +46,8 @@ re-execution by the trusted evaluator, and an accepted `sovereignCheck` certific
 | OpenAI-compatible adapter | glm-5.3-flash | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | glm-5.2 | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | glm-5.1 | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
+| OpenAI-compatible adapter | mimo-v2.6-pro | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
+| OpenAI-compatible adapter | mimo-v2.6-flash | **2/2** | 2 | 1.00 | 660.0 µm | ✓ | 2026-09-30 |
 
 ## simulation.demand_driven_microfactory (demand belief + two-generation inheritance)
 
@@ -60,6 +62,8 @@ demand-update gain ≥ 400k ppm, inheritance advantage ≥ 50k ppm, and an accep
 | OpenAI-compatible adapter | glm-5.3-flash | history | 1/2 | 140k / 140k | 680,000 | ✓ | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | glm-5.2 | history | 1/3 | 144k / 240k | 750,000 | ✓ | ✓ | 2026-09-30 |
 | OpenAI-compatible adapter | glm-5.1 | all modes | 0/3 | — | — | — | — | 2026-09-30 |
+| OpenAI-compatible adapter | mimo-v2.6-flash | mixed | 1/2 | 166k / 217k | 578,354 | ✓ | ✓ | 2026-09-30 |
+| OpenAI-compatible adapter | mimo-v2.6-pro | all modes | 0/3 | — | — | — | — | 2026-09-30 |
 
 ## Failure log (transparent, archived in the evidence bundle)
 
@@ -73,6 +77,11 @@ demand-update gain ≥ 400k ppm, inheritance advantage ≥ 50k ppm, and an accep
 | glm-5-2-demand-history-002 | system_failed | model decision failure: plan field outside registered range (scored 0). |
 | glm-5-1-demand-history-001 | system_failed | model decision failure: capital budget exceeded (scored 0). |
 | glm-5-1-demand-stateless-001, glm-5-1-demand-history-002 | system_failed | model decision failure: plan fields outside registered range (scored 0). |
+| mimo-*-demand-stateless/history-001/history-002 (6 runs) | system_failed | HTTP 400 protocol: provider rejects the GLM-specific `reasoning_effort` field (transport-class, excluded; superseded by the demand2 reruns with the field omitted). |
+| mimo-v2-6-pro-demand2-stateless/history-001 | system_failed | model decision failure: capital budget exceeded (scored 0). |
+| mimo-v2-6-pro-demand2-history-002 | system_failed | model decision failure: plan field outside registered range (scored 0). |
+| mimo-v2-6-flash-demand2-stateless-001 | system_failed | model decision failure: capital budget exceeded (scored 0). |
+| mimo-v2-6-flash-demand2-history-002 | system_timeout | wall-budget timeout (environment-class, excluded; no model-quality claim either way). |
 
 ## Reproduction
 

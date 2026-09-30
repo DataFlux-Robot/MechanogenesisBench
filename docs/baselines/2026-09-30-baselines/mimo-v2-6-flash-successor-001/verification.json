@@ -1,0 +1,16 @@
+{
+  "certified_evidence_tier": "conformance",
+  "effective_resource_use": {
+    "attempts": 2,
+    "energy_j": 4073601.565,
+    "human_intervention_s": 0.0,
+    "material_kg": 0.72155,
+    "monetary_cost_usd": 0.0,
+    "tokens": 4972,
+    "wall_time_s": 125.91043146800075
+  },
+  "evaluated_generations": 2,
+  "promotions": 2,
+  "reasons": [],
+  "valid": true
+}

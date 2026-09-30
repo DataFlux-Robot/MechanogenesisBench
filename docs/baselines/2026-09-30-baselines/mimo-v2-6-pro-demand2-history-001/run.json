@@ -1,0 +1,16 @@
+{
+  "evaluator_exit_code": null,
+  "guidance": "G5",
+  "isolation": "process_only_NOT_competition_safe",
+  "observed_system_wall_time_s": 49.1681033049972,
+  "schema_version": "0.1",
+  "status": "system_failed",
+  "system_command": [
+    "/home/exuber/.venvs/dd_qwen9b_fla_20260910/bin/python",
+    "/home/exuber/CODE/CORE/pythonProject1/AUTORESEARCH/MechanogenesisBench-upstream/examples/openai_compatible_demand_microfactory_system.py"
+  ],
+  "system_exit_code": 1,
+  "task_id": "simulation.demand_driven_microfactory",
+  "task_package_digest": "sha256:e1735b59a7c96e662861a5d940d66304a15732971a3c1f18e5a81f81a79da6b1",
+  "task_source": "/home/exuber/CODE/CORE/pythonProject1/AUTORESEARCH/MechanogenesisBench-upstream/tasks/simulation/demand_driven_microfactory"
+}
