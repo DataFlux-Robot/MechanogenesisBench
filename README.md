@@ -7,14 +7,18 @@ physical systems.**
 
 ## Leaderboard
 
-| Rank | Model | Pass rate | Avg promotions | Robustness | Demand calibration | Lean cert |
-|---|---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | **80%** (4/5 runs) | 2.0 / 2 | 100% | 86% | ✓ |
-| — | *Reference (deterministic, non-LLM baseline)* | 100% (1/1) | 2 / 2 | 100% | — | ✓ |
+| Rank | Model | Avg score | Pass rate | Avg promotions | Robustness | Demand calibration | Lean cert |
+|---|---|---|---|---|---|---|---|
+| 1 | **glm-5.3-flash** | **83.3** | 80% (4/5 runs) | 2.0 / 2 | 100% | 86% | ✓ |
+| — | *Reference (deterministic, non-LLM baseline)* | 100.0* | 100% (1/1) | 2 / 2 | 100% | — | ✓ |
 
-- **Pass rate** = runs passing every preregistered promotion gate with an accepted Lean certificate,
-  over all attempted runs (model-decision failures count against the model and stay in the
-  [failure log](docs/LEADERBOARD.md#failure-log)).
+- **Avg score** = arithmetic mean of task scores; task score = 100 × (passed runs / attempted
+  runs), a pass being every preregistered promotion gate plus an accepted Lean certificate
+  (successor chain 2/2 → 100, demand microfactory 2/3 → 66.7). Model-decision failures count
+  against the model; transport failures are excluded and archived in the
+  [failure log](docs/LEADERBOARD.md#failure-log). *Reference: single task.
+  The single mean is a display convenience — the official result remains the per-task
+  vector scorecard (see [docs/LEADERBOARD.md](docs/LEADERBOARD.md)).
 - **Demand calibration** = 1 − L1 belief error vs hidden demand truth (140k ppm → 86%).
 - Tasks behind these numbers: two-generation operator chain (uses its own output as the next
   generation's input, verified by content hash) and demand-driven microfactory (calibrated demand

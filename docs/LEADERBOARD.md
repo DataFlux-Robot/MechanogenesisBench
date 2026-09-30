@@ -5,6 +5,12 @@ Reproduce: see [§Reproduction](#reproduction) · Submit: see [§Submitting a sy
 
 ## How to read this table
 
+**Avg score (front page)** = arithmetic mean of task scores, where task score =
+100 × (passed runs / attempted runs); a pass requires every preregistered promotion gate and an
+accepted Lean certificate. Model-decision failures count against the model; transport failures are
+excluded from the denominator and archived in the failure log. This mean is a display convenience
+with no free weights — the official result remains the vector scorecard below.
+
 MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
 when every preregistered promotion gate holds *and* the Lean certificate for the executed chain is
 accepted by the pinned checker. Pass rate is `passed runs / attempted runs` under the declared
