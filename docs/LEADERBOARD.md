@@ -64,6 +64,19 @@ must be read with its miss distances, or it misrepresents the model:**
   temperature-1.0 policy. Future submissions should still declare vendor-recommended
   decoding; the earlier `reasoning_effort` incompatibility (GLM-specific field) is
   already handled.
+- **Final decomposition of the stateless 0/25 (2026-10-01)**: 12/25 fail at generation-0
+  planning (budget/parse); 10/25 miss the g0 utility line at exactly 690,387 (−1.37%,
+  the same value in every run); the remaining 3/25 miss exactly ONE gate — g1 calibration
+  320,000 ppm vs the 300,000 gate (−6.7%, again identical across runs) — while clearing
+  update gain (670k vs 400k), g1 utility (907k vs 780k), robustness (100%) and lineage.
+  The deterministic reference system reaches g1 calibration **217,436** from the same
+  five pairwise observations, so the gate is informationally achievable; mimo's 320k is
+  a real inference shortfall against simple count-based estimation.
+- **Systematic-vs-stochastic caveat**: mimo's failing values are IDENTICAL across runs
+  (690,387 / 320,000 at temperature 1.0) — these are systematic choices, not Bernoulli
+  noise, so the 0/25 point estimate is the story and the Wilson CI overstates
+  uncertainty width. Low-entropy failure modes reduce the effective trial count; the
+  decomposition above, not the binary rate, is the measurement.
 - **Correct reading**: mimo-v2.6-flash does not "fail the task" — it clears every
   second-generation gate with large margins and misses ONE generation-0 product-spec
   utility line by ~1.4% at the median. That is a real, thin, actionable difference
