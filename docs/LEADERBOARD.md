@@ -5,11 +5,25 @@ Reproduce: see [§Reproduction](#reproduction) · Submit: see [§Submitting a sy
 
 ## How to read this table
 
-**Avg score (front page)** = arithmetic mean of task scores, where task score =
-100 × (passed runs / attempted runs); a pass requires every preregistered promotion gate and an
-accepted Lean certificate. Model-decision failures count against the model; transport failures are
-excluded from the denominator and archived in the failure log. This mean is a display convenience
-with no free weights — the official result remains the vector scorecard below.
+**Composite score** = mean of task scores; task score = mean of run scores x 100; run score =
+arithmetic mean of that task's preregistered component scores, each a NATIVE evaluator-defined
+rate or threshold-attainment in [0,1] (no free weights, no model-dependent anchors):
+
+- `conformance.successor_operator_chain`: promotion_rate = promotions/2; robustness_rate;
+  inheritance_attainment = min(capability_gain / 500um, 1).
+- `simulation.demand_driven_microfactory`: promotion_rate; robustness_rate;
+  calibration_accuracy = 1 - L1_error/1e6; update_gain_attainment = min(gain/400000ppm, 1);
+  lineage_exactness in {0,1}.
+
+Model-decision failures score 0 and remain in the denominator. Excluded runs must carry a
+failure-log justification (this round: one policy-deviation run under non-declared sampling;
+two transport-side failures with no completed model call). Recompute:
+`python tools/composite_score.py --runs runs/<...> --exclude <...>`.
+
+Current composite: glm-5.3-flash = **82.4** (chain 100.0 over 2 runs; demand 64.8 over 3 runs
+with passing runs at 97.2 and the capital-budget failure at 0.0); reference = 100.0 (single
+task). Methodology follows the Artificial Analysis Intelligence Index practice of aggregating
+graded 0-100 component scores from independently executed runs.
 
 MechanogenesisBench reports a **vector scorecard, not one weighted number**. A run **passes** only
 when every preregistered promotion gate holds *and* the Lean certificate for the executed chain is

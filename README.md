@@ -7,24 +7,22 @@ physical systems.**
 
 ## Leaderboard
 
-| Rank | Model | Avg score | Pass rate | Avg promotions | Robustness | Demand calibration | Lean cert |
+| Rank | Model | Composite | Two-gen chain | Demand factory | Robustness | Calibration | Scored runs |
 |---|---|---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | **83.3** | 80% (4/5 runs) | 2.0 / 2 | 100% | 86% | ✓ |
-| — | *Reference (deterministic, non-LLM baseline)* | 100.0* | 100% (1/1) | 2 / 2 | 100% | — | ✓ |
+| 1 | **glm-5.3-flash** | **82.4** | 100.0 | 64.8 | 100% | 86% | 5 |
+| — | *Reference (deterministic, non-LLM baseline)* | 100.0* | 100.0 | — | 100% | — | 1 |
 
-- **Avg score** = arithmetic mean of task scores; task score = 100 × (passed runs / attempted
-  runs), a pass being every preregistered promotion gate plus an accepted Lean certificate
-  (successor chain 2/2 → 100, demand microfactory 2/3 → 66.7). Model-decision failures count
-  against the model; transport failures are excluded and archived in the
-  [failure log](docs/LEADERBOARD.md#failure-log). *Reference: single task.
-  The single mean is a display convenience — the official result remains the per-task
-  vector scorecard (see [docs/LEADERBOARD.md](docs/LEADERBOARD.md)).
-- **Demand calibration** = 1 − L1 belief error vs hidden demand truth (140k ppm → 86%).
-- Tasks behind these numbers: two-generation operator chain (uses its own output as the next
-  generation's input, verified by content hash) and demand-driven microfactory (calibrated demand
-  belief + exact capital inheritance). Per-task vector scorecards, costs, reproduction commands and
-  the submission policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)** (first third-party model
-  entry added 2026-09-30).
+**Composite score** (methodology follows the Artificial Analysis Intelligence Index practice:
+aggregate graded 0-100 component scores, independently run, no self-reported numbers) — every
+component is a **native rate or threshold-attainment defined by the task evaluator** (promotion
+rate, robustness rate, inheritance-advantage attainment; the demand task adds calibration
+accuracy, update-gain attainment and lineage exactness). Run score = mean of its components;
+task score = mean of run scores; composite = mean of task scores. Model-decision failures score
+0 and stay in the denominator; a policy-deviation run and two transport runs are excluded with
+justification in the [failure log](docs/LEADERBOARD.md#failure-log). Recompute anything:
+`python tools/composite_score.py --runs runs/<...> --exclude <...>`. Full vector scorecards,
+costs, reproduction and submission policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)**
+(*reference: single task; first third-party model entry added 2026-09-30).
 
 ## The core idea: measure Physical Recursive Self-Improvement
 
