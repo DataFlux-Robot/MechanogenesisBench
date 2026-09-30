@@ -7,14 +7,20 @@ physical systems.**
 
 ## Leaderboard
 
-| System | Model | successor_operator_chain | demand_driven_microfactory |
-|---|---|---|---|
-| Reference (deterministic, non-LLM) | — | **1/1 PASS** | — |
-| OpenAI-compatible adapter | glm-5.3-flash | **2/2 PASS** | **2/3 PASS** |
+| Rank | Model | Pass rate | Avg promotions | Robustness | Demand calibration | Lean cert |
+|---|---|---|---|---|---|---|
+| 1 | **glm-5.3-flash** | **80%** (4/5 runs) | 2.0 / 2 | 100% | 86% | ✓ |
+| — | *Reference (deterministic, non-LLM baseline)* | 100% (1/1) | 2 / 2 | 100% | — | ✓ |
 
-Full vector scorecards, failure log, reproduction commands and the submission
-policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)** (first third-party model
-entry added 2026-09-30).
+- **Pass rate** = runs passing every preregistered promotion gate with an accepted Lean certificate,
+  over all attempted runs (model-decision failures count against the model and stay in the
+  [failure log](docs/LEADERBOARD.md#failure-log)).
+- **Demand calibration** = 1 − L1 belief error vs hidden demand truth (140k ppm → 86%).
+- Tasks behind these numbers: two-generation operator chain (uses its own output as the next
+  generation's input, verified by content hash) and demand-driven microfactory (calibrated demand
+  belief + exact capital inheritance). Per-task vector scorecards, costs, reproduction commands and
+  the submission policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)** (first third-party model
+  entry added 2026-09-30).
 
 ## The core idea: measure Physical Recursive Self-Improvement
 
