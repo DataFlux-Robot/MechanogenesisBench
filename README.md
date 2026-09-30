@@ -9,8 +9,8 @@ physical systems.**
 
 | Layer | Model | Demand pass | Calibration | Budget compliance | Dominates |
 |---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | 6/25 (24%, CI 12–43%) | 0.86 | 0.67 | 5 |
-| 2 | mimo-v2.6-flash | 0/25‡ | 0.62 | 0.35 | 4 |
+| 1 | **glm-5.3-flash** | 11/25 hist (44%) / 6/25 stateless (24%) | 0.86 | 0.67 | 5 |
+| 2 | mimo-v2.6-flash | 3/25 hist (12%) / 0/25 stateless‡ | 0.62 | 0.35 | 4 |
 | 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
 | 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
 | 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |

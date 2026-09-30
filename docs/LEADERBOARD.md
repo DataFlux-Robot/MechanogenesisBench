@@ -39,10 +39,15 @@ replicates (`tools/batch_runs.py`, parallel workers, fresh run roots):
 
 | Model | Mode | n | Pass | Rate | Wilson 95% CI |
 |---|---|---|---|---|---|
-| glm-5.3-flash | stateless | 25 | 6 | **24%** | [0.12, 0.43] |
-| mimo-v2.6-flash | stateless | 25 | 0 | **0%** | [0.00, 0.13] |
+| glm-5.3-flash | stateless | 25 | 6 | 24% | [0.12, 0.43] |
+| mimo-v2.6-flash | stateless | 25 | 0 | 0% | [0.00, 0.13] |
+| glm-5.3-flash | history | 25 | 11 | **44%** | [0.27, 0.63] |
+| mimo-v2.6-flash | history | 25 | 3 | **12%** | [0.04, 0.30] |
 
-Fisher exact 6/25 vs 0/25: p ≈ 0.022. **Validity audit (2026-10-01) — the 0% headline
+Fisher exact: stateless 6/25 vs 0/25 p ≈ 0.022; history 11/25 vs 3/25 p ≈ 0.016; pooled
+50-run 17/50 (34%) vs 3/50 (6%) p < 0.001. History mode (generation 1 sees generation-0
+public evidence) lifts BOTH models (+20pp / +12pp) — prior evidence genuinely helps the
+second generation, and mimo-v2.6-flash is NOT a zero scorer at scale: 12% in history mode. **Validity audit (2026-10-01) — the 0% headline
 must be read with its miss distances, or it misrepresents the model:**
 
 - **Task solvability**: the deterministic reference system passes both generations
