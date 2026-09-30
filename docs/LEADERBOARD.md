@@ -31,6 +31,32 @@ shows a cross-component trade-off):
 | 5 | glm-5.3 | 0.000 | 0.280 | 0.000 | 0.333 | 1 |
 | 6 | glm-5.1 | 0.000 | 0.262 | 0.000 | 0.333 | 0 |
 
+## Statistical power (2026-10-01 scale-up)
+
+At n=3 the Wilson 95% CI for a 2/3 pass rate is [0.21, 0.94] — overlapping almost every
+other model, so small-n rows carry almost no discrimination. Scaled stateless demand-factory
+replicates (`tools/batch_runs.py`, parallel workers, fresh run roots):
+
+| Model | Mode | n | Pass | Rate | Wilson 95% CI |
+|---|---|---|---|---|---|
+| glm-5.3-flash | stateless | 25 | 6 | **24%** | [0.12, 0.43] |
+| mimo-v2.6-flash | stateless | 25 | 0 | **0%** | [0.00, 0.13] |
+
+Fisher exact 6/25 vs 0/25: p ≈ 0.022 — the first statistically separated pair on this
+task. Notes, recorded honestly: (a) mimo-v2.6-flash's earlier single pass was in history
+mode; history vs stateless need separate n (history batch pending); (b) for both models
+roughly half the scored runs stop at promotions=1 (generation 0 passes, generation 1 fails
+the update-gain/inheritance gates) — the second generation is the common bottleneck;
+(c) glm-5.3-flash's earlier 2/3 shrinks to 24% at n=25, exactly the small-n overestimate
+this section exists to correct.
+
+Scaling roadmap (declared): ~33 runs/arm separates 0.67-vs-0.33 class differences at
+α=0.05/power=0.8; ±0.10 CI needs ~100; ±0.03 needs ~1100; AA-grade ±0.01 needs ~10k
+(~6-8 workers, ~30-60 h wall for 1k; flash-tier token cost is negligible). The
+complementary research track is a **continuous multi-round demand stream** (evergreen,
+versioned briefs; rolling satisfaction and drift-adaptation metrics) which measures
+sustained need-serving rather than same-task sampling variance.
+
 ## conformance.successor_operator_chain (two-generation operator chain)
 
 Requires: strict operator improvement in both generations, exact content-hash operator inheritance

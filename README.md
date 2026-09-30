@@ -9,13 +9,15 @@ physical systems.**
 
 | Layer | Model | Demand pass | Calibration | Budget compliance | Dominates |
 |---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | 2/3 | 0.86 | 0.67 | 5 |
-| 2 | mimo-v2.6-flash | 1/2 | 0.84 | 0.50 | 4 |
+| 1 | **glm-5.3-flash** | 6/25 (24%, CI 12–43%) | 0.86 | 0.67 | 5 |
+| 2 | mimo-v2.6-flash | 0/25‡ | 0.62 | 0.35 | 4 |
 | 3 | glm-5.2 | 1/3 | 0.57 | 0.33 | 3 |
 | 4 | mimo-v2.6-pro | 0/3 | 0.55 | 0.00 | 2 |
 | 5 | glm-5.3 | 0/3 | 0.28 | 0.00 | 1 |
 | 6 | glm-5.1 | 0/3 | 0.26 | 0.00 | 0 |
 | — | *Reference (deterministic, non-LLM baseline; chain task only)* | — | — | — | — |
+
+‡ demand-factory column: models scaled to n=25 show the measured rate with Wilson 95% CI; unscaled rows remain small-n and carry almost no discrimination (see the Statistical power section).
 
 **Ranking method** (methodology follows the Artificial Analysis Intelligence Index practice:
 aggregate graded 0-100 component scores, independently run, no self-reported numbers) — every
