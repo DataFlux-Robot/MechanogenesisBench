@@ -172,9 +172,9 @@ delivery cheaper than the last?" (tool use + cumulative toolmaking):**
 |---|---|---|---|
 | glm-5.3-flash | 8% voluntary; 25-100% with affordance/enforcement across realizations (stochastic per lineage) | **median 8.82** over n=2 engaged lineages (range 7.64-12.01; dual-rule 7.64/5.08 and 12.01/8.82) | **49.6% and 57.5%** in two independent engaged lineages (6.99->3.53; 17.57->7.46) |
 | glm-5.1 | **0%** in every realization (even prompt-enforced) | — (never engaged) | — |
-| glm-5.3 (base) | **0%** (fork-tested 2026-10-01) | — (never engaged) | — |
-| mimo-v2.6-flash | **0%** (fork-tested 2026-10-01) | — (never engaged) | — |
-| glm-5.2 / mimo-v2.6-pro | fork test pending | — | — |
+| glm-5.3 (base) | **0%** (valid fork: completed arm, 10 verified model calls) | — (never engaged) | — |
+| mimo-v2.6-flash / mimo-v2.6-pro | RETRACTED 2026-10-01: the earlier "0%" rows came from a FAILED run that never reached the model (endpoint-routing bug: config-file base_url overrode the env var, all calls 400'd). Fair reruns in flight. | — | — |
+| glm-5.2 | fork test pending | — | — |
 
 Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
 disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
@@ -184,9 +184,13 @@ calibrate) remain unmeasured at this tier. Verdict for the business model today:
 non-GLM models were obtained under GLM-tuned sampling (temperature 0.3, low reasoning
 effort) and n=1 realization each — while glm-5.3-flash itself ranged 0–100% engagement
 across its four realizations. Single-realization zeros are therefore NOT proof of
-"never reuses". Fair-sampling reruns (per-model temperature/effort, multiple
-realizations) are running for mimo models before any cross-vendor reuse claim is
-treated as settled. What IS settled: glm-5.3-flash reuses at 25–100% under affordance
+"never reuses". Additionally, an audit triggered by this concern found the mimo
+"0%" rows were INVALID — a routing bug sent those calls to the wrong provider and
+the run failed before any model call; they are retracted and being rerun with
+fixed routing and per-model sampling. What IS settled: glm-5.3-flash reuses at
+25–100% under affordance with two engaged lineages showing ~50% generational cost
+reduction; glm-5.1 and glm-5.3-base show genuine 0% engagement on completed,
+call-verified arms. What IS settled: glm-5.3-flash reuses at 25–100% under affordance
 with two engaged lineages showing ~50% generational cost reduction.**
 Lineage-2 detail: 100% engagement (8/8 imports, both generations attributable), control
 arm collapsed (losses 211.1/65.8 vs treatment 17.6/7.5).
