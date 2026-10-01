@@ -118,6 +118,31 @@ n≈27–52 — within sampling noise; treat layer 1–2 adjacency as fragile un
 mimo-v2.6-pro holds the best demand-belief calibration (0.886) despite rarely executing;
 its layer-1 position rests on jointly-measured components only.
 
+## Production-efficiency axes (PIPE-flavored, 2026-10-01)
+
+The paper's Eq. 4 charges time, tokens and failure losses against net production. These
+axes have large dynamic ranges (15x between models) and survive cross-lab reproduction
+noise, unlike near-tied attainment ratios. They are reported as a cost table (HELM-style,
+lower is better) alongside — never summed into — the Pareto quality layers. Plain reading:
+"how much compute and how many failed attempts does one qualified delivery cost", the
+benchmark analogue of the delivery platform's reuse-speed story.
+
+| Model | Qualified | Minutes / qualified | kTokens / qualified | Failure-loss rate |
+|---|---|---|---|---|
+| glm-5.3-flash | 17/50 | 1.5 | 8.3 | 18% |
+| mimo-v2.6-flash | 3/60 | 48.5 | 130.3 | 47% |
+| glm-5.2 | 2/50 | 4.5 | 15.4 | 92% |
+| glm-5.1 | 3/50 | 3.0 | 11.0 | 86% |
+| glm-5.3 | 1/50 | 8.7 | 34.8 | 82% |
+| mimo-v2.6-pro | 2/50 | 67.2 | 89.6 | 88% |
+
+Inheritance advantage (the task's counterfactual procured-operator comparison — the
+task-level PIPE treatment estimate) runs 127k–147k ppm across all models and generations:
+the operator improvement itself is largely task-determined, so it certifies the mechanism
+but does not discriminate models; it is reported in the evidence bundle, not as a ranking
+axis. Cross-run reuse economics (RCI-style paired forks) remain on the research track
+until the fork harness ships as a public task mode.
+
 ## conformance.successor_operator_chain (two-generation operator chain)
 
 Requires: strict operator improvement in both generations, exact content-hash operator inheritance

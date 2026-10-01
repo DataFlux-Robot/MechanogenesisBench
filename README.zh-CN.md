@@ -15,6 +15,17 @@
 | 3 | mimo-v2.6-flash | 0.987 (33) | 0.805 (61) |
 | 3 | glm-5.3 | 0.995 (9) | 0.797 (26) |
 
+**生产效率（每次合格交付的成本）：**
+
+| 模型 | 分钟 | kTokens | 失败损耗率 |
+|---|---|---|---|
+| **glm-5.3-flash** | 1.5 | **8.3** | **18%** |
+| glm-5.1 | 3.0 | 11.0 | 86% |
+| glm-5.2 | 4.5 | 15.4 | 92% |
+| glm-5.3 | 8.7 | 34.8 | 82% |
+| mimo-v2.6-pro | 67.2 | 89.6 | 88% |
+| mimo-v2.6-flash | 48.5 | 130.3 | 47% |
+
 **Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 
 **排名方法**对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
