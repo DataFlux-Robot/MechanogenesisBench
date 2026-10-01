@@ -52,7 +52,7 @@ than every other tested model. Multi-dimensional profiles: radar below.
 
 | Model | Engagement (tool USE) | RCI (tool VALUE) | Acceleration g1->g2 |
 |---|---|---|---|
-| glm-5.3-flash | 8% voluntary / 25-43% enforced / 0-43% across realizations | **7.64 / 5.08** | **49.6%** loss reduction when engaged |
+| glm-5.3-flash | 8% voluntary; 25-100% enforced (stochastic per lineage) | **median 8.82**, n=2 engaged lineages (7.64-12.01) | **49.6% / 57.5%** in two lineages |
 | glm-5.1 | **0%** in every realization | — | — |
 | others | fork test pending | — | — |
 

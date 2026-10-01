@@ -170,7 +170,7 @@ delivery cheaper than the last?" (tool use + cumulative toolmaking):**
 
 | Model | Engagement (tool USE) | RCI (tool VALUE) | Acceleration g1->g2 (loss reduction) |
 |---|---|---|---|
-| glm-5.3-flash | 8% voluntary / 25-43% with affordance / **0-43% across realizations** | **7.64 / 5.08** (dual rule, n=1 engaged lineage) | **49.6%** (6.99 -> 3.53 loss when engaged) |
+| glm-5.3-flash | 8% voluntary; 25-100% with affordance/enforcement across realizations (stochastic per lineage) | **median 8.82** over n=2 engaged lineages (range 7.64-12.01; dual-rule 7.64/5.08 and 12.01/8.82) | **49.6% and 57.5%** in two independent engaged lineages (6.99->3.53; 17.57->7.46) |
 | glm-5.1 | **0%** in every realization (even prompt-enforced) | — (never engaged) | — |
 | others | not yet fork-tested | — | — |
 
@@ -178,8 +178,11 @@ Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
 disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
 rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
 calibrate) remain unmeasured at this tier. Verdict for the business model today:
-**glm-5.3-flash is the only tested model that demonstrably uses produced assets, and
-when it does, the next generation costs half as much; glm-5.1 provably does not.**
+**glm-5.3-flash is the only tested model that demonstrably uses produced assets; in two
+independent engaged lineages the next generation costs ~half as much (49.6%/57.5% loss
+reduction, median RCI 8.82). glm-5.1 provably does not reuse (0% in every realization).**
+Lineage-2 detail: 100% engagement (8/8 imports, both generations attributable), control
+arm collapsed (losses 211.1/65.8 vs treatment 17.6/7.5).
 
 ## conformance.successor_operator_chain (two-generation operator chain)
 
