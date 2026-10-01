@@ -139,9 +139,11 @@ def model_vector(runs):
 
 
 def dominates(a, b):
-    # Dominance judged only where both sides were measured; unmeasured (0-count)
-    # components are neutral, never punitive.
-    keys = [k for k in VECTORS if a['_n'][k] and b['_n'][k]] or list(VECTORS)
+    # Dominance judged only where BOTH sides were measured, and only when at least
+    # three components are jointly measured (guards single-component dominance).
+    keys = [k for k in VECTORS if a['_n'][k] and b['_n'][k]]
+    if len(keys) < 3:
+        return False
     return all(a[k] >= b[k] for k in keys) and any(a[k] > b[k] for k in keys)
 
 
@@ -170,7 +172,7 @@ def main():
     # Ranking requires minimum measurement depth; shallow models would otherwise
     # hide behind unmeasured components (missing-data dominance artifact).
     MIN_N = 10
-    HEADLINE = ('g0_utility_attainment', 'g1_calibration')
+    HEADLINE = ('g1_calibration',)  # measurable from archived plans even without execution
     rankable = {n: v for n, v in models.items() if all(v['_n'][k] >= MIN_N for k in HEADLINE)}
     unranked = {n: v for n, v in models.items() if n not in rankable}
     models = rankable

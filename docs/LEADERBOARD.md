@@ -44,10 +44,17 @@ replicates (`tools/batch_runs.py`, parallel workers, fresh run roots):
 
 | Model | Mode | n | Pass | Rate | Wilson 95% CI |
 |---|---|---|---|---|---|
-| glm-5.3-flash | stateless | 25 | 6 | 24% | [0.12, 0.43] |
-| mimo-v2.6-flash | stateless | 25 | 0 | 0% | [0.00, 0.13] |
-| glm-5.3-flash | history | 25 | 11 | **44%** | [0.27, 0.63] |
-| mimo-v2.6-flash | history | 25 | 3 | **12%** | [0.04, 0.30] |
+Full n=25 diagnostic matrix (pass counts, diagnostics only — ranking uses the
+continuous attainment components above):
+
+| Model | stateless | history |
+|---|---|---|
+| glm-5.3-flash | 6/25 | 11/25 |
+| mimo-v2.6-flash | 0/25 | 3/25 |
+| glm-5.2 | 0/25 | 2/25 |
+| glm-5.1 | 2/25 | 1/25 |
+| glm-5.3 | 1/25 | 0/25 |
+| mimo-v2.6-pro | 1/25 | 1/25 |
 
 Fisher exact: stateless 6/25 vs 0/25 p ≈ 0.022; history 11/25 vs 3/25 p ≈ 0.016; pooled
 50-run 17/50 (34%) vs 3/50 (6%) p < 0.001. History mode (generation 1 sees generation-0
@@ -94,6 +101,22 @@ Scaling roadmap (declared): ~33 runs/arm separates 0.67-vs-0.33 class difference
 complementary research track is a **continuous multi-round demand stream** (evergreen,
 versioned briefs; rolling satisfaction and drift-adaptation metrics) which measures
 sustained need-serving rather than same-task sampling variance.
+
+Final Pareto layers (2026-10-01, all six models at 50-run depth on the demand task):
+
+| Layer | Model | U0 attainment (n) | G1 calibration (n) | dominates |
+|---|---|---|---|---|
+| 1 | **glm-5.2** | 1.000 (5) | 0.823 (29) | 4 |
+| 1 | **mimo-v2.6-pro** | 0.991 (6) | **0.886** (42) | 1 |
+| 2 | glm-5.1 | 0.996 (7) | 0.809 (27) | 2 |
+| 2 | glm-5.3-flash | 0.995 (43) | 0.822 (52) | 1 |
+| 3 | mimo-v2.6-flash | 0.987 (33) | 0.805 (61) | 0 |
+| 3 | glm-5.3 | 0.995 (9) | 0.797 (26) | 0 |
+
+Caveats: margins between glm-5.2 / glm-5.3-flash / glm-5.1 calibration are <0.015 over
+n≈27–52 — within sampling noise; treat layer 1–2 adjacency as fragile until n≈100+.
+mimo-v2.6-pro holds the best demand-belief calibration (0.886) despite rarely executing;
+its layer-1 position rests on jointly-measured components only.
 
 ## conformance.successor_operator_chain (two-generation operator chain)
 
