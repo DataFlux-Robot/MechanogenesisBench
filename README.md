@@ -53,9 +53,12 @@ than every other tested model. Multi-dimensional profiles: radar below.
 | Model | Engagement (tool USE) | RCI (tool VALUE) | Acceleration g1->g2 |
 |---|---|---|---|
 | glm-5.3-flash | 8% voluntary; 25-100% enforced (stochastic per lineage) | **median 8.82**, n=2 engaged lineages (7.64-12.01) | **49.6% / 57.5%** in two lineages |
-| glm-5.1 / glm-5.3 | **0%** (valid completed forks, calls verified) | — (never engaged) | — |
-| mimo models | RETRACTED: earlier 0% came from a failed run (routing bug); fair reruns in flight | — | — |
+| mimo-v2.6-pro | **5/6 executed candidates imported** (corrected harness: 16-32k budgets + prompt-v2 interface) | mixed: 2.0 / 0.23 / 0.82 | perfect-geometry candidates (0 excess, 0 overlap) |
+| mimo-v2.6-flash | **3/3 executed candidates imported** (corrected harness) | pair pending control arm | perfect-geometry candidate |
+| glm-5.1 / glm-5.3 | 0% (old harness, valid completed forks) | — | — |
 | glm-5.2 | fork test pending | — | — |
+
+**Cross-model reuse ranking pending uniform-harness reruns** (prompt-v2 + per-model budgets for all models; GLM numbers above were measured under the older prose-interface/12k harness).
 
 **Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 

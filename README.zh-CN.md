@@ -46,6 +46,18 @@
 
 ![选型雷达](docs/baselines/2026-09-30-baselines/radar_selection.png)
 
+**PRSI 选型轴——"会复用你积累的资产、让每次交付更便宜吗？"（工具使用 × 持续造工具）：**
+
+| 模型 | 复用参与率（工具使用） | RCI（工具价值） | 代际加速 |
+|---|---|---|---|
+| glm-5.3-flash | 8% 自发；强化后 25–100% | **中位 8.82**（2 条啮合血统） | **49.6% / 57.5%**（两条血统复现） |
+| mimo-v2.6-pro | **5/6 执行候选导入**（修正装置） | 混合：2.0 / 0.23 / 0.82 | 完美几何候选（0 超限、0 交叠） |
+| mimo-v2.6-flash | **3/3 执行候选导入**（修正装置） | 对照臂待完成 | 完美几何候选 |
+| glm-5.1 / glm-5.3 | 0%（旧管线，运行完整） | — | — |
+| glm-5.2 | 分叉测试待做 | — | — |
+
+**跨模型复用排名待统一管线重测**（全部模型在 prompt-v2 + 各自预算下；上表 GLM 数字是旧散文接口/12k 管线测的）。
+
 **Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 
 **排名方法**对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
