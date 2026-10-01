@@ -118,6 +118,17 @@ n≈27–52 — within sampling noise; treat layer 1–2 adjacency as fragile un
 mimo-v2.6-pro holds the best demand-belief calibration (0.886) despite rarely executing;
 its layer-1 position rests on jointly-measured components only.
 
+## Enterprise selection card (headline)
+
+![selection radar](baselines/2026-09-30-baselines/radar_selection.png)
+
+The leaderboard headline is the **cost of one qualified delivery** (yield, minutes,
+kTokens, failure-loss — paper Eq. 4 resource terms per qualified output). The radar shows
+the multi-dimensional profiles (calibration, utility, robustness, budget/schema
+discipline); Pareto layers and attainment components remain below as the technical view.
+RCI-style cross-run reuse economics join this card once the paired-fork harness ships as
+a public task mode.
+
 ## Production-efficiency axes (PIPE-flavored, 2026-10-01)
 
 The paper's Eq. 4 charges time, tokens and failure losses against net production. These

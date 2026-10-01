@@ -26,6 +26,26 @@
 | mimo-v2.6-pro | 67.2 | 89.6 | 88% |
 | mimo-v2.6-flash | 48.5 | 130.3 | 47% |
 
+### 企业选型：每次合格交付的成本（PRSI/PIPE 经济性）
+
+部署"人类需求引导的物理递归自改进"业务模型时真正要问的：良率、单位成本、失败损耗。
+论文式4 的资源项（时间/token/失败损失）折算到每次合格交付——动态范围最高 15 倍，
+跨实验室复现噪声淹不掉。
+
+| 排名 | 模型 | 合格交付率 | 分钟/交付 | kToken/交付 | 失败损耗率 |
+|---|---|---|---|---|---|
+| 1 | **glm-5.3-flash** | **34%**（n=50） | **1.5** | **8.3** | **18%** |
+| 2 | glm-5.1 | 6% | 3.0 | 11.0 | 86% |
+| 3 | mimo-v2.6-flash | 5% | 48.5 | 130.3 | 47% |
+| 4 | glm-5.2 | 4% | 4.5 | 15.4 | 92% |
+| 5 | mimo-v2.6-pro | 4% | 67.2 | 89.6 | 88% |
+| 6 | glm-5.3 | 2% | 8.7 | 34.8 | 82% |
+
+**选型读法**：glm-5.3-flash 每次合格交付约 8k token、1.5 分钟、五次尝试仅一次失败——
+单交付经济性比其余所有受测模型好一个数量级。多维能力画像见下方雷达图。
+
+![选型雷达](docs/baselines/2026-09-30-baselines/radar_selection.png)
+
 **Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
 
 **排名方法**对标 [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/methodology/intelligence-benchmarking)
