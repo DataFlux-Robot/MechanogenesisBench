@@ -154,6 +154,33 @@ but does not discriminate models; it is reported in the evidence bundle, not as 
 axis. Cross-run reuse economics (RCI-style paired forks) remain on the research track
 until the fork harness ships as a public task mode.
 
+## PIPE per Definition 1 + the human-differentiator axis (2026-10-01)
+
+Definition 1 conditions, evaluated against the paired-fork evidence (simulation tier;
+`pipe_definition1_report.json` in the research bundle): (1) produced-by identity
+[SATISFIED where imports occur — content-hash verified, IB=1.0]; (2) materially
+equivalent forks [SATISFIED — common ancestor, only the capital handover differs];
+(3) minimum effect tau [MEASURED where engagement occurred: RCI 7.64; eps not formally
+preregistered, reported as magnitude]; (4) complete recording [SATISFIED — devready
+assets, credential-free receipts, source hashes]; (5) hidden-input generalization
+[PARTIAL — perturbation axis pending on this surface].
+
+**The PRSI selection axis — "does the model use accumulated assets and make each
+delivery cheaper than the last?" (tool use + cumulative toolmaking):**
+
+| Model | Engagement (tool USE) | RCI (tool VALUE) | Acceleration g1->g2 (loss reduction) |
+|---|---|---|---|
+| glm-5.3-flash | 8% voluntary / 25-43% with affordance / **0-43% across realizations** | **7.64 / 5.08** (dual rule, n=1 engaged lineage) | **49.6%** (6.99 -> 3.53 loss when engaged) |
+| glm-5.1 | **0%** in every realization (even prompt-enforced) | — (never engaged) | — |
+| others | not yet fork-tested | — | — |
+
+Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
+disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
+rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
+calibrate) remain unmeasured at this tier. Verdict for the business model today:
+**glm-5.3-flash is the only tested model that demonstrably uses produced assets, and
+when it does, the next generation costs half as much; glm-5.1 provably does not.**
+
 ## conformance.successor_operator_chain (two-generation operator chain)
 
 Requires: strict operator improvement in both generations, exact content-hash operator inheritance
