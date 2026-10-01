@@ -180,12 +180,14 @@ Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
 disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
 rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
 calibrate) remain unmeasured at this tier. Verdict for the business model today:
-**glm-5.3-flash is the ONLY tested model that demonstrably uses produced assets; in two
-independent engaged lineages the next generation costs ~half as much (49.6%/57.5% loss
-reduction, median RCI 8.82). glm-5.1, glm-5.3 (base) and mimo-v2.6-flash all provably do
-not reuse under identical forks (0% engagement each). The human-differentiator behavior —
-using accumulated assets to make each generation cheaper — is, at this test depth, unique
-to glm-5.3-flash among five models.**
+**CAVEAT (2026-10-01, fairness audit in progress): the "0% engagement" rows for
+non-GLM models were obtained under GLM-tuned sampling (temperature 0.3, low reasoning
+effort) and n=1 realization each — while glm-5.3-flash itself ranged 0–100% engagement
+across its four realizations. Single-realization zeros are therefore NOT proof of
+"never reuses". Fair-sampling reruns (per-model temperature/effort, multiple
+realizations) are running for mimo models before any cross-vendor reuse claim is
+treated as settled. What IS settled: glm-5.3-flash reuses at 25–100% under affordance
+with two engaged lineages showing ~50% generational cost reduction.**
 Lineage-2 detail: 100% engagement (8/8 imports, both generations attributable), control
 arm collapsed (losses 211.1/65.8 vs treatment 17.6/7.5).
 
