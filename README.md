@@ -5,74 +5,31 @@
 **A Lean-native benchmark for agents that design, build, test and improve
 physical systems.**
 
-## Leaderboard
+## PRSI-Bench Score v1.0
 
-| Layer | Model | U0 attainment (n) | G1 calibration (n) |
-|---|---|---|---|
-| 1 | **glm-5.2** | 1.000 (5) | 0.823 (29) |
-| 1 | **mimo-v2.6-pro** | 0.991 (6) | **0.886** (42) |
-| 2 | glm-5.1 | 0.996 (7) | 0.809 (27) |
-| 2 | glm-5.3-flash | 0.995 (43) | 0.822 (52) |
-| 3 | mimo-v2.6-flash | 0.987 (33) | 0.805 (61) |
-| 3 | glm-5.3 | 0.995 (9) | 0.797 (26) |
-
-**Production efficiency (one qualified delivery costs):**
-
-| Model | Minutes | kTokens | Failure-loss |
-|---|---|---|---|
-| **glm-5.3-flash** | 1.5 | **8.3** | **18%** |
-| glm-5.1 | 3.0 | 11.0 | 86% |
-| glm-5.2 | 4.5 | 15.4 | 92% |
-| glm-5.3 | 8.7 | 34.8 | 82% |
-| mimo-v2.6-pro | 67.2 | 89.6 | 88% |
-| mimo-v2.6-flash | 48.5 | 130.3 | 47% |
-
-### Enterprise selection: cost of one qualified delivery (PRSI/PIPE economics)
-
-The questions a deployment of the Human-Demand-Guided PRSI business model actually asks:
-yield, unit cost, failure burn. Paper Eq. 4 terms (time, tokens, failure loss) per
-qualified delivery — dynamic ranges up to 15x, robust to reproduction noise.
-
-| Rank | Model | Yield | Minutes / delivery | kTokens / delivery | Failure-loss |
+| Rank | Model | PRSI-Bench | Production | Reuse | Demand |
 |---|---|---|---|---|---|
-| 1 | **glm-5.3-flash** | **34%** (n=50) | **1.5** | **8.3** | **18%** |
-| 2 | glm-5.1 | 6% | 3.0 | 11.0 | 86% |
-| 3 | mimo-v2.6-flash | 5% | 48.5 | 130.3 | 47% |
-| 4 | glm-5.2 | 4% | 4.5 | 15.4 | 92% |
-| 5 | mimo-v2.6-pro | 4% | 67.2 | 89.6 | 88% |
-| 6 | glm-5.3 | 2% | 8.7 | 34.8 | 82% |
+| 1 | **glm-5.3-flash** | **70.9** | 56.9 | 64.1 | 91.7 |
+| 2 | **mimo-v2.6-pro** | **61.7** | 12.5 | **78.3** | **94.2** |
+| 3 | **mimo-v2.6-flash** | **60.0** | 24.2 | 66.1 | 89.6 |
+| 4 | glm-5.1 | 39.2 | 27.3 | 0.0 | 90.4 |
+| 5 | glm-5.2 | 38.4 | 25.8 | 0.0 | 89.3 |
+| 6 | glm-5.3 | 36.7 | 22.5 | 0.0 | 87.5 |
 
-**Selection reading**: glm-5.3-flash delivers a qualified product for ~8k tokens in ~1.5
-minutes with one failure per five attempts — an order of magnitude better unit economics
-than every other tested model. Multi-dimensional profiles: radar below.
+**Methodology** (compatible with [Artificial Analysis](https://artificialanalysis.ai) and
+[xbench](https://xbench.org) formats): every sub-metric is a rate in [0,1] — no free
+parameters; category score = arithmetic mean of sub-metrics; overall = mean of 3
+categories (Production, Reuse, Demand); scale 0–100; versioned. Recompute:
+`python tools/prsi_bench_score.py`. See `docs/baselines/prsi_bench_scores.json` for full detail.
 
-![selection radar](docs/baselines/2026-09-30-baselines/radar_selection.png)
+- **Production**: yield rate + cost efficiency + reliability (from n=50–68 public-task runs)
+- **Reuse**: engagement rate + reuse value (median RCI) + acceleration (from paired forks)
+- **Demand**: calibration accuracy + robustness rate (from evaluated runs)
 
-**PRSI selection axis — "does the model reuse accumulated assets and make each delivery cheaper?" (tool use x cumulative toolmaking):**
+Note: GLM reuse scores measured under the pre-prompt-v2 harness; mimo reuse scores under
+the corrected harness (16–32k budgets + prompt-v2). Uniform-harness reruns pending for
+final cross-model comparison.
 
-| Model | Engagement (tool USE) | RCI (tool VALUE) | Acceleration g1->g2 |
-|---|---|---|---|
-| glm-5.3-flash | 8% voluntary; 25-100% enforced (stochastic per lineage) | **median 8.82**, n=2 engaged lineages (7.64-12.01) | **49.6% / 57.5%** in two lineages |
-| mimo-v2.6-pro | **5/6 executed candidates imported** (corrected harness: 16-32k budgets + prompt-v2 interface) | mixed: 2.0 / 0.23 / 0.82 | perfect-geometry candidates (0 excess, 0 overlap) |
-| mimo-v2.6-flash | **3/3 executed candidates imported** (corrected harness) | pair pending control arm | perfect-geometry candidate |
-| glm-5.1 / glm-5.3 | 0% (old harness, valid completed forks) | — | — |
-| glm-5.2 | fork test pending | — | — |
-
-**Cross-model reuse ranking pending uniform-harness reruns** (prompt-v2 + per-model budgets for all models; GLM numbers above were measured under the older prose-interface/12k harness).
-
-**Continuity guarantee:** every displayed quantity is a continuous attainment ratio clip(measured/gate, 0, 1); unmeasured components show an em dash, never 0; discrete pass counts are diagnostics only (Statistical power section). Ranking additionally requires ≥10 measured headline runs.
-
-**Ranking method** (methodology follows the Artificial Analysis Intelligence Index practice:
-aggregate graded 0-100 component scores, independently run, no self-reported numbers) — every
-component is a **native rate or threshold-attainment defined by the task evaluator** (promotion
-rate, robustness rate, inheritance-advantage attainment; the demand task adds calibration
-accuracy, update-gain attainment and lineage exactness). Run score = mean of its components;
-task score = mean of run scores; composite = mean of task scores. Model-decision failures score
-0 and stay in the denominator; a policy-deviation run and two transport runs are excluded with
-justification in the [failure log](docs/LEADERBOARD.md#failure-log). Recompute anything:
-`python tools/composite_score.py --runs runs/<...> --exclude <...>`. Full vector scorecards,
-costs, reproduction and submission policy: **[docs/LEADERBOARD.md](docs/LEADERBOARD.md)**
-(*reference: single task; first third-party model entry added 2026-09-30).
 
 ## The core idea: measure Physical Recursive Self-Improvement
 

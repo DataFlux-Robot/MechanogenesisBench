@@ -1,0 +1,180 @@
+{
+  "schema": "prsi-bench-score/1.0",
+  "methodology": "each sub-metric is a rate in [0,1]; category = arithmetic mean; overall = mean of 3 categories; scale 0-100; versioned",
+  "models": [
+    {
+      "model": "glm-5.3-flash",
+      "categories": {
+        "production": 56.9,
+        "reuse": 64.1,
+        "demand": 91.7
+      },
+      "overall": 70.9,
+      "n": {
+        "production": 50,
+        "reuse": 3,
+        "demand": 82
+      },
+      "production_detail": {
+        "yield_rate": 0.34,
+        "kTokens_per_qualified": 8.3,
+        "cost_efficiency": 0.547,
+        "reliability": 0.82
+      },
+      "reuse_detail": {
+        "engagement_rate": 0.429,
+        "reuse_value": 1.0,
+        "acceleration": 0.496
+      },
+      "demand_detail": {
+        "calibration": 0.833,
+        "robustness": 1.0
+      }
+    },
+    {
+      "model": "mimo-v2.6-pro",
+      "categories": {
+        "production": 12.5,
+        "reuse": 78.3,
+        "demand": 94.2
+      },
+      "overall": 61.7,
+      "n": {
+        "production": 58,
+        "reuse": 3,
+        "demand": 12
+      },
+      "production_detail": {
+        "yield_rate": 0.069,
+        "kTokens_per_qualified": 49.8,
+        "cost_efficiency": 0.167,
+        "reliability": 0.138
+      },
+      "reuse_detail": {
+        "engagement_rate": 1.0,
+        "reuse_value": 0.409,
+        "acceleration": 0.941
+      },
+      "demand_detail": {
+        "calibration": 0.883,
+        "robustness": 1.0
+      }
+    },
+    {
+      "model": "mimo-v2.6-flash",
+      "categories": {
+        "production": 24.2,
+        "reuse": 66.1,
+        "demand": 89.6
+      },
+      "overall": 60.0,
+      "n": {
+        "production": 68,
+        "reuse": 1,
+        "demand": 66
+      },
+      "production_detail": {
+        "yield_rate": 0.088,
+        "kTokens_per_qualified": 70.5,
+        "cost_efficiency": 0.124,
+        "reliability": 0.515
+      },
+      "reuse_detail": {
+        "engagement_rate": 1.0,
+        "reuse_value": 0.252,
+        "acceleration": 0.73
+      },
+      "demand_detail": {
+        "calibration": 0.791,
+        "robustness": 1.0
+      }
+    },
+    {
+      "model": "glm-5.1",
+      "categories": {
+        "production": 27.3,
+        "reuse": 0.0,
+        "demand": 90.4
+      },
+      "overall": 39.2,
+      "n": {
+        "production": 55,
+        "reuse": 1,
+        "demand": 14
+      },
+      "production_detail": {
+        "yield_rate": 0.091,
+        "kTokens_per_qualified": 7.7,
+        "cost_efficiency": 0.564,
+        "reliability": 0.164
+      },
+      "reuse_detail": {
+        "engagement_rate": 0.0,
+        "reuse_value": 0.0,
+        "acceleration": 0.0
+      },
+      "demand_detail": {
+        "calibration": 0.808,
+        "robustness": 1.0
+      }
+    },
+    {
+      "model": "glm-5.2",
+      "categories": {
+        "production": 25.8,
+        "reuse": 0.0,
+        "demand": 89.3
+      },
+      "overall": 38.4,
+      "n": {
+        "production": 55,
+        "reuse": 0,
+        "demand": 10
+      },
+      "production_detail": {
+        "yield_rate": 0.091,
+        "kTokens_per_qualified": 8.0,
+        "cost_efficiency": 0.556,
+        "reliability": 0.127
+      },
+      "reuse_detail": {
+        "engagement_rate": 0.0,
+        "reuse_value": 0.0,
+        "acceleration": 0.0
+      },
+      "demand_detail": {
+        "calibration": 0.785,
+        "robustness": 1.0
+      }
+    },
+    {
+      "model": "glm-5.3",
+      "categories": {
+        "production": 22.5,
+        "reuse": 0.0,
+        "demand": 87.5
+      },
+      "overall": 36.7,
+      "n": {
+        "production": 55,
+        "reuse": 1,
+        "demand": 18
+      },
+      "production_detail": {
+        "yield_rate": 0.055,
+        "kTokens_per_qualified": 13.8,
+        "cost_efficiency": 0.42,
+        "reliability": 0.2
+      },
+      "reuse_detail": {
+        "engagement_rate": 0.0,
+        "reuse_value": 0.0,
+        "acceleration": 0.0
+      },
+      "demand_detail": {
+        "calibration": 0.75,
+        "robustness": 1.0
+      }
+    }
+  ]
+}
