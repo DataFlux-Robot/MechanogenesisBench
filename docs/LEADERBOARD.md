@@ -172,15 +172,20 @@ delivery cheaper than the last?" (tool use + cumulative toolmaking):**
 |---|---|---|---|
 | glm-5.3-flash | 8% voluntary; 25-100% with affordance/enforcement across realizations (stochastic per lineage) | **median 8.82** over n=2 engaged lineages (range 7.64-12.01; dual-rule 7.64/5.08 and 12.01/8.82) | **49.6% and 57.5%** in two independent engaged lineages (6.99->3.53; 17.57->7.46) |
 | glm-5.1 | **0%** in every realization (even prompt-enforced) | — (never engaged) | — |
-| others | not yet fork-tested | — | — |
+| glm-5.3 (base) | **0%** (fork-tested 2026-10-01) | — (never engaged) | — |
+| mimo-v2.6-flash | **0%** (fork-tested 2026-10-01) | — (never engaged) | — |
+| glm-5.2 / mimo-v2.6-pro | fork test pending | — | — |
 
 Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
 disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
 rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
 calibrate) remain unmeasured at this tier. Verdict for the business model today:
-**glm-5.3-flash is the only tested model that demonstrably uses produced assets; in two
+**glm-5.3-flash is the ONLY tested model that demonstrably uses produced assets; in two
 independent engaged lineages the next generation costs ~half as much (49.6%/57.5% loss
-reduction, median RCI 8.82). glm-5.1 provably does not reuse (0% in every realization).**
+reduction, median RCI 8.82). glm-5.1, glm-5.3 (base) and mimo-v2.6-flash all provably do
+not reuse under identical forks (0% engagement each). The human-differentiator behavior —
+using accumulated assets to make each generation cheaper — is, at this test depth, unique
+to glm-5.3-flash among five models.**
 Lineage-2 detail: 100% engagement (8/8 imports, both generations attributable), control
 arm collapsed (losses 211.1/65.8 vs treatment 17.6/7.5).
 
