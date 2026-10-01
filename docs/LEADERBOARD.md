@@ -181,15 +181,17 @@ disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceler
 rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
 calibrate) remain unmeasured at this tier. Verdict for the business model today:
 **FIRST VALID MIMO REUSE DATA (2026-10-01, corrected harness: 16-32k budgets +
-prompt-v2 interface spec):** mimo-v2.6-pro now DEMONSTRABLY reuses inherited assets —
-across three completed treatment arms it imported the generation-0 operator in 5 of 6
-executed g1/g2 candidates (one arm 4/4), including candidates achieving PERFECT geometry
-(0 mm envelope excess, 0 mm3 overlap, targets_met). RCI on engaged pairs is mixed
-(2.0 / 0.23 / 0.82 across realizations — reuse engages but does not yet pay consistently
-for this model). The earlier "mimo does not reuse" retraction is superseded by positive
-evidence under the corrected apparatus. FAIRNESS NOTE: glm-5.3-flash's reuse numbers were
-measured under the OLD harness (prose interface, 12k budget); cross-model reuse ranking
-requires re-running every model under prompt-v2 + per-model budgets — in progress.
+prompt-v2 interface spec):** BOTH mimo models now DEMONSTRABLY reuse inherited assets.
+mimo-v2.6-pro: 5 of 6 executed g1/g2 candidates imported the generation-0 operator
+across three completed arms (one arm 4/4), including perfect-geometry candidates
+(0 excess, 0 overlap, targets met). mimo-v2.6-flash: 3 of 3 executed candidates
+imported (g1 1/1, g2 2/2), also producing a perfect-geometry candidate. RCI on engaged
+pairs is mixed (pro: 2.0 / 0.23 / 0.82; flash pair pending control arm) — reuse
+behavior is confirmed for the vendor; its economics vary by realization. The earlier
+"mimo does not reuse" retraction is superseded by positive evidence under the corrected
+apparatus. FAIRNESS NOTE: glm-5.3-flash's reuse numbers were measured under the OLD
+harness (prose interface, 12k budget); cross-model reuse ranking requires re-running
+every model under prompt-v2 + per-model budgets — in progress.
 
 **RETRACTION SCOPE EXPANDED (2026-10-01, interface-fairness audit):** follow-up probing
 showed mimo-v2.6-pro WRITES valid workstation-csg designs in one shot when given (a) an
