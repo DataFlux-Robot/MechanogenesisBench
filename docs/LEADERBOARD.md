@@ -180,6 +180,21 @@ Honest limits: engagement is stochastic per lineage (prompt-level enforcement is
 disobeyed — the operator-level ABI in the public spec is the fix); RCI/acceleration
 rest on one engaged lineage; real manufacturing cost slots (Eq. 4 L_build/procure/
 calibrate) remain unmeasured at this tier. Verdict for the business model today:
+**RETRACTION SCOPE EXPANDED (2026-10-01, interface-fairness audit):** follow-up probing
+showed mimo-v2.6-pro WRITES valid workstation-csg designs in one shot when given (a) an
+output budget ≥16k (its reasoning alone consumed the earlier 12k ceiling — zero answer
+tokens, misreported as "cannot produce valid designs") and (b) an explicit interface
+spec with a worked example (`workstation-csg-interface/prompt-v2`: the original prose
+op-list let CAD-vocabulary-rich models invent illegal ops). With prompt-v2, mimo-pro's
+generation-0 candidate executed and qualified immediately. CONSEQUENCE: all cross-model
+engagement comparisons were run under GLM-friendly defaults (12k budget, low effort,
+prose-only interface) — the "only glm-5.3-flash reuses" claim is RETRACTED pending
+re-runs of every model under the corrected harness (per-model budgets + prompt-v2).
+What stands: glm-5.3-flash's within-harness evidence (engagement 25-100%, RCI median
+8.82, ~50% generational acceleration, n=2 engaged lineages). A harness-fairness lesson
+now codified: reasoning-model output budgets and interface completeness are part of the
+measurement apparatus, not constants of the benchmark.
+
 **CAVEAT (2026-10-01, fairness audit in progress): the "0% engagement" rows for
 non-GLM models were obtained under GLM-tuned sampling (temperature 0.3, low reasoning
 effort) and n=1 realization each — while glm-5.3-flash itself ranged 0–100% engagement
