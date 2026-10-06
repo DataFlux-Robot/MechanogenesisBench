@@ -87,6 +87,16 @@ Dose–response Spearman ρ = 0.96; 3 seeds all improve monotonically
 (+¥450/seed, 2–4× per seed). Weight-level self-update arms show no transferable gain —
 see `data/dual_loop_*.json` and `data/library_ablation.json`.
 
+## CAD World Model (CWM-inspired, arXiv:2510.02387 adapted)
+
+621 design->geometry pairs harvested from 32 run sources; mixed predict+generate
+LoRA training (860 samples, 6 epochs, CE 0.047). Held-out prediction accuracy
+(n=80): **86% validity, 69% exact rating** — the model internalizes build123d
+geometry execution without running it. Generation task degraded by task mixing
+(¥0 on bench); fix = separate adapters (next iteration).
+
+Data: `data/world_model_pairs.json` | Code: `tools/train_cwm.py`
+
 ## Key findings
 
 1. **Training > scale**: a fine-tuned 9B ≈ 90% of the strongest commercial models;
