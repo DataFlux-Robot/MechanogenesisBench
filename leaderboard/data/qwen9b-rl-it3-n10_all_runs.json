@@ -1,0 +1,1257 @@
+[
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 9.8,
+        "cad": {
+          "extent": [
+            120.0,
+            142.0,
+            495.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The dock geometry does not properly cradle the 78x"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.3,
+        "cad": {
+          "extent": [
+            120.0,
+            216.0,
+            48.5
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The earbuds bay is placed at y=76 with a 48mm dept"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.5,
+        "cad": {
+          "extent": [
+            250.0,
+            605.0,
+            342.5
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Requirements partially met: dock reused, tablet st"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 13.7,
+        "cad": {
+          "extent": [
+            520.0,
+            745.0,
+            347.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "Desk top correctly shrunk to 300x200mm but design "
+          }
+        ]
+      }
+    ],
+    "profit": 119.98,
+    "revenue": 120.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.08
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 11.5,
+        "cad": {
+          "extent": [
+            120.0,
+            375.0,
+            192.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Design has serious fit issues: base is 120x120mm b"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 10.9,
+        "cad": {
+          "extent": [
+            120.0,
+            375.0,
+            561.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Base from round 1 is reused as required, but the d"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            202.5,
+            375.0,
+            192.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "The design meets the core requirement: the adapted"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.7,
+        "cad": {
+          "extent": [
+            267.5,
+            725.0,
+            360.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Reuses dock and earbuds as required and adds the 2"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 9.8,
+        "cad": {
+          "extent": [
+            300.0,
+            725.0,
+            440.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Desk top is correctly shrunk to 300x200mm but the "
+          }
+        ]
+      }
+    ],
+    "profit": 299.97,
+    "revenue": 300.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "4/4",
+    "t_accel": 1.45
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 13.1,
+        "cad": {
+          "extent": [
+            120.0,
+            205.0,
+            314.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Major geometry errors: phone box is unioned into t"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 13.2,
+        "cad": {
+          "extent": [
+            120.0,
+            235.0,
+            355.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Base from round 1 is reused (120x100x10), which sa"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.3,
+        "cad": {
+          "extent": [
+            372.5,
+            140.0,
+            50.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "The earbuds bay (65x48x28mm) is added and the dock"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            387.5,
+            625.0,
+            344.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Requirements partially met: tablet stand added at "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 8.1,
+        "cad": {
+          "extent": [
+            412.5,
+            655.0,
+            385.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Desk top correctly shrunk to 300x200mm but overall"
+          }
+        ]
+      }
+    ],
+    "profit": 149.97,
+    "revenue": 150.0,
+    "cost": 0.03,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 2.07
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 11.5,
+        "cad": {
+          "extent": [
+            215.0,
+            103.0,
+            315.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Major fit issues: phone is 78mm wide but base is o"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            197.5,
+            90.0,
+            50.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The earbuds bay is placed at x=105 which is comple"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.2,
+        "cad": {
+          "extent": [
+            1200.0,
+            600.0,
+            276.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Tablet stand is present at 250x10x175mm but placed"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 15.4,
+        "cad": {
+          "extent": [
+            1200.0,
+            600.0,
+            311.0
+          ],
+          "intersections": 55
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design does not meet the 300x200mm constraint: env"
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "1/4",
+    "t_accel": 1.12
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.2,
+        "cad": {
+          "extent": [
+            202.5,
+            98.0,
+            90.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The earbuds bay is correctly sized (65x48x28mm) an"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            267.5,
+            395.0,
+            350.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Requirements partially met: tablet stand added beh"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 11.4,
+        "cad": {
+          "extent": [
+            300.0,
+            346.0,
+            265.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Design fails critical constraints: 66mm envelope e"
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "2/4",
+    "t_accel": 0.0
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 16.2,
+        "cad": {
+          "extent": [
+            220.0,
+            272.0,
+            319.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design has a massive overlap of 577304 mm3 bet"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.1,
+        "cad": {
+          "extent": [
+            120.0,
+            158.0,
+            42.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "The design includes the required earbuds bay (65x4"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.5,
+        "cad": {
+          "extent": [
+            250.0,
+            315.0,
+            350.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The tablet stand is added at the required dimensio"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 13.9,
+        "cad": {
+          "extent": [
+            300.0,
+            357.0,
+            350.0
+          ],
+          "intersections": 36
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The design does not meet the 300x200mm desk requir"
+          }
+        ]
+      }
+    ],
+    "profit": 149.98,
+    "revenue": 150.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.76
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 11.4,
+        "cad": {
+          "extent": [
+            160.0,
+            248.0,
+            255.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design has major issues: overlap_mm3 is 113049"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 7.1,
+        "cad": {
+          "extent": [
+            120.0,
+            139.0,
+            50.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The earbuds bay is added at the correct size (65x4"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            250.0,
+            570.0,
+            344.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Reuses dock as required and adds tablet stand at c"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 11.2,
+        "cad": {
+          "extent": [
+            300.0,
+            625.0,
+            344.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Top is correctly shrunk to 300x200mm, but the desi"
+          }
+        ]
+      }
+    ],
+    "profit": 149.98,
+    "revenue": 150.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.44
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 10.9,
+        "cad": {
+          "extent": [
+            120.0,
+            96.0,
+            345.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Base reuse is satisfied (120x10x100 base retained)"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 7.1,
+        "cad": {
+          "extent": [
+            322.5,
+            100.0,
+            66.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The earbuds bay is placed at x=110, y=0, z=22, whi"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            377.5,
+            305.0,
+            344.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Earbuds module is missing entirely despite MUST re"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 9.4,
+        "cad": {
+          "extent": [
+            402.5,
+            355.0,
+            344.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "Shrink to 300x200mm respected for the desk top, an"
+          }
+        ]
+      }
+    ],
+    "profit": 149.98,
+    "revenue": 150.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.56
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 13.0,
+        "cad": {
+          "extent": [
+            140.0,
+            255.0,
+            315.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design has critical fit issues: overlap_mm3 of 132"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 9.6,
+        "cad": {
+          "extent": [
+            120.0,
+            52.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The base from round 1 is reused (120x10x100 box re"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.3,
+        "cad": {
+          "extent": [
+            212.5,
+            104.0,
+            86.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "The earbuds bay (65x48x28mm) is correctly added an"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            267.5,
+            395.0,
+            350.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Earbuds module is missing from the design despite "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 12.9,
+        "cad": {
+          "extent": [
+            300.0,
+            543.0,
+            350.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Major violations: envelope_excess 263mm and overla"
+          }
+        ]
+      }
+    ],
+    "profit": 149.97,
+    "revenue": 150.0,
+    "cost": 0.03,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.29
+  },
+  {
+    "designer": "qwen9b-rl-it3-n10",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 14.3,
+        "cad": {
+          "extent": [
+            140.0,
+            262.0,
+            327.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "The dock design conceptually fits the phone dimens"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.1,
+        "cad": {
+          "extent": [
+            140.0,
+            262.0,
+            332.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Base from round 1 is correctly reused (asset_id r1"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            217.5,
+            262.0,
+            332.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The earbuds bay overlaps the existing dock by 1697"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            250.0,
+            635.0,
+            345.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Requirements mostly met: dock reused (r1), tablet "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 9.5,
+        "cad": {
+          "extent": [
+            300.0,
+            665.0,
+            345.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "CAD metrics show 385mm envelope excess and 10.2M m"
+          }
+        ]
+      }
+    ],
+    "profit": 269.97,
+    "revenue": 270.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "4/4",
+    "t_accel": 1.45
+  }
+]

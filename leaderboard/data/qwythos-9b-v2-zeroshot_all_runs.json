@@ -1,0 +1,350 @@
+[
+  {
+    "designer": "qwythos-9b-v2-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.017,
+        "reused": false,
+        "secs": 37.7,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            320.0
+          ],
+          "intersections": 120
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "The design is a non-functional, incoherent collect"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.3,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The earbuds bay is added and the dock is kept, but"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 7.8,
+        "cad": {
+          "extent": [
+            600.0,
+            400.0,
+            175.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "All parts are placed at origin (0,0,0) causing 277"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.5,
+        "cad": {
+          "extent": [
+            300.0,
+            240.0,
+            300.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails key requirements: desk is 300x200mm b"
+          }
+        ]
+      }
+    ],
+    "profit": -0.03,
+    "revenue": 0.0,
+    "cost": 0.03,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 5.27
+  },
+  {
+    "designer": "qwythos-9b-v2-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 11.3,
+        "cad": {
+          "extent": [
+            660.0,
+            431.0,
+            190.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The dock_body is sized 80x12x160 which matches the"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            48.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The earbuds bay overlaps the dock by 48000 mm³ ins"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.6,
+        "cad": {
+          "extent": [
+            250.0,
+            48.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Tablet stand is placed at origin, colliding with t"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 8.2,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            175.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Envelope fits (0mm excess) but massive overlap of "
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "2/4",
+    "t_accel": 1.77
+  },
+  {
+    "designer": "qwythos-9b-v2-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 5.9,
+        "cad": {
+          "extent": [
+            420.0,
+            426.0,
+            360.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The dock is a plain box 160x12x160mm - no slot/cra"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.2,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The earbuds bay is added at the correct size (65x4"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.01,
+        "reused": false,
+        "secs": 19.5,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            300.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails the 300x200mm envelope constraint: le"
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.3
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "0": {
+    "profit": 150,
+    "sold": 1,
+    "reuse": 1,
+    "mean_rating": 2.08
+  },
+  "3": {
+    "profit": 600,
+    "sold": 4,
+    "reuse": 10,
+    "mean_rating": 4.08
+  },
+  "6": {
+    "profit": 750,
+    "sold": 5,
+    "reuse": 10,
+    "mean_rating": 3.83
+  },
+  "12": {
+    "profit": 750,
+    "sold": 5,
+    "reuse": 9,
+    "mean_rating": 4.33
+  },
+  "24": {
+    "profit": 900,
+    "sold": 6,
+    "reuse": 11,
+    "mean_rating": 4.42
+  }
+}

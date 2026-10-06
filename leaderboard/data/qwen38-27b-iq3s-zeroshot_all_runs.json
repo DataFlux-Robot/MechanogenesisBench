@@ -1,0 +1,410 @@
+[
+  {
+    "designer": "qwen38-27b-iq3s-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 4.3,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            60.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The dock slot is 84x14x40mm but the phone is 78x12"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.3,
+        "cad": {
+          "extent": [
+            120.0,
+            180.0,
+            180.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design violates the MUST-reuse constraint: it "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 10.6,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            60.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The earbuds bay is added but as a separate shell ("
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 7.6,
+        "cad": {
+          "extent": [
+            250.0,
+            245.0,
+            350.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Tablet stand is just a flat 250x10x175 box placed "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.009,
+        "reused": true,
+        "secs": 13.7,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            725.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Shrinking to 300x200mm footprint is achieved (enve"
+          }
+        ]
+      }
+    ],
+    "profit": -0.03,
+    "revenue": 0.0,
+    "cost": 0.03,
+    "sold": "0/5",
+    "reuse": "2/4",
+    "t_accel": 0.36
+  },
+  {
+    "designer": "qwen38-27b-iq3s-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 4.7,
+        "cad": {
+          "extent": [
+            120.0,
+            160.0,
+            112.03478591045001
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Dock fits desk footprint (120x160 within 420x280) "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            120.0,
+            160.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design unions the phone box directly onto the "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.7,
+        "cad": {
+          "extent": [
+            120.0,
+            160.0,
+            112.03478591045001
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design reuses the adapted dock and adds the ea"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.4,
+        "cad": {
+          "extent": [
+            250.0,
+            160.0,
+            175.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Design meets requirements: reuses existing asset r"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 11.8,
+        "cad": {
+          "extent": [
+            250.0,
+            180.0,
+            225.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails key constraints: overlap_mm3 = 66500 "
+          }
+        ]
+      }
+    ],
+    "profit": 299.97,
+    "revenue": 300.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "4/4",
+    "t_accel": 0.65
+  },
+  {
+    "designer": "qwen38-27b-iq3s-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            120.0,
+            180.0,
+            20.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design has major fit issues: the phone is 78x1"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.1,
+        "cad": {
+          "extent": [
+            200.0,
+            120.0,
+            180.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design violates the MUST-reuse constraint: the"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 11.5,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            60.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Earbuds bay added at 65x48x28mm with a 2mm wall ca"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.9,
+        "cad": {
+          "extent": [
+            250.0,
+            245.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Tablet stand added at correct size (250x10x175mm) "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 2.9,
+        "cad": {
+          "extent": [
+            300.0,
+            305.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Desk shrunk to 300x200mm as requested and reuses r"
+          }
+        ]
+      }
+    ],
+    "profit": 269.98,
+    "revenue": 270.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 0.76
+  }
+]

@@ -1,0 +1,1362 @@
+[
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            110.0,
+            130.0,
+            120.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "The design fits within the desk footprint and has "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 5.2,
+        "cad": {
+          "extent": [
+            110.0,
+            155.0,
+            259.5
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Base is correctly reused from round 1 and the new "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            307.5,
+            155.0,
+            259.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Design correctly reuses the adapted dock and adds "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            377.5,
+            430.0,
+            347.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Requirements partially met: tablet stand added at "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            445.0,
+            295.0,
+            354.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Design meets the 300x200mm envelope with zero over"
+          }
+        ]
+      }
+    ],
+    "profit": 599.98,
+    "revenue": 600.0,
+    "cost": 0.02,
+    "sold": "4/5",
+    "reuse": "3/4",
+    "t_accel": 1.15
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            100.0,
+            32.0,
+            165.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Design is structurally sound and fits the desk env"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 7.4,
+        "cad": {
+          "extent": [
+            230.0,
+            56.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Base reused as required (asset r1), new walls size"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            367.5,
+            59.0,
+            350.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "The design meets the demand by keeping the adapted"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            377.5,
+            389.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Reused dock+earbuds as required and added the 250x"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.4,
+        "cad": {
+          "extent": [
+            402.5,
+            465.0,
+            350.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Desk top correctly sized to 300x200mm and legs rep"
+          }
+        ]
+      }
+    ],
+    "profit": 749.98,
+    "revenue": 750.0,
+    "cost": 0.02,
+    "sold": "5/5",
+    "reuse": "4/4",
+    "t_accel": 0.91
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            100.0,
+            30.0,
+            165.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The dock geometry is under-specified and likely no"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.3,
+        "cad": {
+          "extent": [
+            110.0,
+            105.0,
+            262.5
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Base is correctly reused from round 1 and the dock"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 10,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            367.5,
+            114.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 10,
+            "accepted": true,
+            "feedback": "The design meets the demand: the adapted dock is r"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            437.5,
+            349.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Requirements are partially met: the tablet stand h"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            445.0,
+            285.0,
+            354.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Design fails to meet the 300x200mm desk requiremen"
+          }
+        ]
+      }
+    ],
+    "profit": 299.98,
+    "revenue": 300.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "3/4",
+    "t_accel": 0.95
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.003,
+        "reused": false,
+        "secs": 2.3,
+        "cad": {
+          "extent": [
+            100.0,
+            30.0,
+            165.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design is a solid block (100x30x165mm) with no rec"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.3,
+        "cad": {
+          "extent": [
+            120.0,
+            190.0,
+            18.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Envelope fits (0.0mm excess) and base is reused fr"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            312.5,
+            199.0,
+            56.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "Dock is preserved and reused, with a new earbuds b"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 10.9,
+        "cad": {
+          "extent": [
+            1200.0,
+            914.5996442225977,
+            1800.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Requirements met: tablet stand added with correct "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            375.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design shrinks to 300x200 envelope but loses nearl"
+          }
+        ]
+      }
+    ],
+    "profit": 269.98,
+    "revenue": 270.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 0.52
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            110.0,
+            130.0,
+            120.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The design has critical issues: the dock's pocket "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 7.4,
+        "cad": {
+          "extent": [
+            230.0,
+            130.0,
+            339.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "Base reused as required, and new walls sized to ac"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            367.5,
+            130.0,
+            339.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Design correctly reuses the adapted dock and adds "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.8,
+        "cad": {
+          "extent": [
+            377.5,
+            390.0,
+            339.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "All modules combined with dock and earbuds reused "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            446.0,
+            292.0,
+            385.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails to fit the 300x200mm envelope (38mm e"
+          }
+        ]
+      }
+    ],
+    "profit": 449.98,
+    "revenue": 450.0,
+    "cost": 0.02,
+    "sold": "3/5",
+    "reuse": "3/4",
+    "t_accel": 1.39
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            100.0,
+            30.0,
+            165.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design is a rough CSG sketch that doesn't form"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.0,
+        "cad": {
+          "extent": [
+            125.0,
+            190.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Base reused as required and phone dimensions accom"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 10,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            125.0,
+            259.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 10,
+            "accepted": true,
+            "feedback": "The design correctly reuses the adapted dock (capi"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.5,
+        "cad": {
+          "extent": [
+            250.0,
+            380.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Reused dock+earbuds and added the 250x10x175 stand"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.0,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            282.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design does not satisfy the shrink requirement whi"
+          }
+        ]
+      }
+    ],
+    "profit": 299.98,
+    "revenue": 300.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 1.14
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 5.7,
+        "cad": {
+          "extent": [
+            110.0,
+            145.0,
+            120.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design fails to accommodate the phone: there i"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 4.8,
+        "cad": {
+          "extent": [
+            120.0,
+            277.5,
+            12.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design fails to accommodate the upgraded 90x14"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            120.0,
+            128.0,
+            76.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The bay is placed at y=32 with size 48 in y, so it"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            250.0,
+            373.0,
+            262.5
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The tablet stand is placed behind but the design o"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            300.0,
+            385.0,
+            562.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The design does not fit the 300x200mm envelope: en"
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "2/4",
+    "t_accel": 1.46
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.7,
+        "cad": {
+          "extent": [
+            100.0,
+            130.0,
+            90.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The design is a plausible start but has critical i"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.3,
+        "cad": {
+          "extent": [
+            110.0,
+            130.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Overlap of 114992mm3 is excessive, indicating the "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.6,
+        "cad": {
+          "extent": [
+            322.5,
+            130.0,
+            90.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Design meets all requirements: adapted dock is pre"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.4,
+        "cad": {
+          "extent": [
+            397.5,
+            390.0,
+            350.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Requirements met: tablet stand added at correct 25"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            445.0,
+            295.0,
+            354.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design fails to keep all functions: only ONE l"
+          }
+        ]
+      }
+    ],
+    "profit": 299.98,
+    "revenue": 300.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "3/4",
+    "t_accel": 0.98
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.2,
+        "cad": {
+          "extent": [
+            100.0,
+            162.0,
+            120.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design is a rough tray-like structure, not a f"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.5,
+        "cad": {
+          "extent": [
+            120.0,
+            46.0,
+            350.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Base reused as required (120x30x5 unchanged). Back"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.5,
+        "cad": {
+          "extent": [
+            120.0,
+            55.0,
+            350.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "The design correctly reuses the adapted dock and a"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.5,
+        "cad": {
+          "extent": [
+            250.0,
+            55.0,
+            470.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Requirements partially met: tablet stand added and"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 8.7,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            350.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Design fits the 300x200mm envelope (excess 0.0mm) "
+          }
+        ]
+      }
+    ],
+    "profit": 299.98,
+    "revenue": 300.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "3/4",
+    "t_accel": 0.75
+  },
+  {
+    "designer": "qwen9b-care-v3-it6",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            100.0,
+            30.0,
+            165.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design is a rough sketch but fails key require"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.6,
+        "cad": {
+          "extent": [
+            120.0,
+            277.5,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Base reused verbatim from round 1 (120x30x5 frame "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            120.0,
+            277.5,
+            56.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Design correctly reuses the adapted dock and adds "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.7,
+        "cad": {
+          "extent": [
+            250.0,
+            465.0054809051112,
+            297.5679490198428
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Reuses dock and earbuds and adds the 250x10x175mm "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            370.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "Meets the 300x200mm envelope with zero excess/over"
+          }
+        ]
+      }
+    ],
+    "profit": 449.98,
+    "revenue": 450.0,
+    "cost": 0.02,
+    "sold": "3/5",
+    "reuse": "2/4",
+    "t_accel": 0.9
+  }
+]

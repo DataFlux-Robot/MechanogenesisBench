@@ -1,0 +1,350 @@
+[
+  {
+    "designer": "gemma-4-12b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 13.7,
+        "cad": {
+          "extent": [
+            420.0,
+            290.0,
+            120.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The dock slot is 165x15x170mm which is larger than"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.3,
+        "cad": {
+          "extent": [
+            100.0,
+            50.0,
+            30.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "Earbuds bay (65x48x28mm) correctly added and union"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 9.1,
+        "cad": {
+          "extent": [
+            250.0,
+            230.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "The design reuses dock and earbuds as required and"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 13.8,
+        "cad": {
+          "extent": [
+            580.0,
+            305.0,
+            400.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Desk top is correctly 300x200mm but legs are posit"
+          }
+        ]
+      }
+    ],
+    "profit": 299.97,
+    "revenue": 300.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 1.2
+  },
+  {
+    "designer": "gemma-4-12b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 9.6,
+        "cad": {
+          "extent": [
+            510.0,
+            460.0,
+            120.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Dock dimensions don't match phone (78x12x160mm): b"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.8,
+        "cad": {
+          "extent": [
+            510.0,
+            460.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The design reuses the round 1 base as required and"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 4.9,
+        "cad": {
+          "extent": [
+            510.0,
+            460.0,
+            175.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "Design correctly reuses the adapted dock (r2) and "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 7.5,
+        "cad": {
+          "extent": [
+            510.0,
+            505.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Tablet stand added at correct size (250x10x175mm) "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 12.7,
+        "cad": {
+          "extent": [
+            510.0,
+            505.0,
+            415.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails constraints: envelope_excess_mm=315mm"
+          }
+        ]
+      }
+    ],
+    "profit": 299.97,
+    "revenue": 300.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "4/4",
+    "t_accel": 0.66
+  },
+  {
+    "designer": "gemma-4-12b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.0,
+        "cad": {
+          "extent": [
+            100.0,
+            100.0,
+            28.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design does not properly add an earbuds bay to"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 13.6,
+        "cad": {
+          "extent": [
+            1200.0,
+            600.0,
+            700.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Massive envelope excess (1100mm) and huge overlap "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": -0.01,
+    "revenue": 0.0,
+    "cost": 0.01,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.0
+  }
+]

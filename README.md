@@ -1,5 +1,44 @@
 # MechanogenesisBench
 
+## 🏆 Money Bench v5 Leaderboard
+
+**5-round cumulative product design with real build123d CAD execution, LLM-judge user
+simulation, and speed-based pricing.** Full methodology, 38-system results and all raw
+data: [`leaderboard/LEADERBOARD.md`](leaderboard/LEADERBOARD.md)
+
+### 3-judge symmetric protocol (primary)
+
+| # | System | Profit/session | n |
+|---|---|---:|---:|
+| 1 | mimo-v2.6-flash | **¥433** | 14 |
+| 2 | mimo-v2.6-pro | ¥418 | 11 |
+| **3** | **qwen9b-CARE-v3 (ours, open 9B)** | **¥387** | 10 |
+| 4 | glm-5.3 | ¥380 | 11 |
+| 5 | glm-5.3-flash | ¥311 | 16 |
+
+The best open 9B model reaches ~90% of the commercial frontier at ~1/1000 of the
+training compute — and with **JitRL test-time self-improvement** it earns ¥390
+(2.0× same-model control, Mann-Whitney p=0.037, zero weight updates).
+
+### Key findings
+
+1. **Training > scale**: fine-tuned 9B ≈ frontier 90%; 27B zero-shot ¥190–213 and a
+   30B ML-RSI agent (¥120) land far below.
+2. **Self-improvement compounds in accumulated substrates, not weights**:
+   execution-verified asset library = 6× production profit (dose-response ρ=0.96,
+   frozen model); JitRL experience memory = 2× steady-state profit (p=0.037);
+   weight-level self-update at 9B shows no transferable gain (negative result, full
+   ablations included).
+3. **Schema adherence is scarce**: of 25 zero-shot models only 7 major-vendor
+   2025+ instruct models emit valid design JSON.
+
+Reproduce: `tools/run_local_bench.py`, `tools/rejudge.py`; training pipeline:
+`tools/openrsi_sft_v2.py` → `tools/train_prsi_v2.py` → `tools/prsi_rl_loop.py`
+→ `tools/jitrl_bench.py` → `tools/dual_loop_prsi.py`.
+
+---
+
+
 MechanogenesisBench is the benchmark and evidence plane of the full
 Mechanogenesis Engine product. It evaluates complete systems that generate a
 research strategy, physical theory, construction program, experiment and

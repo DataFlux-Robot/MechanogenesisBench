@@ -1,0 +1,215 @@
+[
+  {
+    "designer": "internlm3-8b-instruct-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "cost": 0.0,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": null
+  },
+  {
+    "designer": "internlm3-8b-instruct-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "cost": 0.0,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": null
+  },
+  {
+    "designer": "internlm3-8b-instruct-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 7.0,
+        "cad": {
+          "extent": [
+            649.0,
+            346.0,
+            160.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "The design is essentially just two solid boxes: a "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.013,
+        "reused": false,
+        "secs": 26.3,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            400.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Massive overlap of 57,600,000 mm3 indicates compon"
+          }
+        ]
+      }
+    ],
+    "profit": -0.02,
+    "revenue": 0.0,
+    "cost": 0.02,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.27
+  }
+]

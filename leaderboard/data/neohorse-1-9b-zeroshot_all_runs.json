@@ -1,0 +1,320 @@
+[
+  {
+    "designer": "neohorse-1-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.009,
+        "reused": false,
+        "secs": 17.6,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            190.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Design fails basic validation: overlap_mm3 of 1432"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.003,
+        "reused": false,
+        "secs": 2.7,
+        "cad": {
+          "extent": [
+            250.0,
+            10.0,
+            350.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails to reuse dock+earbuds modules as requ"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": -0.01,
+    "revenue": 0.0,
+    "cost": 0.01,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 6.52
+  },
+  {
+    "designer": "neohorse-1-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 4.3,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            160.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The design is essentially a solid box of the phone"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.0,
+        "cad": {
+          "extent": [
+            122.5,
+            94.0,
+            88.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "The design successfully adds the earbuds bay (65x4"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 11.8,
+        "cad": {
+          "extent": [
+            335.0,
+            114.0,
+            175.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Requirements met: tablet stand (250x10x175) added,"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.9,
+        "cad": {
+          "extent": [
+            122.5,
+            94.0,
+            88.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails to fit the 300x200mm envelope: node n"
+          }
+        ]
+      }
+    ],
+    "profit": 269.98,
+    "revenue": 270.0,
+    "cost": 0.02,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 0.55
+  },
+  {
+    "designer": "neohorse-1-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 10.6,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Design is a nonsensical frame of boxes with no act"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 4.2,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The earbuds bay is added with correct dimensions ("
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 4.3,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "Design fails key constraints: overlap_mm3 is 2,015"
+          }
+        ]
+      }
+    ],
+    "profit": -0.01,
+    "revenue": 0.0,
+    "cost": 0.01,
+    "sold": "0/5",
+    "reuse": "1/4",
+    "t_accel": 2.47
+  }
+]

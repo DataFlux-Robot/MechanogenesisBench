@@ -1,0 +1,667 @@
+[
+  {
+    "designer": "deepseek-v4-pro",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 88.2,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            720.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design is truncated (dock_base transform incomplet"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 6,
+        "sold": true,
+        "rev": 50,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 147.7,
+        "cad": {
+          "extent": [
+            110.0,
+            70.0,
+            290.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Geometry adaptation is sound: slot 94x16x30 gives "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 100,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 51.2,
+        "cad": {
+          "extent": [
+            110.0,
+            70.0,
+            310.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Core requirements are met: the adapted dock (r2) i"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 82.8,
+        "cad": {
+          "extent": [
+            250.0,
+            100.0,
+            310.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "err:Expecting value: line 1 column"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 103.0,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            310.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Envelope compliance is achieved (0.0 mm excess) vi"
+          }
+        ]
+      }
+    ],
+    "profit": 150.0,
+    "revenue": 150.0,
+    "cost": 0.0,
+    "sold": "2/5",
+    "reuse": "3/4",
+    "t_accel": 1.27
+  },
+  {
+    "designer": "deepseek-v4-pro",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 148.6,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            310.0
+          ],
+          "intersections": 15
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The dock slot (80x16x120 mm) does not properly acc"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 110.1,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            310.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The base is correctly reused as the frame (op 'cap"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 90.3,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            310.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "The design violates the explicit requirement to AD"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 100,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 58.6,
+        "cad": {
+          "extent": [
+            420.0,
+            305.0,
+            312.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "Tablet stand geometry matches demand (250x10x175mm"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 156.7,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            160.0
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Envelope fits the 300x200mm constraint (excess 0.0"
+          }
+        ]
+      }
+    ],
+    "profit": 100.0,
+    "revenue": 100.0,
+    "cost": 0.0,
+    "sold": "1/5",
+    "reuse": "4/4",
+    "t_accel": 1.2
+  },
+  {
+    "designer": "deepseek-v4-pro",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 7,
+        "sold": true,
+        "rev": 80,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 105.2,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            250.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Slot (82x14mm) correctly clears the 78x12mm phone "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 54.4,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            250.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Base reuse is satisfied (base_r1 marked capital, a"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 103.9,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            250.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Requirement intent is met on paper: the adapted do"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 103.9,
+        "cad": {
+          "extent": [
+            500.0,
+            425.0,
+            272.5
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Requirements partially met: dock and earbuds are b"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 57.2,
+        "cad": {
+          "extent": [
+            500.0,
+            425.0,
+            272.5
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Reusing the unmodified r4_core defeats the 300x200"
+          }
+        ]
+      }
+    ],
+    "profit": 80.0,
+    "revenue": 80.0,
+    "cost": 0.0,
+    "sold": "1/5",
+    "reuse": "4/4",
+    "t_accel": 0.99
+  },
+  {
+    "designer": "deepseek-v4-pro",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 6,
+        "sold": true,
+        "rev": 50,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 139.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            325.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Core concept is sound: the 80x14mm slot clears the"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 8,
+        "sold": true,
+        "rev": 80,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 107.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            345.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "Dock correctly adapts to the 90x14x175mm phone: sl"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 83.2,
+        "cad": {
+          "extent": [
+            442.5,
+            280.0,
+            345.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The adapted dock is correctly retained (capital/re"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 83.3,
+        "cad": {
+          "extent": [
+            442.5,
+            345.0,
+            345.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Requirements partially met: tablet stand (250x10x1"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": 130.0,
+    "revenue": 130.0,
+    "cost": 0.0,
+    "sold": "2/5",
+    "reuse": "3/4",
+    "t_accel": 1.48
+  },
+  {
+    "designer": "deepseek-v4-pro",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": false,
+        "secs": 66.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            255.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": true,
+            "feedback": "Geometry technically fits (slot 80x14 gives 1mm/si"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 63.9,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            295.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Partial success. Requirement compliance is good: t"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 74.4,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            295.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The adapted dock is correctly reused and the earbu"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 8,
+        "sold": true,
+        "rev": 100,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 59.1,
+        "cad": {
+          "extent": [
+            420.0,
+            345.0,
+            295.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 8,
+            "accepted": true,
+            "feedback": "All key requirements satisfied: tablet stand creat"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.0,
+        "reused": true,
+        "secs": 105.1,
+        "cad": {
+          "extent": [
+            420.0,
+            345.0,
+            1120.0
+          ],
+          "intersections": 78
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Fails the primary constraint: envelope_excess_mm ="
+          }
+        ]
+      }
+    ],
+    "profit": 100.0,
+    "revenue": 100.0,
+    "cost": 0.0,
+    "sold": "1/5",
+    "reuse": "4/4",
+    "t_accel": 0.79
+  }
+]

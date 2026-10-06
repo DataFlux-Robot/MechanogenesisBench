@@ -1,0 +1,117 @@
+[
+  {
+    "iter": 1,
+    "mean_r": 0.4452,
+    "valid": 0.806,
+    "sold": 0.194,
+    "reused_improve": 0.833,
+    "mean_rating_valid": 3.31,
+    "mean_r_by_op": {
+      "draft": 0.1667,
+      "improve": 0.6014,
+      "debug": 0.35
+    },
+    "care_regimes": {
+      "progress": 18,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 10.4
+  },
+  {
+    "iter": 2,
+    "mean_r": 0.5093,
+    "valid": 0.917,
+    "sold": 0.194,
+    "reused_improve": 0.944,
+    "mean_rating_valid": 3.03,
+    "mean_r_by_op": {
+      "draft": 0.2167,
+      "improve": 0.6214,
+      "debug": 0.4875
+    },
+    "care_regimes": {
+      "progress": 18,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 9.1
+  },
+  {
+    "iter": 3,
+    "mean_r": 0.507,
+    "valid": 0.917,
+    "sold": 0.222,
+    "reused_improve": 0.889,
+    "mean_rating_valid": 3.91,
+    "mean_r_by_op": {
+      "draft": 0.175,
+      "improve": 0.5557,
+      "debug": 0.6
+    },
+    "care_regimes": {
+      "progress": 12,
+      "efficiency": 6,
+      "outcome": 6,
+      "debug-static": 12
+    },
+    "wall_min": 8.5
+  },
+  {
+    "iter": 4,
+    "mean_r": 0.5569,
+    "valid": 0.944,
+    "sold": 0.306,
+    "reused_improve": 0.778,
+    "mean_rating_valid": 3.56,
+    "mean_r_by_op": {
+      "draft": 0.1583,
+      "improve": 0.6556,
+      "debug": 0.6083
+    },
+    "care_regimes": {
+      "progress": 12,
+      "outcome": 12,
+      "debug-static": 12
+    },
+    "wall_min": 10.8
+  },
+  {
+    "iter": 5,
+    "mean_r": 0.5708,
+    "valid": 0.972,
+    "sold": 0.25,
+    "reused_improve": 0.833,
+    "mean_rating_valid": 4.26,
+    "mean_r_by_op": {
+      "draft": 0.1833,
+      "improve": 0.6083,
+      "debug": 0.7083
+    },
+    "care_regimes": {
+      "progress": 12,
+      "outcome": 12,
+      "debug-static": 12
+    },
+    "wall_min": 9.7
+  },
+  {
+    "iter": 6,
+    "mean_r": 0.6431,
+    "valid": 1.0,
+    "sold": 0.361,
+    "reused_improve": 0.889,
+    "mean_rating_valid": 4.08,
+    "mean_r_by_op": {
+      "draft": 0.2417,
+      "improve": 0.7613,
+      "debug": 0.6667
+    },
+    "care_regimes": {
+      "progress": 12,
+      "efficiency": 12,
+      "debug-static": 12
+    },
+    "wall_min": 9.4
+  }
+]

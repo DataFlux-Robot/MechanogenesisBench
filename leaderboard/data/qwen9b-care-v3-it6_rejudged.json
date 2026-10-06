@@ -1,0 +1,622 @@
+[
+  {
+    "session": "20261004_145222",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          0,
+          2,
+          6
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          4,
+          5,
+          6
+        ],
+        "rating3": 5,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          4,
+          7,
+          8
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          1,
+          6,
+          7
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 150
+      }
+    ],
+    "profit": 600.0,
+    "sold": "4/5"
+  },
+  {
+    "session": "20261004_145320",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          4,
+          6,
+          7
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          6,
+          7,
+          9
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          9,
+          9
+        ],
+        "rating3": 9,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          7,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          4,
+          6
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 600.0,
+    "sold": "4/5"
+  },
+  {
+    "session": "20261004_145417",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          3,
+          5,
+          5
+        ],
+        "rating3": 5,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          4,
+          6,
+          7
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          9,
+          10
+        ],
+        "rating3": 9,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          4,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          1,
+          3,
+          3
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 600.0,
+    "sold": "4/5"
+  },
+  {
+    "session": "20261004_145506",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          2,
+          2,
+          2
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          0,
+          2,
+          3
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          7,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          4,
+          6,
+          8
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 120
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          2,
+          3
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 270.0,
+    "sold": "2/5"
+  },
+  {
+    "session": "20261004_145559",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          0,
+          3,
+          3
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          7,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          5,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          2,
+          3
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 450.0,
+    "sold": "3/5"
+  },
+  {
+    "session": "20261004_145654",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          2,
+          6,
+          8
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          3,
+          3,
+          7
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          7,
+          8,
+          10
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          3,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          2,
+          3
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 450.0,
+    "sold": "3/5"
+  },
+  {
+    "session": "20261004_145750",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          0,
+          2,
+          2
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          2,
+          3,
+          4
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          3,
+          3,
+          4
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          3,
+          7,
+          8
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          0,
+          2,
+          3
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 150.0,
+    "sold": "1/5"
+  },
+  {
+    "session": "20261004_145904",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          4,
+          4,
+          6
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          2,
+          2,
+          2
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          6,
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          2,
+          2
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 300.0,
+    "sold": "2/5"
+  },
+  {
+    "session": "20261004_150003",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          2,
+          2,
+          2
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          3,
+          4,
+          7
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          7,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          2,
+          4,
+          6
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          3,
+          4,
+          6
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 150.0,
+    "sold": "1/5"
+  },
+  {
+    "session": "20261004_150101",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          2,
+          6,
+          7
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          3,
+          3,
+          9
+        ],
+        "rating3": 3,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          7,
+          8,
+          9
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 150
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          4,
+          4,
+          6
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          2,
+          2,
+          5
+        ],
+        "rating3": 2,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 300.0,
+    "sold": "2/5"
+  }
+]

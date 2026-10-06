@@ -1,0 +1,350 @@
+[
+  {
+    "designer": "omnicoder-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 14.2,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The bay is 65x48x28mm as demanded, but it is place"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 14.3,
+        "cad": {
+          "extent": [
+            250.0,
+            145.0,
+            175.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "Tablet stand added at correct 250x10x175mm dimensi"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": true,
+        "secs": 15.2,
+        "cad": {
+          "extent": [
+            300.0,
+            205.0,
+            175.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails critical constraints: overlap_mm3 of "
+          }
+        ]
+      }
+    ],
+    "profit": 119.98,
+    "revenue": 120.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "1/4",
+    "t_accel": 0.0
+  },
+  {
+    "designer": "omnicoder-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.01,
+        "reused": false,
+        "secs": 20.4,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            95.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design has significant issues: overlap_mm3 of 1160"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 13.8,
+        "cad": {
+          "extent": [
+            172.5,
+            60.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design adds the earbuds slot but fails to actu"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 12.6,
+        "cad": {
+          "extent": [
+            250.0,
+            20.0,
+            185.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design reuses dock+earbuds and adds the tablet"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.015,
+        "reused": false,
+        "secs": 34.9,
+        "cad": {
+          "extent": [
+            615.0,
+            350.0,
+            325.0
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Design fails key constraints: envelope_excess_mm i"
+          }
+        ]
+      }
+    ],
+    "profit": -0.04,
+    "revenue": 0.0,
+    "cost": 0.04,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.86
+  },
+  {
+    "designer": "omnicoder-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.009,
+        "reused": false,
+        "secs": 16.4,
+        "cad": {
+          "extent": [
+            680.0,
+            430.0,
+            500.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "The design is fundamentally broken: the phone is p"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 14.8,
+        "cad": {
+          "extent": [
+            892.5,
+            500.0,
+            80.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Earbuds bay added at correct 65x48x28mm size and d"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 6.3,
+        "cad": {
+          "extent": [
+            892.5,
+            500.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "Reuses dock and adds tablet stand at requested dim"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.007,
+        "reused": true,
+        "secs": 10.8,
+        "cad": {
+          "extent": [
+            992.5,
+            550.0,
+            175.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails the shrink requirement: legs are 150m"
+          }
+        ]
+      }
+    ],
+    "profit": 269.97,
+    "revenue": 270.0,
+    "cost": 0.03,
+    "sold": "2/5",
+    "reuse": "2/4",
+    "t_accel": 1.92
+  }
+]

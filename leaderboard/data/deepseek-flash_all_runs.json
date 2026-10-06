@@ -1,0 +1,637 @@
+[
+  {
+    "designer": "deepseek-flash",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.044,
+        "reused": false,
+        "secs": 27.2,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            253.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The layout is sensible at a macro level: the dock "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.054,
+        "reused": true,
+        "secs": 30.4,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            309.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The design correctly reuses the round 1 base via t"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.036,
+        "reused": true,
+        "secs": 20.1,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            309.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "The requirement to preserve the adapted dock (via "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.026,
+        "reused": true,
+        "secs": 13.5,
+        "cad": {
+          "extent": [
+            420.0,
+            445.0,
+            309.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Requirements partially met: dock and earbuds are c"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.057,
+        "reused": true,
+        "secs": 26.3,
+        "cad": {
+          "extent": [
+            420.0,
+            420.0,
+            400.0
+          ],
+          "intersections": 120
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "err:Unterminated string starting a"
+          }
+        ]
+      }
+    ],
+    "profit": -0.22,
+    "revenue": 0.0,
+    "cost": 0.22,
+    "sold": "0/5",
+    "reuse": "4/4",
+    "t_accel": 1.45
+  },
+  {
+    "designer": "deepseek-flash",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.043,
+        "reused": false,
+        "secs": 24.7,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            155.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Solid, manufacturable start: 110x90x25 base fits t"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.027,
+        "reused": true,
+        "secs": 14.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            155.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "The adapted dock is retained and the earbuds bay i"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.043,
+        "reused": true,
+        "secs": 23.1,
+        "cad": {
+          "extent": [
+            420.0,
+            345.0,
+            272.5
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Reuse requirement is met (dock and earbuds are cap"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.042,
+        "reused": true,
+        "secs": 19.8,
+        "cad": {
+          "extent": [
+            540.0,
+            440.0,
+            277.5
+          ],
+          "intersections": 21
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Failures against the 300x200mm desk: (1) envelope_"
+          }
+        ]
+      }
+    ],
+    "profit": 119.85,
+    "revenue": 120.0,
+    "cost": 0.15,
+    "sold": "1/5",
+    "reuse": "3/4",
+    "t_accel": 1.15
+  },
+  {
+    "designer": "deepseek-flash",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.032,
+        "reused": false,
+        "secs": 16.3,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            155.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 4,
+            "accepted": false,
+            "feedback": "Base reuse is preserved (base_box/base_reused reus"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.031,
+        "reused": true,
+        "secs": 17.5,
+        "cad": {
+          "extent": [
+            172.5,
+            80.0,
+            160.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "The demand is only partially met: the adapted dock"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.038,
+        "reused": true,
+        "secs": 20.4,
+        "cad": {
+          "extent": [
+            372.5,
+            195.0,
+            262.5
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": false,
+            "feedback": "Requirements mostly met: the tablet stand is corre"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.046,
+        "reused": true,
+        "secs": 24.1,
+        "cad": {
+          "extent": [
+            372.5,
+            215.0,
+            358.5
+          ],
+          "intersections": 28
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Good adaptation to the 300x200mm envelope (0.0mm e"
+          }
+        ]
+      }
+    ],
+    "profit": 359.85,
+    "revenue": 360.0,
+    "cost": 0.15,
+    "sold": "3/5",
+    "reuse": "3/4",
+    "t_accel": 0.73
+  },
+  {
+    "designer": "deepseek-flash",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.061,
+        "reused": false,
+        "secs": 31.8,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            126.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Major functional defects. (1) The slot is a fully "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.051,
+        "reused": false,
+        "secs": 26.4,
+        "cad": {
+          "extent": [
+            160.0,
+            100.0,
+            267.5
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Hard constraint violated: the round-1 base MUST be"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.015,
+        "reused": false,
+        "secs": 7.4,
+        "cad": {
+          "extent": [
+            220.0,
+            140.0,
+            94.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "The earbuds bay itself is correctly dimensioned an"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.024,
+        "reused": true,
+        "secs": 13.5,
+        "cad": {
+          "extent": [
+            250.0,
+            275.0,
+            258.5
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Reuses r3 (dock+earbuds) as required and adds the "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": 269.85,
+    "revenue": 270.0,
+    "cost": 0.15,
+    "sold": "2/5",
+    "reuse": "1/4",
+    "t_accel": 2.16
+  },
+  {
+    "designer": "deepseek-flash",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.063,
+        "reused": false,
+        "secs": 32.3,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            132.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Major defect: the dock interferes with the desk by"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.065,
+        "reused": true,
+        "secs": 35.0,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            260.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Base reuse via capital op is correct per the requi"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.049,
+        "reused": true,
+        "secs": 25.9,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            260.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Core requirement met: the adapted dock (asset r2) "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.042,
+        "reused": true,
+        "secs": 20.0,
+        "cad": {
+          "extent": [
+            420.0,
+            345.0,
+            262.5
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Reused assets (dock r1, earbuds r2) are preserved "
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.063,
+        "reused": true,
+        "secs": 30.1,
+        "cad": {
+          "extent": [
+            540.0,
+            410.0,
+            310.0
+          ],
+          "intersections": 55
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "err:Unterminated string starting a"
+          }
+        ]
+      }
+    ],
+    "profit": 119.72,
+    "revenue": 120.0,
+    "cost": 0.28,
+    "sold": "1/5",
+    "reuse": "4/4",
+    "t_accel": 1.34
+  }
+]

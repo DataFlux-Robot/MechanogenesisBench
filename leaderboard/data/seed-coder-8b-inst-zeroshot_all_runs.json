@@ -1,0 +1,335 @@
+[
+  {
+    "designer": "seed-coder-8b-inst-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.4,
+        "cad": {
+          "extent": [
+            599.0,
+            406.0,
+            160.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The design is just a raw 420x280x160 box with the "
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 8.4,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            40.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails function preservation: difference op "
+          }
+        ]
+      }
+    ],
+    "profit": -0.01,
+    "revenue": 0.0,
+    "cost": 0.01,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.4
+  },
+  {
+    "designer": "seed-coder-8b-inst-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 3.1,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            160.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "The design is invalid: the 'phone' part is a diffe"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 5.2,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "err:litellm.RateLimitError: RateLi"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 4,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.007,
+        "reused": false,
+        "secs": 10.0,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            100.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Design fits the 300x200mm envelope (excess 0.0mm) "
+          }
+        ]
+      }
+    ],
+    "profit": 119.98,
+    "revenue": 120.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "0/4",
+    "t_accel": 0.31
+  },
+  {
+    "designer": "seed-coder-8b-inst-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 7.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            100.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Design is incoherent: 'phone_dock' is a difference"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 2.6,
+        "cad": {
+          "extent": [
+            90.0,
+            19.0,
+            237.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Overlap of 35000mm3 between base and dock indicate"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 6.6,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            40.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 3,
+            "accepted": false,
+            "feedback": "Earbuds bay is added and dock is preserved via uni"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 3.1,
+        "cad": {
+          "extent": [
+            407.5,
+            48.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 6,
+            "accepted": true,
+            "feedback": "Requirements met: tablet stand (250x10x175mm) adde"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 5.9,
+        "cad": {
+          "extent": [
+            675.0,
+            300.0,
+            215.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "err:litellm.RateLimitError: RateLi"
+          }
+        ]
+      }
+    ],
+    "profit": 149.98,
+    "revenue": 150.0,
+    "cost": 0.02,
+    "sold": "1/5",
+    "reuse": "2/4",
+    "t_accel": 1.12
+  }
+]

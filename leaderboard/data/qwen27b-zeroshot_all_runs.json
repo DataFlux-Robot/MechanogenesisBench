@@ -1,0 +1,410 @@
+[
+  {
+    "designer": "qwen27b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.008,
+        "reused": false,
+        "secs": 22.5,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            345.0
+          ],
+          "intersections": 6
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design has fundamental issues: phone_holder is"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 11.0,
+        "cad": {
+          "extent": [
+            120.0,
+            120.0,
+            180.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 0,
+            "accepted": false,
+            "feedback": "Base is 120x120x10 but must be reused from round 1"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 9.9,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            48.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The earbuds bay is fully embedded inside the dock "
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.0,
+        "cad": {
+          "extent": [
+            250.0,
+            10.0,
+            175.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails core requirements: dock and earbuds m"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.012,
+        "reused": false,
+        "secs": 38.1,
+        "cad": {
+          "extent": [
+            300.0,
+            200.0,
+            700.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design fails to fit the 300x200mm envelope con"
+          }
+        ]
+      }
+    ],
+    "profit": -0.03,
+    "revenue": 0.0,
+    "cost": 0.03,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 0.78
+  },
+  {
+    "designer": "qwen27b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 15.7,
+        "cad": {
+          "extent": [
+            420.0,
+            280.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails key requirements: phone pocket dimens"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 12.7,
+        "cad": {
+          "extent": [
+            200.0,
+            200.0,
+            280.0
+          ],
+          "intersections": 3
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Critical requirement violated: the base must be re"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.005,
+        "reused": false,
+        "secs": 9.6,
+        "cad": {
+          "extent": [
+            120.0,
+            80.0,
+            40.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design violates the MUST constraint: it create"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": false,
+        "secs": 5.0,
+        "cad": {
+          "extent": [
+            250.0,
+            10.0,
+            175.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 1,
+            "accepted": false,
+            "feedback": "Design fails key requirements: dock and earbuds mo"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 7,
+        "sold": true,
+        "rev": 100,
+        "cost": 0.015,
+        "reused": false,
+        "secs": 50.8,
+        "cad": {
+          "extent": [
+            300.0,
+            215.0,
+            700.0
+          ],
+          "intersections": 10
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Design fits the 300x200mm envelope exactly (envelo"
+          }
+        ]
+      }
+    ],
+    "profit": 99.97,
+    "revenue": 100.0,
+    "cost": 0.03,
+    "sold": "1/5",
+    "reuse": "0/4",
+    "t_accel": 0.51
+  },
+  {
+    "designer": "qwen27b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.006,
+        "reused": false,
+        "secs": 16.1,
+        "cad": {
+          "extent": [
+            420.0,
+            350.0,
+            180.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 5,
+            "accepted": true,
+            "feedback": "Design creates a phone dock with cutout sized 80x1"
+          }
+        ]
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 8.8,
+        "cad": {
+          "extent": [
+            420.0,
+            350.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Base is correctly reused from r1 and the new phone"
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 150,
+        "cost": 0.005,
+        "reused": true,
+        "secs": 9.0,
+        "cad": {
+          "extent": [
+            420.0,
+            350.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Design meets demand: adapted dock retained as fram"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.006,
+        "reused": true,
+        "secs": 11.4,
+        "cad": {
+          "extent": [
+            420.0,
+            350.0,
+            262.5
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 7,
+            "accepted": true,
+            "feedback": "Tablet stand added at correct size and placed behi"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.004,
+        "reused": true,
+        "secs": 6.6,
+        "cad": {
+          "extent": [
+            420.0,
+            350.0,
+            262.5
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "Design fails to meet the 300x200mm envelope requir"
+          }
+        ]
+      }
+    ],
+    "profit": 539.97,
+    "revenue": 540.0,
+    "cost": 0.03,
+    "sold": "4/5",
+    "reuse": "4/4",
+    "t_accel": 1.38
+  }
+]

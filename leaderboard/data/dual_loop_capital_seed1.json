@@ -1,0 +1,89 @@
+[
+  {
+    "gen": 1,
+    "adapter_hash": "e3e82e92755c6629",
+    "library_size": 1,
+    "prod_profit": 150,
+    "prod_sold": 1,
+    "prod_reuse": 0,
+    "prod_n": 12,
+    "probe_mean": 187.5,
+    "probe": [
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      },
+      {
+        "family": "phone",
+        "profit": 150.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 300.0
+      }
+    ],
+    "accepted": null
+  },
+  {
+    "gen": 2,
+    "adapter_hash": "e3e82e92755c6629",
+    "library_size": 7,
+    "prod_profit": 600,
+    "prod_sold": 4,
+    "prod_reuse": 8,
+    "prod_n": 12,
+    "probe_mean": 225.0,
+    "probe": [
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 300.0
+      },
+      {
+        "family": "phone",
+        "profit": 150.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 300.0
+      }
+    ],
+    "accepted": null
+  },
+  {
+    "gen": 3,
+    "adapter_hash": "e3e82e92755c6629",
+    "library_size": 12,
+    "prod_profit": 600,
+    "prod_sold": 4,
+    "prod_reuse": 10,
+    "prod_n": 12,
+    "probe_mean": 187.5,
+    "probe": [
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      },
+      {
+        "family": "phone",
+        "profit": 300.0
+      },
+      {
+        "family": "powerbank",
+        "profit": 150.0
+      }
+    ],
+    "accepted": null
+  }
+]

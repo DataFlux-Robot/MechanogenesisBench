@@ -1,0 +1,108 @@
+[
+  {
+    "designer": "frontis-ma1-30b",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.032,
+        "reused": false,
+        "secs": 17.2,
+        "cad": {
+          "extent": [
+            200.0,
+            100.0,
+            130.0
+          ],
+          "intersections": 0
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design is a simple generic dock that does not "
+          }
+        ]
+      },
+      {
+        "rd": 2,
+        "rating": 9,
+        "sold": true,
+        "rev": 120,
+        "cost": 0.023,
+        "reused": false,
+        "secs": 11.4,
+        "cad": {
+          "extent": [
+            200.0,
+            100.0,
+            48.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 9,
+            "accepted": true,
+            "feedback": "Dock is preserved and the earbuds bay (65x48x28mm)"
+          }
+        ]
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "cost": 0.029,
+        "reused": true,
+        "secs": 15.4,
+        "cad": {
+          "extent": [
+            250.0,
+            155.0,
+            175.0
+          ],
+          "intersections": 1
+        },
+        "judge_scores": [
+          {
+            "judge": "mimo-v2.6-pro",
+            "rating": 2,
+            "accepted": false,
+            "feedback": "The design fails to meet the core requirement to c"
+          }
+        ]
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "cost": 0,
+        "reused": false,
+        "secs": 0,
+        "cad": null
+      }
+    ],
+    "profit": 119.92,
+    "revenue": 120.0,
+    "cost": 0.08,
+    "sold": "1/5",
+    "reuse": "1/4",
+    "t_accel": 1.12
+  }
+]

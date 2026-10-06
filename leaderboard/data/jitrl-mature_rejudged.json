@@ -1,0 +1,283 @@
+[
+  {
+    "session": "sess1",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          6,
+          7
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          6,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          3,
+          5
+        ],
+        "rating3": 5,
+        "sold": true,
+        "rev": 100
+      }
+    ],
+    "profit": 500.0,
+    "sold": "5/5"
+  },
+  {
+    "session": "sess2",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          6,
+          6
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          5,
+          7
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          6,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          3,
+          4
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 400.0,
+    "sold": "4/5"
+  },
+  {
+    "session": "sess3",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          3,
+          6
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          7,
+          7
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          9
+        ],
+        "rating3": 9,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          8,
+          9
+        ],
+        "rating3": 9,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          4,
+          5
+        ],
+        "rating3": 5,
+        "sold": true,
+        "rev": 100
+      }
+    ],
+    "profit": 500.0,
+    "sold": "5/5"
+  },
+  {
+    "session": "sess4",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          4,
+          7
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 1,
+        "rating3": 0,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          5,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          6,
+          9
+        ],
+        "rating3": 9,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          4,
+          4
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      }
+    ],
+    "profit": 300.0,
+    "sold": "3/5"
+  },
+  {
+    "session": "sess5",
+    "rounds": [
+      {
+        "rd": 0,
+        "ratings": [
+          4,
+          4
+        ],
+        "rating3": 4,
+        "sold": false,
+        "rev": 0
+      },
+      {
+        "rd": 1,
+        "ratings": [
+          0,
+          7
+        ],
+        "rating3": 7,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 2,
+        "ratings": [
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 3,
+        "ratings": [
+          8,
+          8
+        ],
+        "rating3": 8,
+        "sold": true,
+        "rev": 100
+      },
+      {
+        "rd": 4,
+        "ratings": [
+          4,
+          6
+        ],
+        "rating3": 6,
+        "sold": true,
+        "rev": 100
+      }
+    ],
+    "profit": 400.0,
+    "sold": "4/5"
+  }
+]
