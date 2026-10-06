@@ -4,28 +4,28 @@
 
 **5-round cumulative product design · real build123d CAD execution · LLM-judge sales ·
 speed pricing.** One unified ranking (37 systems; profit per 5-round
-session, single-judge protocol, sorted by score). Methodology & raw data:
+session, single-judge protocol, sorted by score). Our models use release naming **FluxEidosV{version}-9B** (V0.5 SFT → V0.6 RL → **V1.0 CARE champion** → V1.5 + JitRL test-time RSI; legacy codename in parentheses). Methodology & raw data:
 [`leaderboard/LEADERBOARD.md`](leaderboard/LEADERBOARD.md)
 
 | # | System | Type | Profit | n | Note |
 |---|---|---|---:|---:|---|
-| 1 | qwen9b-CARE-v3 + JitRL | ours (9B + SFT + CARE-RL + test-time RLI) | ¥390 | 5 | 150–450; 2.0× control, p=0.037; 3-judge ¥387–420 |
+| 1 | FluxEidosV1.5-9B (CARE-v3 + JitRL) | ours (9B + SFT + CARE-RL + test-time RLI) | ¥390 | 5 | 150–450; 2.0× control, p=0.037; 3-judge ¥387–420 |
 | 2 | mimo-v2.6-pro | commercial API | ¥377 | 11 | 290–480; 3-judge ¥418 |
 | 3 | mimo-v2.6-flash | commercial API | ¥377 | 14 | 220–560; 3-judge ¥433 |
-| 4 | qwen9b-CARE-v3 | ours (9B + gated-SFT + CARE-RL) | ¥372 | 10 | 0–750; 3-judge ¥387 |
-| 5 | qwen9b + JitRL (accumulating) | ours (memory 0→full) | ¥345 | 10 | 0–600 |
+| 4 | FluxEidosV1.0-9B (CARE-v3) | ours (9B + gated-SFT + CARE-RL) | ¥372 | 10 | 0–750; 3-judge ¥387 |
+| 5 | FluxEidosV1.5a-9B (JitRL accumulating) | ours (memory 0→full) | ¥345 | 10 | 0–600 |
 | 6 | glm-5.3 | commercial API | ¥338 | 11 | 160–450; 3-judge ¥380 |
-| 7 | qwen9b-CARE-v4 | ours (expanded-env CARE) | ¥330 | 10 | 300–450 |
-| 8 | qwen9b-SFT-v2a | ours (gated-SFT only) | ¥260 | 3 | 240–270 |
-| 9 | qwen9b-CARE-v5 | ours (over-trained) | ¥255 | 10 | 0–450 |
-| 10 | mimo-distill-9B + SFT-v3 | ours (base swap, rejected) | ¥216 | 5 | 0–420 |
+| 7 | FluxEidosV1.1-9B (CARE-v4) | ours (expanded-env CARE) | ¥330 | 10 | 300–450 |
+| 8 | FluxEidosV0.5-9B (SFT-v2a) | ours (gated-SFT only) | ¥260 | 3 | 240–270 |
+| 9 | FluxEidosV1.2-9B (CARE-v5) | ours (over-trained) | ¥255 | 10 | 0–450 |
+| 10 | FluxEidosV1.0-D-9B (distill-base swap, rejected) | ours (base swap, rejected) | ¥216 | 5 | 0–420 |
 | 11 | qwen3.5-27B | zero-shot | ¥213 | 3 | 0–540 |
-| 12 | qwen9b-RSI-lineage (s2g1) | ours (weight-level self-update) | ¥210 | 5 | 150–300; gains don't transfer |
+| 12 | FluxEidosV1.0-RSI-9B (weight-self-update lineage) | ours (weight-level self-update) | ¥210 | 5 | 150–300; gains don't transfer |
 | 13 | gemma-4-12B-it (AWQ) | zero-shot | ¥200 | 3 | 0–300; best zero-shot |
-| 14 | qwen9b JitRL plain control | ours (same path, no memory) | ¥195 | 10 | 0–450 |
+| 14 | FluxEidosV1.0-ctl-9B (no-memory control) | ours (same path, no memory) | ¥195 | 10 | 0–450 |
 | 15 | qwen3.8-27B UD-IQ3_S | zero-shot (llama.cpp) | ¥190 | 3 | 0–300 |
 | 16 | deepseek-flash (V4.1) | commercial API | ¥174 | 5 | 0–360 |
-| 17 | qwen9b-RL-v1 it3 | ours (first RL gen) | ¥144 | 10 | 0–300 |
+| 17 | FluxEidosV0.6-9B (RL-v1) | ours (first RL gen) | ¥144 | 10 | 0–300 |
 | 18 | OmniCoder-9B | zero-shot | ¥130 | 3 | 0–270 |
 | 19 | Frontis-MA1-30B | zero-shot (ML-RSI agent) | ¥120 | 1 | no cross-domain transfer |
 | 20 | deepseek-v4-pro | commercial API | ¥112 | 5 | 89 s/gen, speed-priced down |

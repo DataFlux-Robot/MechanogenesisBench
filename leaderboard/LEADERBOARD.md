@@ -17,7 +17,7 @@ STEP asset (`capital(asset_id)`) for later rounds.
 |---|---|---:|---:|---|
 | 1 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | commercial frontier |
 | 2 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | |
-| **3** | **qwen9b-CARE-v3 (ours)** | **¥387** | 10 | 9B open model, ~250 SFT examples + CARE RL, one RTX 4090D |
+| **3** | **FluxEidosV1.0-9B (CARE-v3) (ours)** | **¥387** | 10 | 9B open model, ~250 SFT examples + CARE RL, one RTX 4090D |
 | 4 | glm-5.3 (Zhipu) | ¥380 | 11 | |
 | 5 | glm-5.3-flash (Zhipu) | ¥311 | 16 | |
 
@@ -31,17 +31,17 @@ training compute. Full per-run spreads in `data/` (`baselines_3judge.json`,
 |---|---:|---:|---|---|
 | mimo-v2.6-pro | ¥377 | 11 | 290–480 | |
 | mimo-v2.6-flash | ¥377 | 14 | 220–560 | |
-| qwen9b-CARE-v3 | ¥372 | 10 | 0–750 | best single session ¥750 (4/5 sold, 3/4 reuse) |
+| FluxEidosV1.0-9B (CARE-v3) | ¥372 | 10 | 0–750 | best single session ¥750 (4/5 sold, 3/4 reuse) |
 | glm-5.3 | ¥338 | 11 | 160–450 | |
-| qwen9b-CARE-v4 | ¥330 | 10 | 300–450 | ultra-stable variant (sd ¥60) |
-| qwen9b-SFT-v2a | ¥260 | 3 | 240–270 | gated-SFT only (150 examples) |
-| qwen9b-CARE-v5 | ¥255 | 10 | 0–450 | over-trained |
+| FluxEidosV1.1-9B (CARE-v4) | ¥330 | 10 | 300–450 | ultra-stable variant (sd ¥60) |
+| FluxEidosV0.5-9B (SFT-v2a) | ¥260 | 3 | 240–270 | gated-SFT only (150 examples) |
+| FluxEidosV1.2-9B (CARE-v5) | ¥255 | 10 | 0–450 | over-trained |
 | glm-5.3-flash | ¥229 | 16 | 0–400 | |
 | qwen3.5-27B (zero-shot) | ¥213 | 3 | 0–540 | scale ≠ capability |
-| qwen9b-RSI-lineage (s2g1) | ¥210 | 5 | 150–300 | weight-level self-update: probe gains did NOT transfer |
+| FluxEidosV1.0-RSI-9B (weight-self-update lineage) | ¥210 | 5 | 150–300 | weight-level self-update: probe gains did NOT transfer |
 | deepseek-flash (V4.1) | ¥174 | 5 | 0–360 | |
 | qwen9b-RL-v1-it3 | ¥144 | 10 | 0–300 | |
-| mimo-distill-9B + SFT-v3 | ¥216 | 5 | 0–420 | distill base is WORSE than Qwen base after identical SFT (rigidity) |
+| FluxEidosV1.0-D-9B (distill-base swap, rejected) | ¥216 | 5 | 0–420 | distill base is WORSE than Qwen base after identical SFT (rigidity) |
 | Frontis-MA1-30B | ¥120 | 1 | 120 | ML-domain RSI agent; reasoning burns the speed budget (89 s/gen) |
 | mimo-distill-9B (zero-shot) | ¥0 | 3 | 0 | mimo-v2.6 distillation does NOT transfer schema adherence |
 | Seed-Coder-8B-Instruct (zero-shot) | ¥90 | 3 | 0–150 | only non-zero of batch 2 |
@@ -75,7 +75,7 @@ EDGE (LaraAI TRT export): TensorRT-engine format, not serviceable by vLLM/llama.
 
 ## Second axis — capital-library production efficiency (different protocol; not comparable to the tables above)
 
-Frozen qwen9b-CARE-v3 model, fixed parametric production instances (4 × 3 rounds),
+Frozen FluxEidosV1.0-9B (CARE-v3) model, fixed parametric production instances (4 × 3 rounds),
 library of execution-verified assets accumulated across generations:
 
 | Library size | 0 | 3 | 6 | 12 | 19 |
@@ -113,7 +113,7 @@ Training pipeline: `tools/openrsi_sft_v2.py` (gated SFT) → `tools/train_prsi_v
 
 ## Test-time RSI (JitRL, arXiv:2601.18510 adapted): positive gains on the standard bench
 
-Same model (qwen9b-CARE-v3), same HF inference path, same judge/pricing; the only
+Same model (FluxEidosV1.0-9B (CARE-v3)), same HF inference path, same judge/pricing; the only
 difference is experience retrieval + advantage-weighted logit modulation
 (`z' = z + β·A`). Memory starts EMPTY and accumulates across the eval sessions —
 the across-session slope IS the self-improvement measurement, zero leakage.
