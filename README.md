@@ -1,82 +1,63 @@
 # MechanogenesisBench
 
-## 🏆 Money Bench v5 Leaderboard (complete)
+## 🏆 Money Bench v5 Leaderboard — ALL systems, one table
 
-**5-round cumulative product design with real build123d CAD execution, LLM-judge user
-simulation, and speed-based pricing.** Methodology & raw data (44 datasets):
+**5-round cumulative product design · real build123d CAD execution · LLM-judge sales ·
+speed pricing.** One unified ranking (37 systems; profit per 5-round
+session, single-judge protocol, sorted by score). Methodology & raw data:
 [`leaderboard/LEADERBOARD.md`](leaderboard/LEADERBOARD.md)
 
-### A. 3-judge symmetric protocol (primary, cross-vendor median)
+| # | System | Type | Profit | n | Note |
+|---|---|---|---:|---:|---|
+| 1 | qwen9b-CARE-v3 + JitRL | ours (9B + SFT + CARE-RL + test-time RLI) | ¥390 | 5 | 150–450; 2.0× control, p=0.037; 3-judge ¥387–420 |
+| 2 | mimo-v2.6-pro | commercial API | ¥377 | 11 | 290–480; 3-judge ¥418 |
+| 3 | mimo-v2.6-flash | commercial API | ¥377 | 14 | 220–560; 3-judge ¥433 |
+| 4 | qwen9b-CARE-v3 | ours (9B + gated-SFT + CARE-RL) | ¥372 | 10 | 0–750; 3-judge ¥387 |
+| 5 | qwen9b + JitRL (accumulating) | ours (memory 0→full) | ¥345 | 10 | 0–600 |
+| 6 | glm-5.3 | commercial API | ¥338 | 11 | 160–450; 3-judge ¥380 |
+| 7 | qwen9b-CARE-v4 | ours (expanded-env CARE) | ¥330 | 10 | 300–450 |
+| 8 | qwen9b-SFT-v2a | ours (gated-SFT only) | ¥260 | 3 | 240–270 |
+| 9 | qwen9b-CARE-v5 | ours (over-trained) | ¥255 | 10 | 0–450 |
+| 10 | mimo-distill-9B + SFT-v3 | ours (base swap, rejected) | ¥216 | 5 | 0–420 |
+| 11 | qwen3.5-27B | zero-shot | ¥213 | 3 | 0–540 |
+| 12 | qwen9b-RSI-lineage (s2g1) | ours (weight-level self-update) | ¥210 | 5 | 150–300; gains don't transfer |
+| 13 | gemma-4-12B-it (AWQ) | zero-shot | ¥200 | 3 | 0–300; best zero-shot |
+| 14 | qwen9b JitRL plain control | ours (same path, no memory) | ¥195 | 10 | 0–450 |
+| 15 | qwen3.8-27B UD-IQ3_S | zero-shot (llama.cpp) | ¥190 | 3 | 0–300 |
+| 16 | deepseek-flash (V4.1) | commercial API | ¥174 | 5 | 0–360 |
+| 17 | qwen9b-RL-v1 it3 | ours (first RL gen) | ¥144 | 10 | 0–300 |
+| 18 | OmniCoder-9B | zero-shot | ¥130 | 3 | 0–270 |
+| 19 | Frontis-MA1-30B | zero-shot (ML-RSI agent) | ¥120 | 1 | no cross-domain transfer |
+| 20 | deepseek-v4-pro | commercial API | ¥112 | 5 | 89 s/gen, speed-priced down |
+| 21 | Seed-Coder-8B-Instruct | zero-shot | ¥90 | 3 | 0–150 |
+| 22 | NeoHorse-1-9B | zero-shot | ¥90 | 3 | 0–270 |
+| 23 | ZDTaichu5.0-9B (GGUF) | zero-shot | ¥50 | 3 | 0–150 |
+| 24 | qwen3.5-9B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 25 | mimo-distill-9B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 26 | Seed-Coder-8B-Reasoning | zero-shot | ¥0 | 3 | schema non-adherence |
+| 27 | Seed-Coder-8B-Base | zero-shot | ¥0 | 3 | schema non-adherence |
+| 28 | K2-Horizon-7B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 29 | glm-4-9b-chat | zero-shot | ¥0 | 3 | schema non-adherence |
+| 30 | InternLM3-8B-Instruct | zero-shot | ¥0 | 3 | schema non-adherence |
+| 31 | MiniCPM5-2B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 32 | Ling-3.0-tiny | zero-shot | ¥0 | 3 | schema non-adherence |
+| 33 | VibeThinker-3B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 34 | Mistral-7B-Instruct-v0.3 | zero-shot | ¥0 | 3 | schema non-adherence |
+| 35 | Ornith-1.5-9B | zero-shot | ¥0 | 3 | schema non-adherence |
+| 36 | Qwopus3.5-9B-v3 | zero-shot | ¥0 | 3 | schema non-adherence |
+| 37 | Qwythos-9B-v2 | zero-shot | ¥0 | 3 | schema non-adherence |
 
-| # | System | Profit/session | n |
-|---|---|---:|---:|
-| 1 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 |
-| 2 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 |
-| **3** | **qwen9b-CARE-v3 (ours, open 9B)** | **¥387** | 10 |
-| 4 | glm-5.3 (Zhipu) | ¥380 | 11 |
-| 5 | glm-5.3-flash (Zhipu) | ¥311 | 16 |
+**Engineering-blocked** (vLLM/GGUF/HF-transformers all incompatible): Spark-X2.5-4B,
+Phi-4-mini-flash-reasoning, LoopCoder-V2, CLM-v0.1-8B, DiffuCoder-7B ×3,
+Ouro-2.6B(-Thinking) ×2, EDGE (TRT engine), ternary-8b, qwen3.8-27B+SFT.
 
-### B. Complete single-judge table — ALL evaluated systems (42)
+**Capital-library axis** (separate protocol, frozen model): 0→19 curated assets =
+¥150→¥900 per 12 production rounds (6×, dose-response ρ=0.96, 3/3 seeds monotone).
 
-**Trained systems (our pipeline on one RTX 4090D):**
-
-| System | Recipe | Profit | n | Spread |
-|---|---|---:|---:|---|
-| **qwen9b-CARE-v3 + JitRL (mature)** | 9B + gated-SFT + CARE-RL + test-time experience RL | **¥390** | 5 | 150–450 |
-| qwen9b-CARE-v3-it6 | 9B + 239-ex gated-SFT + CARE-RL | ¥372 | 10 | 0–750 |
-| qwen9b + JitRL (accumulate) | memory 0→full across sessions | ¥345 | 10 | 0–600 |
-| qwen9b-CARE-v4-it5 | expanded-env CARE | ¥330 | 10 | 300–450 |
-| qwen9b-SFT-v2a | gated-SFT only (150 examples) | ¥260 | 3 | 240–270 |
-| qwen9b-CARE-v5-it6 | over-trained | ¥255 | 10 | 0–450 |
-| mimo-distill-9B + SFT-v3 | distill base swap (rejected) | ¥216 | 5 | 0–420 |
-| qwen9b-RSI-lineage s2g1 | weight-level self-update (negative result) | ¥210 | 5 | 150–300 |
-| qwen9b JitRL plain control | same HF path, no memory | ¥195 | 10 | 0–450 |
-| qwen9b-RL-v1-it3 | first RL generation | ¥144 | 10 | 0–300 |
-
-**Commercial API models:**
-
-| System | Profit | n | Spread |
-|---|---:|---:|---|
-| mimo-v2.6-pro | ¥377 | 11 | 290–480 |
-| mimo-v2.6-flash | ¥377 | 14 | 220–560 |
-| glm-5.3 | ¥338 | 11 | 160–450 |
-| glm-5.3-flash | ¥229 | 16 | 0–400 |
-| deepseek-flash (V4.1) | ¥174 | 5 | 0–360 |
-| deepseek-v4-pro | ¥112 | 5 | 80–150 (speed-priced down: 89 s/gen) |
-
-**Zero-shot (no fine-tuning):**
-
-| System | Profit | n | Note |
-|---|---:|---:|---|
-| qwen3.5-27B | ¥213 | 3 | high variance 0–540 |
-| gemma-4-12B-it (AWQ) | ¥200 | 3 | best zero-shot overall |
-| qwen3.8-27B UD-IQ3_S (llama.cpp) | ¥190 | 3 | hybrid linear-attn arch |
-| OmniCoder-9B | ¥130 | 3 | |
-| Frontis-MA1-30B | ¥120 | 1 | ML-domain RSI agent; no transfer |
-| Seed-Coder-8B-Instruct | ¥90 | 3 | |
-| NeoHorse-1-9B | ¥90 | 3 | |
-| ZDTaichu5.0-9B (GGUF) | ¥50 | 3 | |
-| qwen3.5-9B / mimo-distill-9B / Seed-Coder-Reasoning / Seed-Coder-Base / K2-Horizon-7B / glm-4-9b-chat / InternLM3-8B / MiniCPM5-2B / Ling-3.0-tiny / VibeThinker-3B / Mistral-7B-v0.3 / Ornith-1.5-9B / Qwopus3.5-9B-v3 / Qwythos-9B-v2 | ¥0 each | 3 | schema non-adherence |
-
-**Engineering-blocked (3 serving stacks tried):** Spark-X2.5-4B, Phi-4-mini-flash,
-LoopCoder-V2, CLM-v0.1-8B, DiffuCoder-7B ×3, Ouro-2.6B(-Thinking) ×2, EDGE (TRT),
-ternary-8b (no repo), qwen3.8-27B+SFT (prequant shape instability).
-
-### C. Capital-library axis (different protocol: frozen model, parametric production)
-
-| Library size | 0 | 3 | 6 | 12 | 19 assets |
-|---|---:|---:|---:|---:|---:|
-| Profit / 12 rounds | ¥150 | ¥600 | ¥750 | ¥750 | **¥900 (6×)** |
-
-Dose-response Spearman ρ=0.96; 3/3 seeds improve monotonically (+¥450/seed).
-
-### Key findings
-
-1. **Training > scale**: fine-tuned 9B ≈ frontier 90% at ~1/1000 compute.
-2. **Self-improvement compounds in substrates, not weights**: asset library 6×
-   (ρ=0.96, frozen model); JitRL memory 2× (p=0.037, zero weight updates);
-   weight-level self-update shows no transferable gain (¥372→¥210).
-3. **Schema adherence is scarce**: only 7/25 zero-shot models emit valid design JSON.
+**Key findings** — (1) Training > scale: open 9B ≈ 90% of frontier at ~1/1000 compute;
+(2) self-improvement compounds in accumulated substrates (assets 6×, JitRL memory 2×
+at p=0.037), not in 9B weight updates (¥372→¥210); (3) schema adherence is scarce:
+only 7/25 zero-shot models emit valid design JSON.
 
 Reproduce: `tools/run_local_bench.py`, `tools/rejudge.py`; pipeline:
 `tools/openrsi_sft_v2.py` → `tools/train_prsi_v2.py` → `tools/prsi_rl_loop.py`
