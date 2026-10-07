@@ -38,6 +38,23 @@ def run_session(model, tokenizer, sess_dir, tag):
             # strip think blocks / fences
             import re
             text = re.sub(r'<think>.*?</think>', '', text, flags=re.S).strip()
+            # extract JSON from reasoning: find LAST {"schema" then balanced braces
+            if not text.startswith('{'):
+                marker = '{"schema"'
+                i = text.rfind(marker)
+                if i >= 0:
+                    depth = 0; end = -1
+                    for k in range(i, len(text)):
+                        if text[k] == '{': depth += 1
+                        elif text[k] == '}':
+                            depth -= 1
+                            if depth == 0:
+                                end = k; break
+                    if end > i:
+                        try:
+                            json.loads(text[i:end+1])
+                            text = text[i:end+1]
+                        except: pass
             if text.startswith('```') and text.count('```') >= 2:
                 lines = text.split('\n')
                 if len(lines) >= 3:

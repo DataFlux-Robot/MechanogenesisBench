@@ -42,7 +42,7 @@ MODELS = {
                        'protocol': 'anthropic', 'key_env': 'ZAI_KEY', 'max_tokens': 16000, 'temp': 0.3},
     'mimo-v2.6-flash': {'model': 'openai/mimo-v2.6-flash', 'api_base': 'https://api.xiaomimimo.com/v1',
                         'protocol': 'openai', 'key_env': 'MIMO_KEY', 'max_tokens': 32000, 'temp': 0.6},
-    'mimo-v2.6-pro': {'model': 'openai/mimo-v2.6-pro', 'api_base': 'https://api.xiaomimimo.com/v1',
+    'mimo-v2.6-pro': {'model': 'openai/mimo-v2.6-pro', 'api_base': 'https://token-plan-cn.xiaomimimo.com/v1',
                       'protocol': 'openai', 'key_env': 'MIMO_KEY', 'max_tokens': 32000, 'temp': 0.6},
     'deepseek-v3': {'model': 'openai/deepseek-chat', 'api_base': 'https://api.deepseek.com/v1',
                      'protocol': 'openai', 'key_env': 'DEEPSEEK_API_KEY', 'max_tokens': 16000, 'temp': 0.3},

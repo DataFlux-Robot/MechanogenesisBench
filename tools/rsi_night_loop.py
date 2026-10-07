@@ -39,7 +39,7 @@ BASE = '/home/exuber/models/qwen3.5-9b-bf16'
 MERGED = '/home/exuber/models/qwen9b-rsi-night-merged'
 OUT = HERE.parent / 'runs' / 'rsi_night'
 PORT = 8100
-MIMO_BASE = 'https://api.xiaomimimo.com/v1'
+MIMO_BASE = os.environ.get('MIMO_BASE_URL', 'https://token-plan-cn.xiaomimimo.com/v1')
 ACCEPT = 5
 FROZEN_CHAIN = (HERE.parent / 'runs' / 'control_experiments' / 'glm-5.3-flash' /
                 'treatment_20261003_145642')  # reproducible commercial capital STEP chain
