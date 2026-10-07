@@ -1,0 +1,283 @@
+[
+  {
+    "profit": 150.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 4.6,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "secs": 7.1
+      },
+      {
+        "rd": 2,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": false,
+        "secs": 4.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 8.8,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 5.5,
+        "pred_rating": null,
+        "n_candidates": 4
+      }
+    ],
+    "cad_execs": 5,
+    "sold": "1/5",
+    "reuse": "2/4"
+  },
+  {
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 4.3,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "secs": 7.0
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": false,
+        "secs": 4.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 8.6,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 5.5,
+        "pred_rating": null,
+        "n_candidates": 4
+      }
+    ],
+    "cad_execs": 5,
+    "sold": "2/5",
+    "reuse": "2/4"
+  },
+  {
+    "profit": 600.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "reused": false,
+        "secs": 4.3,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 1,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.0,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 8.0,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 4,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 6.2,
+        "pred_rating": null,
+        "n_candidates": 4
+      }
+    ],
+    "cad_execs": 5,
+    "sold": "4/5",
+    "reuse": "4/4"
+  },
+  {
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 4.3,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 2,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 7.9,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.2,
+        "pred_rating": null,
+        "n_candidates": 4
+      }
+    ],
+    "cad_execs": 5,
+    "sold": "2/5",
+    "reuse": "4/4"
+  },
+  {
+    "profit": 150.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 4.3,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 1,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 4.8,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.8,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.3,
+        "pred_rating": null,
+        "n_candidates": 4
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "secs": 6.9
+      }
+    ],
+    "cad_execs": 5,
+    "sold": "1/5",
+    "reuse": "3/4"
+  }
+]

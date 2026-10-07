@@ -97,6 +97,22 @@ geometry execution without running it. Generation task degraded by task mixing
 
 Data: `data/world_model_pairs.json` | Code: `tools/train_cwm.py`
 
+## Dual-adapter: CAD World Model screening (separated adapters)
+
+Prediction-only LoRA (621 pairs, 5 epochs): **92% validity, 69% exact rating** —
+better than the mixed adapter (86%). But prediction-based screening of 4 candidates
+is WORSE than naive first-pick (¥150 vs ¥300, n=5): the model learned absolute
+outcomes from mediocre-heavy training data, not relative rankings. The 75% CAD
+execution savings (20→5 per session) comes from the N→1 architecture itself.
+Fix: learning-to-rank training on candidate pairs.
+
+| arm | mechanism | profit (n=5) | CAD execs |
+|---|---|---:|---:|
+| control (first of 4) | no prediction | ¥300 | 5/session |
+| screened (predict best of 4) | world model | ¥150 | 5/session |
+
+Data: `data/screen4_results.json`, `data/control4_results.json`
+
 ## Key findings
 
 1. **Training > scale**: a fine-tuned 9B ≈ 90% of the strongest commercial models;
