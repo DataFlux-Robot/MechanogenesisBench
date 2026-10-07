@@ -28,7 +28,7 @@ import money_bench_v5 as mb
 from rsi_night_loop import cad_eval, judge, speed_price, ACCEPT, OUT
 
 BASE = '/home/exuber/models/qwen3.5-9b-bf16'
-ADAPTER = '/home/exuber/models/prsi_gar2/gen5'  # GAR-RL v2 gen5
+ADAPTER = '/home/exuber/models/prsi_self_rft/epoch5'
 RESULTS = HERE.parent / 'runs' / 'jitrl'
 BETA_BASE = 0.5     # starting modulation strength
 BETA_MAX = 1.2      # max modulation as memory grows
