@@ -28,12 +28,17 @@ import money_bench_v5 as mb
 from rsi_night_loop import cad_eval, judge, speed_price, ACCEPT, OUT
 
 BASE = '/home/exuber/models/qwen3.5-9b-bf16'
-ADAPTER = '/home/exuber/models/prsi_rl_v3/iter6'   # the ¥372 champion (CARE-v3)
+ADAPTER = '/home/exuber/models/prsi_gar2/gen5'  # GAR-RL v2 gen5
 RESULTS = HERE.parent / 'runs' / 'jitrl'
-BETA = 0.7          # logit modulation strength
+BETA_BASE = 0.5     # starting modulation strength
+BETA_MAX = 1.2      # max modulation as memory grows
+
+def adaptive_beta(n_mem):
+    import math
+    return min(BETA_MAX, BETA_BASE + 0.1 * math.log2(max(n_mem, 1)))
 BOOST_CAP = 3.0     # max additive logit boost per token
-MAX_EXP = 10        # experiences retrieved per context
-MAX_EXP_TOKENS = 1400
+MAX_EXP = 20        # experiences retrieved per context
+MAX_EXP_TOKENS = 1800
 
 
 # ── experience bank ──
@@ -52,8 +57,20 @@ class ExperienceBank:
                               'reward': reward_of(rating, rev, valid, reused)})
 
     def retrieve(self, demand, rd):
-        """Exact-demand experiences first (same task), then same-round-type."""
+        """Exact-demand first, then fuzzy token-overlap, then same-round-type."""
         same = [e for e in self.entries if e['demand'] == demand]
+        if len(same) < 3:
+            # fuzzy: token overlap matching
+            toks = set(demand.lower().split())
+            scored = []
+            for e in self.entries:
+                if e in same: continue
+                e_toks = set(e['demand'].lower().split())
+                overlap = len(toks & e_toks) / max(len(toks | e_toks), 1)
+                if overlap > 0.3:
+                    scored.append((overlap, e))
+            scored.sort(key=lambda x: -x[0])
+            same += [e for _, e in scored[:MAX_EXP - len(same)]]
         if len(same) < 3:
             same += [e for e in self.entries if e['round'] == rd and e not in same]
         pool = [e for e in same if e['valid'] and e['rating'] >= 3]
@@ -108,7 +125,7 @@ class JitRLLogitsProcessor:
         import torch
         for node in self.cursors:
             for tok, a in node.get('a', {}).items():
-                scores[0, tok] += min(BETA * a, BOOST_CAP)
+                scores[0, tok] += min(adaptive_beta(getattr(self, '_n_mem', 10)) * a, BOOST_CAP)
         return scores
 
 
@@ -116,6 +133,8 @@ def generate_with_jitrl(model, tokenizer, prompt, experiences, max_new=1800):
     import torch
     ids = tokenizer(prompt, return_tensors='pt', truncation=True, max_length=3600).to(model.device)
     proc = JitRLLogitsProcessor(tokenizer, experiences) if experiences else None
+    if proc:
+        proc._n_mem = len(experiences)
     t0 = time.monotonic()
     generated = []
     from transformers import LogitsProcessorList
