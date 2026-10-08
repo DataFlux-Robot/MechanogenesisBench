@@ -1,0 +1,482 @@
+[
+  {
+    "instance": 1,
+    "family": "powerbank",
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 70.9
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 7.8
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.8
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 16.7
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 13.5
+      }
+    ],
+    "sold": "2/5"
+  },
+  {
+    "instance": 2,
+    "family": "powerbank",
+    "profit": 350.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 5,
+        "sold": true,
+        "rev": 80,
+        "reused": false,
+        "secs": 69.0
+      },
+      {
+        "rd": 1,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 4.1
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.1
+      },
+      {
+        "rd": 3,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "reused": true,
+        "secs": 14.0
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 7.0
+      }
+    ],
+    "sold": "3/5"
+  },
+  {
+    "instance": 3,
+    "family": "phone",
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 72.5
+      },
+      {
+        "rd": 1,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.0
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.0
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 15.3
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.9
+      }
+    ],
+    "sold": "2/5"
+  },
+  {
+    "instance": 4,
+    "family": "powerbank",
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 65.6
+      },
+      {
+        "rd": 1,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 6.4
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.2
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.4
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.9
+      }
+    ],
+    "sold": "2/5"
+  },
+  {
+    "instance": 5,
+    "family": "phone",
+    "profit": 450.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 68.1
+      },
+      {
+        "rd": 1,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 8.0
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.0
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 8.9
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.9
+      }
+    ],
+    "sold": "3/5"
+  },
+  {
+    "instance": 6,
+    "family": "ereader",
+    "profit": 420.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 66.5
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 8.3
+      },
+      {
+        "rd": 2,
+        "rating": 5,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.2
+      },
+      {
+        "rd": 3,
+        "rating": 5,
+        "sold": true,
+        "rev": 120,
+        "reused": true,
+        "secs": 22.4
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.9
+      }
+    ],
+    "sold": "3/5"
+  },
+  {
+    "instance": 7,
+    "family": "powerbank",
+    "profit": 420.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 60.1
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.1
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.0
+      },
+      {
+        "rd": 3,
+        "rating": 7,
+        "sold": true,
+        "rev": 120,
+        "reused": true,
+        "secs": 14.1
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.9
+      }
+    ],
+    "sold": "3/5"
+  },
+  {
+    "instance": 8,
+    "family": "ereader",
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 60.3
+      },
+      {
+        "rd": 1,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.1
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.1
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 6.5
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 7.0
+      }
+    ],
+    "sold": "2/5"
+  },
+  {
+    "instance": 9,
+    "family": "portable console",
+    "profit": 270.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 70.0
+      },
+      {
+        "rd": 1,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.1
+      },
+      {
+        "rd": 2,
+        "rating": 6,
+        "sold": true,
+        "rev": 120,
+        "reused": true,
+        "secs": 10.0
+      },
+      {
+        "rd": 3,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 12.9
+      },
+      {
+        "rd": 4,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 5.5
+      }
+    ],
+    "sold": "2/5"
+  },
+  {
+    "instance": 10,
+    "family": "phone",
+    "profit": 300.0,
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 72.9
+      },
+      {
+        "rd": 1,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 4.0
+      },
+      {
+        "rd": 2,
+        "rating": 7,
+        "sold": true,
+        "rev": 150,
+        "reused": true,
+        "secs": 5.1
+      },
+      {
+        "rd": 3,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 12.9
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 14.1
+      }
+    ],
+    "sold": "2/5"
+  }
+]
