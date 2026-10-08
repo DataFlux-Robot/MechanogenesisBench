@@ -121,16 +121,27 @@ Our fine-tuned models use a three-stage pipeline on a single RTX 4090D (24GB):
 
 | Rank | System | Profit (¥) | n | Speed |
 |------|--------|-----------|---|-------|
-| 1 | mimo-v2.6-flash | 433 | 14 | API |
-| 2 | mimo-v2.6-pro | 418 | 11 | API |
-| 3 | **FluxEidosV1.5 (ours)** | **390** | 5 | JitRL |
-| 4 | **FluxEidosV1.0 (ours)** | **372** | 10 | local |
-| 5 | glm-5.3 | 380 | 11 | API |
-| 6 | glm-5.3-flash | 311 | 16 | API |
+| 1 | **FluxEidosV2 (ours, system)** | **474** | 5→20 | local |
+| 2 | mimo-v2.6-flash | 433 | 14 | API |
+| 3 | mimo-v2.6-pro | 418 | 11 | API |
+| 4 | **FluxEidosV1.5 (ours)** | **390** | 5 | JitRL |
+| 5 | **FluxEidosV1.0 (ours)** | **372** | 10 | local |
+| 6 | glm-5.3 | 380 | 11 | API |
+| 7 | glm-5.3-flash | 311 | 16 | API |
 
 *Full 38-system table in supplementary.*
 
-The best open 9B model achieves ~90% of the commercial frontier. Training cost: ~250 gated SFT examples + 12 RL iterations on one consumer GPU.
+**FluxEidosV2** couples the V1.5 weights with a pure inference-time stack — best-of-N
+CAD-screened candidate selection for the scratch round (parts-first: judge rating tracks
+structural detail, not geometric overlap), in-context replay of the system's own past
+rating-≥6 designs, a syntax repair layer, conditional resampling, and judge-retry — and
+becomes the first 9B-class system past the commercial frontier (¥474 vs ¥433). The v1→v6
+ablation (5 sessions each: ¥72 → ¥206 → ¥350 → ¥368 → ¥474) isolates each mechanism's
+contribution. Disclosure: the replay bank is mined from prior standard-bench runs (same
+test-time-memorization family as JitRL; sealed-probe generalization reported in §6), so
+the weights-only entry remains V1.5 at ¥390.
+
+The best open 9B model achieves ~90% of the commercial frontier on weights alone. Training cost: ~250 gated SFT examples + 12 RL iterations on one consumer GPU.
 
 ### 5.2 Self-Improvement Mechanism Comparison
 
