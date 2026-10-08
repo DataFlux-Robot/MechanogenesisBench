@@ -246,7 +246,7 @@ def main():
     model.eval()
 
     use_hints = not a.no_hints
-    tag = 'v6' if a.r1_n > 1 else ('v2' if use_hints else 'control')
+    tag = 'v7' if a.r1_n > 1 else ('v2' if use_hints else 'control')
     experience = load_experience() if use_hints else {}
     print(f"[v6] experience bank: rounds {sorted(experience.keys())} "
           f"(ratings {[experience[k][0] for k in sorted(experience)]})", flush=True)
@@ -341,12 +341,29 @@ def main():
                             corrections_used += 1
                             text, cad, rating = rtext, rcad, rrating
                             secs = round(secs + rsecs, 1)
+                # v7: weak rounds (R4/R5 sold only 50%/35% at n=20) get one more shot
+                if rating < ACCEPT and rd >= 3:
+                    r2text, r2secs = generate(model, tok, prompt, temp=0.8,
+                                              seed=42 + rd + 1000 * si + 999)
+                    r2text = repair_design(r2text)
+                    if len(r2text) >= 60:
+                        r2cad = cad_eval(r2text, capital, sess_dir / f'r{rd}_v3', (dw, dd))
+                        if r2cad.get('metrics'):
+                            r2rating = safe_judge(demand, r2text, r2cad.get('metrics'))
+                            if r2rating > rating:
+                                corrections_used += 1
+                                text, cad, rating = r2text, r2cad, r2rating
+                                secs = round(secs + r2secs, 1)
 
             sold = rating >= ACCEPT
             rev = round(100 * speed_price(secs)) if sold else 0
             total += rev
             reused = any(n.get('op') == 'capital' for n in json.loads(text).get('nodes', []))
-            if sold or rating >= 3:
+            # v7: any EXECUTED design is a physical asset — an unsold prototype
+            # still exists as a STEP file and the next demand explicitly asks to
+            # reuse it. (Canonical v5 gates on rating>=3; disclosed deviation:
+            # kills the hallucinated-capital cascade when R1 rates <3.)
+            if cad.get('metrics'):
                 capital[f'r{rd+1}'] = {'status': 'EXECUTED_CAD', 'step_path': cad.get('step_path', ''),
                                        'description': f'Round {rd+1} design'}
 

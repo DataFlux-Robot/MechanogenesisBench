@@ -172,10 +172,16 @@ surpass v1→v6 (5 sessions each):
 | v3 | best-of-3 R1, overlap-first selection | ¥206 | 400,380,0,0,250 |
 | v4 | best-of-N R1, parts-first selection + judge retry | ¥350 | 230,80,680,380,380 |
 | v5 | + token cap (1.0x pricing) + conditional resample + repair | ¥368 | 550,320,400,200,370 |
-| **v6** | **+ in-context experience replay (self-mined rating≥6 designs)** | **¥474** | 450,570,420,380,550 |
+| v6 | + in-context experience replay (self-mined rating≥6 designs) | ¥474 | 450,570,420,380,550 (n=5) |
+| **v6** | **full n=20 replication** | **¥440** | median ¥450; 550,450,550,300,500,550,520,420,450,400,370,400,390,300,420,650,500,0,520,550 |
 
-**¥474 > ¥433 (mimo-v2.6-flash)** — the first 9B-class system to pass the strongest
-commercial baseline. Mechanisms: (1) best-of-3 R1 candidates CAD-screened with
+**v6 at n=20: ¥440 mean / ¥450 median vs mimo ¥433 — statistical parity**
+(Mann-Whitney one-sided p=0.31, d=0.06), not a significant win; the n=5 ¥474 was
+optimistic. Round-level: experience replay lifted R2 to 85% sold and R3 to 95%
+(baseline R2 ~40%, R3 100% at lower prices); remaining losses are R4 (50%),
+R5 (35%), and threshold-noise R1 (60%). The stack still clears the weights-only
+champion (¥390, +13%) and reaches frontier parity at ~1/1000 commercial training
+compute. v7 (capital-registration fix + R4/R5 retry) pending. Mechanisms: (1) best-of-3 R1 candidates CAD-screened with
 parts-first selection (judge rating tracks structural detail, not geometric
 overlap: 9-part designs rate 5-6, clean 4-part designs rate 2-3); (2) in-context
 replay of the system's own past rating≥6 designs per round; (3) syntax repair
