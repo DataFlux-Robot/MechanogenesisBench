@@ -35,12 +35,16 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 14 | **FluxEidosV0.5-9B (SFT-v2a) (ours)** | **¥260** | 3 | single | gated-SFT only (150 examples) |
 | 15 | **FluxEidosV1.2-9B (CARE-v5) (ours)** | **¥255** | 10 | single | over-trained |
 | 16 | qwen3.5-27B (zero-shot) | ¥213 | 3 | single | scale ≠ capability |
+| 17 | **FluxEidosV1.5a-9B (JitRL accumulating) (ours)** | **¥345** | 10 | single | memory 0→full slope = the self-improvement measurement |
 | 17 | **FluxEidosV1.0-D-9B (ours, rejected)** | **¥216** | 5 | single | distill base WORSE than Qwen base after identical SFT (rigidity) |
 | 18 | **FluxEidosV1.0-RSI-9B (ours, rejected)** | **¥210** | 5 | single | weight-level self-update: probe gains did NOT transfer |
 | 19 | gemma-4-12B-it (zero-shot, AWQ) | ¥200 | 3 | single | **best zero-shot of all models**; strong instruction following |
 | 20 | glm-5.3-flash (Zhipu) | ¥229 | 16 | single | |
 | 21 | deepseek-flash (V4.1) | ¥174 | 5 | single | thinking time is billed |
-| 22 | qwen9b-RL-v1-it3 (ours, early) | ¥144 | 10 | single | |
+| 21b | deepseek-v4-pro | ¥112 | 5 | single | 89 s/gen, speed-priced down |
+| 22 | qwen3.8-27B UD-IQ3_S (zero-shot, llama.cpp) | ¥190 | 3 | single | dynamic quant |
+| 23 | **FluxEidosV1.0-ctl-9B (no-memory control) (ours)** | **¥195** | 10 | single | JitRL plain control arm |
+| 24 | qwen9b-RL-v1-it3 = FluxEidosV0.6 (ours, early) | ¥144 | 10 | single | first RL generation |
 | 23 | OmniCoder-9B (zero-shot) | ¥130 | 3 | single | coder merge; partial schema adherence |
 | 24 | Frontis-MA1-30B (zero-shot) | ¥120 | 1 | single | ML-domain RSI agent; reasoning burns the speed budget (89 s/gen) |
 | 25 | NeoHorse-1-9B (zero-shot) | ¥90 | 3 | single | |
