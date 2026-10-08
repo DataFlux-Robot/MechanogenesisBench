@@ -19,7 +19,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 
 | # | System | Profit / session | n | Protocol | Notes |
 |---|---|---:|---:|---|---|
-| 1 | **FluxEidosV2-9B system (ours)** | **¥438** (median 450) | 40 | single | V1.5 weights + test-time stack; **frontier parity** (p=0.39 vs mimo-flash), +13% over weights-only champion |
+| 1 | **FluxEidosV2-9B system (ours)** | **¥532** (median 540) | 40 | **3-judge** | V1.5 weights + test-time stack; **beats frontier +23%, p=0.0015, d=1.0** (single-judge: ¥438 = parity). Ambiguous-resample bounds ¥489–¥564 |
 | 2 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | 3-judge | commercial frontier |
 | 3 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | 3-judge | |
 | 4 | **FluxEidosV1.5-9B (CARE-v3 iter6) (ours)** | **¥390** | 5 | single | weights-only champion |
@@ -74,10 +74,16 @@ code — the host models of LoopSpec, arXiv:2609.17184), EDGE (TRT engine),
 "ternary 8b" (no repo found on HuggingFace).
 
 Headline: the best open 9B weights reach **~90% of the commercial frontier**
-(¥387 vs ¥433); with the V2 test-time stack the system reaches **statistical parity**
-(¥438 vs ¥433, pooled n=40, Mann-Whitney p=0.39) at ~1/1000 of commercial training
-compute. Full per-run spreads in `data/` (`baselines_3judge.json`,
-`qwen9b-care-v3-it6_rejudged.json`, `surpass_v6_n20.json`, `surpass_v7_n20.json`).
+(¥387 vs ¥433); with the V2 test-time stack the system **surpasses the frontier under
+the symmetric 3-judge protocol: ¥532 vs ¥433 (+23%), Mann-Whitney p=0.0015, d=1.0**.
+Under the single-judge protocol (mimo-v2.6-pro decides) the same sessions score ¥438
+— statistical parity (p=0.39): the single judge systematically rated our designs at
+the sale threshold while the glm judges did not, which is precisely the family-bias
+the 3-judge protocol was built to remove. Resample-ambiguity bounds (26% of rounds
+had a resample artifact with recorded rating <5): pessimistic ¥489 / neutral ¥532 /
+optimistic ¥564 — all above the frontier. Full per-run spreads in `data/`
+(`baselines_3judge.json`, `surpass_v6_n20.json`, `surpass_v7_n20.json`,
+`v2_rejudge_3judge_p{0,1,2}.json`).
 
 ## FluxEidosV2-9B: the inference-time stack behind rank 1
 

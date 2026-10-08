@@ -121,7 +121,7 @@ Our fine-tuned models use a three-stage pipeline on a single RTX 4090D (24GB):
 
 | Rank | System | Profit (¥) | n | Speed |
 |------|--------|-----------|---|-------|
-| 1 | **FluxEidosV2 (ours, system)** | **440** (median 450) | 20 | local |
+| 1 | **FluxEidosV2 (ours, system)** | **532** (median 540) | 40 | 3-judge |
 | 2 | mimo-v2.6-flash | 433 | 14 | API |
 | 3 | mimo-v2.6-pro | 418 | 11 | API |
 | 4 | **FluxEidosV1.5 (ours)** | **390** | 5 | JitRL |
@@ -135,10 +135,14 @@ Our fine-tuned models use a three-stage pipeline on a single RTX 4090D (24GB):
 CAD-screened candidate selection for the scratch round (parts-first: judge rating tracks
 structural detail, not geometric overlap), in-context replay of the system's own past
 rating-≥6 designs, a syntax repair layer, conditional resampling, and judge-retry — and
-reaches system-level parity with the strongest commercial baseline (¥440 mean / ¥450
-median vs ¥433, n=20 vs 14; Mann-Whitney p=0.31), a +13% gain over the same weights
-without the stack (¥390). The v1→v6 ablation (5 sessions each: ¥72 → ¥206 → ¥350 → ¥368
-→ ¥474, replicated at ¥440 n=20) isolates each mechanism's contribution. Disclosure: the replay bank is mined from prior standard-bench runs (same
+surpasses the strongest commercial baseline under the symmetric 3-judge protocol
+(¥532 mean / ¥540 median vs ¥433, n=40 vs 14; Mann-Whitney p=0.0015, d=1.0; resample-
+ambiguity bounds ¥489–¥564 all above the frontier). Under the single-judge protocol
+(mimo-v2.6-pro decides) the same sessions score ¥438 — statistical parity (p=0.39):
+the single judge systematically held our designs at the sale threshold while the glm
+judges did not, exactly the family bias the symmetric protocol removes. The v1→v6
+ablation (5 sessions each: ¥72 → ¥206 → ¥350 → ¥368 → ¥474, replicated ¥440 n=20
+single-judge) isolates each mechanism's contribution. Disclosure: the replay bank is mined from prior standard-bench runs (same
 test-time-memorization family as JitRL; sealed-probe generalization reported in §6), so
 the weights-only entry remains V1.5 at ¥390.
 

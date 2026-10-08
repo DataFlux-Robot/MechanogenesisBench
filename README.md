@@ -9,7 +9,7 @@ session; best-protocol number per system, protocol noted; sorted by score). Our 
 
 | # | System | Type | Profit | n | Note |
 |---|---|---|---:|---:|---|
-| 1 | **FluxEidosV2-9B (system: V1.5 weights + test-time stack)** | ours (9B + inference-time RSI) | **¥438** (median 450) | 40 | **frontier parity** vs mimo-flash (p=0.39); +13% over weights-only; stack ablation v1→v7 in leaderboard |
+| 1 | **FluxEidosV2-9B (system: V1.5 weights + test-time stack)** | ours (9B + inference-time RSI) | **¥532** (median 540) | 40 | **3-judge: beats frontier +23%** (p=0.0015, d=1.0; single-judge ¥438 = parity); bounds ¥489–564; ablation v1→v7 in leaderboard |
 | 2 | mimo-v2.6-flash | commercial API | ¥433 (3-judge) | 14 | commercial frontier |
 | 3 | mimo-v2.6-pro | commercial API | ¥418 (3-judge) | 11 | |
 | 4 | FluxEidosV1.5-9B (CARE-v3 iter6) | ours (weights-only champion) | ¥390 | 5 | |
@@ -64,8 +64,8 @@ in-distribution); memory is instance-bound. Symmetric to the RRSI finding (39% o
 JitRL's gain = benchmark memorization).
 
 **Key findings** — (1) Training > scale: open 9B ≈ 90% of frontier on weights alone
-(¥387 vs ¥433), and the V2 system reaches **statistical parity** (¥438, n=40, p=0.39)
-at ~1/1000 compute; (2) self-improvement compounds in accumulated substrates (assets
+(¥387 vs ¥433), and the V2 system **surpasses the frontier under the symmetric 3-judge
+protocol** (¥532 vs ¥433, p=0.0015, d=1.0; single-judge parity ¥438) at ~1/1000 compute; (2) self-improvement compounds in accumulated substrates (assets
 6×, JitRL memory 2× at p=0.037, V2 replay +13%), not in 9B weight updates
 (¥372→¥210); (3) **memory wins on-distribution, weights win off-distribution**;
 (4) schema adherence is scarce: only 7/25 zero-shot models emit valid design JSON.
