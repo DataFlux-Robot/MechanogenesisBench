@@ -188,11 +188,17 @@ replay of the system's own past rating≥6 designs per round; (3) syntax repair
 layer (transform `inputs`->`input`, dead part references); (4) conditional
 resample on failed rounds; (5) judge-retry on API-zero flakes.
 
-**Disclosure**: the v6 experience bank is mined from prior runs of the same
-standard demands — same test-time-memorization family as JitRL's frozen memory
-(¥390; RRSI decomposition: 39% benchmark memorization). The honest generalization
-number for this stack requires the sealed parametric probes (V1.5 weights alone:
-¥240 there). Weights-only entry remains FluxEidosV1.5 (¥390, standard bench).
+**v7** (any-executed-design registers capital + R4/R5 second retry): ¥436 n=20,
+zero catastrophic sessions; pooled v6+v7 n=40: **¥438 vs mimo ¥433, p=0.39 —
+confirmed parity**, not a significant win. The +13% over the weights-only champion
+(¥390) is robust; the frontier edge is within judge noise.
+
+**Sealed-probe generalization (n=10, seed 20261005)**: v6 stack ¥341 vs plain-weights
+control ¥327 (+¥14, p=0.40) — **the replay advantage does not transfer**. Round ratings:
+R2 6.2 vs 5.9, R3 6.6 vs 7.8, R4 4.5 vs 4.4, R5 2.2 vs 1.0 (only the retry mechanism
+transfers, +1.2 on the shrink round). Principle: *test-time experience is
+instance-bound; weights generalize*. Weights-only entry remains FluxEidosV1.5 (¥390,
+standard bench; ¥240 probes).
 
 **Synthesis**: self-improvement on Money Bench is real and reproducible when it
 operates through accumulated substrates — execution-verified assets (within-session

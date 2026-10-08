@@ -130,6 +130,17 @@ def main():
                         if rrating > rating:
                             text, cad, rating = rtext, rcad, rrating
                             secs = round(secs + rsecs, 1)
+                if rating < ACCEPT and rd >= 3:  # second retry for weak rounds (v7)
+                    r2text, r2secs = sb.generate(model, tok, prompt, temp=0.8,
+                                                 seed=42 + rd + 1000 * pi + 999)
+                    r2text = sb.repair_design(r2text)
+                    if len(r2text) >= 60:
+                        r2cad = cad_eval(r2text, capital, sess_dir / f'r{rd}_v3', (dw, dd))
+                        if r2cad.get('metrics'):
+                            r2rating = sb.safe_judge(demand, r2text, r2cad.get('metrics'))
+                            if r2rating > rating:
+                                text, cad, rating = r2text, r2cad, r2rating
+                                secs = round(secs + r2secs, 1)
 
             sold = rating >= ACCEPT
             rev = round(100 * speed_price(secs)) if sold else 0
@@ -138,7 +149,7 @@ def main():
                 reused = any(n.get('op') == 'capital' for n in json.loads(text).get('nodes', []))
             except Exception:
                 reused = False
-            if sold or rating >= 3:
+            if cad.get('metrics'):  # executed designs are physical assets (v7 semantics)
                 capital[f'r{rd+1}'] = {'status': 'EXECUTED_CAD',
                                        'step_path': cad.get('step_path', ''),
                                        'description': f'Round {rd+1} design'}

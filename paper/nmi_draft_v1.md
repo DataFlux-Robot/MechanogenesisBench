@@ -221,6 +221,15 @@ Held-out demands (new product families, never trained on):
 - FluxEidosV1.0: ¥240 (65% of in-distribution ¥372)
 - 10/10 sessions profitable
 
+Sealed-probe decomposition of the V2 inference stack (n=10, seed 20261005):
+- plain V1.5 weights: ¥327
+- V1.5 + full V2 stack (replay bank mined from standard bench): ¥341 (+¥14, p=0.40)
+- Per-round ratings show only the retry mechanism transfers (R5: 2.2 vs 1.0);
+  experience-replay gains are instance-bound
+- **Principle: memory wins on-distribution, weights win off-distribution** — the
+  symmetric complement to the RRSI decomposition (39% of JitRL's gain was benchmark
+  memorization; here ~96% of the replay stack's in-distribution gain fails to transfer)
+
 Cross-domain (fixture design, different system prompt):
 - FluxEidosV1.0: ¥144 = commercial baseline (¥100-150)
 
