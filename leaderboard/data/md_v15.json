@@ -1,0 +1,502 @@
+[
+  {
+    "arm": "v15",
+    "domain": "fixture",
+    "designer": "FluxEidosV1.5-local",
+    "runs": [
+      {
+        "session": 1,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 20.0
+          },
+          {
+            "rd": 1,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 17.0
+          },
+          {
+            "rd": 2,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 8.6
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 15.8
+          },
+          {
+            "rd": 4,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 11.9
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 2,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 19.2
+          },
+          {
+            "rd": 1,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 12.0
+          },
+          {
+            "rd": 2,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 15.4
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 14.5
+          },
+          {
+            "rd": 4,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 13.0
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 3,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 15.0
+          },
+          {
+            "rd": 1,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 20.6
+          },
+          {
+            "rd": 2,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 13.4
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 19.6
+          },
+          {
+            "rd": 4,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 12.5
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 4,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 19.1
+          },
+          {
+            "rd": 1,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 14.9
+          },
+          {
+            "rd": 2,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 12.9
+          },
+          {
+            "rd": 3,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 12.8
+          },
+          {
+            "rd": 4,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 8.7
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 5,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 24.5
+          },
+          {
+            "rd": 1,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 24.9
+          },
+          {
+            "rd": 2,
+            "rating": 0,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 23.1
+          },
+          {
+            "rd": 3,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 18.9
+          },
+          {
+            "rd": 4,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 10.0
+          }
+        ],
+        "sold": "0/5"
+      }
+    ],
+    "mean_profit": 0.0,
+    "ratings_by_round": {
+      "0": 2,
+      "1": 2.4,
+      "2": 2.2,
+      "3": 3,
+      "4": 3.2
+    }
+  },
+  {
+    "arm": "v15",
+    "domain": "layout",
+    "designer": "FluxEidosV1.5-local",
+    "runs": [
+      {
+        "session": 1,
+        "profit": 150.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 8,
+            "sold": true,
+            "rev": 150,
+            "reused": false,
+            "secs": 7.0
+          },
+          {
+            "rd": 1,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 5.1
+          },
+          {
+            "rd": 2,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 17.8
+          },
+          {
+            "rd": 3,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 13.0
+          },
+          {
+            "rd": 4,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 16.6
+          }
+        ],
+        "sold": "1/5"
+      },
+      {
+        "session": 2,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 10.0
+          },
+          {
+            "rd": 1,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 5.2
+          },
+          {
+            "rd": 2,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 8.5
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 14.9
+          },
+          {
+            "rd": 4,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 18.5
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 3,
+        "profit": 150.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 7,
+            "sold": true,
+            "rev": 150,
+            "reused": false,
+            "secs": 6.9
+          },
+          {
+            "rd": 1,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 5.3
+          },
+          {
+            "rd": 2,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 10.2
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 9.4
+          },
+          {
+            "rd": 4,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 8.2
+          }
+        ],
+        "sold": "1/5"
+      },
+      {
+        "session": 4,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 7.0
+          },
+          {
+            "rd": 1,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 5.2
+          },
+          {
+            "rd": 2,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 10.7
+          },
+          {
+            "rd": 3,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 12.4
+          },
+          {
+            "rd": 4,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 8.1
+          }
+        ],
+        "sold": "0/5"
+      },
+      {
+        "session": 5,
+        "profit": 0.0,
+        "rounds": [
+          {
+            "rd": 0,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": false,
+            "secs": 7.0
+          },
+          {
+            "rd": 1,
+            "rating": 4,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 8.3
+          },
+          {
+            "rd": 2,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 9.9
+          },
+          {
+            "rd": 3,
+            "rating": 3,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 9.8
+          },
+          {
+            "rd": 4,
+            "rating": 2,
+            "sold": false,
+            "rev": 0,
+            "reused": true,
+            "secs": 8.2
+          }
+        ],
+        "sold": "0/5"
+      }
+    ],
+    "mean_profit": 60.0,
+    "ratings_by_round": {
+      "0": 5,
+      "1": 3.8,
+      "2": 2.8,
+      "3": 3,
+      "4": 2
+    }
+  }
+]

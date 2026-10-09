@@ -54,6 +54,11 @@ session; best-protocol number per system, protocol noted; sorted by score). Our 
 Phi-4-mini-flash-reasoning, LoopCoder-V2, CLM-v0.1-8B, DiffuCoder-7B ×3,
 Ouro-2.6B(-Thinking) ×2, EDGE (TRT engine), ternary-8b, qwen3.8-27B+SFT.
 
+**Multi-domain** (fixture + layout, 3-judge, n=5/cell): domain shift degrades everyone
+(mimo drops to 29-32% of in-domain); FluxEidosV2 **beats the frontier in layout**
+(¥264 vs ¥138, p=0.029, +91%) and lifts its own weights 4.4x; fixture sits below our
+model's capability threshold (¥0 vs mimo ¥124) — the threshold principle extends to domains.
+
 **Capital-library axis** (separate protocol, frozen model): 0→19 curated assets =
 ¥150→¥900 per 12 production rounds (6×, dose-response ρ=0.96, 3/3 seeds monotone).
 

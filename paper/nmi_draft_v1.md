@@ -234,8 +234,20 @@ Sealed-probe decomposition of the V2 inference stack (n=10, seed 20261005):
   symmetric complement to the RRSI decomposition (39% of JitRL's gain was benchmark
   memorization; here ~96% of the replay stack's in-distribution gain fails to transfer)
 
-Cross-domain (fixture design, different system prompt):
-- FluxEidosV1.0: ¥144 = commercial baseline (¥100-150)
+Cross-domain full evaluation (fixture + layout, native 3-judge, n=5 per cell):
+
+| arm | fixture | layout | workstation (in-domain) |
+|---|---:|---:|---:|
+| FluxEidosV1.5 weights | ¥0 | ¥60 | ¥390 (1-judge) |
+| FluxEidosV2 stack | ¥0 | **¥264** | **¥532 (3-judge)** |
+| mimo-v2.6-flash | ¥124 | ¥138 | ¥433 (3-judge) |
+
+(1) Domain shift degrades everyone — the frontier drops to 29-32% of in-domain
+profit. (2) The V2 stack beats the frontier in layout (+91%, p=0.029) and lifts its
+own weights 4.4x (p=0.016): the experience/retry mechanisms transfer. (3) Fixture
+sits below our model's capability threshold (ratings 2.4-3.6; no design reaches 6,
+so the within-domain experience bank never accumulates) — the threshold principle
+extends from models to domains.
 
 ### 5.9 Negative Results (Honest Reporting)
 

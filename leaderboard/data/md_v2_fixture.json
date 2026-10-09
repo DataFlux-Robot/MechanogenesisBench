@@ -1,0 +1,36 @@
+{
+  "arm": "v2",
+  "domain": "fixture",
+  "designer": "FluxEidosV2-local",
+  "runs": [
+    {
+      "session": 1,
+      "profit": 0.0
+    },
+    {
+      "session": 2,
+      "profit": 0.0
+    },
+    {
+      "session": 3,
+      "profit": 0.0
+    },
+    {
+      "session": 4,
+      "profit": 0.0
+    },
+    {
+      "session": 5,
+      "profit": 0.0
+    }
+  ],
+  "mean_profit": 0.0,
+  "ratings_by_round": {
+    "0": 2.4,
+    "1": 2.4,
+    "2": 3.2,
+    "3": 3.2,
+    "4": 3.6
+  },
+  "source": "reconstructed from md_v2.log (crash pre-save); per-round artifacts in runs/multi_domain_v2/v2/fixture/"
+}

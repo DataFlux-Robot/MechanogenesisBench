@@ -109,6 +109,28 @@ conditional resampling on failed rounds; (5) judge-retry on API-zero flakes. Rou
 structure at n=20: R2 85% sold, R3 95% (replay's effect), R1 60% / R4 50% / R5 35%
 (judge-threshold noise is the binding constraint).
 
+## Multi-domain evaluation (fixture + layout; fixes the single-domain critique)
+
+Two additional task domains (5-round cumulative demands each, same workstation-csg
+action space and CAD chain, domain-specific system prompts), native 3-judge median,
+n=5 sessions per cell. `tools/multi_domain_v2.py`; data `data/md_*.json`.
+
+| arm | fixture | layout | workstation (in-domain) |
+|---|---:|---:|---:|
+| FluxEidosV1.5 weights | ¥0 | ¥60 | ¥390 (1-judge) |
+| **FluxEidosV2 stack** | ¥0 | **¥264** | **¥532 (3-judge)** |
+| mimo-v2.6-flash | ¥124 | ¥138 | ¥433 (3-judge) |
+
+Findings: (1) **domain shift degrades everyone** — the frontier model drops to 29-32%
+of its in-domain profit; (2) **V2 stack beats the frontier in layout** (¥264 vs ¥138,
+p=0.029, +91%) and lifts its own weights 4.4x there (¥60→¥264, p=0.016) — the
+experience/retry mechanisms transfer; (3) **fixture sits below our model's capability
+threshold** (round ratings 2.4-3.6, no design ever reaches 6 so the experience bank
+never accumulates) while mimo retains partial competence (¥124) — the threshold
+principle extends from models to domains. A first mimo run under concurrent API load
+was discarded (40% empty responses from throttling); the clean exclusive rerun is
+reported.
+
 ## Test-time RSI (JitRL, arXiv:2601.18510 adapted)
 
 Same model (FluxEidosV1.0-9B (CARE-v3)), same inference path, same judge/pricing; the
