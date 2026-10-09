@@ -140,7 +140,7 @@ Notably, the V2 stack also **wins the layout domain** (¥264 vs mimo's ¥138, p=
 **Setup.** Attempts are Bernoulli(p) — valid-and-sold with probability p (the model's capability). c = per-verified-asset value.
 
 **Proposition 1 (substrate monotonicity).** Accept an asset into the library only after execution verification. Then accumulated value V_S(n) = c·Binomial(n,p) is monotone in expectation, E[V_S(n)] = cnp, with no threshold in p.
-*Proof sketch:* verification is a 0/1 gate independent of noise magnitude; E is linear in n. ∎
+*Proof sketch:* verification is a 0/1 gate independent of noise magnitude; E is linear in n. $\blacksquare$
 *Empirics:* dose–response ρ=0.96, monotone on all seeds (Fig. 1, left).
 
 **Proposition 2 (weight-update threshold).** A weight step Δθ = η(g + ε), ε zero-mean with variance σ², changes true performance by E[ΔF] = η‖g‖² − (η²σ²L)/2 (signal minus noise shrinkage, L = effective dimension). Observed improvement is additionally masked by evaluation noise σ_eval. Improvement is detectable only when η‖g‖² exceeds the sum of both noise terms — a capability threshold in p; substrates have none.
@@ -151,7 +151,7 @@ Notably, the V2 stack also **wins the layout domain** (¥264 vs mimo's ¥138, p=
 
 **Prescription.** Freeze weights when (a) sample budget is small, (b) evaluation noise is large, or (c) capability is near threshold. Improve substrates. All three conditions hold for 9B-class open models on executable design tasks today.
 
-*(Figure: `paper/figures/formal_model.png` — three panels with model curves and empirical overlays.)*
+![**Figure 1 | Minimal formal model vs. empirics.** Left (P1): substrate accumulation is monotone — model expectation with 10–90 pct band overlaid with the observed library dose–response (3 seeds). Middle (P2): weight updates need SNR above a threshold; shaded band is evaluation noise, with observed below-threshold (V0-Self, −54%) and above-threshold (V1.0, +5%) anchors. Right (P3): memory gain scales with train–test overlap s̄ whereas weights transfer with s-independent retention — observed on-distribution (+13%) and sealed-probe (+4%, n.s.) points.](figures/formal_model.png)
 
 ---
 
