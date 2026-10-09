@@ -1,0 +1,8 @@
+{
+  "materials": [
+    {"id": "aluminum_6061", "available_mg": 7000000},
+    {"id": "pcb_and_components", "available_mg": 1200000},
+    {"id": "battery_fixture_copper", "available_mg": 900000},
+    {"id": "mobility_platform_components", "available_mg": 150000000}
+  ]
+}

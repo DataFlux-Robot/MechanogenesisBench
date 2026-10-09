@@ -1,0 +1,20 @@
+{
+  "schema_version": "demand-microfactory-private-spec/v1",
+  "truth_attribute_weights_ppm": [
+    {"accessibility": 150000, "cargo": 360000, "range": 230000, "repairability": 200000, "weather": 60000},
+    {"accessibility": 350000, "cargo": 80000, "range": 80000, "repairability": 330000, "weather": 160000}
+  ],
+  "latent_novel_affordance": ["self_leveling_cargo", "tool_free_service"],
+  "holdout_disturbances": [
+    [
+      {"surface_error_um": 20, "pcb_escape_shift_ppm": 1000, "battery_error_shift_mv": 5},
+      {"surface_error_um": 90, "pcb_escape_shift_ppm": 4000, "battery_error_shift_mv": 20},
+      {"surface_error_um": 160, "pcb_escape_shift_ppm": 7500, "battery_error_shift_mv": 45}
+    ],
+    [
+      {"surface_error_um": 30, "pcb_escape_shift_ppm": 1500, "battery_error_shift_mv": 8},
+      {"surface_error_um": 110, "pcb_escape_shift_ppm": 5000, "battery_error_shift_mv": 25},
+      {"surface_error_um": 180, "pcb_escape_shift_ppm": 9000, "battery_error_shift_mv": 55}
+    ]
+  ]
+}

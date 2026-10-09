@@ -1,0 +1,22 @@
+{
+  "schema_version": "synthetic-demand-brief-sequence/v1",
+  "claim_ceiling": "benchmark_stimulus_not_human_outcome",
+  "population": "synthetic_technicians_in_small_robotics_cell",
+  "briefs": [
+    {
+      "generation": 0,
+      "frozen_sequence": 0,
+      "need": "Reduce routine fixture re-indication and setup error for repeated assembly measurements.",
+      "required_relative_error_upper_um": 200,
+      "required_successor_operator": true
+    },
+    {
+      "generation": 1,
+      "frozen_sequence": 1,
+      "need": "Support a tighter product datum while retaining the tool made in generation 0.",
+      "required_relative_error_upper_um": 120,
+      "required_absolute_frame_error_upper_um": 250,
+      "must_use_previous_output_operator": true
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "aggregate-pairwise-demand-evidence/v1",
+  "generations": [
+    {
+      "generation": 0,
+      "population": "local trades, caregivers and older low-speed mobility users",
+      "comparisons": [
+        {"preferred": "cargo", "other": "weather", "count": 8},
+        {"preferred": "range", "other": "accessibility", "count": 7},
+        {"preferred": "repairability", "other": "weather", "count": 6},
+        {"preferred": "cargo", "other": "range", "count": 4},
+        {"preferred": "accessibility", "other": "weather", "count": 4}
+      ],
+      "evidence_status": "synthetic_benchmark_stimulus"
+    },
+    {
+      "generation": 1,
+      "population": "authorized-use pattern proxy after generation-0 field trial",
+      "comparisons": [
+        {"preferred": "accessibility", "other": "cargo", "count": 9},
+        {"preferred": "repairability", "other": "range", "count": 9},
+        {"preferred": "weather", "other": "cargo", "count": 6},
+        {"preferred": "repairability", "other": "weather", "count": 5},
+        {"preferred": "accessibility", "other": "range", "count": 5}
+      ],
+      "evidence_status": "synthetic_benchmark_stimulus"
+    }
+  ]
+}

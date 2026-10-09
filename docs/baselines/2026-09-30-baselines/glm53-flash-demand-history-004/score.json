@@ -1,0 +1,13 @@
+{
+  "autonomy_fraction": 1.0,
+  "capability_gain": 437.2135,
+  "certified_evidence_tier": "simulation",
+  "disqualifications": [],
+  "eligible": true,
+  "mean_rrc_budget_rate_delta": 0.0668035,
+  "mean_rrc_time_rate_delta": 0.0,
+  "promotions": 2,
+  "promotions_per_dollar": 1.4996550793317538e-05,
+  "promotions_per_hour": 273.07756382046324,
+  "robustness_pass_rate": 1.0
+}

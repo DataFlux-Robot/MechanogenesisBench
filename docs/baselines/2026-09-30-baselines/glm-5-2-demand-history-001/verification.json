@@ -1,0 +1,16 @@
+{
+  "certified_evidence_tier": "simulation",
+  "effective_resource_use": {
+    "attempts": 2,
+    "energy_j": 10439840000.0,
+    "human_intervention_s": 0.0,
+    "material_kg": 123.36,
+    "monetary_cost_usd": 130498.0,
+    "tokens": 2918,
+    "wall_time_s": 19.339324844997464
+  },
+  "evaluated_generations": 2,
+  "promotions": 2,
+  "reasons": [],
+  "valid": true
+}
