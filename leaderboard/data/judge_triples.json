@@ -1,0 +1,2549 @@
+[
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "mimo-v2.6-flash",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 1,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 1,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 1,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV1.5",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 6,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "fixture",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 1,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 8,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 4,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 1,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 0,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 1,
+    "glm-5.3": 3,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 2,
+    "glm-5.3": 5,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 3,
+    "glm-5.3": 7,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "layout",
+    "source": "multi_domain",
+    "round": 4,
+    "glm-5.3": 2,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3-flash": 2
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 0,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 0,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 0,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 0,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v6",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 9,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 0,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 0,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 8,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 4,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 4
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3": 3,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 5
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 3
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 2,
+    "glm-5.3": 2,
+    "glm-5.3-flash": 0
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 6,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 3,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 7,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 9,
+    "glm-5.3": 8,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 0,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 4,
+    "glm-5.3-flash": 6
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 1,
+    "mimo-v2.6-pro": 5,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 7
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 2,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 8
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 3,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 7,
+    "glm-5.3-flash": 9
+  },
+  {
+    "designer": "FluxEidosV2",
+    "domain": "workstation",
+    "source": "surpass_v7",
+    "round": 4,
+    "mimo-v2.6-pro": 6,
+    "glm-5.3": 5,
+    "glm-5.3-flash": 4
+  }
+]

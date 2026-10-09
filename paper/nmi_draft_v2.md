@@ -38,6 +38,8 @@ The dominant approach to making language models better at real-world machine-mak
 
 ## 2. The ruler: Money Bench v5
 
+![**Figure 1 | The Money Bench loop.** Five-round cumulative demands drive an LLM to emit workstation-csg JSON that must execute as real build123d B-rep geometry (build → STEP export → re-import → exact measurement); valid designs are rated by a three-vendor judge panel (median decides the sale, ¥100 × speed multiplier), and every executed design registers as importable capital — free and faster — for later rounds. Improvement compounds through the capital registry, not through the model.](figures/fig1_benchmark.png)
+
 **Task.** Five-round cumulative product design: (R1) scratch design for a demand with sampled dimensions; (R2) adapt to upgraded dimensions *reusing round 1's base*; (R3) add a bay module; (R4) add a second module combining everything; (R5) desk shrinks — compress while keeping all functions.
 
 **Execution, not strings.** Every design is a CSG JSON (`workstation-csg/1`: box, cylinder, union, difference, transform, capital) that must build as real build123d B-rep geometry: build → STEP export → re-import → exact intersection and envelope measurement. Designs that fail to execute score zero.
@@ -48,11 +50,15 @@ The dominant approach to making language models better at real-world machine-mak
 
 **Protocols.** Single-judge (mimo-v2.6-pro median) and symmetric 3-judge (mimo-v2.6-pro + glm-5.3 + glm-5.3-flash, median decides). All rows same judge(s); full per-run spreads open-sourced.
 
+![**Figure 2 | Main ranking (profit per 5-round session).** Our system entries (purple) and weights (blue) against commercial APIs (orange) and zero-shot open models (gray); 14 zero-shot systems at ¥0 omitted for space. Dotted line marks the commercial frontier.](figures/fig2_leaderboard.png)
+
 **Scale of evaluation.** 39 systems: 6 commercial APIs, 21 zero-shot open models, 12 of our own lineage entries; 59 result datasets; sealed parametric probe set (seed 20261005, never used in training) for generalization.
 
 ---
 
 ## 3. What the ruler exposes — three failures
+
+![**Figure 3 | The three failures.** (a) Domain shift degrades everyone — the frontier retains 29–32% of in-domain profit (3-judge, n=5/cell). (b) All four weight-level self-improvement families fall below the trained baseline and inside the noise floor of identical weights (gray band: ±1 sd of repeated evaluation). (c) Cross-session experience gain decomposes into honest generalization (¥240) and benchmark memorization (¥150, 39%) under RRSI-style regularization.](figures/fig3_failures.png)
 
 ### 3.1 Frontier models collapse off-distribution
 
@@ -83,6 +89,8 @@ RRSI-style regularization (critic screening + noise floor + cost rule) rejects 2
 ---
 
 ## 4. The resolution — substrates, not weights
+
+![**Figure 4 | Substrates compound.** (a) Execution-verified asset library: monotone dose–response, 6× at 19 assets (ρ=0.96, 3/3 seeds). (b) Cross-session experience (JitRL) doubles cumulative profit by session 10 (2.0×, p=0.037). (c) The full inference-time stack (3-judge, n=40) surpasses the strongest commercial frontier (n=14): ¥532 vs ¥433, Mann–Whitney p=0.0015, d=1.0.](figures/fig4_substrates.png)
 
 ### 4.1 Execution-verified assets compound (within and across sessions)
 
@@ -151,7 +159,7 @@ Notably, the V2 stack also **wins the layout domain** (¥264 vs mimo's ¥138, p=
 
 **Prescription.** Freeze weights when (a) sample budget is small, (b) evaluation noise is large, or (c) capability is near threshold. Improve substrates. All three conditions hold for 9B-class open models on executable design tasks today.
 
-![**Figure 1 | Minimal formal model vs. empirics.** Left (P1): substrate accumulation is monotone — model expectation with 10–90 pct band overlaid with the observed library dose–response (3 seeds). Middle (P2): weight updates need SNR above a threshold; shaded band is evaluation noise, with observed below-threshold (V0-Self, −54%) and above-threshold (V1.0, +5%) anchors. Right (P3): memory gain scales with train–test overlap s̄ whereas weights transfer with s-independent retention — observed on-distribution (+13%) and sealed-probe (+4%, n.s.) points.](figures/formal_model.png)
+![**Figure 5 | Minimal formal model vs. empirics.** Left (P1): substrate accumulation is monotone — model expectation with 10–90 pct band overlaid with the observed library dose–response (3 seeds). Middle (P2): weight updates need SNR above a threshold; shaded band is evaluation noise, with observed below-threshold (V0-Self, −54%) and above-threshold (V1.0, +5%) anchors. Right (P3): memory gain scales with train–test overlap s̄ whereas weights transfer with s-independent retention — observed on-distribution (+13%) and sealed-probe (+4%, n.s.) points.](figures/formal_model.png)
 
 ---
 
@@ -167,6 +175,8 @@ Notably, the V2 stack also **wins the layout domain** (¥264 vs mimo's ¥138, p=
 ## 9. Evaluation methodology: can we trust LLM judges without humans?
 
 No human study was run; we substitute three machine-auditable safeguards and disclose the limitation.
+
+![**Figure 6 | Judge validity audit (machine-only).** (a) Cross-vendor ratings agree (mimo-v2.6-pro vs glm-5.3 on 283 round-triples; Spearman ρ=0.74; ordinal Krippendorff's α=0.676; sale-decision agreement 80%). (b) Family-bias gaps are ≤ 0 and non-significant for every judge — no vendor favors its own family's designs.](figures/fig6_judges.png)
 
 1. **Symmetric cross-vendor protocol.** Median of three judges from three vendors (Xiaomi, Zhipu×2 families). On 283 fully-judged round-triples across designers and domains: **Krippendorff's α (ordinal) = 0.676**; pairwise Spearman 0.66–0.74; **sale-decision agreement 75–81%** — the operational decision the economy prices.
 2. **Family-bias audit.** The Xiaomi judge does *not* favor Xiaomi designs: its mean gap (mimo-designs minus ours) is −0.61 (n.s.); glm-5.3's is −0.25 (n.s.). The single-judge/3-judge gap for our system is judge-leniency structure, not vendor capture — and the symmetric protocol is applied identically to all systems.

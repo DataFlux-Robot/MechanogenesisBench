@@ -231,6 +231,7 @@ def main():
               f'(gap {g["gap"]:+}, p={g["p_one_sided"]})')
 
     OUT.write_text(json.dumps(res, indent=2))
+    (OUT.parent / 'judge_triples.json').write_text(json.dumps(rows, indent=2))
     print(f'\nsaved: {OUT}')
 
 
