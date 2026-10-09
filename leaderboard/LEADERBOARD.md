@@ -200,6 +200,14 @@ the N→1 architecture itself. Fix: learning-to-rank training on candidate pairs
 
 Data: `data/world_model_pairs.json`, `data/screen4_results.json`, `data/control4_results.json`
 
+## Judge consistency audit (cross-vendor, machine-only)
+
+283 fully-judged round-triples (V2 standard-bench + multi-domain, 3 designers ×
+3 judges): **Krippendorff's α (ordinal) = 0.676**; pairwise Spearman 0.66–0.74;
+sale-decision agreement 75–81%. Family bias: the mimo judge's gap (mimo-designs −
+ours) is −0.61 (n.s.); glm-5.3 −0.25 (n.s.) — no vendor capture; the Xiaomi judge
+is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
+
 ## Key findings
 
 1. **Training > scale**: a fine-tuned 9B ≈ 90% of the strongest commercial models

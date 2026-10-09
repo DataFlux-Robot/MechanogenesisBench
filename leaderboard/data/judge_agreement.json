@@ -1,0 +1,225 @@
+{
+  "n_triples": 283,
+  "by_source": {
+    "all": {
+      "n": 283,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.739,
+          "p": 3.9976463083065084e-50,
+          "kappa_binned": 0.401,
+          "sale_agreement": 0.806
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.664,
+          "p": 2.10901981831199e-37,
+          "kappa_binned": 0.37,
+          "sale_agreement": 0.806
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.69,
+          "p": 2.2114725777263373e-41,
+          "kappa_binned": 0.31,
+          "sale_agreement": 0.753
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.676,
+      "exact_agreement": 0.106
+    },
+    "multi_domain": {
+      "n": 136,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.619,
+          "p": 9.868709581233214e-16,
+          "kappa_binned": 0.405,
+          "sale_agreement": 0.824
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.382,
+          "p": 4.4606911676924335e-06,
+          "kappa_binned": 0.292,
+          "sale_agreement": 0.816
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.522,
+          "p": 7.032851607902877e-11,
+          "kappa_binned": 0.232,
+          "sale_agreement": 0.757
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.615,
+      "exact_agreement": 0.184
+    },
+    "surpass_v6": {
+      "n": 73,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.492,
+          "p": 9.911765936187825e-06,
+          "kappa_binned": 0.216,
+          "sale_agreement": 0.726
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.614,
+          "p": 7.421829050332854e-09,
+          "kappa_binned": 0.147,
+          "sale_agreement": 0.808
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.731,
+          "p": 2.168990325649286e-13,
+          "kappa_binned": 0.181,
+          "sale_agreement": 0.753
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.557,
+      "exact_agreement": 0.041
+    },
+    "surpass_v7": {
+      "n": 74,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.537,
+          "p": 8.004094414956218e-07,
+          "kappa_binned": 0.246,
+          "sale_agreement": 0.851
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.596,
+          "p": 2.085168278428543e-08,
+          "kappa_binned": 0.238,
+          "sale_agreement": 0.784
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.71,
+          "p": 1.3724420267093184e-12,
+          "kappa_binned": 0.121,
+          "sale_agreement": 0.743
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.544,
+      "exact_agreement": 0.027
+    },
+    "designer:FluxEidosV1.5": {
+      "n": 49,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.576,
+          "p": 1.5134132833136407e-05,
+          "kappa_binned": 0.467,
+          "sale_agreement": 0.918
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.371,
+          "p": 0.008609429278345765,
+          "kappa_binned": 0.338,
+          "sale_agreement": 0.918
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.416,
+          "p": 0.0029197740522034837,
+          "kappa_binned": 0.338,
+          "sale_agreement": 0.918
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.691,
+      "exact_agreement": 0.245
+    },
+    "designer:FluxEidosV2": {
+      "n": 196,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.712,
+          "p": 1.3919331408798502e-31,
+          "kappa_binned": 0.364,
+          "sale_agreement": 0.816
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.67,
+          "p": 6.4298886025727116e-27,
+          "kappa_binned": 0.306,
+          "sale_agreement": 0.796
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.728,
+          "p": 1.1456763576451646e-33,
+          "kappa_binned": 0.267,
+          "sale_agreement": 0.755
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.64,
+      "exact_agreement": 0.061
+    },
+    "designer:mimo-v2.6-flash": {
+      "n": 38,
+      "pairwise": {
+        "mimo-v2.6-pro|glm-5.3": {
+          "spearman": 0.382,
+          "p": 0.017979917514345207,
+          "kappa_binned": 0.195,
+          "sale_agreement": 0.605
+        },
+        "mimo-v2.6-pro|glm-5.3-flash": {
+          "spearman": 0.368,
+          "p": 0.022867302599020447,
+          "kappa_binned": 0.255,
+          "sale_agreement": 0.711
+        },
+        "glm-5.3|glm-5.3-flash": {
+          "spearman": 0.421,
+          "p": 0.008431146484032571,
+          "kappa_binned": 0.066,
+          "sale_agreement": 0.526
+        }
+      },
+      "krippendorff_alpha_ordinal": 0.422,
+      "exact_agreement": 0.158
+    }
+  },
+  "family_bias": {
+    "mean_rating_matrix": {
+      "mimo-v2.6-pro": {
+        "FluxEidosV1.5": 2.9,
+        "FluxEidosV2": 5.3,
+        "mimo-v2.6-flash": 4.21
+      },
+      "glm-5.3": {
+        "FluxEidosV1.5": 3.1,
+        "FluxEidosV2": 5.27,
+        "mimo-v2.6-flash": 4.58
+      },
+      "glm-5.3-flash": {
+        "FluxEidosV1.5": 3.04,
+        "FluxEidosV2": 5.27,
+        "mimo-v2.6-flash": 3.71
+      }
+    },
+    "judge_gaps": {
+      "mimo-v2.6-pro": {
+        "mean_on_mimo": 4.21,
+        "mean_on_ours": 4.82,
+        "gap": -0.61,
+        "p_one_sided": 0.9434,
+        "n_mimo": 38,
+        "n_ours": 245
+      },
+      "glm-5.3": {
+        "mean_on_mimo": 4.58,
+        "mean_on_ours": 4.83,
+        "gap": -0.25,
+        "p_one_sided": 0.7426,
+        "n_mimo": 38,
+        "n_ours": 245
+      },
+      "glm-5.3-flash": {
+        "mean_on_mimo": 3.71,
+        "mean_on_ours": 4.82,
+        "gap": -1.11,
+        "p_one_sided": 0.9902,
+        "n_mimo": 38,
+        "n_ours": 245
+      }
+    }
+  }
+}

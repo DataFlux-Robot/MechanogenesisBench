@@ -54,6 +54,11 @@ session; best-protocol number per system, protocol noted; sorted by score). Our 
 Phi-4-mini-flash-reasoning, LoopCoder-V2, CLM-v0.1-8B, DiffuCoder-7B ×3,
 Ouro-2.6B(-Thinking) ×2, EDGE (TRT engine), ternary-8b, qwen3.8-27B+SFT.
 
+**Judge validity (no-human substitute)**: on 283 fully-judged round-triples across
+3 vendors, Krippendorff's α=0.676, sale-decision agreement 75–81%, and **no family
+bias** (the Xiaomi judge scores Xiaomi designs *lower* than ours relative to glm
+judges, gaps n.s.) — `data/judge_agreement.json`, `tools/judge_agreement.py`.
+
 **Multi-domain** (fixture + layout, 3-judge, n=5/cell): domain shift degrades everyone
 (mimo drops to 29-32% of in-domain); FluxEidosV2 **beats the frontier in layout**
 (¥264 vs ¥138, p=0.029, +91%) and lifts its own weights 4.4x; fixture sits below our
