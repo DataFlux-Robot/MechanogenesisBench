@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Liberation Sans', Arial, Helvetica, sans-serif; background: #ffffff; }
+  .canvas { width: 1520px; padding: 34px 38px 30px; background: #ffffff; position: relative; }
+
+  .kicker { font-size: 15px; letter-spacing: 2.5px; color: #3B6EA5; font-weight: 700; margin-bottom: 14px; }
+  h1 { font-size: 26px; font-weight: 400; color: #1A1D21; margin-bottom: 26px; }
+  h1 b { font-weight: 700; }
+
+  /* ── five-round strip ── */
+  .rounds { display: flex; align-items: stretch; gap: 0; margin-bottom: 40px; }
+  .rcard {
+    flex: 1; border: 1.5px solid #C9D6E4; border-radius: 10px; background: #F4F8FC;
+    padding: 13px 10px 11px; text-align: center; position: relative;
+  }
+  .rcard .num { font-size: 12px; font-weight: 700; color: #3B6EA5; letter-spacing: 1px; }
+  .rcard .t { font-size: 14.5px; color: #1A1D21; margin-top: 3px; line-height: 1.25; }
+  .rcard .d { font-size: 11.5px; color: #6A7076; margin-top: 3px; }
+  .rarrow { display: flex; align-items: center; padding: 0 5px; color: #9AA7B4; font-size: 19px; }
+
+  /* ── pipeline row ── */
+  .pipe { display: flex; align-items: center; gap: 0; }
+  .stage {
+    border-radius: 10px; padding: 14px 16px 12px; border: 1.5px solid; position: relative;
+  }
+  .stage .tag { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; }
+  .stage .big { font-size: 16.5px; font-weight: 700; margin-top: 2px; color: #1A1D21; }
+  .stage .sub { font-size: 12px; color: #5A6066; margin-top: 4px; line-height: 1.4; }
+  .s-gen  { width: 300px; background: #FDF7EF; border-color: #E5CBA8; }
+  .s-gen .tag { color: #B07A33; }
+  .s-cad  { width: 430px; background: #F2F7F1; border-color: #BBD3BB; }
+  .s-cad .tag { color: #4E7A51; }
+  .s-judge{ width: 330px; background: #F5F2FA; border-color: #C9BFDF; }
+  .s-judge .tag { color: #6A5B9E; }
+  .s-sale { width: 260px; background: #F4F8FC; border-color: #C9D6E4; }
+  .s-sale .tag { color: #3B6EA5; }
+  .parrow { color: #7A8288; font-size: 21px; padding: 0 8px; flex-shrink: 0; }
+
+  .cadsteps { display: flex; gap: 6px; margin-top: 7px; }
+  .cstep { background: #ffffff; border: 1px solid #BBD3BB; border-radius: 6px;
+           font-size: 11.5px; color: #3E5C40; padding: 4px 8px; font-weight: 600; }
+
+  .pricing { margin-top: 8px; font-size: 11.5px; color: #3B6EA5; background: #ffffff;
+             border: 1px dashed #C9D6E4; border-radius: 6px; padding: 5px 9px; display: inline-block; }
+
+  /* ── capital bar ── */
+  .capital {
+    margin-top: 34px; border: 1.5px solid #E5CBA8; background: #FDF7EF; border-radius: 10px;
+    padding: 13px 18px 12px; display: flex; align-items: center; gap: 16px;
+  }
+  .capital .tag { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; color: #B07A33; }
+  .capital .txt { font-size: 14px; color: #1A1D21; }
+  .capital .txt b { color: #B07A33; }
+  .loop { margin-left: auto; font-size: 12.5px; color: #B07A33; background: #ffffff;
+          border: 1px solid #E5CBA8; border-radius: 16px; padding: 6px 14px; }
+
+  .foot { margin-top: 20px; font-size: 11.5px; color: #8C9196; }
+</style>
+</head>
+<body>
+<div class="canvas" id="shot">
+  <div class="kicker">MONEY BENCH · EXECUTION-GROUNDED ECONOMIC BENCHMARK</div>
+  <h1>Five-round cumulative design, real CAD execution, <b>capital that compounds</b></h1>
+
+  <div class="rounds">
+    <div class="rcard"><div class="num">ROUND 1</div><div class="t">scratch design</div><div class="d">new product, sampled dims</div></div>
+    <div class="rarrow">&#10142;</div>
+    <div class="rcard"><div class="num">ROUND 2</div><div class="t">adapt</div><div class="d">bigger product · reuse base</div></div>
+    <div class="rarrow">&#10142;</div>
+    <div class="rcard"><div class="num">ROUND 3</div><div class="t">add bay</div><div class="d">keep adapted design</div></div>
+    <div class="rarrow">&#10142;</div>
+    <div class="rcard"><div class="num">ROUND 4</div><div class="t">add module</div><div class="d">combine everything</div></div>
+    <div class="rarrow">&#10142;</div>
+    <div class="rcard"><div class="num">ROUND 5</div><div class="t">shrink</div><div class="d">smaller desk, keep functions</div></div>
+  </div>
+
+  <div class="pipe">
+    <div class="stage s-gen">
+      <div class="tag">DESIGNER</div>
+      <div class="big">LLM &rarr; CSG JSON</div>
+      <div class="sub">workstation-csg/1 · box, cylinder, union, difference, transform, <b>capital(asset)</b></div>
+    </div>
+    <div class="parrow">&#10142;</div>
+    <div class="stage s-cad">
+      <div class="tag">EXECUTION — NOT STRING MATCHING</div>
+      <div class="big">build123d B-rep geometry kernel</div>
+      <div class="cadsteps">
+        <span class="cstep">build</span><span class="cstep">STEP export</span><span class="cstep">re-import</span><span class="cstep">exact overlap &amp; envelope</span>
+      </div>
+      <div class="sub" style="margin-top:7px">invalid geometry &rarr; <b style="color:#B55454">¥0</b> · objective metrics feed the record</div>
+    </div>
+    <div class="parrow">&#10142;</div>
+    <div class="stage s-judge">
+      <div class="tag">USER SIMULATION</div>
+      <div class="big">3-vendor judges</div>
+      <div class="sub">mimo-v2.6-pro · glm-5.3 · glm-5.3-flash<br>median decides the sale (rating &ge; 5)<br><span style="color:#6A7076">&alpha; = 0.676 · no family bias</span></div>
+    </div>
+    <div class="parrow">&#10142;</div>
+    <div class="stage s-sale">
+      <div class="tag">MARKET</div>
+      <div class="big">¥100 &times; speed</div>
+      <div class="pricing">&lt;10 s: 1.5&times; &nbsp;·&nbsp; &lt;60 s: 1.0&times; &nbsp;·&nbsp; &ge;120 s: 0.5&times;</div>
+    </div>
+  </div>
+
+  <div class="capital">
+    <div>
+      <div class="tag">CAPITAL REGISTRY — WHERE IMPROVEMENT COMPOUNDS</div>
+      <div class="txt">every executed design registers as an importable STEP asset: <b>free and faster</b> than rebuilding</div>
+    </div>
+    <div class="loop">&#8635; feeds all later rounds &nbsp;·&nbsp; 0&rarr;19 assets = ¥150&rarr;¥900 (6&times;)</div>
+  </div>
+
+  <div class="foot">39 systems · 9 vendors · 59 open result datasets · sealed parametric probes (seed 20261005)</div>
+</div>
+</body>
+</html>
