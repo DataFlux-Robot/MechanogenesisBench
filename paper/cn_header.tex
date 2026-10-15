@@ -1,0 +1,16 @@
+% xeCJK setup for nmi_submission_cn.pdf
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans CJK SC}
+\setmainfont{DejaVu Serif}
+\setlength{\parskip}{0.45em}
+\renewcommand{\arraystretch}{1.25}
+% figures in place (no float drift), captions as "图 N | ..." (NMI style)
+\usepackage{float}
+\floatplacement{figure}{H}
+\usepackage{caption}
+\DeclareCaptionLabelFormat{barlab}{#1 #2 \textbar}
+\captionsetup{labelformat=barlab, labelsep=space, font=small, justification=justified}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
