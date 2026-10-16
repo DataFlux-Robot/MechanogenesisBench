@@ -1,0 +1,11 @@
+% NMI EN build: figures in place ([H]), captions as "Fig. N | ..."
+\setmainfont{DejaVu Serif}
+\setlength{\parskip}{0.45em}
+\renewcommand{\arraystretch}{1.25}
+\usepackage{float}
+\floatplacement{figure}{H}
+\usepackage{caption}
+\DeclareCaptionLabelFormat{barlab}{#1 #2 \textbar}
+\captionsetup{labelformat=barlab, labelsep=space, font=small, justification=justified}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}

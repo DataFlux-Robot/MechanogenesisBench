@@ -28,6 +28,7 @@ session; best-protocol number per system, protocol noted; sorted by score). Our 
 | 17 | FluxEidosV1.0-ctl-9B (no-memory control) | ours (same path, no memory) | ¥195 | 10 | 0–450 |
 | 18 | qwen3.8-27B UD-IQ3_S | zero-shot (llama.cpp) | ¥190 | 3 | 0–300 |
 | 19 | deepseek-flash (V4.1) | commercial API | ¥174 | 5 | 0–360 |
+| 19b | **qwen3.5-9B base + V2 stack (threshold control)** | ours (identical stack, UNTRAINED weights) | **¥154** | 5 | 240/150/80/150/150; 6/25 sold; 2×2: weights ¥0→¥390 is the big factor, stack composes on top |
 | 20 | FluxEidosV0.6-9B (RL-v1) | ours (first RL gen) | ¥144 | 10 | 0–300 |
 | 21 | OmniCoder-9B | zero-shot | ¥130 | 3 | 0–270 |
 | 22 | Frontis-MA1-30B | zero-shot (ML-RSI agent) | ¥120 | 1 | no cross-domain transfer |

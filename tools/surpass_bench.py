@@ -229,6 +229,13 @@ def main():
     ap.add_argument('--sessions', type=int, default=5)
     ap.add_argument('--no-hints', action='store_true', help='disable design hints (control)')
     ap.add_argument('--r1-n', type=int, default=3, help='best-of-N CAD-screened candidates for R1')
+    ap.add_argument('--base-only', action='store_true',
+                    help='raw base weights, no RL adapter (threshold control arm)')
+    ap.add_argument('--self-bank', action='store_true',
+                    help='experience bank starts empty, accumulates only this run\'s own >=6 designs')
+    ap.add_argument('--max-new', type=int, default=0,
+                    help='override generation token cap for ALL rounds (0 = stack defaults: 900 R1 / 1500 later); '
+                         'the base arm needs ~2000 (its pretty-printed JSON truncates at 900)')
     a = ap.parse_args()
 
     import torch
@@ -242,12 +249,22 @@ def main():
                              bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
     model = AutoModelForCausalLM.from_pretrained(BASE, quantization_config=bnb,
                                                  device_map='cuda', trust_remote_code=True)
-    model = PeftModel.from_pretrained(model, ADAPTER)
+    if not a.base_only:
+        model = PeftModel.from_pretrained(model, ADAPTER)
     model.eval()
 
     use_hints = not a.no_hints
+    r1_cap = a.max_new or 900
+    gen_cap = a.max_new or 1500
     tag = 'v7' if a.r1_n > 1 else ('v2' if use_hints else 'control')
-    experience = load_experience() if use_hints else {}
+    if a.base_only:
+        tag = f'base-{tag}'
+    # self-bank: never read the shared v*_results.json pool (that would leak
+    # V1.x designs into the base arm); accumulate only this run's own successes
+    if a.self_bank:
+        experience = {}
+    else:
+        experience = load_experience() if use_hints else {}
     print(f"[v6] experience bank: rounds {sorted(experience.keys())} "
           f"(ratings {[experience[k][0] for k in sorted(experience)]})", flush=True)
     all_runs = []
@@ -281,7 +298,7 @@ def main():
                 # real diversity across candidates.
                 cands, t_total = [], 0.0
                 for k in range(a.r1_n):
-                    ctext, csecs = generate(model, tok, prompt, max_new=900, temp=0.7,
+                    ctext, csecs = generate(model, tok, prompt, max_new=r1_cap, temp=0.7,
                                             seed=42 + 1000 * si + 77 * k)
                     t_total += csecs
                     ctext = repair_design(ctext)
@@ -309,7 +326,8 @@ def main():
                 else:
                     text, secs = '', round(t_total, 1)
             else:
-                text, secs = generate(model, tok, prompt, temp=0.3, seed=42 + rd + 1000 * si)
+                text, secs = generate(model, tok, prompt, max_new=gen_cap, temp=0.3,
+                                      seed=42 + rd + 1000 * si)
                 text = repair_design(text)
             if not text or len(text) < 60:
                 rounds.append({'rd': rd, 'rating': 0, 'sold': False, 'rev': 0, 'secs': secs})
@@ -329,7 +347,7 @@ def main():
             # fresh sample with a different seed instead of a critique rewrite —
             # keeps the pristine prompt format the model was trained on.
             if rating < ACCEPT and rd > 0:
-                rtext, rsecs = generate(model, tok, prompt, temp=0.6,
+                rtext, rsecs = generate(model, tok, prompt, max_new=gen_cap, temp=0.6,
                                         seed=42 + rd + 1000 * si + 555)
                 rtext = repair_design(rtext)
                 rsecs_total = secs + rsecs
@@ -343,7 +361,7 @@ def main():
                             secs = round(secs + rsecs, 1)
                 # v7: weak rounds (R4/R5 sold only 50%/35% at n=20) get one more shot
                 if rating < ACCEPT and rd >= 3:
-                    r2text, r2secs = generate(model, tok, prompt, temp=0.8,
+                    r2text, r2secs = generate(model, tok, prompt, max_new=gen_cap, temp=0.8,
                                               seed=42 + rd + 1000 * si + 999)
                     r2text = repair_design(r2text)
                     if len(r2text) >= 60:
@@ -369,6 +387,8 @@ def main():
 
             rounds.append({'rd': rd, 'rating': rating, 'sold': sold, 'rev': rev,
                            'reused': reused, 'secs': secs})
+            if a.self_bank and rating >= 6 and (rd not in experience or rating > experience[rd][0]):
+                experience[rd] = (rating, text)
             print(f"  R{rd+1}: {'✅' if sold else '❌'} {rating}/10 {'♻️' if reused else '🔧'} "
                   f"{secs:.1f}s ¥{rev}", flush=True)
 

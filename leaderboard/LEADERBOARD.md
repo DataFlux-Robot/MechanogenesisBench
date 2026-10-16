@@ -44,6 +44,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 21b | deepseek-v4-pro | ¥112 | 5 | single | 89 s/gen, speed-priced down |
 | 22 | qwen3.8-27B UD-IQ3_S (zero-shot, llama.cpp) | ¥190 | 3 | single | dynamic quant |
 | 23 | **FluxEidosV1.0-ctl-9B (no-memory control) (ours)** | **¥195** | 10 | single | JitRL plain control arm |
+| 23b | **qwen3.5-9B base + V2 stack (ours, threshold control)** | **¥154** | 5 | single | identical stack on UNTRAINED weights (self-bank, 2k-token budget); 6/25 rounds sold |
 | 24 | qwen9b-RL-v1-it3 = FluxEidosV0.6 (ours, early) | ¥144 | 10 | single | first RL generation |
 | 23 | OmniCoder-9B (zero-shot) | ¥130 | 3 | single | coder merge; partial schema adherence |
 | 24 | Frontis-MA1-30B (zero-shot) | ¥120 | 1 | single | ML-domain RSI agent; reasoning burns the speed budget (89 s/gen) |
@@ -166,6 +167,29 @@ FluxEidosV1.0 weights-only on probes: ¥240 (65% of in-distribution ¥372). Cros
 (fixture design, different system prompt): ¥144 = commercial baseline (¥100–150).
 Data: `data/probe_v6stack.json`, `data/probe_plain_weights.json`.
 
+## Threshold control — 2×2 (weights × inference-time stack)
+
+The identical V2 stack (best-of-3 R1 CAD-screened, capital reuse, syntax repair,
+conditional resample + second retry, judge-retry) on **untrained base weights**
+(qwen3.5-9B, no adapter; experience bank starts empty and only mines the arm's own
+≥6-rated designs; 2,000-token generation budget because the base model's
+pretty-printed JSON truncates at 900):
+
+| arm | profit/session | sold rounds | n |
+|---|---:|---:|---:|
+| base weights, zero-shot | ¥0 | 0/15 | 3 |
+| base weights + identical stack | **¥154** | 6/25 | 5 |
+| trained weights (V1.5), no stack | ¥390 | — | 5 |
+| trained weights + stack (V2) | ¥438 single-judge / **¥532** 3-judge | — | 40 |
+
+base+stack sessions: 240, 150, 80, 150, 150 (median ¥150, s.d. ¥57). The reuse
+machinery does extract real value from raw weights — capital reuse fires in 24/25
+rounds — but **weights are the larger factor** (trained-plain ¥390 > base-stack ¥154),
+and the two compose (¥438–532). Below the threshold sells stay sporadic: only 4/25
+rounds reach rating ≥6. Data: `data/base_stack_n5.json`; run log
+`runs/surpass_base_v7.log` (a first attempt truncated at 900 tokens — archived as
+`*_trunc900`, disclosed in the paper Methods).
+
 ## Second axis — capital-library production efficiency (different protocol; not comparable to the tables above)
 
 Frozen FluxEidosV1.0-9B (CARE-v3) model, fixed parametric production instances (4 × 3
@@ -222,6 +246,11 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
 4. **Memory is instance-bound, weights generalize**: the V2 stack's replay gains
    vanish on sealed probes (+¥14 n.s.) while weight-level gains retain 65%; RRSI
    decomposition puts JitRL's memorization share at 39%.
+5. **Two factors, weights first (2×2)**: training does the one-time heavy lifting
+   (base ¥0 → trained ¥390 without any stack); the same stack on untrained weights
+   reaches only ¥154; the stack then composes on top of trained weights (¥438
+   single-judge / ¥532 symmetric). "Freeze the weights" is a claim about the
+   marginal loop after the threshold crossing — not that weights do not matter.
 
 ## Reproduce
 
