@@ -1,0 +1,848 @@
+[
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v3",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v3",
+  "rd": 2
+ },
+ {
+  "nparts": 3,
+  "rating": 8,
+  "run": "v3",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v3",
+  "rd": 0
+ },
+ {
+  "nparts": 4,
+  "rating": 6,
+  "run": "v3",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 2,
+  "run": "v3",
+  "rd": 0
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v3",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v3",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 3,
+  "rating": 6,
+  "run": "v6",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 3,
+  "rating": 5,
+  "run": "v6",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 7,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v6",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 6,
+  "run": "v6",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 7,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 7,
+  "run": "v6",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 7,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v6",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 5,
+  "rating": 3,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v6",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 6,
+  "rating": 2,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 7,
+  "run": "v6",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v6",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v6",
+  "rd": 2
+ },
+ {
+  "nparts": 3,
+  "rating": 5,
+  "run": "v6",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 3,
+  "rating": 6,
+  "run": "v7",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 6,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 7,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 6,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 8,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 4,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 5,
+  "rating": 2,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 6,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 9,
+  "rating": 5,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 7,
+  "run": "v7",
+  "rd": 4
+ },
+ {
+  "nparts": 6,
+  "rating": 2,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 4,
+  "rating": 5,
+  "run": "v7",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 7,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 6,
+  "run": "v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "v7",
+  "rd": 1
+ },
+ {
+  "nparts": 4,
+  "rating": 6,
+  "run": "v7",
+  "rd": 3
+ },
+ {
+  "nparts": 3,
+  "rating": 6,
+  "run": "v7",
+  "rd": 4
+ },
+ {
+  "nparts": 9,
+  "rating": 2,
+  "run": "base-v7",
+  "rd": 0
+ },
+ {
+  "nparts": 9,
+  "rating": 3,
+  "run": "base-v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "base-v7",
+  "rd": 2
+ },
+ {
+  "nparts": 9,
+  "rating": 2,
+  "run": "base-v7",
+  "rd": 0
+ },
+ {
+  "nparts": 9,
+  "rating": 2,
+  "run": "base-v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 9,
+  "run": "base-v7",
+  "rd": 2
+ },
+ {
+  "nparts": 8,
+  "rating": 2,
+  "run": "base-v7",
+  "rd": 0
+ },
+ {
+  "nparts": 2,
+  "rating": 5,
+  "run": "base-v7",
+  "rd": 2
+ }
+]

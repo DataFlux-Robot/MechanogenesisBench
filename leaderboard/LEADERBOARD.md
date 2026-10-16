@@ -242,7 +242,8 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
    model + 19 curated assets = 6× production profit (monotonic, causal, ρ=0.96);
    cross-session experience (JitRL 2×, V2 stack +13%); weight-level RSI at
    9B/30-samples-per-generation is noise-dominated (probe gains fail to transfer,
-   −¥162 on the bench).
+   −¥162 on the bench) — and stage-dependent: the same family works below the
+   threshold (CARE RL from SFT: ¥260 → ¥372–390 over 12 iterations).
 4. **Memory is instance-bound, weights generalize**: the V2 stack's replay gains
    vanish on sealed probes (+¥14 n.s.) while weight-level gains retain 65%; RRSI
    decomposition puts JitRL's memorization share at 39%.
