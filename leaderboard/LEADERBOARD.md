@@ -45,6 +45,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 22 | qwen3.8-27B UD-IQ3_S (zero-shot, llama.cpp) | ¥190 | 3 | single | dynamic quant |
 | 23 | **FluxEidosV1.0-ctl-9B (no-memory control) (ours)** | **¥195** | 10 | single | JitRL plain control arm |
 | 23b | **qwen3.5-9B base + V2 stack (ours, threshold control)** | **¥154** | 5 | single | identical stack on UNTRAINED weights (self-bank, 2k-token budget); 6/25 rounds sold |
+| 23c | **V2-stack v8 (ours, exploratory, not adopted)** | **¥368** | 10 | single | strategy-diverse R1 + reflective retry (arXiv:2609.26704/2608.03972 style prompt-level variants); did NOT beat v7 (p=0.44) — recorded honestly |
 | 24 | qwen9b-RL-v1-it3 = FluxEidosV0.6 (ours, early) | ¥144 | 10 | single | first RL generation |
 | 23 | OmniCoder-9B (zero-shot) | ¥130 | 3 | single | coder merge; partial schema adherence |
 | 24 | Frontis-MA1-30B (zero-shot) | ¥120 | 1 | single | ML-domain RSI agent; reasoning burns the speed budget (89 s/gen) |

@@ -70,6 +70,38 @@ Key design principles: tilted back support, proper phone slot clearance, cable m
 
 
 
+# ═══ v8: semantic-diversity strategies for R1 candidates (Beyond Repeated Sampling,
+# arXiv:2609.26704 — diverse concepts beat decoding noise at equal budget) ═══
+
+STRATEGIES = [
+    'compact single-body dock: one wide base plate, integrated slot walls, minimal part count',
+    'modular dock: separate base, tilted back support, side bay walls ready for an earbuds module, four feet',
+    'cantilever dock: heavy base bar, angled phone cradle, cable channel through the back, rubber pads',
+]
+
+
+def fail_record(text, rating, cad):
+    """Structured failure trace for reflective retry (ReflectRL-lite,
+    arXiv:2608.03972): machine-derived issues from execution metrics."""
+    ev = (cad or {}).get('metrics') or {}
+    issues = []
+    ex = ev.get('occupied_envelope_excess_mm') or 0
+    ov = ev.get('overlap_mm3') or 0
+    if ex > 0:
+        issues.append(f'envelope exceeds desk by {ex:.0f} mm — fit inside the desk footprint')
+    if ov > 50:
+        issues.append(f'parts self-overlap {ov:.0f} mm^3 — separate or resize them')
+    try:
+        np_ = len(json.loads(text).get('parts', []))
+    except Exception:
+        np_ = 0
+    if np_ < 5:
+        issues.append(f'only {np_} parts — add functional detail (slot walls, cable hole, feet)')
+    if not issues:
+        issues.append(f'rated {rating}/10, below sale threshold — add the missing demanded functions')
+    return {'design': text[:2500], 'rating': rating, 'issues': issues}
+
+
 def load_experience(min_rating=6):
     """Mine our own past validated designs (rating >= min_rating) as per-round
     in-context examples. Pure test-time experience replay: no weight updates,
@@ -102,13 +134,20 @@ def load_experience(min_rating=6):
     return {rd: v for rd, v in ex.items()}
 
 
-def build_user(demand, capital, rd, use_hints=True, experience=None):
+def build_user(demand, capital, rd, use_hints=True, experience=None,
+               strategy=None, prev_fail=None):
     """Build user message. R1: few-shot example. R2-R5: in-context replay of our
     own past high-rated design for the same round (test-time experience). Prose
-    guidance is avoided everywhere — v1 showed it breaks schema discipline."""
+    guidance is avoided everywhere — v1 showed it breaks schema discipline.
+    v8: optional structured 'directive' (design strategy) and 'prev_attempt'
+    (failed design + machine-derived issues) keys — JSON fields, not prose."""
     msg = {'demand': demand,
            'capital': [{'id': k, 'desc': v['description']} for k, v in capital.items()],
            'hint': 'Use capital(asset_id) to import previous modules.' if capital else None}
+    if strategy:
+        msg['directive'] = strategy
+    if prev_fail:
+        msg['prev_attempt'] = prev_fail
     user = json.dumps(msg, ensure_ascii=False)
 
     if not use_hints:
@@ -236,6 +275,10 @@ def main():
     ap.add_argument('--max-new', type=int, default=0,
                     help='override generation token cap for ALL rounds (0 = stack defaults: 900 R1 / 1500 later); '
                          'the base arm needs ~2000 (its pretty-printed JSON truncates at 900)')
+    ap.add_argument('--strategy-diverse', action='store_true',
+                    help='v8: seed each R1 candidate with a distinct design strategy (semantic diversity)')
+    ap.add_argument('--reflect-retry', action='store_true',
+                    help='v8: retries carry the failed design + structured failure record (ReflectRL-lite)')
     a = ap.parse_args()
 
     import torch
@@ -257,6 +300,8 @@ def main():
     r1_cap = a.max_new or 900
     gen_cap = a.max_new or 1500
     tag = 'v7' if a.r1_n > 1 else ('v2' if use_hints else 'control')
+    if a.strategy_diverse or a.reflect_retry:
+        tag = 'v8'
     if a.base_only:
         tag = f'base-{tag}'
     # self-bank: never read the shared v*_results.json pool (that would leak
@@ -298,7 +343,15 @@ def main():
                 # real diversity across candidates.
                 cands, t_total = [], 0.0
                 for k in range(a.r1_n):
-                    ctext, csecs = generate(model, tok, prompt, max_new=r1_cap, temp=0.7,
+                    kprompt = prompt
+                    if a.strategy_diverse:
+                        kuser = build_user(demand, capital, rd, use_hints, experience,
+                                           strategy=STRATEGIES[(si + k) % len(STRATEGIES)])
+                        kprompt = tok.apply_chat_template(
+                            [{'role': 'system', 'content': mb.SYSTEM},
+                             {'role': 'user', 'content': kuser}],
+                            tokenize=False, add_generation_prompt=True, enable_thinking=False)
+                    ctext, csecs = generate(model, tok, kprompt, max_new=r1_cap, temp=0.7,
                                             seed=42 + 1000 * si + 77 * k)
                     t_total += csecs
                     ctext = repair_design(ctext)
@@ -347,7 +400,15 @@ def main():
             # fresh sample with a different seed instead of a critique rewrite —
             # keeps the pristine prompt format the model was trained on.
             if rating < ACCEPT and rd > 0:
-                rtext, rsecs = generate(model, tok, prompt, max_new=gen_cap, temp=0.6,
+                rprompt = prompt
+                if a.reflect_retry:
+                    ruser = build_user(demand, capital, rd, use_hints, experience,
+                                       prev_fail=fail_record(text, rating, cad))
+                    rprompt = tok.apply_chat_template(
+                        [{'role': 'system', 'content': mb.SYSTEM},
+                         {'role': 'user', 'content': ruser}],
+                        tokenize=False, add_generation_prompt=True, enable_thinking=False)
+                rtext, rsecs = generate(model, tok, rprompt, max_new=gen_cap, temp=0.6,
                                         seed=42 + rd + 1000 * si + 555)
                 rtext = repair_design(rtext)
                 rsecs_total = secs + rsecs
@@ -361,7 +422,7 @@ def main():
                             secs = round(secs + rsecs, 1)
                 # v7: weak rounds (R4/R5 sold only 50%/35% at n=20) get one more shot
                 if rating < ACCEPT and rd >= 3:
-                    r2text, r2secs = generate(model, tok, prompt, max_new=gen_cap, temp=0.8,
+                    r2text, r2secs = generate(model, tok, rprompt, max_new=gen_cap, temp=0.8,
                                               seed=42 + rd + 1000 * si + 999)
                     r2text = repair_design(r2text)
                     if len(r2text) >= 60:
