@@ -23,6 +23,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 2 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | 3-judge | commercial frontier |
 | 3 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | 3-judge | |
 | 4 | **FluxEidosV1.5-9B (CARE-v3 iter6) (ours)** | **¥390** | 5 | single | weights-only champion |
+| 4a | **FluxEidosV1.6-9B (CARE-v4: RISE-lite + ReflectRL) (ours)** | **¥375** (median 450) | 10 | single | unified v7-gate protocol; vs CARE-v3 ¥330 same-protocol (+¥45, one-sided p=0.21 — directionally better); 25/50 rounds sold; training sell-rate 0.375 & rating 4.62 both CARE records |
 | 4 | **FluxEidosV1.0-9B + JitRL mature (ours)** | **¥390** | 5 | single | frozen test-time memory; p=0.037 vs plain control |
 | 6 | **FluxEidosV1.0-9B (CARE-v3) (ours)** | **¥387** | 10 | 3-judge | 9B open model, ~250 SFT examples + CARE RL, one RTX 4090D |
 | 7 | glm-5.3 (Zhipu) | ¥380 | 11 | 3-judge | |
@@ -191,6 +192,14 @@ rounds reach rating ≥6. Data: `data/base_stack_n5.json`; run log
 `runs/surpass_base_v7.log` (a first attempt truncated at 900 tokens — archived as
 `*_trunc900`, disclosed in the paper Methods).
 
+**Registration-gate note (protocol artifact, fixed):** legacy lineage rows were
+measured with a rating≥3 capital-registration gate. Under that gate a single
+sub-threshold round 1 starves every later round of capital (same model: ¥60 vs
+¥390 under the two gates — the R1 cascade). The unified protocol registers ANY
+executed design (v7 semantics, the paper protocol); CARE-v4 vs CARE-v3
+head-to-head numbers use it (`data/care_v4_headtohead_v7gate.json`,
+`data/care_v4*_training_metrics.json`).
+
 ## Second axis — capital-library production efficiency (different protocol; not comparable to the tables above)
 
 Frozen FluxEidosV1.0-9B (CARE-v3) model, fixed parametric production instances (4 × 3
@@ -253,6 +262,11 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
    reaches only ¥154; the stack then composes on top of trained weights (¥438
    single-judge / ¥532 symmetric). "Freeze the weights" is a claim about the
    marginal loop after the threshold crossing — not that weights do not matter.
+6. **Denser supervision keeps paying below the threshold (CARE-v4)**: RISE-style
+   displacement-weighted self-distillation + ReflectRL-style golden negatives lift
+   the training records (sell 0.375, rating 4.62) and the bench point estimate
+   (¥375 median ¥450 vs CARE-v3 ¥330 median ¥300; one-sided p=0.21, n=10/arm) —
+   consistent with P2: densifying the signal term raises what clears the noise floor.
 
 ## Reproduce
 

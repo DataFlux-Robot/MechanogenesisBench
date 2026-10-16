@@ -1,0 +1,1799 @@
+{
+ "protocol": "eval_local_model v7 registration (any executed design registers), single-judge mimo-v2.6-pro (retry-hardened), 2048-token budget",
+ "care_v4b_it8": [
+  {
+   "model": "care-v4b-it8",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.4,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.4,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       222.5,
+       114.0,
+       40.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       277.5,
+       114.0,
+       185.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 2.9,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.91
+  },
+  {
+   "model": "care-v4b-it8",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 3.6,
+     "cad": {
+      "extent": [
+       150.0,
+       100.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.5,
+     "cad": {
+      "extent": [
+       150.0,
+       100.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       257.5,
+       194.04883264016405,
+       58.041845234353616
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.6,
+     "cad": {
+      "extent": [
+       307.5,
+       205.30542484859868,
+       195.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.0,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.83
+  },
+  {
+   "model": "care-v4b-it8",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.4,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       222.5,
+       134.0,
+       40.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       277.5,
+       134.0,
+       190.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.0,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 150.0,
+   "revenue": 150.0,
+   "sold": "1/5",
+   "reuse": "4/4",
+   "t_accel": 0.92
+  },
+  {
+   "model": "care-v4b-it8",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": false,
+     "secs": 4.7,
+     "cad": {
+      "extent": [
+       140.0,
+       90.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.4,
+     "cad": {
+      "extent": [
+       140.0,
+       90.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       222.5,
+       129.0,
+       38.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.6,
+     "cad": {
+      "extent": [
+       277.5,
+       129.0,
+       205.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.0,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.94
+  },
+  {
+   "model": "care-v4b-it8",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 3.5,
+     "cad": {
+      "extent": [
+       140.0,
+       90.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.5,
+     "cad": {
+      "extent": [
+       140.0,
+       90.0,
+       30.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       222.5,
+       109.0,
+       38.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.6,
+     "cad": {
+      "extent": [
+       277.5,
+       200.30542484859868,
+       195.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.0,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.81
+  },
+  {
+   "model": "care-v4b-it8b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.5,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.5,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.0,
+     "cad": {
+      "extent": [
+       222.5,
+       154.0,
+       40.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.8,
+     "cad": {
+      "extent": [
+       277.5,
+       154.0,
+       185.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.1,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 150.0,
+   "revenue": 150.0,
+   "sold": "1/5",
+   "reuse": "4/4",
+   "t_accel": 0.9
+  },
+  {
+   "model": "care-v4b-it8b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       60.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.6,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       60.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       202.5,
+       134.0,
+       60.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       257.5,
+       134.0,
+       195.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.0,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       60.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.97
+  },
+  {
+   "model": "care-v4b-it8b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 3.7,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.5,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.1,
+     "cad": {
+      "extent": [
+       222.5,
+       119.04883264016406,
+       43.04184523435362
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.8,
+     "cad": {
+      "extent": [
+       277.5,
+       119.04883264016418,
+       190.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.1,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.81
+  },
+  {
+   "model": "care-v4b-it8b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.3,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.6,
+     "cad": {
+      "extent": [
+       140.0,
+       100.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       222.5,
+       114.0,
+       40.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.9,
+     "cad": {
+      "extent": [
+       277.5,
+       114.0,
+       190.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 3.1,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       40.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.88
+  },
+  {
+   "model": "care-v4b-it8b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       160.0,
+       110.0,
+       50.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.6,
+     "cad": {
+      "extent": [
+       160.0,
+       110.0,
+       50.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.0,
+     "cad": {
+      "extent": [
+       232.5,
+       139.0,
+       50.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.8,
+     "cad": {
+      "extent": [
+       277.5,
+       139.0,
+       205.00846010165483
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 3.1,
+     "cad": {
+      "extent": [
+       300.0,
+       200.0,
+       50.0
+      ],
+      "intersections": 0
+     }
+    }
+   ],
+   "profit": 600.0,
+   "revenue": 600.0,
+   "sold": "4/5",
+   "reuse": "4/4",
+   "t_accel": 0.94
+  }
+ ],
+ "care_v3_it6": [
+  {
+   "model": "care-v3-it6",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.6,
+     "cad": {
+      "extent": [
+       420.0,
+       292.0,
+       310.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 6.9,
+     "cad": {
+      "extent": [
+       420.0,
+       292.0,
+       317.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       482.5,
+       292.0,
+       317.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 7.8,
+     "cad": {
+      "extent": [
+       482.5,
+       505.0,
+       347.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       482.5,
+       292.0,
+       460.0
+      ],
+      "intersections": 1
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.98
+  },
+  {
+   "model": "care-v3-it6",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 1,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.6,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       15.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 6.6,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       375.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       522.5,
+       280.0,
+       375.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 7.9,
+     "cad": {
+      "extent": [
+       522.5,
+       505.0,
+       375.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 0,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.1,
+     "cad": {
+      "extent": [
+       522.5,
+       280.0,
+       375.0
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.94
+  },
+  {
+   "model": "care-v3-it6",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.4,
+     "cad": {
+      "extent": [
+       100.0,
+       36.0,
+       170.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 6.1,
+     "cad": {
+      "extent": [
+       100.0,
+       78.0,
+       270.0
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.0,
+     "cad": {
+      "extent": [
+       322.5,
+       84.0,
+       270.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 8.7,
+     "cad": {
+      "extent": [
+       397.5,
+       349.0,
+       350.0
+      ],
+      "intersections": 10
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 0,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 0
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "3/4",
+   "t_accel": 0.6
+  },
+  {
+   "model": "care-v3-it6",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": false,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       100.0,
+       32.0,
+       165.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       100.0,
+       61.0,
+       380.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 9,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 5.0,
+     "cad": {
+      "extent": [
+       322.5,
+       69.0,
+       380.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 7.7,
+     "cad": {
+      "extent": [
+       397.5,
+       349.0,
+       380.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.2,
+     "cad": {
+      "extent": [
+       322.5,
+       69.0,
+       380.0
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.76
+  },
+  {
+   "model": "care-v3-it6",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 1,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       17.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       357.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       357.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 8.6,
+     "cad": {
+      "extent": [
+       482.5,
+       465.0,
+       357.0
+      ],
+      "intersections": 10
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 6.2,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       657.0
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 150.0,
+   "revenue": 150.0,
+   "sold": "1/5",
+   "reuse": "4/4",
+   "t_accel": 0.72
+  },
+  {
+   "model": "care-v3-it6b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       12.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       357.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 5,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       357.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 7.4,
+     "cad": {
+      "extent": [
+       482.5,
+       505.0,
+       357.5
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.8,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       657.5
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 150.0,
+   "revenue": 150.0,
+   "sold": "1/5",
+   "reuse": "4/4",
+   "t_accel": 0.78
+  },
+  {
+   "model": "care-v3-it6b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 1,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 4.5,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       13.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 8,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 6.4,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       345.0
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       522.5,
+       280.0,
+       345.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 7.4,
+     "cad": {
+      "extent": [
+       522.5,
+       505.0,
+       410.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 1,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       522.5,
+       280.0,
+       345.0
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.89
+  },
+  {
+   "model": "care-v3-it6b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.4,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       252.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 6.5,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       267.5
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.5,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       267.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 8.0,
+     "cad": {
+      "extent": [
+       482.5,
+       585.0,
+       347.5
+      ],
+      "intersections": 10
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.7,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       567.5
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 450.0,
+   "revenue": 450.0,
+   "sold": "3/5",
+   "reuse": "4/4",
+   "t_accel": 0.87
+  },
+  {
+   "model": "care-v3-it6b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 1,
+     "sold": false,
+     "rev": 0,
+     "reused": false,
+     "secs": 5.4,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       252.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.8,
+     "cad": {
+      "extent": [
+       420.0,
+       280.0,
+       255.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.5,
+     "cad": {
+      "extent": [
+       482.5,
+       280.0,
+       255.5
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 4,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 8.0,
+     "cad": {
+      "extent": [
+       482.5,
+       585.0,
+       347.5
+      ],
+      "intersections": 10
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 2,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 4.9,
+     "cad": {
+      "extent": [
+       482.5,
+       355.0,
+       275.5
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 300.0,
+   "revenue": 300.0,
+   "sold": "2/5",
+   "reuse": "4/4",
+   "t_accel": 0.79
+  },
+  {
+   "model": "care-v3-it6b",
+   "rounds": [
+    {
+     "rd": 0,
+     "rating": 6,
+     "sold": true,
+     "rev": 150,
+     "reused": false,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       100.0,
+       34.0,
+       170.0
+      ],
+      "intersections": 0
+     }
+    },
+    {
+     "rd": 1,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 6.1,
+     "cad": {
+      "extent": [
+       110.0,
+       49.0,
+       285.0
+      ],
+      "intersections": 3
+     }
+    },
+    {
+     "rd": 2,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 4.6,
+     "cad": {
+      "extent": [
+       327.5,
+       56.0,
+       285.0
+      ],
+      "intersections": 1
+     }
+    },
+    {
+     "rd": 3,
+     "rating": 7,
+     "sold": true,
+     "rev": 150,
+     "reused": true,
+     "secs": 7.2,
+     "cad": {
+      "extent": [
+       397.5,
+       389.0,
+       350.0
+      ],
+      "intersections": 6
+     }
+    },
+    {
+     "rd": 4,
+     "rating": 3,
+     "sold": false,
+     "rev": 0,
+     "reused": true,
+     "secs": 5.0,
+     "cad": {
+      "extent": [
+       327.5,
+       56.0,
+       320.0
+      ],
+      "intersections": 3
+     }
+    }
+   ],
+   "profit": 600.0,
+   "revenue": 600.0,
+   "sold": "4/5",
+   "reuse": "4/4",
+   "t_accel": 0.88
+  }
+ ]
+}

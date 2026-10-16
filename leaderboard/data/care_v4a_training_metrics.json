@@ -1,0 +1,80 @@
+[
+  {
+    "iter": 1,
+    "mean_r": 0.3328,
+    "valid": 0.792,
+    "sold": 0.153,
+    "reused_improve": 0.881,
+    "mean_rating_valid": 3.18,
+    "mean_r_by_op": {
+      "draft": 0.1389,
+      "improve": 0.43,
+      "debug": 0.2833
+    },
+    "care_regimes": {
+      "progress": 42,
+      "outcome": 18,
+      "debug-static": 12
+    },
+    "wall_min": 21.3
+  },
+  {
+    "iter": 2,
+    "mean_r": 0.2872,
+    "valid": 0.844,
+    "sold": 0.177,
+    "reused_improve": 0.929,
+    "mean_rating_valid": 3.25,
+    "mean_r_by_op": {
+      "draft": 0.2028,
+      "improve": 0.4005,
+      "debug": 0.275
+    },
+    "care_regimes": {
+      "progress": 48,
+      "outcome": 36,
+      "debug-static": 12
+    },
+    "wall_min": 22.1
+  },
+  {
+    "iter": 3,
+    "mean_r": 0.3048,
+    "valid": 0.844,
+    "sold": 0.178,
+    "reused_improve": 0.952,
+    "mean_rating_valid": 2.96,
+    "mean_r_by_op": {
+      "draft": 0.1639,
+      "improve": 0.4104,
+      "debug": 0.2375
+    },
+    "care_regimes": {
+      "progress": 48,
+      "outcome": 24,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 16.1
+  },
+  {
+    "iter": 4,
+    "mean_r": 0.3395,
+    "valid": 0.8,
+    "sold": 0.178,
+    "reused_improve": 0.881,
+    "mean_rating_valid": 3.22,
+    "mean_r_by_op": {
+      "draft": 0.1972,
+      "improve": 0.4942,
+      "debug": 0.2375
+    },
+    "care_regimes": {
+      "progress": 54,
+      "outcome": 18,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 13.4
+  }
+]

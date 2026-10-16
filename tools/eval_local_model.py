@@ -182,7 +182,11 @@ def main():
                 reused = any(n.get('op') == 'capital' for n in json.loads(text).get('nodes', []))
             except Exception:
                 reused = False
-            if sold or med >= 3:
+            # v7 semantics (matches the paper protocol and the RL training env):
+            # any EXECUTED design is a physical asset — gating on rating>=3 kills
+            # the whole chain when R1 rates below it (capital(r1) then points at
+            # nothing and every later round fails CAD)
+            if cad.get('metrics'):
                 capital[f'r{rd+1}'] = {'status': 'EXECUTED_CAD', 'step_path': cad['step_path'],
                                        'description': f'Round {rd+1} design',
                                        'measurements': cad.get('metrics', {})}

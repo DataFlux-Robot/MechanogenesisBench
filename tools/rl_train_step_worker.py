@@ -51,8 +51,9 @@ def main():
     max_len = job.get('max_len', 2300)
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=job.get('lr', 3e-5))
 
-    stats = {'pg': 0.0, 'n_pg': 0, 'ce': 0.0, 'n_ce': 0}
+    stats = {'pg': 0.0, 'n_pg': 0, 'ce': 0.0, 'n_ce': 0, 'n_rise': 0}
     samples = job['samples']
+    rise_lambda = float(job.get('rise_lambda') or 0.0)
     random.seed(41); random.shuffle(samples)
     for s in samples:
         f_ids = tok(s['prompt'] + s['text'], add_special_tokens=False, return_tensors='pt',
@@ -64,6 +65,14 @@ def main():
             continue
         lp, mask = token_logp(model(input_ids=f_ids).logits[0, :-1], f_ids[0, 1:], p_len)
         loss = -(s['adv'] * (lp * mask).sum() / mask.sum().clamp(min=1))
+        # RISE-lite (arXiv:2609.05295 adaptation): dense token-level
+        # self-distillation on positive-displacement trajectories — converts the
+        # sparse outcome reward into dense targets from the model's own
+        # better-than-anchor outputs
+        rw_ = float(s.get('rise_w') or 0.0)
+        if rw_ > 0 and rise_lambda > 0:
+            loss = loss + rise_lambda * rw_ * (-(lp * mask).sum() / mask.sum().clamp(min=1))
+            stats['n_rise'] += 1
         opt.zero_grad(); loss.backward(); opt.step()
         stats['pg'] += loss.item(); stats['n_pg'] += 1
 
@@ -86,7 +95,7 @@ def main():
     tok.save_pretrained(str(out))
     print(json.dumps({'status': 'ok', 'pg': stats['pg'] / max(stats['n_pg'], 1),
                       'n_pg': stats['n_pg'], 'ce': stats['ce'] / max(stats['n_ce'], 1),
-                      'n_ce': stats['n_ce']}))
+                      'n_ce': stats['n_ce'], 'n_rise': stats['n_rise']}))
 
 
 if __name__ == '__main__':

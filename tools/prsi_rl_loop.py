@@ -13,11 +13,14 @@ OpenRSI-style loop per iteration:
 Run (dd_qwen9b venv):
   MIMO_KEY=... python tools/prsi_rl_loop.py --iters 6
 """
-import argparse, json, os, subprocess, sys, time, random, statistics
+import argparse, json, math, os, subprocess, sys, time, random, statistics
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+# import transformers up front: lazy-importing it later (after the merge
+# subprocess + vLLM server cycle) trips a circular lazy-module resolution
+from transformers import AutoTokenizer  # noqa: F401
 HERE = Path(__file__).resolve().parent
 BENCH = HERE.parent
 VLLM_PY = '/home/exuber/.venvs/vllm_serve/bin/python'
@@ -29,7 +32,7 @@ MERGED = '/home/exuber/models/qwen9b-prsi-rl-merged'
 CKPT_ROOT = Path(os.environ.get('RL_CKPT', '/home/exuber/models/prsi_rl'))
 OUT = BENCH / 'runs' / os.environ.get('RL_TAG', 'rl_v1')
 PORT = 8100
-MIMO_BASE = 'https://api.xiaomimimo.com/v1'
+MIMO_BASE = os.environ.get('MIMO_BASE_URL', 'https://api.xiaomimimo.com/v1')
 
 SYSTEM = '''Design a desk workstation. Return ONLY JSON with schema="workstation-csg/1".
 Ops: box(size), cylinder(radius,height), union(inputs), difference(inputs), transform(input,xyz,rpy), capital(asset_id).
@@ -105,6 +108,33 @@ def build_env():
     return prompts
 
 
+# ── v4: ReflectRL golden-negative channel (arXiv:2608.03972, reflective-to-direct) ──
+def fail_issues(s):
+    """Machine-derived failure record for a rollout (structured, not prose)."""
+    rw = s['rw']
+    issues = []
+    if not rw['valid']:
+        issues.append(f"design failed CAD execution: {rw.get('error') or 'invalid geometry'}")
+    else:
+        if rw.get('rating', 0) < ACCEPT:
+            issues.append(f"rated {rw.get('rating', 0)}/10 — below sale threshold")
+        if not rw.get('reused'):
+            issues.append('did not reuse available capital')
+    return issues
+
+
+def build_reflect_prompt(fail):
+    """ReflectRL prompt: same schema, with a structured prev_attempt field."""
+    msg = {'demand': fail['demand'],
+           'capital': [{'id': k, 'desc': v.get('description', '')} for k, v in fail['capital'].items()],
+           'hint': 'Use capital(asset_id) to import previous modules.' if fail['capital'] else None,
+           'prev_attempt': {'design': fail['text'][:2000], 'rating': fail['rating'],
+                            'issues': fail['issues']}}
+    return {'op': 'reflect', 'demand': fail['demand'], 'capital': fail['capital'],
+            'system': SYSTEM,
+            'user': json.dumps(msg, ensure_ascii=False)}
+
+
 # ── server lifecycle ──
 def wait_server(timeout=420):
     import httpx
@@ -145,7 +175,7 @@ print("MERGED-OK")
 def start_server():
     cmd = [VLLM_PY, '-m', 'vllm.entrypoints.openai.api_server',
            '--model', MERGED, '--served-model-name', 'rl-policy',
-           '--port', str(PORT), '--max-model-len', '3072', '--gpu-memory-utilization', '0.93',
+           '--port', str(PORT), '--max-model-len', '3072', '--gpu-memory-utilization', '0.88',
            '--enforce-eager', '--max-num-seqs', '6', '--max-num-batched-tokens', '4096',
            '--kv-cache-dtype', 'fp8']
     log = open(OUT / 'vllm.log', 'a')
@@ -402,25 +432,46 @@ def main():
     ap.add_argument('--iters', type=int, default=6)
     ap.add_argument('--k', type=int, default=6, help='samples per prompt')
     ap.add_argument('--init-adapter', default='/home/exuber/models/prsi_lora_v2/20261004_044136/final')
+    ap.add_argument('--reflect', action='store_true',
+                    help='v4: ReflectRL golden-negative channel (cosine-annealed share, reflective->direct)')
+    ap.add_argument('--rise', action='store_true',
+                    help='v4: RISE-lite displacement-weighted self-distillation on positive-margin samples')
+    ap.add_argument('--reflect0', type=float, default=0.3, help='initial reflect-prompt share')
+    ap.add_argument('--rise-lambda', type=float, default=0.5, help='weight of the dense distillation term')
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
     CKPT_ROOT.mkdir(parents=True, exist_ok=True)
-    prompts = build_env()
-    print(f"RL env: {len(prompts)} prompts = " +
-          str({op: sum(1 for p in prompts if p['op'] == op) for op in ('draft', 'improve', 'debug')}))
+    base_prompts = build_env()
+    print(f"RL env: {len(base_prompts)} prompts = " +
+          str({op: sum(1 for p in base_prompts if p['op'] == op) for op in ('draft', 'improve', 'debug')}))
     adapter = a.init_adapter
     metrics_all = []
     assets = OUT / 'rollouts.jsonl'
+    reflect_next = []
 
     for it in range(1, a.iters + 1):
         t_it = time.monotonic()
         print(f"\n===== iteration {it} =====")
+        # v4 ReflectRL: annealed share of golden-negative prompts (reflective->direct)
+        share = a.reflect0 * 0.5 * (1.0 + math.cos(math.pi * (it - 1) / max(a.iters - 1, 1))) if a.reflect else 0.0
+        n_ref = int(round(share * len(base_prompts)))
+        prompts = base_prompts + [build_reflect_prompt(f) for f in reflect_next[:n_ref]]
+        if n_ref and reflect_next:
+            print(f"  reflect prompts: {min(n_ref, len(reflect_next))} (share {share:.2f})")
         if not merge_adapter(adapter, MERGED):
             print('merge failed; aborting'); break
         server = start_server()
         if not wait_server():
-            print('server failed to start'); server.terminate(); break
+            print('server start attempt 1 failed; retrying once')
+            server.terminate()
+            try: server.wait(timeout=30)
+            except Exception: server.kill()
+            subprocess.run(['pkill', '-f', 'vllm[.]entrypoints'], capture_output=True)
+            time.sleep(15)
+            server = start_server()
+            if not wait_server(timeout=600):
+                print('server failed to start'); server.terminate(); break
         try:
             rollouts = rollout(prompts, a.k)
         finally:
@@ -465,6 +516,20 @@ def main():
         print(f"  iter{it}: mean_r={m['mean_r']} valid={m['valid']} sold={m['sold']} "
               f"reuse(imp)={m['reused_improve']} rating={m['mean_rating_valid']} by_op={by_op} [{m['wall_min']}min]")
 
+        # v4 ReflectRL: collect this iteration's golden negatives for the next one
+        if a.reflect:
+            fails = [s for s in rollouts if (not s['rw']['valid']) or s['rw'].get('rating', 0) < ACCEPT]
+            random.seed(1000 + it)
+            random.shuffle(fails)
+            reflect_next = []
+            for s in fails[:6]:
+                p = prompts[s['pi']]
+                reflect_next.append({'demand': p['demand'], 'capital': p['capital'],
+                                     'text': s['text'], 'rating': s['rw'].get('rating', 0),
+                                     'issues': fail_issues(s)})
+            (OUT / f'reflect_pool_it{it}.json').write_text(
+                json.dumps(reflect_next, ensure_ascii=False, indent=1))
+
         nxt = str(CKPT_ROOT / f'iter{it}')
         # group-normalize advantages with CARE quality-preserving damping:
         # saturated groups (s->0 or 1) get damped so efficiency noise isn't amplified
@@ -480,8 +545,18 @@ def main():
             gs = ss[0]['rw'].get('group_s')
             w = max(0.25, min(1.0, 4.0 * gs * (1.0 - gs))) if gs is not None else 1.0
             for x in ss:
-                train_samples.append({'prompt': x['prompt'], 'text': x['text'],
-                                      'adv': w * (x['rw']['r'] - mu) / (sd + 1e-6)})
+                ts = {'prompt': x['prompt'], 'text': x['text'],
+                      'adv': w * (x['rw']['r'] - mu) / (sd + 1e-6)}
+                if a.rise and x['rw'].get('valid'):
+                    # RISE-lite: displacement vs the trailing anchor (previous
+                    # iteration's mean for this operator) becomes dense
+                    # token-level distillation weight on the model's own
+                    # better-than-anchor outputs
+                    prev = metrics_all[-2] if len(metrics_all) >= 2 else None
+                    if prev:
+                        prev_mu = prev['mean_r_by_op'].get(x['operator'], prev['mean_r'])
+                        ts['rise_w'] = round(max(0.0, x['rw']['r'] - prev_mu), 4)
+                train_samples.append(ts)
         if not train_samples:
             print('  no signal groups; keeping previous adapter')
             adapter = adapter
@@ -490,7 +565,8 @@ def main():
             job_f.write_text(json.dumps({'adapter': adapter, 'out_adapter': nxt,
                                          'samples': train_samples,
                                          'core_path': str(BENCH / 'runs' / 'training_data' / 'sft_v2_core.jsonl'),
-                                         'lr': 2e-5, 'anchor_w': 0.3, 'max_len': 2300}))
+                                         'lr': 2e-5, 'anchor_w': 0.3, 'max_len': 2300,
+                                         'rise_lambda': a.rise_lambda if a.rise else 0}))
             r = subprocess.run([sys.executable, '-W', 'ignore', str(HERE / 'rl_train_step_worker.py'), str(job_f)],
                                capture_output=True, text=True, timeout=3600)
             line = [l for l in r.stdout.splitlines() if '"status"' in l]

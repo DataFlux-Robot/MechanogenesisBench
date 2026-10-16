@@ -1,0 +1,159 @@
+[
+  {
+    "iter": 1,
+    "mean_r": 0.3686,
+    "valid": 0.875,
+    "sold": 0.25,
+    "reused_improve": 0.952,
+    "mean_rating_valid": 3.51,
+    "mean_r_by_op": {
+      "draft": 0.1778,
+      "improve": 0.4569,
+      "debug": 0.3458
+    },
+    "care_regimes": {
+      "progress": 30,
+      "outcome": 30,
+      "debug-static": 12
+    },
+    "wall_min": 11.8
+  },
+  {
+    "iter": 2,
+    "mean_r": 0.2977,
+    "valid": 0.778,
+    "sold": 0.211,
+    "reused_improve": 0.929,
+    "mean_rating_valid": 3.39,
+    "mean_r_by_op": {
+      "draft": 0.225,
+      "improve": 0.4212,
+      "debug": 0.3167
+    },
+    "care_regimes": {
+      "progress": 42,
+      "outcome": 36,
+      "debug-static": 12
+    },
+    "wall_min": 12.5
+  },
+  {
+    "iter": 3,
+    "mean_r": 0.4264,
+    "valid": 0.933,
+    "sold": 0.2,
+    "reused_improve": 1.0,
+    "mean_rating_valid": 3.17,
+    "mean_r_by_op": {
+      "draft": 0.2111,
+      "improve": 0.6006,
+      "debug": 0.3208
+    },
+    "care_regimes": {
+      "progress": 60,
+      "outcome": 12,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 13.8
+  },
+  {
+    "iter": 4,
+    "mean_r": 0.3989,
+    "valid": 0.952,
+    "sold": 0.226,
+    "reused_improve": 0.952,
+    "mean_rating_valid": 3.85,
+    "mean_r_by_op": {
+      "draft": 0.225,
+      "improve": 0.4479,
+      "debug": 0.5167
+    },
+    "care_regimes": {
+      "progress": 42,
+      "outcome": 30,
+      "debug-static": 12
+    },
+    "wall_min": 12.6
+  },
+  {
+    "iter": 5,
+    "mean_r": 0.5243,
+    "valid": 0.987,
+    "sold": 0.333,
+    "reused_improve": 0.976,
+    "mean_rating_valid": 4.29,
+    "mean_r_by_op": {
+      "draft": 0.2167,
+      "improve": 0.5556,
+      "debug": 0.775
+    },
+    "care_regimes": {
+      "progress": 36,
+      "outcome": 24,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 12.3
+  },
+  {
+    "iter": 6,
+    "mean_r": 0.475,
+    "valid": 0.974,
+    "sold": 0.244,
+    "reused_improve": 0.976,
+    "mean_rating_valid": 3.49,
+    "mean_r_by_op": {
+      "draft": 0.2028,
+      "improve": 0.5596,
+      "debug": 0.6083
+    },
+    "care_regimes": {
+      "progress": 42,
+      "outcome": 12,
+      "efficiency": 12,
+      "debug-static": 12
+    },
+    "wall_min": 12.4
+  },
+  {
+    "iter": 7,
+    "mean_r": 0.5125,
+    "valid": 0.986,
+    "sold": 0.292,
+    "reused_improve": 1.0,
+    "mean_rating_valid": 4.17,
+    "mean_r_by_op": {
+      "draft": 0.2139,
+      "improve": 0.587,
+      "debug": 0.7
+    },
+    "care_regimes": {
+      "progress": 36,
+      "efficiency": 6,
+      "outcome": 18,
+      "debug-static": 12
+    },
+    "wall_min": 12.8
+  },
+  {
+    "iter": 8,
+    "mean_r": 0.5154,
+    "valid": 0.944,
+    "sold": 0.375,
+    "reused_improve": 1.0,
+    "mean_rating_valid": 4.62,
+    "mean_r_by_op": {
+      "draft": 0.1833,
+      "improve": 0.5991,
+      "debug": 0.7208
+    },
+    "care_regimes": {
+      "progress": 24,
+      "outcome": 30,
+      "efficiency": 6,
+      "debug-static": 12
+    },
+    "wall_min": 12.4
+  }
+]
