@@ -61,34 +61,39 @@ def cad_eval(text, capital, folder):
     return {'error': (r.stderr or r.stdout or 'worker failed')[:200], 'metrics': None}
 
 
-def judge_call(jname, demand, text, cad):
-    """Call a commercial judge via litellm; returns rating 0-10."""
-    try:
-        from litellm import completion
-        specs = {
-            'mimo-v2.6-pro': ('openai/mimo-v2.6-pro', 'https://api.xiaomimimo.com/v1', 'MIMO_KEY'),
-            'glm-5.3-flash': ('openai/glm-5.3-flash', 'https://api.z.ai/api/anthropic/v1', 'ZAI_KEY_LITELLM'),
-        }
-        model, base, keyenv = specs[jname]
-        key = os.environ.get(keyenv, 'none')
-        if keyenv == 'ZAI_KEY_LITELLM' and key == 'none':
-            cfg = json.loads(Path(os.path.expanduser('~/.config/fluxkernel/model.json')).read_text())
-            key = cfg.get('api_key', '')
-        ev = cad.get('metrics') or {}
-        prompt = (f"Demand: {demand}\nDesign: {text[:6000]}\n"
-                  f"CAD facts: {json.dumps({'envelope_excess_mm': ev.get('occupied_envelope_excess_mm'), 'overlap_mm3': ev.get('overlap_mm3')})}")
-        resp = completion(model=model, api_base=base, api_key=key,
-                          messages=[{'role': 'system', 'content': JUDGE_SYS},
-                                    {'role': 'user', 'content': prompt}],
-                          max_tokens=512, temperature=0.2, timeout=300)
-        raw = resp.choices[0].message.content or ''
-        clean = raw.strip()
-        if clean.startswith('```'):
-            clean = clean.split('\n', 1)[-1].rsplit('```', 1)[0].strip()
-        return json.loads(clean).get('rating', 0)
-    except Exception as e:
-        print(f"    judge {jname} error: {str(e)[:80]}")
-        return 0
+def judge_call(jname, demand, text, cad, tries=3):
+    """Call a commercial judge via litellm; returns rating 0-10.
+    Retries on empty/unparseable responses (judge-0 ambiguity: an API zero and a
+    genuine 0 must not be conflated — same policy as surpass_bench.safe_judge)."""
+    from litellm import completion
+    specs = {
+        'mimo-v2.6-pro': ('openai/mimo-v2.6-pro',
+                          os.environ.get('MIMO_BASE_URL', 'https://api.xiaomimimo.com/v1'), 'MIMO_KEY'),
+        'glm-5.3-flash': ('openai/glm-5.3-flash', 'https://api.z.ai/api/anthropic/v1', 'ZAI_KEY_LITELLM'),
+    }
+    model, base, keyenv = specs[jname]
+    key = os.environ.get(keyenv, 'none')
+    if keyenv == 'ZAI_KEY_LITELLM' and key == 'none':
+        cfg = json.loads(Path(os.path.expanduser('~/.config/fluxkernel/model.json')).read_text())
+        key = cfg.get('api_key', '')
+    ev = cad.get('metrics') or {}
+    prompt = (f"Demand: {demand}\nDesign: {text[:6000]}\n"
+              f"CAD facts: {json.dumps({'envelope_excess_mm': ev.get('occupied_envelope_excess_mm'), 'overlap_mm3': ev.get('overlap_mm3')})}")
+    for att in range(tries):
+        try:
+            resp = completion(model=model, api_base=base, api_key=key,
+                              messages=[{'role': 'system', 'content': JUDGE_SYS},
+                                        {'role': 'user', 'content': prompt}],
+                              max_tokens=1500, temperature=0.2, timeout=300)
+            raw = resp.choices[0].message.content or ''
+            clean = raw.strip()
+            if clean.startswith('```'):
+                clean = clean.split('\n', 1)[-1].rsplit('```', 1)[0].strip()
+            rating = json.loads(clean).get('rating', 0)
+            return rating
+        except Exception as e:
+            print(f"    judge {jname} retry {att+1}/{tries}: {str(e)[:70]}")
+    return 0
 
 
 def load_model(path, adapter=None):

@@ -1,0 +1,356 @@
+[
+  {
+    "model": "qwen3.5-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 18.3,
+        "cad": {
+          "extent": [
+            650.0,
+            420.0,
+            170.0
+          ],
+          "intersections": 6
+        }
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 2,
+        "rating": 4,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 17.8,
+        "cad": {
+          "extent": [
+            120.0,
+            60.0,
+            40.0
+          ],
+          "intersections": 10
+        }
+      },
+      {
+        "rd": 3,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 19.2,
+        "cad": {
+          "extent": [
+            250.0,
+            60.0,
+            175.0
+          ],
+          "intersections": 6
+        }
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "sold": "0/5",
+    "reuse": "1/4",
+    "t_accel": 0.95
+  },
+  {
+    "model": "qwen3.5-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 1,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 28.1,
+        "cad": {
+          "extent": [
+            630.0,
+            420.0,
+            160.0
+          ],
+          "intersections": 6
+        }
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 2,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 12.3,
+        "cad": {
+          "extent": [
+            65.0,
+            48.0,
+            28.0
+          ],
+          "intersections": 1
+        }
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 10.4,
+        "cad": {
+          "extent": [
+            1200.0,
+            600.0,
+            275.0
+          ],
+          "intersections": 6
+        }
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": 2.7
+  },
+  {
+    "model": "qwen3.5-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 23.4,
+        "cad": {
+          "extent": [
+            840.0,
+            560.0,
+            160.0
+          ],
+          "intersections": 6
+        }
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 2,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 3,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "sold": "0/5",
+    "reuse": "0/4",
+    "t_accel": null
+  },
+  {
+    "model": "qwen3.5-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 28.3,
+        "cad": {
+          "extent": [
+            650.0,
+            440.0,
+            40.0
+          ],
+          "intersections": 1
+        }
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 2,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 7.8,
+        "cad": {
+          "extent": [
+            127.5,
+            92.0,
+            124.0
+          ],
+          "intersections": 3
+        }
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 30.8,
+        "cad": {
+          "extent": [
+            250.0,
+            112.0,
+            175.0
+          ],
+          "intersections": 55
+        }
+      },
+      {
+        "rd": 4,
+        "rating": 3,
+        "sold": false,
+        "rev": 0,
+        "reused": true,
+        "secs": 12.0,
+        "cad": {
+          "extent": [
+            127.5,
+            92.0,
+            124.0
+          ],
+          "intersections": 6
+        }
+      }
+    ],
+    "profit": 0.0,
+    "revenue": 0.0,
+    "sold": "0/5",
+    "reuse": "2/4",
+    "t_accel": 1.32
+  },
+  {
+    "model": "qwen3.5-9b-zeroshot",
+    "rounds": [
+      {
+        "rd": 0,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 1,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      },
+      {
+        "rd": 2,
+        "rating": 8,
+        "sold": true,
+        "rev": 150,
+        "reused": false,
+        "secs": 7.7,
+        "cad": {
+          "extent": [
+            97.5,
+            64.0,
+            40.0
+          ],
+          "intersections": 3
+        }
+      },
+      {
+        "rd": 3,
+        "rating": 2,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 42.8,
+        "cad": {
+          "extent": [
+            600.0,
+            400.0,
+            325.0
+          ],
+          "intersections": 120
+        }
+      },
+      {
+        "rd": 4,
+        "rating": 0,
+        "sold": false,
+        "rev": 0,
+        "reused": false,
+        "secs": 0
+      }
+    ],
+    "profit": 150.0,
+    "revenue": 150.0,
+    "sold": "1/5",
+    "reuse": "0/4",
+    "t_accel": 0.0
+  }
+]

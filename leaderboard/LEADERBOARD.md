@@ -64,7 +64,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 28 | Ornith-1.5-9B (zero-shot) | ¥0 | 3 | single | |
 | 28 | Qwopus3.5-9B-v3 (zero-shot) | ¥0 | 3 | single | community Qwen-merge; schema confusion |
 | 28 | Qwythos-9B-v2 (zero-shot) | ¥0 | 3 | single | community Qwen-merge |
-| 28 | qwen3.5-9B (zero-shot) | ¥0 | 1 | single | cannot emit valid design JSON |
+| 28 | qwen3.5-9B (zero-shot) | ¥30 mean (median ¥0) | 5 | single | 2,048-token budget: 13/25 rounds valid CAD — format is NOT the bottleneck; ratings 0–4 (one 8) → 1/25 sold; retry-hardened judge (n=5 rerun) |
 
 **Unserviceable despite retries** (trust-remote-code, GGUF/llama.cpp, HF-transformers
 paths): Spark-X2.5-4B (arch absent from vLLM), Phi-4-mini-flash-reasoning,
@@ -177,7 +177,7 @@ pretty-printed JSON truncates at 900):
 
 | arm | profit/session | sold rounds | n |
 |---|---:|---:|---:|
-| base weights, zero-shot | ¥0 | 0/15 | 3 |
+| base weights, zero-shot | ¥30 mean (median ¥0) | 1/25 | 5 |
 | base weights + identical stack | **¥154** | 6/25 | 5 |
 | trained weights (V1.5), no stack | ¥390 | — | 5 |
 | trained weights + stack (V2) | ¥438 single-judge / **¥532** 3-judge | — | 40 |
@@ -247,7 +247,7 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
    vanish on sealed probes (+¥14 n.s.) while weight-level gains retain 65%; RRSI
    decomposition puts JitRL's memorization share at 39%.
 5. **Two factors, weights first (2×2)**: training does the one-time heavy lifting
-   (base ¥0 → trained ¥390 without any stack); the same stack on untrained weights
+   (base ¥30 → trained ¥390 without any stack); the same stack on untrained weights
    reaches only ¥154; the stack then composes on top of trained weights (¥438
    single-judge / ¥532 symmetric). "Freeze the weights" is a claim about the
    marginal loop after the threshold crossing — not that weights do not matter.
