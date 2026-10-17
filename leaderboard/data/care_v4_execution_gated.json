@@ -1,0 +1,32 @@
+{
+  "protocol": "post-hoc execution-gated ruler: sale = valid CAD AND extent within the round desk footprint (no judge); speed pricing unchanged",
+  "care-v4": [
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0,
+    750.0
+  ],
+  "care-v3": [
+    0.0,
+    300.0,
+    450.0,
+    450.0,
+    300.0,
+    300.0,
+    300.0,
+    300.0,
+    300.0,
+    450.0
+  ],
+  "test": {
+    "mannwhitney_u": 100.0,
+    "p_one_sided": 2.3841145805058508e-05,
+    "cohens_d": 4.68392254790604
+  }
+}

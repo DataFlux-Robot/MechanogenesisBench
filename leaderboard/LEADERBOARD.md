@@ -23,7 +23,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 | 2 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | 3-judge | commercial frontier |
 | 3 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | 3-judge | |
 | 4 | **FluxEidosV1.5-9B (CARE-v3 iter6) (ours)** | **¥390** | 5 | single | weights-only champion |
-| 4a | **FluxEidosV1.6-9B (CARE-v4: RISE-lite + ReflectRL) (ours)** | **¥375** (median 450) | 10 | single | unified v7-gate protocol; vs CARE-v3 ¥330 same-protocol (+¥45, one-sided p=0.21); 25/50 rounds sold; training sell-rate 0.375 & rating 4.62 both CARE records. **3-judge recompute of the same designs reverses the ordering: CARE-v3 ¥495 > CARE-v4 ¥390** (two-sided p=0.043; the single judge is the training reward model; CARE-v4 designs are compact, 1.6 vs 2.7 parts) |
+| 4a | **FluxEidosV1.6-9B (CARE-v4: RISE-lite + ReflectRL) (ours)** | **¥375** (median 450) | 10 | single | unified v7-gate protocol; vs CARE-v3 ¥330 same-protocol (+¥45, one-sided p=0.21); training sell-rate 0.375 & rating 4.62 both CARE records. Judged ordering is panel-dependent: 3-judge recompute of the same designs reverses it (CARE-v3 ¥495 > CARE-v4 ¥390, two-sided p=0.043). **Execution-gated ruler (no judge): CARE-v4 ¥750 every session vs CARE-v3 ¥315 (p=2×10⁻⁵, d=4.7)** — desk-fit 50/50 vs 21/49, self-intersections 0.80 vs 2.86 |
 | 4 | **FluxEidosV1.0-9B + JitRL mature (ours)** | **¥390** | 5 | single | frozen test-time memory; p=0.037 vs plain control |
 | 6 | **FluxEidosV1.0-9B (CARE-v3) (ours)** | **¥387** | 10 | 3-judge | 9B open model, ~250 SFT examples + CARE RL, one RTX 4090D |
 | 7 | glm-5.3 (Zhipu) | ¥380 | 11 | 3-judge | |
@@ -262,17 +262,20 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
    reaches only ¥154; the stack then composes on top of trained weights (¥438
    single-judge / ¥532 symmetric). "Freeze the weights" is a claim about the
    marginal loop after the threshold crossing — not that weights do not matter.
-6. **Denser supervision moves the point estimate — but the gain can live in the
-   judge (CARE-v4)**: RISE-style displacement-weighted self-distillation +
-   ReflectRL-style golden negatives lift the training records (sell 0.375, rating
-   4.62) and the single-judge bench point estimate (¥375 median ¥450 vs CARE-v3
-   ¥330 median ¥300; one-sided p=0.21, n=10/arm). A symmetric 3-judge recompute of
-   the same designs reverses the ordering (CARE-v3 ¥495 vs CARE-v4 ¥390; two-sided
-   p=0.043, leave-one-out 0.008–0.035): the single judge is the policies' training
-   reward model, and CARE-v4's designs are markedly compact (1.6 vs 2.7 parts,
-   within-arm rating–parts r=0.81). Both protocols reported; neither treated as
-   ground truth — a direct view of the judge-coupling term in P2
-   (`data/care_v4_headtohead_3judge.json`).
+6. **Denser supervision wins the physics, and judged earnings are panel-dependent
+   (CARE-v4)**: RISE-style displacement-weighted self-distillation + ReflectRL-style
+   golden negatives lift the training records (sell 0.375, rating 4.62) and the
+   single-judge bench point estimate (¥375 median ¥450 vs CARE-v3 ¥330 median ¥300;
+   one-sided p=0.21, n=10/arm). A symmetric 3-judge recompute of the same designs
+   reverses the judged ordering (CARE-v3 ¥495 vs CARE-v4 ¥390; two-sided p=0.043) —
+   the panels price perceived elaboration (1.6 vs 2.7 parts; within-arm rating–parts
+   r=0.81) and the single judge is the policies' training reward model. On the
+   execution-gated ruler (sale = valid CAD within the round desk footprint, no
+   judge) the fusion dominates outright: ¥750 in every session vs ¥315 mean
+   (p=2×10⁻⁵, d=4.7), desk-fit 50/50 vs 21/49 (combine 0/10, shrink 0/9),
+   self-intersections 0.80 vs 2.86. Same update, invisible in the judged channel,
+   overwhelming in the noiseless one — P2 is about signal-to-noise
+   (`data/care_v4_headtohead_3judge.json`, `data/care_v4_execution_gated.json`).
 
 ## Reproduce
 
