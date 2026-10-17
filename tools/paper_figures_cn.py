@@ -31,7 +31,8 @@ def save(fig, name):
 # ═══════ 图 2：排行榜 ═══════
 def fig2():
     rows = [
-        ('FluxEidosV2 系统', 532, 'sys'), ('mimo-v2.6-flash', 433, 'com'),
+        ('FluxEidosV2.1 系统', 534, 'sys'), ('FluxEidosV2 系统', 532, 'sys'),
+        ('mimo-v2.6-flash', 433, 'com'),
         ('mimo-v2.6-pro', 418, 'com'), ('FluxEidosV1.5 权重', 390, 'own'),
         ('V1.0 + JitRL 成熟', 390, 'sys'), ('FluxEidosV1.0', 387, 'own'),
         ('glm-5.3', 380, 'com'), ('mimo pro/flash（单评委）', 377, 'com'),
@@ -139,25 +140,26 @@ def fig4():
     ax.text(5.4, 480, '2.0× · p = 0.037', fontsize=6.4, color=PURPLE, fontweight='bold')
     ax.legend(loc='lower right'); ax.set_xticks(range(1, 11, 2))
     panel(ax, 'b'); clean(ax)
-    # c — V2 对前沿（蜜蜂群）
+    # c — V2.1 / V2 对前沿（蜜蜂群）
     ax = axes[2]
     rng = np.random.default_rng(3)
+    v21 = [570,530,600,450,380,600,680,450,420,570,530,500,530,570,570,570,540,420,620,570]
     v2 = [450,600,550,600,500,600,370,570,570,700,490,700,640,270,570,650,500,600,540,670,
           520,650,600,500,700,670,570,600,600,450,570,450,550,420,540,680,500,420,570,700]
     mimo = [370,480,440,560,560,480,340,420,370,500,220,380,400,540]
-    for i, (d, c) in enumerate([(v2, PURPLE), (mimo, ORANGE)]):
+    for i, (d, c) in enumerate([(v21, PURPLE), (v2, '#B7ACD2'), (mimo, ORANGE)]):
         xs = rng.normal(i, 0.06, len(d))
         ax.scatter(xs, d, s=9, color=c, alpha=0.5, linewidths=0, zorder=3)
         m = float(np.mean(d))
         ax.plot([i - 0.22, i + 0.22], [m, m], color=c, lw=1.6, zorder=4)
         ax.scatter([i], [m], marker='D', s=16, color='white', edgecolor=c, linewidths=1.0, zorder=5)
         ax.text(i + 0.3, m, f'¥{m:.0f}', fontsize=6.4, color=c, va='center', fontweight='bold')
-    ax.boxplot([v2, mimo], positions=[0, 1], widths=0.5, showfliers=False,
+    ax.boxplot([v21, v2, mimo], positions=[0, 1, 2], widths=0.5, showfliers=False,
                medianprops=dict(lw=0), boxprops=dict(lw=0.6, color='#B8BDC2'),
                whiskerprops=dict(lw=0.6, color='#B8BDC2'), capprops=dict(lw=0))
-    ax.set_xticks([0, 1]); ax.set_xticklabels(['FluxEidosV2\nn = 40', 'mimo-v2.6-flash\nn = 14'], fontsize=6.4)
-    ax.set_ylabel('每会话利润（¥）'); ax.set_xlim(-0.6, 1.75)
-    ax.text(0.5, 745, 'Mann–Whitney p = 0.0015 · d = 1.0', fontsize=6.2, ha='center', color=INK)
+    ax.set_xticks([0, 1, 2]); ax.set_xticklabels(['V2.1\nn = 20', 'V2\nn = 40', 'mimo-flash\nn = 14'], fontsize=6.4)
+    ax.set_ylabel('每会话利润（¥）'); ax.set_xlim(-0.6, 2.8)
+    ax.text(1.0, 745, 'V2.1 对前沿：p = 0.0010 · d = 1.16', fontsize=6.2, ha='center', color=INK)
     panel(ax, 'c'); clean(ax)
     save(fig, 'fig4_substrates.png')
 

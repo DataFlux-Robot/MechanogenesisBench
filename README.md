@@ -3,13 +3,14 @@
 ## 🏆 Money Bench v5 Leaderboard — ALL systems, one table
 
 **5-round cumulative product design · real build123d CAD execution · LLM-judge sales ·
-speed pricing.** One unified ranking (39 systems; profit per 5-round
-session; best-protocol number per system, protocol noted; sorted by score). Our models use release naming **FluxEidosV{version}-9B** (V0.5 SFT → V0.6 RL → **V1.0 CARE champion** → V1.5 + JitRL test-time RSI → **V2 system: frontier parity**). Methodology & raw data:
+speed pricing.** One unified ranking (40 systems; profit per 5-round
+session; best-protocol number per system, protocol noted; sorted by score). Our models use release naming **FluxEidosV{version}-9B** (V0.5 SFT → V0.6 RL → **V1.0 CARE champion** → V1.5 + JitRL test-time RSI → **V2 system: frontier parity** → **V2.1 system (CARE-v4 + stack): frontier +23%, p=0.0010**). Methodology & raw data:
 [`leaderboard/LEADERBOARD.md`](leaderboard/LEADERBOARD.md)
 
 | # | System | Type | Profit | n | Note |
 |---|---|---|---:|---:|---|
-| 1 | **FluxEidosV2-9B (system: V1.5 weights + test-time stack)** | ours (9B + inference-time RSI) | **¥532** (median 540) | 40 | **3-judge: beats frontier +23%** (p=0.0015, d=1.0; single-judge ¥438 = parity); bounds ¥489–564; ablation v1→v7 in leaderboard |
+| 1 | **FluxEidosV2.1-9B (system: CARE-v4 weights + test-time stack)** | ours (9B + inference-time RSI) | **¥534** (median 570) | 20 | **3-judge: beats frontier +23%** (p=0.0010, d=1.16); bounds ¥512–547; single-judge ¥540 vs ¥436 for V2 (p=0.0065); execution-gated ¥492 |
+| 1b | FluxEidosV2-9B (system: V1.5 weights + test-time stack) | ours (9B + inference-time RSI) | ¥532 (median 540) | 40 | **3-judge: beats frontier +23%** (p=0.0015, d=1.0; single-judge ¥438 = parity); bounds ¥489–564; ablation v1→v7 in leaderboard |
 | 2 | mimo-v2.6-flash | commercial API | ¥433 (3-judge) | 14 | commercial frontier |
 | 3 | mimo-v2.6-pro | commercial API | ¥418 (3-judge) | 11 | |
 | 4 | FluxEidosV1.5-9B (CARE-v3 iter6) | ours (weights-only champion) | ¥390 | 5 | |

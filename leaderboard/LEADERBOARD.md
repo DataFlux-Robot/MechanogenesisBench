@@ -19,7 +19,8 @@ system entries (V2, JitRL) are single-judge and flagged.
 
 | # | System | Profit / session | n | Protocol | Notes |
 |---|---|---:|---:|---|---|
-| 1 | **FluxEidosV2-9B system (ours)** | **¥532** (median 540) | 40 | **3-judge** | V1.5 weights + test-time stack; **beats frontier +23%, p=0.0015, d=1.0** (single-judge: ¥438 = parity). Ambiguous-resample bounds ¥489–¥564 |
+| 1a | **FluxEidosV2.1-9B system (CARE-v4 + V2 stack) (ours)** | **¥534** (median 570) | 20 | **3-judge** | CARE-v4 weights + identical stack; **beats frontier +23%, p=0.0010, d=1.16**; ambiguous-resample bounds ¥512–¥547; same-protocol single-judge **¥540 vs ¥436** for V2 (p=0.0065, d=0.79); execution-gated ¥492 vs ¥443; 80/100 rounds sold; tighter spread than V2 (sd 76 vs 108) |
+| 1 | **FluxEidosV2-9B system (ours)** | **¥532** (median 540) | 40 | **3-judge** | V1.5 weights + test-time stack; **beats frontier +23%, p=0.0015, d=1.0** (single-judge: ¥438 = parity). Ambiguous-resample bounds ¥489–¥564. Predecessor system at parity with V2.1 (p=0.52) |
 | 2 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | 3-judge | commercial frontier |
 | 3 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | 3-judge | |
 | 4 | **FluxEidosV1.5-9B (CARE-v3 iter6) (ours)** | **¥390** | 5 | single | weights-only champion |
@@ -244,8 +245,12 @@ is the harshest on its own family's designs. Data: `data/judge_agreement.json`.
 
 ## Key findings
 
-1. **Training > scale**: a fine-tuned 9B ≈ 90% of the strongest commercial models
-   (and reaches parity as a system); 27B zero-shot and a 30B ML-RSI agent land far below.
+1. **Training > scale**: a fine-tuned 9B ≈ 90% of the strongest commercial models,
+   and the full system now beats it under symmetric judging (V2.1: ¥534 vs ¥433,
+   p=0.0010; V2 pooled n=40: ¥532, p=0.0015); 27B zero-shot and a 30B ML-RSI agent
+   land far below. The CARE-v4 weight upgrade adds +¥104 same-protocol under the
+   single judge (¥540 vs ¥436, p=0.0065) and holds the symmetric level (¥534 vs
+   ¥532) with a tighter spread (sd ¥76 vs ¥108) and a higher median (¥570 vs ¥540).
 2. **Speed pricing discriminates reasoning style**: deepseek-v4-pro reuses most
    (3.6/4) yet earns least among mid-tier — thinking time is billed.
 3. **The self-improvement that compounds lives in substrates, not weights**: frozen

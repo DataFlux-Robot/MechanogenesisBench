@@ -29,7 +29,11 @@ OUT = (RUNS / f'v2_rejudge_3judge_p{POLICY}.json' if TAGS == ('v6', 'v7')
 
 
 def glm_rating(key, model, demand, text, max_tokens):
-    for _ in range(2):
+    """Zero is ambiguous (genuine 0 vs API failure) — treat it as retryable with
+    exponential backoff. A 2026-10-17 run lost a 35-minute window (~60 calls) to
+    rate limiting and silently produced fake zero sessions."""
+    delay = 2
+    for _ in range(5):
         try:
             jt, _ = anthropic_call(GLM_BASE, key, model, JUDGE_SYS,
                                    f"Demand: {demand}\nDesign: {text[:6000]}",
@@ -38,7 +42,9 @@ def glm_rating(key, model, demand, text, max_tokens):
             if r:
                 return int(r)
         except Exception:
-            time.sleep(3)
+            pass
+        time.sleep(delay)
+        delay = min(delay * 2, 15)
     return 0
 
 
@@ -123,7 +129,7 @@ def main():
         tasks = [t for t in tasks if (t[0], t[1], t[2], t[3], t[4]) not in JUDGE_RESULTS]
         print(f"[gather] cache hit, {len(tasks)} calls remain", flush=True)
     t0 = time.time()
-    with ThreadPoolExecutor(max_workers=8) as ex:
+    with ThreadPoolExecutor(max_workers=4) as ex:
         for k, r in ex.map(work, tasks):
             JUDGE_RESULTS[k] = r
     print(f"[gather] done in {time.time()-t0:.0f}s", flush=True)

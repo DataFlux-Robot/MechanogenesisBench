@@ -68,7 +68,7 @@ ax.annotate('V1.0 +JitRL\n(observed +5%, p=0.037)', (1.15, 0.05), textcoords='of
 ax.set_xlabel('signal-to-noise ratio $\\|g\\|^2/(\\sigma^2 L)$')
 ax.set_ylabel('relative gain')
 ax.set_title('weight updates need SNR above threshold')
-panel(ax, 'b'); clean(ax)
+panel(ax, 'b', dx=-0.24); clean(ax)
 ax.legend(fontsize=6.2, loc='upper left')
 ax.spines[['top', 'right']].set_visible(False)
 
@@ -88,7 +88,7 @@ ax.annotate('sealed probes\n(observed +4%, n.s.)', (0.08, 4.3), textcoords='offs
             xytext=(10, -2), fontsize=6.2, color=RED)
 ax.set_xlabel('train–test instance overlap $\\bar s$')
 ax.set_ylabel('gain / retention (%)')
-ax.set_title('memory is instance-bound, weights transfer')
+ax.set_title('memory is instance-bound')
 panel(ax, 'c'); clean(ax)
 ax.legend(fontsize=6.2, loc='center left')
 ax.spines[['top', 'right']].set_visible(False)
