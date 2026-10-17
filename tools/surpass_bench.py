@@ -220,6 +220,27 @@ def generate(model, tok, prompt, max_new=1500, temp=0.3, seed=42):
     return text, secs
 
 
+INTENT_SYS = ('You are a workstation designer. Read the WORKSPACE (customer demand '
+              'plus available capital assets). State ONE design concept in a single '
+              'sentence: the layout, the key modules, and how you will reuse capital. '
+              'No JSON. No preamble.')
+
+
+def gen_intent(model, tok, demand, capital, temp=0.95):
+    """Fork-and-Flush stage 1 (deployment): flushed intent from the workspace only."""
+    user = json.dumps({'demand': demand,
+                       'capital': [{'id': k, 'desc': v.get('description', '')} for k, v in capital.items()],
+                       'hint': ('capital(asset_id) imports a previously built module — '
+                                'free and faster than rebuilding.') if capital else None},
+                      ensure_ascii=False)
+    prompt = tok.apply_chat_template([{'role': 'system', 'content': INTENT_SYS},
+                                      {'role': 'user', 'content': user}],
+                                     tokenize=False, add_generation_prompt=True,
+                                     enable_thinking=False)
+    text, secs = generate(model, tok, prompt, max_new=120, temp=temp, seed=777)
+    return text[:300], secs
+
+
 def safe_judge(demand, text, metrics, tries=3):
     """judge() returns 0 both for 'genuinely bad' and for API failure.
     v3 showed a valid winner rated 0 in-run but 2-3 on re-judge.
@@ -283,6 +304,10 @@ def main():
                     help='v8: seed each R1 candidate with a distinct design strategy (semantic diversity)')
     ap.add_argument('--reflect-retry', action='store_true',
                     help='v8: retries carry the failed design + structured failure record (ReflectRL-lite)')
+    ap.add_argument('--self-intent', action='store_true',
+                    help='v10: Fork-and-Flush deployment — derive a flushed one-sentence intent per '
+                         'generation (per R1 candidate) and condition the design on it; intent '
+                         'latency is priced')
     ap.add_argument('--adapter', default=ADAPTER,
                     help='LoRA adapter path (default: prsi_rl_v3/iter6 = V1.5 champion)')
     ap.add_argument('--tag', default='',
@@ -315,6 +340,8 @@ def main():
     tag = 'v7' if a.r1_n > 1 else ('v2' if use_hints else 'control')
     if a.strategy_diverse or a.reflect_retry:
         tag = 'v8'
+    if a.self_intent:
+        tag = 'v10'
     if a.base_only:
         tag = f'base-{tag}'
     if a.tag:
@@ -347,7 +374,10 @@ def main():
 
         for rd in range(5):
             demand = mb.DEMANDS[rd]
-            user = build_user(demand, capital, rd, use_hints, experience)
+            intent, intent_secs = None, 0.0
+            if a.self_intent and rd > 0:
+                intent, intent_secs = gen_intent(model, tok, demand, capital)
+            user = build_user(demand, capital, rd, use_hints, experience, strategy=intent)
             prompt = tok.apply_chat_template(
                 [{'role': 'system', 'content': mb.SYSTEM}, {'role': 'user', 'content': user}],
                 tokenize=False, add_generation_prompt=True, enable_thinking=False)
@@ -367,7 +397,16 @@ def main():
                 cands, t_total = [], 0.0
                 for k in range(a.r1_n):
                     kprompt = prompt
-                    if a.strategy_diverse:
+                    if a.self_intent:
+                        ki, kisecs = gen_intent(model, tok, demand, capital)
+                        t_total += kisecs
+                        kuser = build_user(demand, capital, rd, use_hints, experience,
+                                           strategy=ki)
+                        kprompt = tok.apply_chat_template(
+                            [{'role': 'system', 'content': mb.SYSTEM},
+                             {'role': 'user', 'content': kuser}],
+                            tokenize=False, add_generation_prompt=True, enable_thinking=False)
+                    elif a.strategy_diverse:
                         kuser = build_user(demand, capital, rd, use_hints, experience,
                                            strategy=STRATEGIES[(si + k) % len(STRATEGIES)])
                         kprompt = tok.apply_chat_template(
@@ -404,6 +443,7 @@ def main():
             else:
                 text, secs = generate(model, tok, prompt, max_new=gen_cap, temp=0.3,
                                       seed=42 + rd + 1000 * si)
+                secs = round(secs + intent_secs, 1)
                 text = repair_design(text)
             if not text or len(text) < 60:
                 rounds.append({'rd': rd, 'rating': 0, 'sold': False, 'rev': 0, 'secs': secs})

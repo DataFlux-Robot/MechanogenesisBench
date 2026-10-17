@@ -115,12 +115,45 @@ def load_model(path, adapter=None):
     return model, tokenizer
 
 
-def generate(model, tokenizer, demand, capital, max_new=2048):
+INTENT_SYS = ('You are a workstation designer. Read the WORKSPACE (customer demand '
+              'plus available capital assets). State ONE design concept in a single '
+              'sentence: the layout, the key modules, and how you will reuse capital. '
+              'No JSON. No preamble.')
+
+
+def generate_intent(model, tokenizer, demand, capital):
+    """Fork-and-Flush stage 1: flush history, re-derive intent from the workspace only."""
     import torch
     user_msg = json.dumps({'demand': demand,
                            'capital': [{'id': k, 'desc': v.get('description', '')} for k, v in capital.items()],
-                           'hint': 'Use capital(asset_id) to import previous modules.' if capital else None},
+                           'hint': ('capital(asset_id) imports a previously built module — '
+                                    'free and faster than rebuilding.') if capital else None},
                           ensure_ascii=False)
+    prompt = tokenizer.apply_chat_template([{'role': 'system', 'content': INTENT_SYS},
+                                            {'role': 'user', 'content': user_msg}],
+                                           tokenize=False, add_generation_prompt=True,
+                                           enable_thinking=False)
+    inputs = tokenizer(prompt, return_tensors='pt', truncation=True, max_length=4096).to(model.device)
+    t0 = time.monotonic()
+    with torch.no_grad():
+        out = model.generate(**inputs, max_new_tokens=120, temperature=0.95, top_p=0.95,
+                             do_sample=True, pad_token_id=tokenizer.pad_token_id)
+    intent = tokenizer.decode(out[0][inputs['input_ids'].shape[1]:], skip_special_tokens=True).strip()[:300]
+    return intent, round(time.monotonic() - t0, 1)
+
+
+def generate(model, tokenizer, demand, capital, max_new=2048, use_intent=False):
+    import torch
+    msg = {'demand': demand,
+           'capital': [{'id': k, 'desc': v.get('description', '')} for k, v in capital.items()],
+           'hint': 'Use capital(asset_id) to import previous modules.' if capital else None}
+    intent_secs = 0.0
+    if use_intent:
+        intent, intent_secs = generate_intent(model, tokenizer, demand, capital)
+        if intent:
+            msg['intent'] = intent
+            print(f'    intent: {intent[:100]}', flush=True)
+    user_msg = json.dumps(msg, ensure_ascii=False)
     messages = [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': user_msg}]
     prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True,
                                            enable_thinking=False)
@@ -136,7 +169,8 @@ def generate(model, tokenizer, demand, capital, max_new=2048):
             text = '\n'.join(lines[1:-1]).strip() or text
     if '"h":' in text and '"hypothesis":' not in text:
         text = text.replace('"h":', '"hypothesis":')
-    return text, round(time.monotonic() - t0, 1)
+    # the intent stage is part of deployment latency — count it in the price
+    return text, round(time.monotonic() - t0 + intent_secs, 1)
 
 
 def main():
@@ -146,6 +180,9 @@ def main():
     ap.add_argument('--tag', required=True)
     ap.add_argument('--judges', nargs='+', default=['mimo-v2.6-pro'])
     ap.add_argument('--n', type=int, default=1, help='number of sessions')
+    ap.add_argument('--intent', action='store_true',
+                    help='Fork-and-Flush deployment: flushed intent re-derivation, then design '
+                         'conditioned on it (intent latency is priced)')
     a = ap.parse_args()
 
     model, tokenizer = load_model(a.model, a.adapter)
@@ -160,7 +197,7 @@ def main():
             demand = DEMANDS[rd]
             best = None
             for att in range(2):
-                text, secs = generate(model, tokenizer, demand, capital)
+                text, secs = generate(model, tokenizer, demand, capital, use_intent=a.intent)
                 if not text.strip():
                     continue
                 cad = cad_eval(text, capital, out_dir / f'r{rd}_a{att}' / 'cad')

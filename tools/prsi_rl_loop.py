@@ -136,6 +136,29 @@ def build_reflect_prompt(fail):
 
 
 # ── server lifecycle ──
+# ── v5: Fork-and-Flush rollout diversity (arXiv:2610.07447, adapted to CAD) ──
+# An agent's accumulated context anchors it in one "idea basin". Fork-and-Flush
+# branches inherit only the WORKSPACE (demand + capital) with a flushed history,
+# must re-derive intent from the artifacts, and therefore land in different
+# basins. Adaptation: each fork is two-stage — a one-sentence self-derived
+# intent from the flushed workspace (high temperature), then the design
+# conditioned on that intent. Training samples stay plain-prompt for a
+# configurable share so the policy keeps its unconditioned behaviour.
+INTENT_SYS = ('You are a workstation designer. Read the WORKSPACE (customer demand '
+              'plus available capital assets). State ONE design concept in a single '
+              'sentence: the layout, the key modules, and how you will reuse capital. '
+              'No JSON. No preamble.')
+
+
+def intent_user(p):
+    return json.dumps({'demand': p['demand'],
+                       'capital': [{'id': k, 'desc': v.get('description', '')}
+                                   for k, v in p['capital'].items()],
+                       'hint': ('capital(asset_id) imports a previously built module — '
+                                'free and faster than rebuilding.') if p['capital'] else None},
+                      ensure_ascii=False)
+
+
 def wait_server(timeout=420):
     import httpx
     t0 = time.time()
@@ -182,18 +205,67 @@ def start_server():
     return subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)
 
 
-def rollout(prompts, k, temp=0.75):
-    """Sample k completions per prompt via the completions API (exact training prompt format)."""
+def rollout(prompts, k, temp=0.75, fork=None):
+    """Sample k completions per prompt via the completions API (exact training prompt format).
+    fork={'temp':0.95,'plain_share':0.4} enables Fork-and-Flush branches: the
+    non-plain branches first re-derive a one-sentence intent from the flushed
+    workspace (demand+capital only), then design conditioned on it."""
     import httpx
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(BASE, trust_remote_code=True)
-    reqs = []
+
+    def chat(msgs):
+        return tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True,
+                                       enable_thinking=False)
+
+    n_plain = int(round((fork['plain_share'] if fork else 1.0) * k))
+    reqs, ireqs = [], []
     for pi, p in enumerate(prompts):
-        prompt = tok.apply_chat_template([{'role': 'system', 'content': p['system']},
-                                          {'role': 'user', 'content': p['user']}],
-                                         tokenize=False, add_generation_prompt=True, enable_thinking=False)
+        base_prompt = chat([{'role': 'system', 'content': p['system']},
+                            {'role': 'user', 'content': p['user']}])
+        iprompt = chat([{'role': 'system', 'content': INTENT_SYS},
+                        {'role': 'user', 'content': intent_user(p)}])
         for j in range(k):
-            reqs.append({'pi': pi, 'op': p['op'], 'prompt': prompt, 'seed': j})
+            is_fork = bool(fork) and p['op'] != 'debug' and j >= n_plain
+            r = {'pi': pi, 'op': p['op'], 'seed': j, 'branch': 'fork' if is_fork else 'plain',
+                 'base_prompt': base_prompt}
+            reqs.append(r)
+            if is_fork:
+                ireqs.append({**r, 'prompt': iprompt})
+
+    if ireqs:
+        def intent_one(req):
+            body = {'model': 'rl-policy', 'prompt': req['prompt'], 'max_tokens': 120,
+                    'temperature': fork['temp'], 'top_p': 0.95, 'seed': 5000 + req['seed']}
+            try:
+                with httpx.Client(timeout=httpx.Timeout(240, connect=20), trust_env=False) as c:
+                    r = c.post(f'http://127.0.0.1:{PORT}/v1/completions', json=body,
+                               headers={'Authorization': 'Bearer none'})
+                if r.status_code != 200:
+                    return {**req, 'intent_text': ''}
+                return {**req, 'intent_text': r.json()['choices'][0]['text'].strip()[:300]}
+            except Exception:
+                return {**req, 'intent_text': ''}
+        with ThreadPoolExecutor(max_workers=6) as ex:
+            ireqs = list(ex.map(intent_one, ireqs))
+        intents = {(r['pi'], r['seed']): r['intent_text'] for r in ireqs}
+    else:
+        intents = {}
+
+    for r in reqs:
+        r['prompt'] = r['base_prompt']
+        if r['branch'] == 'fork':
+            p = prompts[r['pi']]
+            try:
+                u = json.loads(p['user'])
+            except Exception:
+                u = {'demand': p['demand']}
+            intent = intents.get((r['pi'], r['seed'])) or ''
+            if intent:
+                u['intent'] = intent
+            r['prompt'] = chat([{'role': 'system', 'content': p['system']},
+                                {'role': 'user', 'content': json.dumps(u, ensure_ascii=False)}])
+            r['intent'] = intent
 
     def one(req):
         body = {'model': 'rl-policy', 'prompt': req['prompt'], 'max_tokens': 1800,
@@ -438,6 +510,11 @@ def main():
                     help='v4: RISE-lite displacement-weighted self-distillation on positive-margin samples')
     ap.add_argument('--reflect0', type=float, default=0.3, help='initial reflect-prompt share')
     ap.add_argument('--rise-lambda', type=float, default=0.5, help='weight of the dense distillation term')
+    ap.add_argument('--fork', action='store_true',
+                    help='v5: Fork-and-Flush rollout diversity (flushed intent -> design branches)')
+    ap.add_argument('--fork-temp', type=float, default=0.95, help='intent sampling temperature')
+    ap.add_argument('--fork-plain', type=float, default=0.4,
+                    help='share of branches kept plain (no intent) so unconditioned behaviour is retained')
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
@@ -473,7 +550,8 @@ def main():
             if not wait_server(timeout=600):
                 print('server failed to start'); server.terminate(); break
         try:
-            rollouts = rollout(prompts, a.k)
+            fork_cfg = {'temp': a.fork_temp, 'plain_share': a.fork_plain} if a.fork else None
+            rollouts = rollout(prompts, a.k, fork=fork_cfg)
         finally:
             server.terminate()
             try: server.wait(timeout=60)
@@ -495,7 +573,8 @@ def main():
         with assets.open('a') as f:
             for s in rollouts:
                 f.write(json.dumps({k2: s.get(k2) for k2 in
-                        ('operator', 'seed', 'secs', 'text', 'rw')}, ensure_ascii=False) + '\n')
+                        ('operator', 'seed', 'branch', 'intent', 'secs', 'text', 'rw')},
+                        ensure_ascii=False) + '\n')
 
         m = {'iter': it,
              'mean_r': round(statistics.mean(s['rw']['r'] for s in rollouts), 4),
@@ -510,6 +589,17 @@ def main():
         m['mean_r_by_op'] = by_op
         from collections import Counter as _C
         m['care_regimes'] = dict(_C(s['rw'].get('regime', '?') for s in rollouts))
+        if a.fork:
+            by_branch = {}
+            for b in ('plain', 'fork'):
+                ss = [s for s in rollouts if s.get('branch') == b]
+                if ss:
+                    by_branch[b] = {'n': len(ss),
+                                    'mean_r': round(statistics.mean(s['rw']['r'] for s in ss), 4),
+                                    'sold': round(statistics.mean(1.0 * s['rw']['sold'] for s in ss), 3)}
+            m['by_branch'] = by_branch
+            ints = [s.get('intent', '') for s in rollouts if s.get('branch') == 'fork']
+            m['intent_unique'] = f"{len(set(ints))}/{len(ints)}"
         m['wall_min'] = round((time.monotonic() - t_it) / 60, 1)
         metrics_all.append(m)
         (OUT / 'metrics.json').write_text(json.dumps(metrics_all, indent=2))
