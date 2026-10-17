@@ -1,0 +1,32 @@
+{
+  "judge arm @6 iters": {
+    "n": 10,
+    "mean": 390,
+    "median": 300,
+    "fit": "50/50"
+  },
+  "surrogate from SFT @6": {
+    "n": 10,
+    "mean": 285,
+    "median": 300,
+    "fit": "50/50"
+  },
+  "surrogate from champion @+3": {
+    "n": 10,
+    "mean": 420,
+    "median": 450,
+    "fit": "50/50"
+  },
+  "champion @12 (matched)": {
+    "n": 5,
+    "mean": 390,
+    "median": 450,
+    "fit": "25/25"
+  },
+  "CARE-v3 @6": {
+    "n": 5,
+    "mean": 300,
+    "median": 300,
+    "fit": "10/25"
+  }
+}

@@ -304,6 +304,34 @@ def cad_eval(text, capital, folder):
     return {'error': 'worker failed', 'metrics': None}
 
 
+def load_surrogate(path):
+    """Truth-anchored text evaluator: predicts execution quality Q (desk-fit and
+    low overlap) from the design text. Used as the dense reward channel in the
+    filtered-channel arm; real CAD remains the hard gate and the audit."""
+    import pickle
+    with open(path, 'rb') as f:
+        return pickle.load(f)
+
+
+def _sur_feats(text):
+    try:
+        d = json.loads(text); n = d.get('nodes', []); p = d.get('parts', [])
+        return [len(n), len(p), sum(1 for x in n if x.get('op') == 'capital'),
+                sum(1 for x in n if x.get('op') == 'union'),
+                sum(1 for x in n if x.get('op') == 'difference'), len(text)]
+    except Exception:
+        return [0, 0, 0, 0, 0, len(text)]
+
+
+def sur_predict(model, text):
+    import numpy as np
+    from scipy.sparse import hstack, csr_matrix
+    vec, reg = model['vec'], model['reg']
+    x = vec.transform([text])
+    x = hstack([x, csr_matrix(np.array([_sur_feats(text)], float))]).tocsr()
+    return float(reg.predict(x)[0])
+
+
 def judge(demand, text, metrics):
     import httpx
     key = os.environ.get('MIMO_KEY', 'none')
@@ -330,23 +358,51 @@ def judge(demand, text, metrics):
     return 0
 
 
-def reward_sample(s, p, workdir):
-    """Collect reward COMPONENTS (no scalar yet — CARE assigns it per group)."""
+def reward_sample(s, p, workdir, sur=None):
+    """Collect reward COMPONENTS (no scalar yet — CARE assigns it per group).
+    sur: surrogate model — when given, the dense reward is the truth-anchored
+    predicted execution quality instead of the judged rating (no judge calls)."""
     text = s['text']
     if not text or len(text) < 40:
-        return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False, 'rev': 0}
+        return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False, 'rev': 0,
+                'q': 0.0, 'fit': 0.0, 'overlap': 0.0}
     if '"h":' in text and '"hypothesis":' not in text:
         text = text.replace('"h":', '"hypothesis":')
     cad = cad_eval(text, p['capital'], workdir)
     valid = bool(cad.get('metrics'))
+    m = cad.get('metrics') or {}
+    ex = float(m.get('occupied_envelope_excess_mm', 0) or 0)
+    ov = float(m.get('overlap_mm3', 0) or 0)
+    fit = 1.0 if (valid and ex <= 1.0) else 0.0
+    q = 1.0 if (valid and ex <= 1.0 and ov <= 50.0) else 0.0
+    if sur is not None:
+        if not valid:
+            return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False,
+                    'rev': 0, 'q': 0.0, 'fit': 0.0, 'overlap': 0.0, 'error': cad.get('error')}
+        score = min(1.0, max(0.0, sur_predict(sur, text)))
+        rating = round(10.0 * score, 2)
+        sold = score >= 0.5
+        rev = round(100 * speed_price(s['secs'])) if sold else 0
+        try:
+            reused = any(n.get('op') == 'capital' and n.get('asset_id') in p['capital']
+                         for n in json.loads(text).get('nodes', []))
+        except Exception:
+            reused = False
+        if p['op'] == 'debug':
+            return {'r': round(0.5 * valid + 0.05 * rating, 4), 'valid': valid, 'rating': rating,
+                    'sold': False, 'reused': reused, 'rev': 0, 'q': q, 'fit': fit,
+                    'overlap': ov, 'sur': round(score, 4), 'error': cad.get('error')}
+        return {'r': None, 'valid': True, 'rating': rating, 'sold': sold,
+                'reused': reused, 'rev': rev, 'q': q, 'fit': fit, 'overlap': ov,
+                'sur': round(score, 4)}
     if p['op'] == 'debug':
-        rating = judge(p['demand'], text, cad.get('metrics')) if valid else 0
+        rating = judge(p['demand'], text, m) if valid else 0
         return {'r': round(0.5 * valid + 0.05 * rating, 4), 'valid': valid, 'rating': rating,
                 'sold': False, 'reused': False, 'rev': 0, 'error': cad.get('error')}
     if not valid:
         return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False, 'rev': 0,
                 'error': cad.get('error')}
-    rating = judge(p['demand'], text, cad.get('metrics'))
+    rating = judge(p['demand'], text, m)
     sold = rating >= ACCEPT
     rev = round(100 * speed_price(s['secs'])) if sold else 0
     try:
@@ -355,7 +411,7 @@ def reward_sample(s, p, workdir):
     except Exception:
         reused = False
     return {'r': None, 'valid': True, 'rating': rating, 'sold': sold,
-            'reused': reused, 'rev': rev}  # r filled by CARE
+            'reused': reused, 'rev': rev}
 
 
 # ── CARE: Competence-Aware Reward-and-Advantage Engineering (arXiv:2609.29892) ──
@@ -515,10 +571,17 @@ def main():
     ap.add_argument('--fork-temp', type=float, default=0.95, help='intent sampling temperature')
     ap.add_argument('--fork-plain', type=float, default=0.4,
                     help='share of branches kept plain (no intent) so unconditioned behaviour is retained')
+    ap.add_argument('--reward', choices=['judge', 'surrogate'], default='judge',
+                    help='dense reward channel: judged rating (CARE-v3/v4) or truth-anchored surrogate')
+    ap.add_argument('--surrogate', default='',
+                    help='path to the surrogate pickle (required for --reward surrogate)')
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
     CKPT_ROOT.mkdir(parents=True, exist_ok=True)
+    surrogate = load_surrogate(a.surrogate) if a.reward == 'surrogate' else None
+    if surrogate is not None:
+        print(f'[reward] surrogate channel ({a.surrogate}) — no judge calls in training', flush=True)
     base_prompts = build_env()
     print(f"RL env: {len(base_prompts)} prompts = " +
           str({op: sum(1 for p in base_prompts if p['op'] == op) for op in ('draft', 'improve', 'debug')}))
@@ -563,7 +626,7 @@ def main():
         def score(s):
             p = prompts[s['pi']]
             wd = OUT / f'it{it}' / f"p{s['pi']}_s{s['seed']}"
-            s['rw'] = reward_sample(s, p, wd)
+            s['rw'] = reward_sample(s, p, wd, sur=surrogate)
             s['demand'] = p['demand']; s['operator'] = p['op']
             return s
         with ThreadPoolExecutor(max_workers=4) as ex:
@@ -589,6 +652,13 @@ def main():
         m['mean_r_by_op'] = by_op
         from collections import Counter as _C
         m['care_regimes'] = dict(_C(s['rw'].get('regime', '?') for s in rollouts))
+        if surrogate is not None:
+            m['measured_q'] = round(statistics.mean(s['rw'].get('q', 0) for s in rollouts), 3)
+            m['measured_fit'] = round(statistics.mean(s['rw'].get('fit', 0) for s in rollouts), 3)
+            byp = {}
+            for s in rollouts:
+                byp.setdefault(s['pi'], []).append(s['rw'].get('q', 0))
+            m['q_by_prompt'] = [round(statistics.mean(v), 3) for _, v in sorted(byp.items())]
         if a.fork:
             by_branch = {}
             for b in ('plain', 'fork'):

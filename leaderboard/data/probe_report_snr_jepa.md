@@ -108,3 +108,52 @@ Intervention: run CARE with the surrogate-filtered reward channel (execution-fac
 surrogate as the dense signal, real judge only on the shortlist) for 6–8
 iterations, and test whether per-iteration execution-verified updates become
 detectable (z>1.96) where the judge-reward runs were not.
+
+## Intervention — filtered-channel training (2026-10-18)
+
+Two arms trained with the truth-anchored surrogate as the dense reward (no judge
+calls), real CAD as the hard gate. Recipe otherwise identical to the judge arm
+(RISE+Reflect, lr 2e-5, k=6, 12-prompt env).
+
+### Training-time execution quality Q (base prompts)
+
+| arm | start | it1 | it2 | it3 | it4 | it5 | it6 | detectable steps |
+|---|---|---|---|---|---|---|---|---|
+| judge channel (care_v4/v4b) | SFT | 0.139 | 0.113 | 0.304 | 0.255 | 0.173 | 0.142 | 1/5 (it3) |
+| surrogate channel (rl_v7_qs) | SFT | 0.139 | 0.278 | 0.667 | 0.694 | 0.889 | 0.917 | 1/5 (it3, z=3.16) |
+| surrogate channel (rl_v6_q) | champion | 0.903 | 0.931 | 1.000 | 0.972 | 0.972 | 0.875 | 1/5 (it6 negative) |
+
+The surrogate channel reaches Q=0.92 in 6 iterations from SFT where the judge
+channel is still at 0.14 (it reaches 0.81 only after 8).
+
+### Judged market and execution ruler (eval harness, single judge, v7 gate)
+
+| arm | n | judge mean | median | exec fit |
+|---|---|---|---|---|
+| judge channel @6 iters (v4b/iter2) | 10 | **390** | 300 | 50/50 |
+| surrogate channel from SFT @6 (v7qs/iter6) | 10 | **285** | 300 | 50/50 |
+| surrogate channel from champion @+3 (v6q/iter3) | 10 | **420** | 450 | 50/50 |
+| champion @12 (v4b/iter8, published) | 10 | 375 | 450 | 50/50 |
+| CARE-v3 @6 (published) | 10 | 330 | 300 | 21/49 |
+
+### What it means
+
+1. **The eval execution ruler is saturated**: every trained arm scores 50/50 desk
+   fit (¥750 execution-gated), so physics improvements beyond the ceiling are
+   invisible on the priced market. The training-env Q advantage (0.14 vs 0.92)
+   does not transfer to the five fixed demands.
+2. **Channel alignment dominates channel noise.** A noiseless but incomplete
+   channel (geometry only, no demand satisfaction) loses ~¥105 of market income
+   when trained from scratch. From a judge-trained champion the same channel is
+   non-inferior and +¥45 (n.s.) on the market with perfect physics.
+3. The exchange-rate law needs the bias term: sigma_eff^2 = sigma_r^2(1-rho^2) +
+   beta^2. Here beta (misalignment with the priced decision) is the dominant
+   term, not sigma.
+
+### Next design (not yet run)
+
+Composite channel: reward = w * Q_phys + (1-w) * R_demand, where R_demand is the
+judge-trained surrogate (rho=0.59 with the judge). Tests whether denoising the
+market target (without dropping demand satisfaction) lifts judged profit at the
+same sample budget. Also: harden the execution ruler (tighter desks/overlap) so
+physics competence is not saturated and the market cannot ignore it.
