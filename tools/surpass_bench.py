@@ -102,13 +102,17 @@ def fail_record(text, rating, cad):
     return {'design': text[:2500], 'rating': rating, 'issues': issues}
 
 
-def load_experience(min_rating=6):
+def load_experience(min_rating=6, bank_tags=None):
     """Mine our own past validated designs (rating >= min_rating) as per-round
     in-context examples. Pure test-time experience replay: no weight updates,
-    no external data — the system reuses its own successes."""
+    no external data — the system reuses its own successes.
+    bank_tags: restrict mining to these result tags (freeze the bank so weight
+    swaps compare under an identical experience pool)."""
     ex = {}
     for res_file in sorted(RESULTS.glob('v*_results.json')):
         tag = res_file.stem.split('_')[0]
+        if bank_tags and tag not in bank_tags:
+            continue
         try:
             runs = json.loads(res_file.read_text())
         except Exception:
@@ -279,6 +283,15 @@ def main():
                     help='v8: seed each R1 candidate with a distinct design strategy (semantic diversity)')
     ap.add_argument('--reflect-retry', action='store_true',
                     help='v8: retries carry the failed design + structured failure record (ReflectRL-lite)')
+    ap.add_argument('--adapter', default=ADAPTER,
+                    help='LoRA adapter path (default: prsi_rl_v3/iter6 = V1.5 champion)')
+    ap.add_argument('--tag', default='',
+                    help='results tag (default: auto from flags); kept distinct so runs never overwrite')
+    ap.add_argument('--bank-tags', default='',
+                    help='comma-separated result tags to mine for experience (default: all v*); '
+                         'freeze to v7-era tags to keep the pool identical across weight swaps')
+    ap.add_argument('--resume', action='store_true',
+                    help='continue from len(existing results) sessions (e.g. after a crash/reboot)')
     a = ap.parse_args()
 
     import torch
@@ -293,7 +306,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(BASE, quantization_config=bnb,
                                                  device_map='cuda', trust_remote_code=True)
     if not a.base_only:
-        model = PeftModel.from_pretrained(model, ADAPTER)
+        model = PeftModel.from_pretrained(model, a.adapter)
     model.eval()
 
     use_hints = not a.no_hints
@@ -304,18 +317,28 @@ def main():
         tag = 'v8'
     if a.base_only:
         tag = f'base-{tag}'
+    if a.tag:
+        tag = a.tag
     # self-bank: never read the shared v*_results.json pool (that would leak
     # V1.x designs into the base arm); accumulate only this run's own successes
     if a.self_bank:
         experience = {}
     else:
-        experience = load_experience() if use_hints else {}
+        bank_tags = {t.strip() for t in a.bank_tags.split(',') if t.strip()} or None
+        experience = load_experience(bank_tags=bank_tags) if use_hints else {}
     print(f"[v6] experience bank: rounds {sorted(experience.keys())} "
           f"(ratings {[experience[k][0] for k in sorted(experience)]})", flush=True)
+    out_file = RESULTS / f'{tag}_results.json'
     all_runs = []
+    start = 0
+    if a.resume and out_file.exists():
+        all_runs = json.loads(out_file.read_text())
+        start = len(all_runs)
+        print(f"[resume] {start} sessions already in {out_file.name}, continuing at session {start+1}",
+              flush=True)
     corrections_used = 0
 
-    for si in range(a.sessions):
+    for si in range(start, a.sessions):
         sess_dir = RESULTS / tag / f'sess{si+1}'
         sess_dir.mkdir(parents=True, exist_ok=True)
         capital, rounds = {}, []
@@ -456,6 +479,7 @@ def main():
         run = {'profit': total, 'rounds': rounds,
                'sold': f"{sum(1 for r in rounds if r['sold'])}/5"}
         all_runs.append(run)
+        (RESULTS / f'{tag}_results.json').write_text(json.dumps(all_runs, indent=2))
         print(f"  => ¥{total} | sold {run['sold']}", flush=True)
 
     profits = [r['profit'] for r in all_runs]

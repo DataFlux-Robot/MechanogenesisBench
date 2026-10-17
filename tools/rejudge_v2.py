@@ -23,7 +23,9 @@ JUDGE_SYS = ('Rate the workstation design 0-10 for user satisfaction. Return ONL
              'JSON: {"rating":<n>,"accepted":<bool>,"feedback":"<t>"}')
 RUNS = HERE.parent / 'runs' / 'surpass'
 POLICY = int(sys.argv[1]) if len(sys.argv) > 1 else 0
-OUT = RUNS / f'v2_rejudge_3judge_p{POLICY}.json'
+TAGS = tuple(sys.argv[2:]) or ('v6', 'v7')
+OUT = (RUNS / f'v2_rejudge_3judge_p{POLICY}.json' if TAGS == ('v6', 'v7')
+       else RUNS / f'rejudge_3judge_{"+".join(TAGS)}_p{POLICY}.json')
 
 
 def glm_rating(key, model, demand, text, max_tokens):
@@ -85,7 +87,7 @@ JUDGE_RESULTS = {}
 
 def gather_tasks():
     tasks = []
-    for tag in ('v6', 'v7'):
+    for tag in TAGS:
         runs = json.loads((RUNS / f'{tag}_results.json').read_text())
         for i in range(len(runs)):
             sess_dir = RUNS / tag / f'sess{i+1}'
@@ -129,7 +131,7 @@ def main():
 
     out_runs = {}
     t0 = time.time()
-    for tag in ('v6', 'v7'):
+    for tag in TAGS:
         runs = json.loads((RUNS / f'{tag}_results.json').read_text())
         sess3 = []
         for i, run in enumerate(runs):
@@ -179,8 +181,8 @@ def main():
         mean = sum(sess3) / len(sess3)
         print(f"== {tag}: n={len(sess3)} 3-judge mean ¥{mean:.0f} runs={[round(x) for x in sess3]}", flush=True)
         out_runs[tag] = sess3
-    pool = out_runs['v6'] + out_runs['v7']
-    print(f"== POOLED V2 (n={len(pool)}): 3-judge mean ¥{sum(pool)/len(pool):.0f} "
+    pool = [x for t in TAGS for x in out_runs[t]]
+    print(f"== POOLED {TAGS} (n={len(pool)}): 3-judge mean ¥{sum(pool)/len(pool):.0f} "
           f"median ¥{sorted(pool)[len(pool)//2]:.0f}", flush=True)
     OUT.write_text(json.dumps(out_runs, indent=2))
 
