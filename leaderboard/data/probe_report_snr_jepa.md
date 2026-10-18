@@ -157,3 +157,48 @@ judge-trained surrogate (rho=0.59 with the judge). Tests whether denoising the
 market target (without dropping demand satisfaction) lifts judged profit at the
 same sample budget. Also: harden the execution ruler (tighter desks/overlap) so
 physics competence is not saturated and the market cannot ignore it.
+
+### Hardened execution ruler (post-hoc, from existing eval artifacts)
+
+The soft ruler (desk-fit only) saturates for every trained arm. The demands
+themselves require more: a real dock must have no self-intersecting parts and
+rounds 2-5 MUST reuse capital. Hard ruler: fit AND zero self-intersections AND
+(reuse or round 1). Computed on the same archived eval sessions:
+
+| arm | fit | clean | reuse | all three | hard-ruler ¥ |
+|---|---|---|---|---|---|
+| judge channel @6 (v4b/iter2) | 50/50 | 17/50 | 50/50 | 17/50 | 255 |
+| surrogate channel from SFT @6 (v7qs/iter6) | 50/50 | **50/50** | 50/50 | **50/50** | **750** |
+| surrogate channel from champion (v6q/iter3) | 50/50 | **50/50** | 50/50 | **50/50** | **750** |
+| champion @12 (v4b/iter8) | 50/50 | 30/50 | 50/50 | 30/50 | 450 |
+| CARE-v3 @6 | 21/50 | 5/50 | 49/50 | 4/50 | 60 |
+
+Correction to the earlier reading: the execution channel is NOT saturated — the
+soft ruler was. Under a demand-faithful ruler the surrogate channel dominates
+(¥750 vs ¥255 for the same-budget judge arm, ¥450 for the champion, ¥60 for
+CARE-v3). The judged market prices demand satisfaction and ignores geometric
+cleanliness (champion 30/50 clean still earns ¥375-450), so the two rulers
+diverge — which is exactly the channel-alignment term beta.
+
+### Composite channel (wq=0.5) — negative result
+
+Reward = 0.5 * predicted Q + 0.5 * predicted demand (judge surrogate), trained
+6 iterations from SFT, no judge calls. Training looked healthy (Q 0.139 -> 0.806,
+predicted demand 2.13 -> 6.56, one detectable step z=5.08 at it3), but:
+
+| checkpoint | eval (n) | judge mean | hard ruler |
+|---|---|---|---|
+| iter4 | 2 | 225 | 3/5 per session |
+| iter6 | 10 | **0** (all sessions) | 0/5 |
+
+At eval temperature the iter6 policy's modal output is schema-invalid (duplicate
+node ids, invalid part references): 10/10 sessions earn nothing. The hard CAD
+gate during training did not prevent the modal collapse — the demand head's
+preference for elaborate templates (more nodes, "compact_workstation") can be
+exploited by structurally redundant output that the post-hoc validator rejects.
+The earlier iter4 checkpoint is valid but underperforms the judge arm on both
+rulers (225 vs 390 market; 6/10 hard rounds vs 17/50).
+
+Lesson: a surrogate reward needs validity-preserving constraints (syntax repair
+inside the rollout loop, or a validity-aware surrogate head), not just a hard gate
+at reward time. The composite arm as configured is rejected.

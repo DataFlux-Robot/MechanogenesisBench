@@ -28,5 +28,15 @@
     "mean": 300,
     "median": 300,
     "fit": "10/25"
+  },
+  "composite wq=0.5 iter4 (n=2)": {
+    "judge_mean": 225,
+    "hard": "6/10",
+    "note": "valid checkpoint"
+  },
+  "composite wq=0.5 iter6 (n=10)": {
+    "judge_mean": 0,
+    "hard": "0/50",
+    "note": "modal schema collapse (duplicate node ids) at eval temperature"
   }
 }

@@ -358,10 +358,11 @@ def judge(demand, text, metrics):
     return 0
 
 
-def reward_sample(s, p, workdir, sur=None):
+def reward_sample(s, p, workdir, sur=None, sur_r=None, wq=0.5):
     """Collect reward COMPONENTS (no scalar yet — CARE assigns it per group).
-    sur: surrogate model — when given, the dense reward is the truth-anchored
-    predicted execution quality instead of the judged rating (no judge calls)."""
+    sur: truth-anchored execution-quality surrogate. sur_r: demand surrogate
+    (denoised judge rating). With both, the dense reward is the composite
+    wq*Q_phys + (1-wq)*R_demand/10 — no judge calls."""
     text = s['text']
     if not text or len(text) < 40:
         return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False, 'rev': 0,
@@ -379,7 +380,13 @@ def reward_sample(s, p, workdir, sur=None):
         if not valid:
             return {'r': 0.0, 'valid': False, 'rating': 0, 'sold': False, 'reused': False,
                     'rev': 0, 'q': 0.0, 'fit': 0.0, 'overlap': 0.0, 'error': cad.get('error')}
-        score = min(1.0, max(0.0, sur_predict(sur, text)))
+        q_pred = min(1.0, max(0.0, sur_predict(sur, text)))
+        if sur_r is not None:
+            r_pred = min(10.0, max(0.0, sur_predict(sur_r, text)))
+            score = wq * q_pred + (1.0 - wq) * (r_pred / 10.0)
+        else:
+            r_pred = None
+            score = q_pred
         rating = round(10.0 * score, 2)
         sold = score >= 0.5
         rev = round(100 * speed_price(s['secs'])) if sold else 0
@@ -394,7 +401,8 @@ def reward_sample(s, p, workdir, sur=None):
                     'overlap': ov, 'sur': round(score, 4), 'error': cad.get('error')}
         return {'r': None, 'valid': True, 'rating': rating, 'sold': sold,
                 'reused': reused, 'rev': rev, 'q': q, 'fit': fit, 'overlap': ov,
-                'sur': round(score, 4)}
+                'sur': round(score, 4), 'q_pred': round(q_pred, 4),
+                'r_pred': (round(r_pred, 2) if r_pred is not None else None)}
     if p['op'] == 'debug':
         rating = judge(p['demand'], text, m) if valid else 0
         return {'r': round(0.5 * valid + 0.05 * rating, 4), 'valid': valid, 'rating': rating,
@@ -571,17 +579,24 @@ def main():
     ap.add_argument('--fork-temp', type=float, default=0.95, help='intent sampling temperature')
     ap.add_argument('--fork-plain', type=float, default=0.4,
                     help='share of branches kept plain (no intent) so unconditioned behaviour is retained')
-    ap.add_argument('--reward', choices=['judge', 'surrogate'], default='judge',
-                    help='dense reward channel: judged rating (CARE-v3/v4) or truth-anchored surrogate')
+    ap.add_argument('--reward', choices=['judge', 'surrogate', 'composite'], default='judge',
+                    help='dense reward channel: judged rating (CARE-v3/v4), truth-anchored '
+                         'execution surrogate, or the composite (execution + demand surrogate)')
     ap.add_argument('--surrogate', default='',
-                    help='path to the surrogate pickle (required for --reward surrogate)')
+                    help='path to the execution-quality surrogate pickle')
+    ap.add_argument('--surrogate-r', default='',
+                    help='path to the demand (judge-rating) surrogate pickle (composite mode)')
+    ap.add_argument('--wq', type=float, default=0.5,
+                    help='composite weight on predicted execution quality (rest on demand)')
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
     CKPT_ROOT.mkdir(parents=True, exist_ok=True)
-    surrogate = load_surrogate(a.surrogate) if a.reward == 'surrogate' else None
+    surrogate = load_surrogate(a.surrogate) if a.reward in ('surrogate', 'composite') else None
+    surrogate_r = load_surrogate(a.surrogate_r) if a.reward == 'composite' else None
     if surrogate is not None:
-        print(f'[reward] surrogate channel ({a.surrogate}) — no judge calls in training', flush=True)
+        kind = 'composite' if surrogate_r is not None else 'execution'
+        print(f'[reward] {kind} surrogate channel — no judge calls in training', flush=True)
     base_prompts = build_env()
     print(f"RL env: {len(base_prompts)} prompts = " +
           str({op: sum(1 for p in base_prompts if p['op'] == op) for op in ('draft', 'improve', 'debug')}))
@@ -626,7 +641,7 @@ def main():
         def score(s):
             p = prompts[s['pi']]
             wd = OUT / f'it{it}' / f"p{s['pi']}_s{s['seed']}"
-            s['rw'] = reward_sample(s, p, wd, sur=surrogate)
+            s['rw'] = reward_sample(s, p, wd, sur=surrogate, sur_r=surrogate_r, wq=a.wq)
             s['demand'] = p['demand']; s['operator'] = p['op']
             return s
         with ThreadPoolExecutor(max_workers=4) as ex:
@@ -655,6 +670,9 @@ def main():
         if surrogate is not None:
             m['measured_q'] = round(statistics.mean(s['rw'].get('q', 0) for s in rollouts), 3)
             m['measured_fit'] = round(statistics.mean(s['rw'].get('fit', 0) for s in rollouts), 3)
+            m['q_pred_mean'] = round(statistics.mean(s['rw'].get('q_pred', 0) or 0 for s in rollouts), 3)
+            if surrogate_r is not None:
+                m['r_pred_mean'] = round(statistics.mean((s['rw'].get('r_pred') or 0) for s in rollouts), 2)
             byp = {}
             for s in rollouts:
                 byp.setdefault(s['pi'], []).append(s['rw'].get('q', 0))
