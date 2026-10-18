@@ -37,6 +37,9 @@ DEMANDS = [
     "Desk shrank to 300x200mm! Shrink but keep ALL functions. MUST optimize accumulated design.",
 ]
 PRICE = 100; ACCEPT = 5
+# Hardened execution ruler: a round sells iff the design fits the round's desk,
+# has no self-intersecting parts, and rounds 2-5 reuse capital (all demanded).
+DESK = {0: (420, 280), 1: (420, 280), 2: (420, 280), 3: (420, 280), 4: (300, 200)}
 JUDGE_SYS = 'Rate the workstation design 0-10 for user satisfaction. Return ONLY JSON: {"rating":<n>,"accepted":<bool>,"feedback":"<t>"}'
 
 
@@ -238,6 +241,8 @@ def main():
         out_dir.mkdir(parents=True, exist_ok=True)
         capital, rounds = {}, []
         total_rev = 0.0
+        hard_total = 0.0
+        hard_count = 0
         print(f"\n=== session {sess_i+1}/{a.n}: {a.tag} ===")
         for rd in range(5):
             demand = DEMANDS[rd]
@@ -253,7 +258,8 @@ def main():
                     best = (text, secs, cad)
                     break
             if best is None:
-                rounds.append({'rd': rd, 'rating': 0, 'sold': False, 'rev': 0, 'reused': False, 'secs': 0})
+                rounds.append({'rd': rd, 'rating': 0, 'sold': False, 'rev': 0, 'reused': False,
+                               'secs': 0, 'hard': False, 'hard_rev': 0})
                 print(f"  R{rd+1}: ❌ no valid design")
                 continue
             text, secs, cad = best
@@ -275,16 +281,30 @@ def main():
                 capital[f'r{rd+1}'] = {'status': 'EXECUTED_CAD', 'step_path': cad['step_path'],
                                        'description': f'Round {rd+1} design',
                                        'measurements': cad.get('metrics', {})}
+            facts = cad.get('facts_summary') or {}
+            extent = facts.get('extent')
+            inter = facts.get('intersections', 0)
+            fit = bool(extent and extent[0] <= DESK[rd][0] + 0.01
+                       and extent[1] <= DESK[rd][1] + 0.01)
+            clean = (inter == 0)
+            reuse_ok = (rd == 0) or reused
+            hard_sold = bool(fit and clean and reuse_ok)
+            hard_rev = round(PRICE * speed_price(secs)) if hard_sold else 0
+            hard_total += hard_rev
+            hard_count += hard_sold
             rounds.append({'rd': rd, 'rating': med, 'sold': sold, 'rev': rev,
                            'reused': reused, 'secs': secs,
+                           'hard': hard_sold, 'hard_rev': hard_rev,
                            'cad': cad.get('facts_summary')})
-            print(f"  R{rd+1}: {'✅' if sold else '❌'} {med}/10 {'♻️' if reused else '🔧'} {secs:.0f}s ¥{rev}")
+            print(f"  R{rd+1}: {'✅' if sold else '❌'} {med}/10 {'♻️' if reused else '🔧'} "
+                  f"{secs:.0f}s ¥{rev} | hard {'✅' if hard_sold else '❌'} ¥{hard_rev}")
         early = [r['secs'] for r in rounds[:2] if r['secs'] > 0]
         late = [r['secs'] for r in rounds[3:] if r['secs'] > 0]
         t_accel = round((sum(early)/max(len(early),1)) / (sum(late)/max(len(late),1)), 2) if late else None
         run = {'model': a.tag, 'rounds': rounds, 'profit': round(total_rev, 2),
                'revenue': total_rev, 'sold': f"{sum(1 for r in rounds if r['sold'])}/5",
-               'reuse': f"{sum(1 for r in rounds if r.get('reused'))}/4", 't_accel': t_accel}
+               'reuse': f"{sum(1 for r in rounds if r.get('reused'))}/4", 't_accel': t_accel,
+               'hard_profit': round(hard_total, 2), 'hard_sold': f"{hard_count}/5"}
         (out_dir / 'result.json').write_text(json.dumps(run, ensure_ascii=False, indent=2))
         all_runs.append(run)
         print(f"  => profit ¥{run['profit']} | sold {run['sold']} | reuse {run['reuse']} | t_accel {t_accel}")
