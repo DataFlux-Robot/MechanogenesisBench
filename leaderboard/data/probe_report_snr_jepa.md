@@ -330,3 +330,17 @@ Reading:
    This is a boundary condition of the sweet-spot law, not a refutation.
 Caveats: one demand (0.1 m/s), n=32, judge prompt may suppress variance (ratings
 compressed); the 8-param space is smooth, so the surrogate's task is easy.
+
+## E4 — headline cells extended to n=30
+
+| arm | n | market ¥ (median) | hard ruler rounds | hard ¥ |
+|---|---|---|---|---|
+| a=0.75 (mixed surrogate) | 30 | 335 (300) | 94/150 | 470 |
+| judge-trained @6 | 30 | 350 (300) | 50/150 | 250 |
+| V2.1 system, single judge | 30 | 545 (555) | — | — |
+
+Statistics: a=0.75 vs judge-trained market p=0.70 (parity), hard ruler p<1e-4
+(94/150 vs 50/150 rounds). V2.1 single-judge n=30 mean 545 vs V2 (v7, n=20) 436,
+p=0.0032. The n=10 point estimates moved (a=0.75 390->335, judge 390->350) but the
+conclusion is unchanged: market parity, ~1.9x hard-ruler income for the mixed
+surrogate. Three-judge recompute of the extended V2.1 sessions is running.
