@@ -301,3 +301,32 @@ pre-registered P5 (reward-side peak lower than screening) is NOT supported — t
 reward-side market peak sits higher (0.75 vs 0.5). Caveat: one training run per
 a-value; the a-curve is not monotonically single-peaked (the 0.25/0.5 dip may be
 training stochasticity).
+
+## E2 robot-domain pilot — judge misalignment replicates; exchange-rate boundary
+
+Second execution substrate: simulated MicroDuck, 32 random designs in an 8-parameter
+numeric space (mass/inertia scaling, trunk COM, joint-range scales), forward-0.1 m/s
+acceptance (3 seeds x 2 worlds), frozen precision policy. Execution score S is the
+continuous acceptance quality (pass fraction x tracking quality).
+
+| quantity | value |
+|---|---|
+| S (execution) | 0.764 +/- 0.088 (range 0.628-0.920) |
+| judge rating | 8.09 +/- 0.28 (3 reps; highly compressed) |
+| judge vs S | **rho = -0.121** |
+| surrogate vs S (LOO) | **rho = 0.958, MAE 0.059** |
+| exchange rate (screen 8, verify B) | payoff 0.888 (B=0) -> 0.891 (B=8), flat |
+| sweet spot (label mixing) | monotone 0.891 (a=0) -> 0.841 (a=1); a*=0 |
+
+Reading:
+1. The judge-misalignment replicates in a second substrate: the LLM judge's ratings
+   are uncorrelated (slightly negative) with the physics and carry almost no
+   variance, so demand-style information is absent.
+2. When the surrogate is near-perfect (rho=0.96), extra real verification adds
+   nothing: the surrogate's value is the cost reduction (32 designs x ~50 s of
+   physics vs milliseconds), not selection quality.
+3. With an uninformative judge, the sweet point sits at a=0 (truth only) — an
+   interior peak requires the judge to carry partial target-relevant signal.
+   This is a boundary condition of the sweet-spot law, not a refutation.
+Caveats: one demand (0.1 m/s), n=32, judge prompt may suppress variance (ratings
+compressed); the 8-param space is smooth, so the surrogate's task is easy.

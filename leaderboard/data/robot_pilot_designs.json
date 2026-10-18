@@ -1,0 +1,322 @@
+[
+ {
+  "trunk_mass_scale": 1.0,
+  "trunk_com_x_m": 0.0,
+  "upper_leg_mass_scale": 1.0,
+  "lower_leg_mass_scale": 1.0,
+  "head_mass_scale": 1.0,
+  "hip_range_scale": 0.925,
+  "knee_ankle_range_scale": 0.925,
+  "leg_range_center_shift_rad": 0.0
+ },
+ {
+  "trunk_mass_scale": 0.98238,
+  "trunk_com_x_m": -0.00209,
+  "upper_leg_mass_scale": 1.03019,
+  "lower_leg_mass_scale": 0.91449,
+  "head_mass_scale": 1.00718,
+  "hip_range_scale": 0.90485,
+  "knee_ankle_range_scale": 0.8587,
+  "leg_range_center_shift_rad": 0.00074
+ },
+ {
+  "trunk_mass_scale": 0.95375,
+  "trunk_com_x_m": -0.0004,
+  "upper_leg_mass_scale": 0.91397,
+  "lower_leg_mass_scale": 0.91814,
+  "head_mass_scale": 0.9849,
+  "hip_range_scale": 0.97403,
+  "knee_ankle_range_scale": 0.86857,
+  "leg_range_center_shift_rad": -0.02768
+ },
+ {
+  "trunk_mass_scale": 1.01274,
+  "trunk_com_x_m": 0.00269,
+  "upper_leg_mass_scale": 1.01542,
+  "lower_leg_mass_scale": 0.97934,
+  "head_mass_scale": 1.09525,
+  "hip_range_scale": 0.85699,
+  "knee_ankle_range_scale": 0.97877,
+  "leg_range_center_shift_rad": -0.02104
+ },
+ {
+  "trunk_mass_scale": 0.96443,
+  "trunk_com_x_m": -0.00229,
+  "upper_leg_mass_scale": 0.9617,
+  "lower_leg_mass_scale": 1.06323,
+  "head_mass_scale": 0.93615,
+  "hip_range_scale": 0.93724,
+  "knee_ankle_range_scale": 0.94584,
+  "leg_range_center_shift_rad": -0.01276
+ },
+ {
+  "trunk_mass_scale": 1.00477,
+  "trunk_com_x_m": -0.00262,
+  "upper_leg_mass_scale": 0.91192,
+  "lower_leg_mass_scale": 0.94119,
+  "head_mass_scale": 1.03608,
+  "hip_range_scale": 0.91414,
+  "knee_ankle_range_scale": 0.89712,
+  "leg_range_center_shift_rad": 0.00856
+ },
+ {
+  "trunk_mass_scale": 0.99532,
+  "trunk_com_x_m": -0.0012,
+  "upper_leg_mass_scale": 1.05888,
+  "lower_leg_mass_scale": 1.0398,
+  "head_mass_scale": 0.94882,
+  "hip_range_scale": 0.93616,
+  "knee_ankle_range_scale": 0.92878,
+  "leg_range_center_shift_rad": 0.03751
+ },
+ {
+  "trunk_mass_scale": 1.02294,
+  "trunk_com_x_m": -0.00127,
+  "upper_leg_mass_scale": 1.09603,
+  "lower_leg_mass_scale": 0.92361,
+  "head_mass_scale": 0.98362,
+  "hip_range_scale": 0.96357,
+  "knee_ankle_range_scale": 0.8728,
+  "leg_range_center_shift_rad": -0.0011
+ },
+ {
+  "trunk_mass_scale": 0.95392,
+  "trunk_com_x_m": 0.00101,
+  "upper_leg_mass_scale": 1.05291,
+  "lower_leg_mass_scale": 1.01461,
+  "head_mass_scale": 1.0751,
+  "hip_range_scale": 0.89706,
+  "knee_ankle_range_scale": 0.95429,
+  "leg_range_center_shift_rad": 0.00944
+ },
+ {
+  "trunk_mass_scale": 1.00799,
+  "trunk_com_x_m": -0.00026,
+  "upper_leg_mass_scale": 1.06799,
+  "lower_leg_mass_scale": 1.08894,
+  "head_mass_scale": 0.99482,
+  "hip_range_scale": 0.94962,
+  "knee_ankle_range_scale": 0.8591,
+  "leg_range_center_shift_rad": 0.02015
+ },
+ {
+  "trunk_mass_scale": 1.01471,
+  "trunk_com_x_m": 0.00296,
+  "upper_leg_mass_scale": 1.06438,
+  "lower_leg_mass_scale": 0.95692,
+  "head_mass_scale": 0.97716,
+  "hip_range_scale": 0.9503,
+  "knee_ankle_range_scale": 0.85338,
+  "leg_range_center_shift_rad": -0.00383
+ },
+ {
+  "trunk_mass_scale": 0.9668,
+  "trunk_com_x_m": -0.0023,
+  "upper_leg_mass_scale": 0.91179,
+  "lower_leg_mass_scale": 1.05365,
+  "head_mass_scale": 0.92587,
+  "hip_range_scale": 0.88714,
+  "knee_ankle_range_scale": 0.90864,
+  "leg_range_center_shift_rad": 0.03714
+ },
+ {
+  "trunk_mass_scale": 0.95806,
+  "trunk_com_x_m": -0.0003,
+  "upper_leg_mass_scale": 1.00989,
+  "lower_leg_mass_scale": 1.07668,
+  "head_mass_scale": 1.06386,
+  "hip_range_scale": 0.9796,
+  "knee_ankle_range_scale": 0.89176,
+  "leg_range_center_shift_rad": -0.00847
+ },
+ {
+  "trunk_mass_scale": 0.98588,
+  "trunk_com_x_m": 0.00231,
+  "upper_leg_mass_scale": 1.09155,
+  "lower_leg_mass_scale": 0.93018,
+  "head_mass_scale": 0.93524,
+  "hip_range_scale": 0.88479,
+  "knee_ankle_range_scale": 0.885,
+  "leg_range_center_shift_rad": -0.0015
+ },
+ {
+  "trunk_mass_scale": 1.00891,
+  "trunk_com_x_m": -0.00142,
+  "upper_leg_mass_scale": 0.90082,
+  "lower_leg_mass_scale": 0.98379,
+  "head_mass_scale": 0.97385,
+  "hip_range_scale": 0.93495,
+  "knee_ankle_range_scale": 0.99296,
+  "leg_range_center_shift_rad": 0.01905
+ },
+ {
+  "trunk_mass_scale": 1.00155,
+  "trunk_com_x_m": 0.00071,
+  "upper_leg_mass_scale": 1.03524,
+  "lower_leg_mass_scale": 0.9108,
+  "head_mass_scale": 1.07991,
+  "hip_range_scale": 0.967,
+  "knee_ankle_range_scale": 0.98118,
+  "leg_range_center_shift_rad": 0.02979
+ },
+ {
+  "trunk_mass_scale": 0.98924,
+  "trunk_com_x_m": -0.00061,
+  "upper_leg_mass_scale": 0.92071,
+  "lower_leg_mass_scale": 1.02686,
+  "head_mass_scale": 0.91245,
+  "hip_range_scale": 0.8601,
+  "knee_ankle_range_scale": 0.88131,
+  "leg_range_center_shift_rad": -0.03377
+ },
+ {
+  "trunk_mass_scale": 0.98401,
+  "trunk_com_x_m": -0.00268,
+  "upper_leg_mass_scale": 0.90005,
+  "lower_leg_mass_scale": 0.93025,
+  "head_mass_scale": 0.92029,
+  "hip_range_scale": 0.90454,
+  "knee_ankle_range_scale": 0.85383,
+  "leg_range_center_shift_rad": 0.03743
+ },
+ {
+  "trunk_mass_scale": 1.01141,
+  "trunk_com_x_m": -0.00211,
+  "upper_leg_mass_scale": 0.95045,
+  "lower_leg_mass_scale": 0.96948,
+  "head_mass_scale": 0.97283,
+  "hip_range_scale": 0.86843,
+  "knee_ankle_range_scale": 0.97734,
+  "leg_range_center_shift_rad": 0.04931
+ },
+ {
+  "trunk_mass_scale": 0.9966,
+  "trunk_com_x_m": -0.0001,
+  "upper_leg_mass_scale": 0.91718,
+  "lower_leg_mass_scale": 0.92044,
+  "head_mass_scale": 0.96853,
+  "hip_range_scale": 0.88971,
+  "knee_ankle_range_scale": 0.97433,
+  "leg_range_center_shift_rad": -0.03386
+ },
+ {
+  "trunk_mass_scale": 0.95231,
+  "trunk_com_x_m": 0.00271,
+  "upper_leg_mass_scale": 1.00565,
+  "lower_leg_mass_scale": 0.92932,
+  "head_mass_scale": 1.00863,
+  "hip_range_scale": 0.85406,
+  "knee_ankle_range_scale": 0.92922,
+  "leg_range_center_shift_rad": 0.04785
+ },
+ {
+  "trunk_mass_scale": 1.03633,
+  "trunk_com_x_m": 0.00118,
+  "upper_leg_mass_scale": 0.95222,
+  "lower_leg_mass_scale": 0.97334,
+  "head_mass_scale": 0.93341,
+  "hip_range_scale": 0.96579,
+  "knee_ankle_range_scale": 0.92989,
+  "leg_range_center_shift_rad": 0.02791
+ },
+ {
+  "trunk_mass_scale": 0.98297,
+  "trunk_com_x_m": -0.00166,
+  "upper_leg_mass_scale": 1.0623,
+  "lower_leg_mass_scale": 1.09699,
+  "head_mass_scale": 1.07053,
+  "hip_range_scale": 0.97091,
+  "knee_ankle_range_scale": 0.97275,
+  "leg_range_center_shift_rad": 0.02399
+ },
+ {
+  "trunk_mass_scale": 0.97267,
+  "trunk_com_x_m": 0.00011,
+  "upper_leg_mass_scale": 0.97111,
+  "lower_leg_mass_scale": 0.9058,
+  "head_mass_scale": 0.90559,
+  "hip_range_scale": 0.89191,
+  "knee_ankle_range_scale": 0.88888,
+  "leg_range_center_shift_rad": 0.01925
+ },
+ {
+  "trunk_mass_scale": 1.04565,
+  "trunk_com_x_m": -0.00032,
+  "upper_leg_mass_scale": 1.0874,
+  "lower_leg_mass_scale": 1.09761,
+  "head_mass_scale": 1.091,
+  "hip_range_scale": 0.9047,
+  "knee_ankle_range_scale": 0.88307,
+  "leg_range_center_shift_rad": -0.02732
+ },
+ {
+  "trunk_mass_scale": 0.96967,
+  "trunk_com_x_m": -0.00177,
+  "upper_leg_mass_scale": 1.02481,
+  "lower_leg_mass_scale": 1.08006,
+  "head_mass_scale": 1.06809,
+  "hip_range_scale": 0.92192,
+  "knee_ankle_range_scale": 0.94795,
+  "leg_range_center_shift_rad": 0.02996
+ },
+ {
+  "trunk_mass_scale": 0.95848,
+  "trunk_com_x_m": 0.00096,
+  "upper_leg_mass_scale": 1.08196,
+  "lower_leg_mass_scale": 1.05646,
+  "head_mass_scale": 1.05003,
+  "hip_range_scale": 0.9217,
+  "knee_ankle_range_scale": 0.87678,
+  "leg_range_center_shift_rad": 0.02891
+ },
+ {
+  "trunk_mass_scale": 0.98325,
+  "trunk_com_x_m": 0.0018,
+  "upper_leg_mass_scale": 1.09433,
+  "lower_leg_mass_scale": 0.97917,
+  "head_mass_scale": 0.98028,
+  "hip_range_scale": 0.99202,
+  "knee_ankle_range_scale": 0.95872,
+  "leg_range_center_shift_rad": -0.033
+ },
+ {
+  "trunk_mass_scale": 0.9627,
+  "trunk_com_x_m": -0.00209,
+  "upper_leg_mass_scale": 1.08097,
+  "lower_leg_mass_scale": 1.0613,
+  "head_mass_scale": 0.92923,
+  "hip_range_scale": 0.97398,
+  "knee_ankle_range_scale": 0.99705,
+  "leg_range_center_shift_rad": 0.01573
+ },
+ {
+  "trunk_mass_scale": 0.98504,
+  "trunk_com_x_m": 0.00029,
+  "upper_leg_mass_scale": 0.9262,
+  "lower_leg_mass_scale": 0.90285,
+  "head_mass_scale": 1.09418,
+  "hip_range_scale": 0.94745,
+  "knee_ankle_range_scale": 0.92899,
+  "leg_range_center_shift_rad": 0.04336
+ },
+ {
+  "trunk_mass_scale": 0.99338,
+  "trunk_com_x_m": 0.00223,
+  "upper_leg_mass_scale": 1.06523,
+  "lower_leg_mass_scale": 0.94221,
+  "head_mass_scale": 0.95037,
+  "hip_range_scale": 0.89394,
+  "knee_ankle_range_scale": 0.88608,
+  "leg_range_center_shift_rad": 0.00864
+ },
+ {
+  "trunk_mass_scale": 0.97594,
+  "trunk_com_x_m": -0.00049,
+  "upper_leg_mass_scale": 0.92621,
+  "lower_leg_mass_scale": 1.082,
+  "head_mass_scale": 0.97076,
+  "hip_range_scale": 0.91872,
+  "knee_ankle_range_scale": 0.9375,
+  "leg_range_center_shift_rad": 0.04043
+ }
+]
