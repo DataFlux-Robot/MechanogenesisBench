@@ -242,3 +242,34 @@ Prescription for the paper: keep the judged market as the objective (it is what
 is priced), keep the hard execution ruler as the audit, use surrogates only for
 screening where their exchange rate is validated (rho > ~0.2, verified on held-out
 generations), and never optimize a surrogate as the sole reward.
+
+## E1 (pre-registered) — information sweet spot, screening stage
+
+Protocol: `paper/protocols/sweetspot.md`. Surrogate family y_a = (1-a)Q + a(R/10),
+a in [0,1]; train care_v4+v4b (669), test rl_v5b (291, held out); K=8, 4,000
+groups x 3 repeats; two decision targets.
+
+Key numbers (cap40k, alpha=2):
+
+| a | rho_Q | rho_R | B=0 phys | B=2 phys | B=2 mkt |
+|---|---|---|---|---|---|
+| 0.0 | +0.402 | -0.362 | 0.975 | 0.978 | 3.98 |
+| 0.2 | +0.420 | -0.272 | **0.978** | 0.979 | 4.31 |
+| 0.4 | **+0.436** | -0.020 | 0.975 | 0.979 | 5.28 |
+| 0.5 | +0.425 | +0.199 | 0.972 | **0.981** | 6.25 |
+| 0.6 | +0.355 | +0.419 | 0.963 | 0.963 | 6.94 |
+| 0.8 | +0.052 | +0.684 | 0.911 | 0.896 | 7.42 |
+| 1.0 | -0.140 | +0.682 | 0.796 | 0.846 | 7.44 |
+
+- **Interior peak confirmed for the physics target**: rho_Q peaks at a=0.4
+  (0.436), screening payoff peaks at a*=0.2 (B=0) and a*=0.5 (B=2/3), both beating
+  the pure-truth (a=0) and pure-judge (a=1) surrogates. The judge signal helps
+  the surrogate until it starts to carry style nuisance.
+- Market target peaks at a=0.8-0.9 (B=0-4), but judging all eight is still best
+  (7.84): on its own target the judge is the truth; the surrogate only buys cost.
+- Regularization alpha=10 keeps the physics peak at a*=0.5 (B=2-4) and lowers the
+  overall fidelity; the capacity axis (5k vs 40k features) did not bind because
+  the char n-gram vocabulary after min_df=3 is below 5k.
+- Reward-usage sweep (a in {0.25,0.5,0.75,1.0}, 6 iters from SFT, n=10 evals) is
+  running; pre-registered prediction P5: the reward-side peak sits lower than the
+  screening peak because optimization pressure amplifies nuisance.
