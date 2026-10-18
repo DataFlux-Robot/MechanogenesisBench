@@ -1,0 +1,50 @@
+{
+  "a=0.00 geometry": {
+    "tag": "care-v7qs-it6",
+    "n": 10,
+    "judge_mean": 285,
+    "judge_median": 300,
+    "hard": "50/50",
+    "hard_rev_mean": 750
+  },
+  "a=0.25": {
+    "tag": "care-a025-it6",
+    "n": 10,
+    "judge_mean": 210,
+    "judge_median": 150,
+    "hard": "36/50",
+    "hard_rev_mean": 540
+  },
+  "a=0.50": {
+    "tag": "care-a050-it6",
+    "n": 10,
+    "judge_mean": 135,
+    "judge_median": 150,
+    "hard": "40/50",
+    "hard_rev_mean": 600
+  },
+  "a=0.75": {
+    "tag": "care-a075-it6",
+    "n": 10,
+    "judge_mean": 390,
+    "judge_median": 375,
+    "hard": "32/50",
+    "hard_rev_mean": 480
+  },
+  "a=1.00": {
+    "tag": "care-a100-it6",
+    "n": 10,
+    "judge_mean": 180,
+    "judge_median": 150,
+    "hard": "7/50",
+    "hard_rev_mean": 105
+  },
+  "judge-trained @6": {
+    "tag": "care-v4b-it2",
+    "n": 10,
+    "judge_mean": 390,
+    "judge_median": 300,
+    "hard": "17/50",
+    "hard_rev_mean": 255
+  }
+}

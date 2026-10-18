@@ -273,3 +273,31 @@ Key numbers (cap40k, alpha=2):
 - Reward-usage sweep (a in {0.25,0.5,0.75,1.0}, 6 iters from SFT, n=10 evals) is
   running; pre-registered prediction P5: the reward-side peak sits lower than the
   screening peak because optimization pressure amplifies nuisance.
+
+## E1 reward-usage sweep — the mixed surrogate dominates the judge channel
+
+Arms trained from SFT, 6 iterations, mix-and-match label y_a = (1-a)Q + a(R/10)
+as the sole reward (no judge calls), n=10 evaluation each.
+
+| a | market ¥ (sd) | hard ruler rounds | hard ¥ (sd) |
+|---|---|---|---|
+| 0.00 (geometry) | 285 (111) | 50/50 | 750 (0) |
+| 0.25 | 210 (105) | 36/50 | 540 (77) |
+| 0.50 | 135 (111) | 40/50 | 600 (0) |
+| **0.75** | **390 (105)** | **32/50** | **480 (95)** |
+| 1.00 (judge surrogate) | 180 (63) | 7/50 | 105 (123) |
+| judge-trained @6 (reference) | 390 (126) | 17/50 | 255 (72) |
+
+Statistics (Mann-Whitney, n=10/arm):
+- a=0.75 vs judge-trained: market p=0.90 (parity), hard revenue p<1e-4 (a=0.75
+  better) — same market income with almost double the execution-ruler income.
+- a=0.75 vs a=0: market p=0.059 (a=0.75 better), hard revenue favors a=0 (p=1.0).
+- a=0.75 vs a=1.00: both p<1e-3 (a=0.75 better on market and hard ruler).
+
+Reading: the reward-side sweet spot is at a≈0.75. Knowing a lot about the judge
+(preserving demand information) without imitating its noise keeps market parity
+and doubles physical quality; full imitation (a=1) collapses both. The
+pre-registered P5 (reward-side peak lower than screening) is NOT supported — the
+reward-side market peak sits higher (0.75 vs 0.5). Caveat: one training run per
+a-value; the a-curve is not monotonically single-peaked (the 0.25/0.5 dip may be
+training stochasticity).
