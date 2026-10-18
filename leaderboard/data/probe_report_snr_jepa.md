@@ -344,3 +344,14 @@ Statistics: a=0.75 vs judge-trained market p=0.70 (parity), hard ruler p<1e-4
 p=0.0032. The n=10 point estimates moved (a=0.75 390->335, judge 390->350) but the
 conclusion is unchanged: market parity, ~1.9x hard-ruler income for the mixed
 surrogate. Three-judge recompute of the extended V2.1 sessions is running.
+
+## E4 final — V2.1 n=30 across the three rulers
+
+| ruler | n | V2.1 | reference |
+|---|---|---|---|
+| single judge | 30 | 545 (median 555) | V2 436, p=0.0032 |
+| symmetric 3-judge | 30 | 531 (median 540; bounds 513-550) | frontier 433, p=0.0010, d=1.05 |
+| execution-gated | 30 | 488 (median 500) | V2 443 (n=20) |
+
+The n=20 figures (534 / 540 / 492) were reproduced within noise; the headline and
+its significance are unchanged by the extension.

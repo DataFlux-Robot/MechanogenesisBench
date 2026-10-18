@@ -19,7 +19,7 @@ system entries (V2, JitRL) are single-judge and flagged.
 
 | # | System | Profit / session | n | Protocol | Notes |
 |---|---|---:|---:|---|---|
-| 1a | **FluxEidosV2.1-9B system (CARE-v4 + V2 stack) (ours)** | **¥534** (median 570) | 20 | **3-judge** | CARE-v4 weights + identical stack; **beats frontier +23%, p=0.0010, d=1.16**; ambiguous-resample bounds ¥512–¥547; same-protocol single-judge **¥540 vs ¥436** for V2 (p=0.0065, d=0.79); execution-gated ¥492 vs ¥443; 80/100 rounds sold; tighter spread than V2 (sd 76 vs 108) |
+| 1a | **FluxEidosV2.1-9B system (CARE-v4 + V2 stack) (ours)** | **¥531** (median 540) | 30 | **3-judge** | CARE-v4 weights + identical stack; **beats frontier +23%, p=0.0010, d=1.05**; ambiguous-resample bounds ¥513–¥550; same-protocol single-judge **¥545 vs ¥436** for V2 (p=0.0032, n=30); execution-gated ¥488 (n=30); tighter spread than V2 |
 | 1 | **FluxEidosV2-9B system (ours)** | **¥532** (median 540) | 40 | **3-judge** | V1.5 weights + test-time stack; **beats frontier +23%, p=0.0015, d=1.0** (single-judge: ¥438 = parity). Ambiguous-resample bounds ¥489–¥564. Predecessor system at parity with V2.1 (p=0.52) |
 | 2 | mimo-v2.6-flash (Xiaomi) | **¥433** | 14 | 3-judge | commercial frontier |
 | 3 | mimo-v2.6-pro (Xiaomi) | ¥418 | 11 | 3-judge | |
