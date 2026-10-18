@@ -205,7 +205,7 @@ def start_server():
     return subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)
 
 
-def rollout(prompts, k, temp=0.75, fork=None):
+def rollout(prompts, k, temp=0.75, fork=None, do_repair=False):
     """Sample k completions per prompt via the completions API (exact training prompt format).
     fork={'temp':0.95,'plain_share':0.4} enables Fork-and-Flush branches: the
     non-plain branches first re-derive a one-sentence intent from the flushed
@@ -267,6 +267,7 @@ def rollout(prompts, k, temp=0.75, fork=None):
                                 {'role': 'user', 'content': json.dumps(u, ensure_ascii=False)}])
             r['intent'] = intent
 
+
     def one(req):
         body = {'model': 'rl-policy', 'prompt': req['prompt'], 'max_tokens': 1800,
                 'temperature': temp, 'top_p': 0.95, 'seed': req['seed']}
@@ -279,7 +280,10 @@ def rollout(prompts, k, temp=0.75, fork=None):
             if r.status_code != 200:
                 return {**req, 'text': '', 'secs': dt, 'tokens': 0}
             ch = r.json()['choices'][0]
-            return {**req, 'text': ch['text'].strip(), 'secs': dt, 'tokens': r.json().get('usage', {}).get('completion_tokens', 0),
+            txt = ch['text'].strip()
+            fixed = repair_design(txt) if do_repair else txt
+            return {**req, 'text': fixed, 'repaired': fixed != txt,
+                    'secs': dt, 'tokens': r.json().get('usage', {}).get('completion_tokens', 0),
                     'finish': ch.get('finish_reason')}
         except Exception as e:
             return {**req, 'text': '', 'secs': round(time.monotonic() - t0, 1), 'tokens': 0, 'err': str(e)[:80]}
@@ -302,6 +306,53 @@ def cad_eval(text, capital, folder):
     except Exception:
         pass
     return {'error': 'worker failed', 'metrics': None}
+
+
+def repair_design(text):
+    """Syntax normalization inside the rollout loop (v8 lesson: the composite
+    policy's modal output reused node ids; the reward-time CAD gate alone does
+    not prevent the collapse). Fixes cross-wired input/inputs, renames duplicate
+    node ids (references keep pointing at the first occurrence), and drops parts
+    with unknown nodes or duplicate names."""
+    try:
+        d = json.loads(text)
+    except Exception:
+        return text
+    changed = False
+    for n in d.get('nodes', []):
+        if n.get('op') == 'transform' and 'input' not in n and 'inputs' in n:
+            v = n.pop('inputs')
+            n['input'] = v[0] if isinstance(v, list) else v
+            changed = True
+        elif n.get('op') in ('union', 'difference') and 'inputs' not in n and 'input' in n:
+            v = n.pop('input')
+            n['inputs'] = v if isinstance(v, list) else [v]
+            changed = True
+    seen = set()
+    for n in d.get('nodes', []):
+        nid = n.get('id')
+        if not nid:
+            continue
+        if nid in seen:
+            k = 2
+            while f'{nid}__{k}' in seen:
+                k += 1
+            n['id'] = f'{nid}__{k}'
+            seen.add(n['id'])
+            changed = True
+        else:
+            seen.add(nid)
+    node_ids = {n.get('id') for n in d.get('nodes', [])}
+    kept, names = [], set()
+    for part in d.get('parts', []):
+        if part.get('node') not in node_ids or part.get('name') in names:
+            changed = True
+            continue
+        names.add(part.get('name'))
+        kept.append(part)
+    if len(kept) != len(d.get('parts', [])):
+        d['parts'] = kept
+    return json.dumps(d, ensure_ascii=False) if changed else text
 
 
 def load_surrogate(path):
@@ -588,6 +639,10 @@ def main():
                     help='path to the demand (judge-rating) surrogate pickle (composite mode)')
     ap.add_argument('--wq', type=float, default=0.5,
                     help='composite weight on predicted execution quality (rest on demand)')
+    ap.add_argument('--wq-end', type=float, default=None,
+                    help='anneal wq linearly from --wq to this value over the run (composite only)')
+    ap.add_argument('--repair', action='store_true',
+                    help='apply syntax repair to every rollout before CAD/training')
     a = ap.parse_args()
 
     OUT.mkdir(parents=True, exist_ok=True)
@@ -629,7 +684,7 @@ def main():
                 print('server failed to start'); server.terminate(); break
         try:
             fork_cfg = {'temp': a.fork_temp, 'plain_share': a.fork_plain} if a.fork else None
-            rollouts = rollout(prompts, a.k, fork=fork_cfg)
+            rollouts = rollout(prompts, a.k, fork=fork_cfg, do_repair=a.repair)
         finally:
             server.terminate()
             try: server.wait(timeout=60)
@@ -638,10 +693,12 @@ def main():
             time.sleep(8)
 
         # rewards (parallel judge+CAD)
+        wq_it = (a.wq if (a.wq_end is None or a.iters <= 1)
+                 else a.wq + (a.wq_end - a.wq) * (it - 1) / (a.iters - 1))
         def score(s):
             p = prompts[s['pi']]
             wd = OUT / f'it{it}' / f"p{s['pi']}_s{s['seed']}"
-            s['rw'] = reward_sample(s, p, wd, sur=surrogate, sur_r=surrogate_r, wq=a.wq)
+            s['rw'] = reward_sample(s, p, wd, sur=surrogate, sur_r=surrogate_r, wq=wq_it)
             s['demand'] = p['demand']; s['operator'] = p['op']
             return s
         with ThreadPoolExecutor(max_workers=4) as ex:
@@ -667,6 +724,9 @@ def main():
         m['mean_r_by_op'] = by_op
         from collections import Counter as _C
         m['care_regimes'] = dict(_C(s['rw'].get('regime', '?') for s in rollouts))
+        m['wq'] = round(wq_it, 3)
+        if a.repair:
+            m['repair_rate'] = round(statistics.mean(1.0 * s.get('repaired', False) for s in rollouts), 3)
         if surrogate is not None:
             m['measured_q'] = round(statistics.mean(s['rw'].get('q', 0) for s in rollouts), 3)
             m['measured_fit'] = round(statistics.mean(s['rw'].get('fit', 0) for s in rollouts), 3)

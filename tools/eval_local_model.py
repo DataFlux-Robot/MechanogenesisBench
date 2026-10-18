@@ -48,6 +48,50 @@ def speed_price(secs):
     return 0.5
 
 
+def repair_design(text):
+    """Syntax normalization (same as the training loop): cross-wired
+    input/inputs, duplicate node ids renamed, invalid/duplicate parts dropped."""
+    try:
+        d = json.loads(text)
+    except Exception:
+        return text
+    changed = False
+    for n in d.get('nodes', []):
+        if n.get('op') == 'transform' and 'input' not in n and 'inputs' in n:
+            v = n.pop('inputs')
+            n['input'] = v[0] if isinstance(v, list) else v
+            changed = True
+        elif n.get('op') in ('union', 'difference') and 'inputs' not in n and 'input' in n:
+            v = n.pop('input')
+            n['inputs'] = v if isinstance(v, list) else [v]
+            changed = True
+    seen = set()
+    for n in d.get('nodes', []):
+        nid = n.get('id')
+        if not nid:
+            continue
+        if nid in seen:
+            k = 2
+            while f'{nid}__{k}' in seen:
+                k += 1
+            n['id'] = f'{nid}__{k}'
+            seen.add(n['id'])
+            changed = True
+        else:
+            seen.add(nid)
+    node_ids = {n.get('id') for n in d.get('nodes', [])}
+    kept, names = [], set()
+    for part in d.get('parts', []):
+        if part.get('node') not in node_ids or part.get('name') in names:
+            changed = True
+            continue
+        names.add(part.get('name'))
+        kept.append(part)
+    if len(kept) != len(d.get('parts', [])):
+        d['parts'] = kept
+    return json.dumps(d, ensure_ascii=False) if changed else text
+
+
 def cad_eval(text, capital, folder):
     """Run real CAD evaluation in the text-to-cad venv subprocess."""
     folder = Path(folder); folder.mkdir(parents=True, exist_ok=True)
@@ -183,6 +227,8 @@ def main():
     ap.add_argument('--intent', action='store_true',
                     help='Fork-and-Flush deployment: flushed intent re-derivation, then design '
                          'conditioned on it (intent latency is priced)')
+    ap.add_argument('--repair', action='store_true',
+                    help='apply the syntax-repair layer before CAD evaluation')
     a = ap.parse_args()
 
     model, tokenizer = load_model(a.model, a.adapter)
@@ -200,6 +246,8 @@ def main():
                 text, secs = generate(model, tokenizer, demand, capital, use_intent=a.intent)
                 if not text.strip():
                     continue
+                if a.repair:
+                    text = repair_design(text)
                 cad = cad_eval(text, capital, out_dir / f'r{rd}_a{att}' / 'cad')
                 if cad.get('metrics'):
                     best = (text, secs, cad)

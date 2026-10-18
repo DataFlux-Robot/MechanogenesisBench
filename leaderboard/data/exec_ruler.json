@@ -1,0 +1,55 @@
+{
+  "care-v9comp2-it6-rep": {
+    "sessions": 10,
+    "judge_mean": 105,
+    "fit": "47/50",
+    "clean": "34/50",
+    "reuse": "48/50",
+    "hard": "31/50",
+    "hard_rev_mean": 465,
+    "hard_rev_median": 450,
+    "soft_rev_mean": 705,
+    "per_session": [
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 600.0,
+        "hard": 4
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 600.0,
+        "hard": 4
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 450.0,
+        "hard": 3
+      },
+      {
+        "rev_hard": 300.0,
+        "hard": 2
+      }
+    ]
+  }
+}

@@ -202,3 +202,43 @@ rulers (225 vs 390 market; 6/10 hard rounds vs 17/50).
 Lesson: a surrogate reward needs validity-preserving constraints (syntax repair
 inside the rollout loop, or a validity-aware surrogate head), not just a hard gate
 at reward time. The composite arm as configured is rejected.
+
+### Fixed composite (repair + annealed wq) — still loses the market
+
+Changes: syntax repair inside the rollout loop (duplicate ids renamed, cross-wired
+input/inputs fixed, invalid parts dropped); wq annealed 0.25 -> 0.75; 6 iterations
+from SFT. Training healthy (Q 0.125 -> 0.597, predicted demand 1.92 -> 4.49,
+repair rate ~1%), no collapse. Evaluated with the same repair layer:
+
+| checkpoint | n | judge mean | fit | clean | reuse | hard | hard ¥ |
+|---|---|---|---|---|---|---|---|
+| iter6 (repair) | 10 | **105** (median 150) | 47/50 | 34/50 | 48/50 | 31/50 | 465 |
+
+The repair fixed the schema collapse and kept execution healthy, but the judged
+market collapsed (105 vs 375-420 for judge-trained arms). The policy optimizes
+the surrogate pair into a region where the real judge rates 1-4: the demand
+surrogate (rho=0.59 on held-out) is exploitable under direct optimization.
+
+### Final matrix (eval n=10, single judge, v7 gate; hard ruler = fit & clean & reuse)
+
+| arm | reward channel | judge ¥ | hard ruler |
+|---|---|---|---|
+| judge channel @6 | judge API | **390** | 17/50 (255) |
+| champion @12 | judge API | 375 | 30/50 (450) |
+| CARE-v3 @6 | judge API | 330 | 4/50 (60) |
+| geometry surrogate @6 | Q surrogate | 285 | **50/50 (750)** |
+| composite v1 it4 | 0.5 Q + 0.5 R | 225 | 6/10 |
+| composite v1 it6 | 0.5 Q + 0.5 R | 0 (collapse) | 0/50 |
+| composite v2 iter6 | annealed + repair | 105 | 31/50 (465) |
+
+**No surrogate arm wins both rulers.** The judged market preserves demand
+satisfaction and ignores geometric cleanliness; the geometry channel does the
+opposite. Direct optimization of either surrogate moves the policy along one
+ruler at the cost of the other. The two channels are misaligned (rho ~ 0.07 on
+the lineage), and a surrogate composite inherits exploitable bias rather than
+resolving the misalignment.
+
+Prescription for the paper: keep the judged market as the objective (it is what
+is priced), keep the hard execution ruler as the audit, use surrogates only for
+screening where their exchange rate is validated (rho > ~0.2, verified on held-out
+generations), and never optimize a surrogate as the sole reward.

@@ -38,5 +38,10 @@
     "judge_mean": 0,
     "hard": "0/50",
     "note": "modal schema collapse (duplicate node ids) at eval temperature"
+  },
+  "composite v2 (repair+anneal) iter6 (n=10)": {
+    "judge_mean": 105,
+    "hard": "31/50",
+    "hard_rev": 465
   }
 }
