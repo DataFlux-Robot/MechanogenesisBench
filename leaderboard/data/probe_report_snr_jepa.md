@@ -409,3 +409,23 @@ lambda = 0.05-0.10. There is no free lunch: the invariance-fidelity frontier is
 the representation-level analogue of the information sweet spot. A deployment that
 values robustness should pick lambda ~ 0.05-0.10; one that values raw ranking
 should use lambda = 0.
+
+## Seed replication (3 seeds x n=20 per a) — the reward-side sweet point does NOT survive
+
+| a | market mean +/- 95% CI | hard ruler |
+|---|---|---|
+| 0.00 | 290 +/- 47 | 607 |
+| 0.25 | 240 +/- 89 | 688 |
+| 0.50 | 162 +/- 135 | 435 |
+| 0.75 | 314 +/- 67 | 386 |
+| 1.00 | 244 +/- 93 | 200 |
+
+The single-seed a=0.75 peak (¥390 at n=10) was seed noise: at 3 seeds the market
+curve is non-monotone with overlapping CIs, and the pre-registered fit puts the
+peak at the boundary (a*=0). Training-seed variance (sd 60-135) exceeds the
+effect size (~40). The hardened execution ruler, by contrast, declines robustly
+as judge information grows (607 -> 688 -> 435 -> 386 -> 200; fit a*=0.03).
+
+Conclusion: the screening-side interior sweet point (fixed surrogates, 291
+designs, a*=0.2/0.5) stands; the reward-side sweet point is a boundary result,
+not a law. This tempers the main-journal claim and is reported as such.
