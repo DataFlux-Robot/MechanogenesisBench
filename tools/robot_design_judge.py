@@ -10,21 +10,30 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 BENCH = Path(__file__).resolve().parent.parent
-DESIGNS = BENCH / 'runs' / 'robot_bench' / 'pilot_designs.json'
-OUT = BENCH / 'runs' / 'robot_bench' / 'pilot_judge.json'
+DESIGNS = Path(os.environ.get('ROBOT_DESIGNS', str(BENCH / 'runs' / 'robot_bench' / 'pilot_designs.json')))
+OUT = Path(os.environ.get('ROBOT_JUDGE_OUT', str(BENCH / 'runs' / 'robot_bench' / 'pilot_judge.json')))
 MIMO_BASE = os.environ.get('MIMO_BASE_URL', 'https://token-plan-cn.xiaomimimo.com/v1')
 REPS = 3
-DEMAND = ('Walk forward at 0.10 m/s on flat ground for 30 s, upright, with low '
-          'lateral drift and no falls.')
-SYS = ('You are a legged-robot engineer. Given a body design (masses, centre of '
-       'mass offset, joint range scales), rate its expected locomotion reliability '
-       'for the demand 0-10. Return ONLY JSON: {"rating":<n>,"accepted":<bool>}')
+DEMAND = json.loads(os.environ.get('ROBOT_DEMAND', 'null')) or {
+    'name': 'forward_010', 'vx': 0.10, 'yaw': 0.0,
+    'text': 'Walk forward at 0.10 m/s on flat ground for 30 s.'}
+DEMAND_TEXT = DEMAND.get('text', str(DEMAND))
+SYS = ('You are a legged-robot engineer reviewing a body design before a 30 s '
+       'locomotion trial. The design is given as mass scales, a centre-of-mass '
+       'x offset (m), and joint range scales. Use this rubric:\n'
+       '0-2: likely falls or cannot produce the commanded motion\n'
+       '3-5: marginal; may walk but fails tracking or drifts\n'
+       '6-8: likely passes with reasonable margin\n'
+       '9-10: excellent stability and tracking margin\n'
+       'Consider mass distribution, COM offset, and whether the range changes '
+       'clip the nominal posture. Return ONLY JSON: '
+       '{"rating":<n>,"accepted":<bool>,"why":"<one line>"}')
 
 
 def judge_once(design):
     import httpx
     key = os.environ.get('MIMO_KEY', 'none')
-    prompt = f"Demand: {DEMAND}\nDesign: {json.dumps(design, ensure_ascii=False)}"
+    prompt = f"Demand: {DEMAND_TEXT}\nDesign: {json.dumps(design, ensure_ascii=False)}"
     for _ in range(3):
         try:
             with httpx.Client(timeout=httpx.Timeout(90, connect=10), trust_env=False) as c:
@@ -33,7 +42,7 @@ def judge_once(design):
                            json={'model': 'mimo-v2.6-pro',
                                  'messages': [{'role': 'system', 'content': SYS},
                                               {'role': 'user', 'content': prompt}],
-                                 'max_tokens': 256, 'temperature': 0.2})
+                                 'max_tokens': 256, 'temperature': 0.5})
             if r.status_code != 200:
                 time.sleep(2); continue
             t = (r.json()['choices'][0]['message'].get('content') or '').strip()

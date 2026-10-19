@@ -331,21 +331,22 @@ def main():
     ap.add_argument('--out', default='')
     ap.add_argument('--workdir', default='')
     ap.add_argument('--demand', type=float, default=0.1, help='target forward speed m/s')
+    ap.add_argument('--yaw', type=float, default=0.0, help='target yaw rate rad/s')
     ap.add_argument('--forward-only', action='store_true', help='skip the stand case')
     ap.add_argument('--revise', action='store_true',
                     help='8-parameter numeric design space (mass/inertia/COM/joint-range edits)')
     a = ap.parse_args()
     if a.forward_only:
         CASES = (CASES[1],)
-    if a.demand != 0.1:
-        CASES = tuple({'name': c['name'],
-                       'command': (a.demand if c['name'] == 'forward_010' else 0.0,
-                                   0.0, 0.0)} for c in CASES)
+    if a.demand != 0.1 or a.yaw != 0.0:
+        CASES = tuple({'name': (f'forward_{a.demand:.2f}' if a.yaw == 0.0 else f'turn_{a.yaw:.2f}'),
+                       'command': (a.demand, 0.0, a.yaw) if c['name'] == 'forward_010' else (0.0, 0.0, 0.0)}
+                      for c in CASES)
     t0 = time.monotonic()
     try:
         d = Path(a.design)
         design = json.loads(d.read_text()) if d.exists() else json.loads(a.design)
-        if 'lower_leg_extension_m' not in design:
+        if not a.revise and 'lower_leg_extension_m' not in design:
             raise ValueError('design must contain lower_leg_extension_m')
         work = Path(a.workdir) if a.workdir else (AUTORESEARCH / 'MechanogenesisBench-upstream'
                                                   / 'runs' / 'robot_bench' / f"design_{int(time.time()*1000)}")
