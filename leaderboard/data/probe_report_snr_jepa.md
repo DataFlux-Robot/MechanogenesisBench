@@ -388,3 +388,24 @@ Reading:
    candidate is weaker (B=0 0.947 vs 0.974); it needs 2-4 real evaluations to hit
    its peak (0.980), while TF-IDF peaks with no real calls (0.976). A surrogate's
    ranking quality and its calibration at the top can differ.
+
+### JEPA invariance-weight sweep — the representation-level sweet spot
+
+Readout-consistency weight lambda (both views), 40 epochs, same cached embeddings:
+
+| lambda | rho_Q | shift view1 | shift view2 |
+|---|---|---|---|
+| 0.00 | **0.434** | 0.030 | 0.549 |
+| 0.05 | 0.407 | 0.024 | 0.124 |
+| 0.10 | 0.405 | 0.020 | 0.112 |
+| 0.20 | 0.402 | 0.027 | 0.102 |
+| 0.50 | 0.402 | 0.011 | 0.064 |
+| 1.00 | 0.403 | 0.010 | 0.077 |
+
+Interpretation: the JEPA prediction loss alone gives the best truth correlation
+(0.434, above the TF-IDF 0.413); explicit invariance (lambda > 0) trades fidelity
+for nuisance robustness — view2 shift falls from 0.549 to 0.10-0.12 at
+lambda = 0.05-0.10. There is no free lunch: the invariance-fidelity frontier is
+the representation-level analogue of the information sweet spot. A deployment that
+values robustness should pick lambda ~ 0.05-0.10; one that values raw ranking
+should use lambda = 0.
