@@ -355,3 +355,36 @@ surrogate. Three-judge recompute of the extended V2.1 sessions is running.
 
 The n=20 figures (534 / 540 / 492) were reproduced within noise; the headline and
 its significance are unchanged by the extension.
+
+## JEPA-Anything integration — latent filtering validated, with an invariance–fidelity trade-off
+
+Setup: Gen-Verse/JEPA-Anything core (OrthogonalFactorProjection K=4 x r=64 plus the
+StandardJEPA EMA-target baseline), observation = frozen Qwen3.5-9B mean-pooled
+embedding (4096-d) of the design text; context view = original design, target
+view = semantically identical format perturbation; readout heads predict Q and
+the judge rating. Train care_v4+v4b (669), test rl_v5b (291). TF-IDF+ridge
+baseline on the same split/labels.
+
+| metric | JEPA v1 | JEPA v2 (stronger view + consistency) | TF-IDF |
+|---|---|---|---|
+| rho vs execution Q | **0.428** | 0.401 | 0.413 |
+| rho vs judge rating | 0.639 | 0.620 | — |
+| format prediction shift | **0.026** | 0.021 (view1) / 0.097 (view2) | 0.033 |
+| screening B=0 (surrogate only) | 0.947 | 0.916 | **0.974** |
+| screening peak | **0.980 (B=3-4)** | 0.974 (B=4) | 0.976 (B=2) |
+| screening B=8 (judge all) | 0.922 | 0.921 | 0.921 |
+
+Reading:
+1. The JEPA latent does filter nuisance: format-induced prediction shift falls
+   0.033 -> 0.026 (-21%) while rho vs truth rises slightly (0.413 -> 0.428). The
+   architecture claim is validated in the JEPA-Anything sense (latent prediction +
+   factorized state + EMA target), though the margin over a strong TF-IDF
+   baseline is modest.
+2. The stronger invariance variant (v2) over-regularizes: rho drops to 0.401 and
+   the second view's shift is large (0.097) — pushing invariance trades away
+   task-relevant information. This is the representation-level version of the
+   information sweet spot (compression vs prediction).
+3. Screening nuance: the JEPA's global correlation is higher, but its top-1
+   candidate is weaker (B=0 0.947 vs 0.974); it needs 2-4 real evaluations to hit
+   its peak (0.980), while TF-IDF peaks with no real calls (0.976). A surrogate's
+   ranking quality and its calibration at the top can differ.
